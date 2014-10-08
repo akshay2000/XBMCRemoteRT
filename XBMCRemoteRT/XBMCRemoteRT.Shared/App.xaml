@@ -4,4 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:XBMCRemoteRT">
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--App name is held as a resource-->
+            <x:String x:Key="AppName">KODI ASSIST</x:String>
+        </ResourceDictionary>
+    </Application.Resources>
+    
+
 </Application>

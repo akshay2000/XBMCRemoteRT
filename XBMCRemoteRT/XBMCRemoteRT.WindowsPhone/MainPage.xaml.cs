@@ -15,6 +15,12 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using XBMCRemoteRT.Models;
+using System.Threading.Tasks;
+using XBMCRemoteRT.RPCWrappers;
+using XBMCRemoteRT.Helpers;
+using Windows.UI.Popups;
+using System.Diagnostics;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -25,6 +31,8 @@ namespace XBMCRemoteRT
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private enum PageStates { Ready, Connecting }
+
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
@@ -35,6 +43,8 @@ namespace XBMCRemoteRT
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            DataContext = App.ConnectionsVM;
         }
 
         /// <summary>
@@ -107,5 +117,51 @@ namespace XBMCRemoteRT
         }
 
         #endregion
+
+        private void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            ConnectionItem selectedConnection = (ConnectionItem)(sender as StackPanel).DataContext;
+            ConnectToServer(selectedConnection);
+        }
+
+        private void AddConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async Task ConnectToServer(ConnectionItem connectionItem)
+        {
+            SetPageState(PageStates.Connecting);
+
+            bool isSuccessful = await JSONRPC.Ping(connectionItem);
+            if (isSuccessful)
+            {
+                ConnectionManager.CurrentConnection = connectionItem;
+                SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
+                Frame.Navigate(typeof(CoverPage));
+                Debug.WriteLine("Connnected!");
+            }
+            else
+            {
+                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
+                await message.ShowAsync();
+            }
+            SetPageState(PageStates.Ready);
+        }
+        private void SetPageState(PageStates pageStates)
+        {
+        }
+
+      
     }
 }

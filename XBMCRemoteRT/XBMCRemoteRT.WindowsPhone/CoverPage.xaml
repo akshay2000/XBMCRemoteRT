@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="XBMCRemoteRT.CoverPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XBMCRemoteRT"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Hub x:Name="CoverHub" Header="kodi assist">
+            <HubSection x:Name="MusicHubSection" Header="MUSIC">
+                
+            </HubSection>
+            
+            <HubSection x:Name="TVHubSection" Header="TV SHOWS">
+                
+            </HubSection>
+            
+            <HubSection x:Name="MoviesHubSection" Header="MOVIES">
+                
+            </HubSection>
+        </Hub>
+
+    </Grid>
+</Page>

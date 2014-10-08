@@ -23,13 +23,34 @@
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="MY APPLICATION" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="page title" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="connections" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-
+            <ListView x:Name="ConnectionsLLS" ItemsSource="{Binding ConnectionItems}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel x:Name="ConnectionItemWrapper" Tapped="ConnectionItemWrapper_Tapped">
+                            <TextBlock Text="{Binding ConnectionName}" />
+                            <TextBlock Text="{Binding IpAddress}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="AddConnectionAppBarButton" Click="AddConnectionAppBarButton_Click" Label="add server" Icon="Add" />
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="AboutAppBarButton" Click="AboutAppBarButton_Click" Label="about"/>
+                <AppBarButton x:Name="FeedbackAppBarButton" Click="FeedbackAppBarButton_Click" Label="feedback"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

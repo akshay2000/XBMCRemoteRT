@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using XBMCRemoteRT.ViewModels;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -37,7 +38,17 @@ namespace XBMCRemoteRT
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+
+            connectionsVM = new ConnectionsViewModel();
         }
+
+        private static ConnectionsViewModel connectionsVM;
+
+        public static ConnectionsViewModel ConnectionsVM
+        {
+            get { return connectionsVM; }
+        }
+        
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

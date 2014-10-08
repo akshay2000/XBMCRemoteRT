@@ -19,5 +19,35 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ConnectionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\GlobalVariables.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlayerHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\SettingsHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Album.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Artist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Song.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Common\GroupedList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Common\Limits.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ConnectionItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\NotifyBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Art.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Cast.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Episode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Movie.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Resume.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Video\StreamDetails.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Video\TVShow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Views\AlbumView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Applikation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\AudioLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Input.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\JSONRPC.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Player.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Playlist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\VideoLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ConnectionsViewModel.cs" />
   </ItemGroup>
 </Project>
