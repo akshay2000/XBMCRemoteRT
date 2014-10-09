@@ -45,6 +45,7 @@ namespace XBMCRemoteRT
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
             DataContext = App.ConnectionsVM;
+            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
         }
 
         /// <summary>
