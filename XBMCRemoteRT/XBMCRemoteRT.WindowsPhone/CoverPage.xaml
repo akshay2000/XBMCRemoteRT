@@ -8,20 +8,110 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="LayoutRoot">
+
         <Hub x:Name="CoverHub" Header="kodi assist">
             <HubSection x:Name="MusicHubSection" Header="MUSIC">
-                
+                <DataTemplate>
+                    <GridView ItemsSource="{Binding}">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid x:Name="AlbumWrapper" Tapped="AlbumWrapper_Tapped" Margin="0,0,12,12" >
+                                    <Grid.Background>
+                                        <ImageBrush Stretch="UniformToFill">
+                                            <ImageBrush.ImageSource>
+                                                <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
+                                            </ImageBrush.ImageSource>
+                                        </ImageBrush>
+                                    </Grid.Background>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Width="158" Height="158" Stretch="UniformToFill" Grid.RowSpan="2">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Rectangle Grid.Row="1" Fill="Black" Opacity="0.4"/>
+                                    <TextBlock Grid.Row="1" Margin="5,0,5,2" Text="{Binding Label}" Foreground="White" TextWrapping="NoWrap"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </DataTemplate>
+
             </HubSection>
-            
+
             <HubSection x:Name="TVHubSection" Header="TV SHOWS">
-                
+                <DataTemplate>
+                    <ListView ItemsSource="{Binding}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid x:Name="EpisodeWrapper" Height="192" Tapped="EpisodeWrapper_Tapped" Margin="0,0,0,24">
+                                    <Grid.Background>
+                                        <ImageBrush Stretch="UniformToFill">
+                                            <ImageBrush.ImageSource>
+                                                <BitmapImage DecodePixelType="Logical" DecodePixelWidth="341" UriSource="/Assets/DefaultArt.jpg"/>
+                                            </ImageBrush.ImageSource>
+                                        </ImageBrush>
+                                    </Grid.Background>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="54"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="54"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Stretch="UniformToFill" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="405" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Rectangle Grid.Row="1" Grid.ColumnSpan="2" Fill="Black" Opacity="0.4"/>
+                                    <Border BorderBrush="White" Grid.Row="1" CornerRadius="22" BorderThickness="3" Width="41" Height="41">
+                                        <Polygon VerticalAlignment="Center" Margin="4,0,0,0" HorizontalAlignment="Center" Points="0,0 13,10, 0,20 0,0" Fill="White"/>
+                                    </Border>
+                                    <TextBlock Text="{Binding Label}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5,0,5,2" Foreground="White"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </DataTemplate>
             </HubSection>
-            
+
             <HubSection x:Name="MoviesHubSection" Header="MOVIES">
-                
+                <DataTemplate>
+                    <GridView ItemsSource="{Binding}">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid x:Name="MovieWrapper" Height="192" Margin="0,0,12,12" Tapped="MovieWrapper_Tapped">
+                                    <Grid.Background>
+                                        <ImageBrush Stretch="UniformToFill">
+                                            <ImageBrush.ImageSource>
+                                                <BitmapImage DecodePixelType="Logical" DecodePixelHeight="192" UriSource="/Assets/DefaultArt.jpg"/>
+                                            </ImageBrush.ImageSource>
+                                        </ImageBrush>
+                                    </Grid.Background>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.RowSpan="2" Stretch="UniformToFill">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="192" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Rectangle Grid.Row="1" Fill="Black" Opacity="0.4"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding Label}" Foreground="White" Margin="5,0"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </DataTemplate>
+
             </HubSection>
         </Hub>
-
     </Grid>
 </Page>

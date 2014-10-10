@@ -19,6 +19,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToOpacityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ImagePathConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ListToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ListTrimmer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\MinutesToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RatingConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RepeatStateConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SpeedToImgSrcConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToImageBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ConnectionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GlobalVariables.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlayerHelper.cs" />
