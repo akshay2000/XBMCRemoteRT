@@ -1,0 +1,120 @@
+﻿<Page
+    x:Class="XBMCRemoteRT.Pages.Audio.AllMusicPivot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XBMCRemoteRT.Pages.Audio"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="ArtistsCVS" IsSourceGrouped="True"/>
+        <CollectionViewSource x:Name="AlbumsCVS" IsSourceGrouped="True"/>
+        <CollectionViewSource x:Name="SongsCVS" IsSourceGrouped="True"/>
+    </Page.Resources>
+    
+    <Grid x:Name="LayoutRoot">
+        <Pivot Title="ALL MUSIC">
+            <PivotItem Header="artists">
+                <SemanticZoom>
+                    <SemanticZoom.ZoomedInView>
+                        <ListView ItemsSource="{Binding Source={StaticResource ArtistsCVS}}">
+                            <ListView.GroupStyle>
+                                <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource PhoneGroupHeaderTemplate}"/>
+                            </ListView.GroupStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel x:Name="ArtistItemWrapper" Orientation="Horizontal" Margin="8,15,0,25">
+                                        <Border x:Name="PlayArtistBorder" Tapped="PlayArtistBorder_Tapped" BorderBrush="White" CornerRadius="22" BorderThickness="3" Width="41" Height="41">
+                                            <Polygon VerticalAlignment="Center" Margin="4,0,0,0" HorizontalAlignment="Center" Points="0,0 13,10, 0,20 0,0" Fill="White"/>
+                                        </Border>
+                                        <TextBlock x:Name="ArtistNameTextBlock" Tapped="ArtistNameTextBlock_Tapped" Text="{Binding Label}" Margin="14,-1,0,0" FontSize="36"  FontFamily="Segoe WP SemiLight" Foreground="White"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding Source={StaticResource ArtistsCVS}, Path=CollectionGroups}" ItemTemplate="{StaticResource JumpListTemplate}"/>
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+
+            </PivotItem>
+
+            <PivotItem Header="albums">
+                <SemanticZoom>
+                    <SemanticZoom.ZoomedInView>
+                        <ListView ItemsSource="{Binding Source={StaticResource AlbumsCVS}}">
+                            <ListView.GroupStyle>
+                                <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource PhoneGroupHeaderTemplate}"/>
+                            </ListView.GroupStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid x:Name="AlbumItemWrapper" Margin="6,0,0,24" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid x:Name="AlbumArtWrapper" Tapped="AlbumArtWrapper_Tapped" >
+                                            <Grid.Background>
+                                                <ImageBrush Stretch="UniformToFill">
+                                                    <ImageBrush.ImageSource>
+                                                        <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
+                                                    </ImageBrush.ImageSource>
+                                                </ImageBrush>
+                                            </Grid.Background>
+                                            <Image Width="173" Height="173" Stretch="UniformToFill" VerticalAlignment="Top" >
+                                                <Image.Source>
+                                                    <BitmapImage DecodePixelType="Logical" DecodePixelHeight="173" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                                </Image.Source>
+                                            </Image>
+                                            <Rectangle Fill="Black" Opacity="0.1"/>
+                                            <Border Margin="12" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" CornerRadius="22" BorderThickness="3" Width="41" Height="41">
+                                                <Polygon VerticalAlignment="Center" Margin="4,0,0,0" HorizontalAlignment="Center" Points="0,0 13,10, 0,20 0,0" Fill="White"/>
+                                            </Border>
+                                        </Grid>
+
+                                        <StackPanel x:Name="AlbumDetailsWrapper" Tapped="AlbumDetailsWrapper_Tapped" Grid.Column="1">
+                                            <TextBlock Text="{Binding Label}" FontSize="36" TextWrapping="Wrap" LineHeight="40" FontFamily="Segoe WP SemiLight" Margin="14,-10,0,0" LineStackingStrategy="BaselineToBaseline" Foreground="White"/>
+                                            <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" Foreground="#FF999999" TextWrapping="Wrap" Margin="16,-5,0,0"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding Source={StaticResource AlbumsCVS}, Path=CollectionGroups}" ItemTemplate="{StaticResource JumpListTemplate}"/>
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+
+            </PivotItem>
+
+            <PivotItem Header="songs">
+                <SemanticZoom>
+                    <SemanticZoom.ZoomedInView>
+                        <ListView ItemsSource="{Binding Source={StaticResource SongsCVS}}">
+                            <ListView.GroupStyle>
+                                <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource PhoneGroupHeaderTemplate}"/>
+                            </ListView.GroupStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel x:Name="SongItemWrapper" Orientation="Vertical" Margin="6,8,0,12" Tapped="SongItemWrapper_Tapped">
+                                        <TextBlock Text="{Binding Label}" FontSize="36"  FontFamily="Segoe WP SemiLight" Foreground="White"/>
+                                        <TextBlock Text="{Binding AlbumArtist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" Foreground="#FF999999" TextWrapping="Wrap" Margin="0,-5,0,0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding Source={StaticResource SongsCVS}, Path=CollectionGroups}" ItemTemplate="{StaticResource JumpListTemplate}"/>
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>

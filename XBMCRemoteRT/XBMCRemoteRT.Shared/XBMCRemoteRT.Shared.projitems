@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToImageBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ConnectionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GlobalVariables.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\GroupingHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlayerHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SettingsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Album.cs" />

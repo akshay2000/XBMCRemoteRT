@@ -82,20 +82,9 @@ namespace XBMCRemoteRT.Helpers
             return responseObject;
         }
 
-        public static bool IsIpAddressValid(string ipAddress)
+        public static void ManageSystemTray(bool p)
         {
-            bool isValid = true;
-            List<string> fragments = ipAddress.Split('.').ToList<string>();
-            if (fragments.Count != 4)
-                return false;
-            foreach (var t in fragments)
-            {
-                int fragment;
-                bool isFragmentInt = int.TryParse(t, out fragment);
-                if (!isFragmentInt || (fragment > 255 || fragment < 0))
-                    return false;
-            }
-            return isValid;
+            //TODO!
         }
     }
 }

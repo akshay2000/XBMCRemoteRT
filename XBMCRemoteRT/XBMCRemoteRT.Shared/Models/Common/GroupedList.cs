@@ -14,5 +14,11 @@ namespace XBMCRemoteRT.Models.Common
         {
             Key = key;
         }
+
+        public ListGroup(string key, IEnumerable<T> items)
+            : base(items)
+        {
+            Key = key;
+        }
     }
 }

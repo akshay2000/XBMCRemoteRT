@@ -16,30 +16,35 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Models.Audio;
-using XBMCRemoteRT.Models.Video;
+using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.RPCWrappers;
-using XBMCRemoteRT.Models.Common;
-using XBMCRemoteRT.Pages.Audio;
+using Newtonsoft.Json.Linq;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace XBMCRemoteRT
+namespace XBMCRemoteRT.Pages.Audio
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class CoverPage : Page
+    public sealed partial class AllMusicPivot : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public CoverPage()
+        private List<Artist> allArtists;
+        private List<Album> allAlbums;
+        private List<Song> allSongs;
+
+        public AllMusicPivot()
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            ReloadAll();
         }
 
         /// <summary>
@@ -104,7 +109,6 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
-            RefreshListsIfNull();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -114,44 +118,47 @@ namespace XBMCRemoteRT
 
         #endregion
 
-        private List<Album> Albums;
-        private List<Episode> Episodes;
-        private List<Movie> Movies;
-
-        private void AlbumWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void ReloadAll()
         {
-            Frame.Navigate(typeof(AllMusicPivot));
+            ConnectionManager.ManageSystemTray(true);
+            allArtists = await AudioLibrary.GetArtists();
+            var groupedAllArtists = GroupingHelper.GroupList(allArtists, (Artist a) => { return a.Label; }, true);
+            ArtistsCVS.Source = groupedAllArtists;
+
+            JObject sortWith = new JObject(new JProperty("method", "label"));
+            allAlbums = await AudioLibrary.GetAlbums(sort: sortWith);
+            var groupedAllAlbums = GroupingHelper.GroupList(allAlbums, (Album a) => { return a.Label; }, true);
+            AlbumsCVS.Source = groupedAllAlbums;
+
+            allSongs = await AudioLibrary.GetSongs(sort: sortWith);
+            var groupedAllSongs = GroupingHelper.GroupList(allSongs, (Song s) => { return s.Label; }, true);
+            SongsCVS.Source = groupedAllSongs;
+            ConnectionManager.ManageSystemTray(false);
         }
 
-        private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private void PlayArtistBorder_Tapped(object sender, TappedRoutedEventArgs e)
         {
 
         }
 
-        private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private void ArtistNameTextBlock_Tapped(object sender, TappedRoutedEventArgs e)
         {
 
         }
 
-        private async void RefreshListsIfNull()
+        private void AlbumArtWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if (Albums == null)
-            {
-                Albums = await AudioLibrary.GetRecentlyAddedAlbums(new Limits { Start = 0, End = 12 });
-                MusicHubSection.DataContext = Albums;
-            }
 
-            if (Episodes == null)
-            {
-                Episodes = await VideoLibrary.GetRecentlyAddedEpisodes(new Limits { Start = 0, End = 10 });
-                TVHubSection.DataContext = Episodes;
-            }
+        }
 
-            if (Movies == null)
-            {
-                Movies = await VideoLibrary.GetRecentlyAddedMovies(new Limits { Start = 0, End = 15 });
-                MoviesHubSection.DataContext = Movies;
-            }
+        private void AlbumDetailsWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void SongItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
         }
     }
 }
