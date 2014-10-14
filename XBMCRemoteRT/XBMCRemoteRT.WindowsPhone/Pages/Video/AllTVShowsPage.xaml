@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="XBMCRemoteRT.Pages.Video.AllTVShowsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XBMCRemoteRT.Pages.Video"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="tv shows" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <ListView x:Name="AllTVShowsListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="TVShowWrapper" Tapped="TVShowWrapper_Tapped" Margin="0,0,0,24">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="85"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Image Stretch="UniformToFill" Grid.Row="0">
+                                <Image.Source>
+                                    <BitmapImage DecodePixelType="Logical" DecodePixelWidth="456" UriSource="/Assets/DefaultArt.jpg"/>
+                                </Image.Source>
+                            </Image>
+                            <Image Stretch="UniformToFill" Grid.Row="0">
+                                <Image.Source>
+                                    <BitmapImage DecodePixelType="Logical" DecodePixelWidth="456" UriSource="{Binding Path=Art.Banner, Converter={StaticResource ImagePathConverter}}"/>
+                                </Image.Source>
+                            </Image>
+                            <TextBlock Text="{Binding Label}" Grid.Row="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>

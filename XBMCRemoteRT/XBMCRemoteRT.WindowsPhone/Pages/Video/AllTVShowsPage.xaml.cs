@@ -15,32 +15,32 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Models.Video;
+using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.RPCWrappers;
-using XBMCRemoteRT.Models.Common;
-using XBMCRemoteRT.Pages.Audio;
-using XBMCRemoteRT.Pages.Video;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace XBMCRemoteRT
+namespace XBMCRemoteRT.Pages.Video
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class CoverPage : Page
+    public sealed partial class AllTVShowsPage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public CoverPage()
+        private List<TVShow> allTVShows;
+        public AllTVShowsPage()
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            LoadTVShows();
         }
 
         /// <summary>
@@ -105,7 +105,6 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
-            RefreshListsIfNull();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -115,44 +114,17 @@ namespace XBMCRemoteRT
 
         #endregion
 
-        private List<Album> Albums;
-        private List<Episode> Episodes;
-        private List<Movie> Movies;
-
-        private void AlbumWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AllMusicPivot));
-        }
-
-        private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AllTVShowsPage));
-        }
-
-        private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TVShowWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
 
         }
 
-        private async void RefreshListsIfNull()
+        private async void LoadTVShows()
         {
-            if (Albums == null)
-            {
-                Albums = await AudioLibrary.GetRecentlyAddedAlbums(new Limits { Start = 0, End = 12 });
-                MusicHubSection.DataContext = Albums;
-            }
-
-            if (Episodes == null)
-            {
-                Episodes = await VideoLibrary.GetRecentlyAddedEpisodes(new Limits { Start = 0, End = 10 });
-                TVHubSection.DataContext = Episodes;
-            }
-
-            if (Movies == null)
-            {
-                Movies = await VideoLibrary.GetRecentlyAddedMovies(new Limits { Start = 0, End = 15 });
-                MoviesHubSection.DataContext = Movies;
-            }
+            ConnectionManager.ManageSystemTray(true);
+            allTVShows = await VideoLibrary.GetTVShows();
+            AllTVShowsListView.ItemsSource = allTVShows;
+            ConnectionManager.ManageSystemTray(false);
         }
     }
 }
