@@ -17,8 +17,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Helpers;
-using XBMCRemoteRT.RPCWrappers;
 using Newtonsoft.Json.Linq;
+using XBMCRemoteRT.RPCWrappers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -27,16 +27,14 @@ namespace XBMCRemoteRT.Pages.Audio
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AllMusicPivot : Page
+    public sealed partial class ArtistDetailsPanorama : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        private List<Artist> allArtists;
-        private List<Album> allAlbums;
-        private List<Song> allSongs;
-
-        public AllMusicPivot()
+        private List<Song> songsList;
+        private List<Album> albumsList;
+        public ArtistDetailsPanorama()
         {
             this.InitializeComponent();
 
@@ -44,6 +42,7 @@ namespace XBMCRemoteRT.Pages.Audio
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
+            DataContext = GlobalVariables.CurrentArtist;
             ReloadAll();
         }
 
@@ -118,51 +117,23 @@ namespace XBMCRemoteRT.Pages.Audio
 
         #endregion
 
-        private async void ReloadAll()
-        {
-            ConnectionManager.ManageSystemTray(true);
-            allArtists = await AudioLibrary.GetArtists();
-            var groupedAllArtists = GroupingHelper.GroupList(allArtists, (Artist a) => { return a.Label; }, true);
-            ArtistsCVS.Source = groupedAllArtists;
-
-            JObject sortWith = new JObject(new JProperty("method", "label"));
-            allAlbums = await AudioLibrary.GetAlbums(sort: sortWith);
-            var groupedAllAlbums = GroupingHelper.GroupList(allAlbums, (Album a) => { return a.Label; }, true);
-            AlbumsCVS.Source = groupedAllAlbums;
-
-            allSongs = await AudioLibrary.GetSongs(sort: sortWith);
-            var groupedAllSongs = GroupingHelper.GroupList(allSongs, (Song s) => { return s.Label; }, true);
-            SongsCVS.Source = groupedAllSongs;
-            ConnectionManager.ManageSystemTray(false);
-        }
-
-        private void PlayArtistBorder_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-
-        }
-
-        private void ArtistNameTextBlock_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Artist tappedArtist = (sender as TextBlock).DataContext as Artist;
-            GlobalVariables.CurrentArtist = tappedArtist;
-            Frame.Navigate(typeof(ArtistDetailsPanorama));
-        }
-
-        private void AlbumArtWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            
-        }
-
-        private void AlbumDetailsWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Album tappedAlbum = (sender as StackPanel).DataContext as Album;
-            GlobalVariables.CurrentAlbumId = tappedAlbum.AlbumId;
-            Frame.Navigate(typeof(AlbumPage));
-        }
-
         private void SongItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
 
+        }
+
+        private void AlbumWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private async void ReloadAll()
+        {
+            JObject filter = new JObject(new JProperty("artistid", GlobalVariables.CurrentArtist.ArtistId));
+            songsList = await AudioLibrary.GetSongs(filter);
+            SongsHubSection.DataContext = songsList;
+            albumsList = await AudioLibrary.GetAlbums(filter);
+            AlbumsHubSection.DataContext = albumsList;
         }
     }
 }
