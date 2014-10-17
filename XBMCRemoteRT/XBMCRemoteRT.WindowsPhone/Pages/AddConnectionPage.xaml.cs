@@ -16,37 +16,27 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Models;
-using System.Threading.Tasks;
-using XBMCRemoteRT.RPCWrappers;
-using XBMCRemoteRT.Helpers;
 using Windows.UI.Popups;
-using System.Diagnostics;
-using XBMCRemoteRT.Pages;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace XBMCRemoteRT
+namespace XBMCRemoteRT.Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class AddConnectionPage : Page
     {
-        private enum PageStates { Ready, Connecting }
-
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public MainPage()
+        public AddConnectionPage()
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-
-            DataContext = App.ConnectionsVM;
-            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
         }
 
         /// <summary>
@@ -120,50 +110,31 @@ namespace XBMCRemoteRT
 
         #endregion
 
-        private void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private void SaveConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as StackPanel).DataContext;
-            ConnectToServer(selectedConnection);
-        }
+            int port;
 
-        private void AddConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AddConnectionPage));
-        }
-
-        private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private async Task ConnectToServer(ConnectionItem connectionItem)
-        {
-            SetPageState(PageStates.Connecting);
-
-            bool isSuccessful = await JSONRPC.Ping(connectionItem);
-            if (isSuccessful)
+            if (!int.TryParse(PortTextBox.Text, out port))
             {
-                ConnectionManager.CurrentConnection = connectionItem;
-                SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
-                Frame.Navigate(typeof(CoverPage));
-                Debug.WriteLine("Connnected!");
+                MessageDialog msg = new MessageDialog("Please, enter a valid port number.", "Invalid Port");
+                return;
             }
-            else
+
+            var newConnection = new ConnectionItem
             {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-                await message.ShowAsync();
-            }
-            SetPageState(PageStates.Ready);
-        }
-        private void SetPageState(PageStates pageStates)
-        {
+                ConnectionName = NameTextBox.Text,
+                IpAddress = IPTextBox.Text,
+                Port = port,
+                Username = UsernameTextBox.Text,
+                Password = PasswordTextBox.Text
+            };
+            App.ConnectionsVM.AddConnectionItem(newConnection);
+            Frame.GoBack();
         }
 
-      
+        private void CancelAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
+        }
     }
 }
