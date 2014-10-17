@@ -109,6 +109,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Video\TVShowDetailsPanorama.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoverPage.xaml.cs">
@@ -131,6 +135,9 @@
     </Compile>
     <Compile Include="Pages\Video\AllTVShowsPage.xaml.cs">
       <DependentUpon>AllTVShowsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Video\TVShowDetailsPanorama.xaml.cs">
+      <DependentUpon>TVShowDetailsPanorama.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

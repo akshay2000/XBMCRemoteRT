@@ -15,9 +15,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Models.Video;
-using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.RPCWrappers;
+using XBMCRemoteRT.Helpers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -26,13 +27,12 @@ namespace XBMCRemoteRT.Pages.Video
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AllTVShowsPage : Page
+    public sealed partial class TVShowDetailsPanorama : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        private List<TVShow> allTVShows;
-        public AllTVShowsPage()
+        public TVShowDetailsPanorama()
         {
             this.InitializeComponent();
 
@@ -40,7 +40,9 @@ namespace XBMCRemoteRT.Pages.Video
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            LoadTVShows();
+            DataContext = GlobalVariables.CurrentTVShow;
+
+            LoadEpisodes();
         }
 
         /// <summary>
@@ -114,19 +116,37 @@ namespace XBMCRemoteRT.Pages.Video
 
         #endregion
 
-        private void TVShowWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            TVShow tappedTVShow = (sender as Grid).DataContext as TVShow;
-            GlobalVariables.CurrentTVShow = tappedTVShow;
-            Frame.Navigate(typeof(TVShowDetailsPanorama));
+
         }
 
-        private async void LoadTVShows()
+        private async void LoadEpisodes()
         {
-            ConnectionManager.ManageSystemTray(true);
-            allTVShows = await VideoLibrary.GetTVShows();
-            AllTVShowsListView.ItemsSource = allTVShows;
-            ConnectionManager.ManageSystemTray(false);
+            JObject filter = new JObject(new JProperty("tvshowid", GlobalVariables.CurrentTVShow.TvShowId));
+            List<Episode> episodes = await VideoLibrary.GetEpisodes(tvShowID: GlobalVariables.CurrentTVShow.TvShowId);
+
+            List<SeasonItem<Episode>> seasons = GroupEpisodes<Episode>(episodes, epi => epi.Season);
+            SeasonsCVS.Source = seasons;
+        }
+
+        private List<SeasonItem<T>> GroupEpisodes<T>(IEnumerable<T> items, Func<T, int> getKeyFunc)
+        {
+            IEnumerable<SeasonItem<T>> group = from item in items
+                                               group item by getKeyFunc(item) into g
+                                               orderby g.Key
+                                               select new SeasonItem<T>(g.Key, g);
+            return group.ToList();
+        }
+
+        private class SeasonItem<T> : List<T>
+        {
+            public SeasonItem(int key, IEnumerable<T> items)
+                : base(items)
+            {
+                this.Key = key;
+            }
+            public int Key { get; private set; }
         }
     }
 }

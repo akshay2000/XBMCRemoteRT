@@ -1,0 +1,117 @@
+﻿<Page
+    x:Class="XBMCRemoteRT.Pages.Video.TVShowDetailsPanorama"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XBMCRemoteRT.Pages.Video"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="SeasonsCVS" IsSourceGrouped="True"/>
+    </Page.Resources>
+    
+    <Grid x:Name="LayoutRoot">
+        <Hub Header="tv show">
+            <HubSection Header="INFO" x:Name="InfoHubSection">
+                <DataTemplate>
+                    <ScrollViewer>
+                        <Grid Margin="12,0,0,12">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="300"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="204"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="/Assets/DefaultArt.jpg" Stretch="UniformToFill"/>
+                            <Image Source="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}" Stretch="UniformToFill"/>
+
+                            <StackPanel Grid.Row="0" Grid.Column="1">
+                                <TextBlock Text="Genre" Foreground="#FF999999"/>
+                                <TextBlock Text="{Binding Genre, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" Foreground="White" TextWrapping="Wrap"/>
+
+                                <TextBlock Text="Studio" Foreground="#FF999999" Margin="12,6,12,0"/>
+                                <TextBlock Text="{Binding Studio, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" Foreground="White" />
+
+                                <TextBlock Text="Rating" Foreground="#FF999999" Margin="12,6,12,0"/>
+                                <TextBlock Text="{Binding Rating, Converter={StaticResource RatingConverter}}" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                                <TextBlock Margin="0,24,0,0" Text="plot" Foreground="White" />
+                                <TextBlock Text="{Binding Plot}" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </DataTemplate>
+            </HubSection>
+            
+            <HubSection Header="CAST" x:Name="CastHubSection">
+                <DataTemplate>
+                    <Grid Margin="12,0,0,0">
+                        <ListView x:Name="CastLLS" ItemsSource="{Binding Cast, Converter={StaticResource ListTrimmer}}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="144" Margin="0,0,0,12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="98"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Grid.RowSpan="2" Stretch="UniformToFill" >
+                                            <Image.Source>
+                                                <BitmapImage DecodePixelType="Logical" DecodePixelHeight="144" UriSource="/Assets/DefaultArt.jpg"/>
+                                            </Image.Source>
+                                        </Image>
+                                        <Image Grid.RowSpan="2" Stretch="UniformToFill" >
+                                            <Image.Source>
+                                                <BitmapImage DecodePixelType="Logical" DecodePixelHeight="144" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                            </Image.Source>
+                                        </Image>
+                                        <TextBlock Text="{Binding Name}" Margin="12,-10,12,0" Grid.Row="0" Grid.Column="1" Foreground="White"/>
+                                        <TextBlock Text="{Binding Role}" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Foreground="#FF999999"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            
+            <HubSection Header="SEASONS" x:Name="SeasonsHubSection">
+                <DataTemplate>
+                    <SemanticZoom>
+                        <SemanticZoom.ZoomedInView>
+                            <ListView ItemsSource="{Binding Source={StaticResource SeasonsCVS}}">
+                                <ListView.GroupStyle>
+                                    <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource PhoneGroupHeaderTemplate}"/>
+                                </ListView.GroupStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel x:Name="EpisodeWrapper" Orientation="Horizontal" Margin="8,5,5,5" Tapped="EpisodeWrapper_Tapped">
+                                            <Border x:Name="PlayEpisodeBorder" BorderBrush="White" Margin="0,0,0,0" CornerRadius="22" BorderThickness="3" Width="41" Height="41">
+                                                <Polygon VerticalAlignment="Center" Margin="4,0,0,0" HorizontalAlignment="Center" Points="0,0 13,10, 0,20 0,0" Fill="White"/>
+                                            </Border>
+                                            <TextBlock Text="{Binding Label}" Height="50" Foreground="White"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </SemanticZoom.ZoomedInView>
+                        <SemanticZoom.ZoomedOutView>
+                            <GridView ItemsSource="{Binding Source={StaticResource SeasonsCVS}, Path=CollectionGroups}" ItemTemplate="{StaticResource JumpListTemplate}"/>
+                        </SemanticZoom.ZoomedOutView>
+                    </SemanticZoom>
+                </DataTemplate>
+            </HubSection>
+        </Hub>       
+    </Grid>
+</Page>
