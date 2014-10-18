@@ -8,8 +8,8 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    
     <Grid x:Name="LayoutRoot">
-
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
@@ -20,6 +20,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
+        
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
@@ -40,10 +42,11 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
+        <ProgressRing x:Name="ProgressRing" IsActive="False" Grid.RowSpan="10" />
     </Grid>
     
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar x:Name="BottomBar">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="AddConnectionAppBarButton" Click="AddConnectionAppBarButton_Click" Label="add server" Icon="Add" />
             </CommandBar.PrimaryCommands>
