@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="XBMCRemoteRT.Pages.Video.AllMoviesPivot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XBMCRemoteRT.Pages.Video"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="MovieItemTemplate">
+            <Grid x:Name="MovieWrapper" Height="192" Margin="0,0,12,12" Tapped="MovieWrapper_Tapped" >
+                <Grid.Background>
+                    <ImageBrush Stretch="UniformToFill">
+                        <ImageBrush.ImageSource>
+                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="192" UriSource="/Assets/DefaultArt.jpg"/>
+                        </ImageBrush.ImageSource>
+                    </ImageBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Image Grid.RowSpan="2" Stretch="UniformToFill">
+                    <Image.Source>
+                        <BitmapImage DecodePixelHeight="192" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                    </Image.Source>
+                </Image>
+                <Rectangle Grid.Row="1" Fill="Black" Opacity="0.6"/>
+                <TextBlock Grid.Row="1" Text="{Binding Label}" Foreground="White" Margin="5,0"/>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Pivot Title="KODI ASSIST">
+            <PivotItem Header="all">
+                <GridView x:Name="AllMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}"/>
+            </PivotItem>
+
+            <PivotItem Header="new">
+                <GridView x:Name="UnwatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}"/>
+            </PivotItem>
+
+            <PivotItem Header="watched">
+                <GridView x:Name="WatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}"/>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>
