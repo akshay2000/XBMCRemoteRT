@@ -15,9 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.Helpers;
-using XBMCRemoteRT.RPCWrappers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -26,16 +24,12 @@ namespace XBMCRemoteRT.Pages.Video
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AllMoviesPivot : Page
+    public sealed partial class MovieDetailsHub : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        private List<Movie> allMovies;
-        private List<Movie> unwatchedMovies;
-        private List<Movie> watchedMovies;
-
-        public AllMoviesPivot()
+        public MovieDetailsHub()
         {
             this.InitializeComponent();
 
@@ -43,7 +37,7 @@ namespace XBMCRemoteRT.Pages.Video
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            LoadMovies();
+            DataContext = GlobalVariables.CurrentMovie;
         }
 
         /// <summary>
@@ -116,27 +110,5 @@ namespace XBMCRemoteRT.Pages.Video
         }
 
         #endregion
-
-        private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Movie tappedMovie = (sender as Grid).DataContext as Movie;
-            GlobalVariables.CurrentMovie = tappedMovie;
-            Frame.Navigate(typeof(MovieDetailsHub));
-        }
-
-        private async void LoadMovies()
-        {
-            ConnectionManager.ManageSystemTray(true);
-            allMovies = await VideoLibrary.GetMovies();
-            AllMoviesListView.ItemsSource = allMovies;
-
-            unwatchedMovies = allMovies.Where(movie => movie.PlayCount == 0).ToList<Movie>();
-            UnwatchedMoviesListView.ItemsSource = unwatchedMovies;
-
-            watchedMovies = allMovies.Where(movie => movie.PlayCount > 0).ToList<Movie>();
-            WatchedMoviesListView.ItemsSource = watchedMovies;
-            ConnectionManager.ManageSystemTray(false);
-        }
-
     }
 }

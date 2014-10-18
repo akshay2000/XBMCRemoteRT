@@ -113,7 +113,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Video\TVShowDetailsPanorama.xaml">
+    <Page Include="Pages\Video\MovieDetailsHub.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Video\TVShowDetailsHub.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,8 +147,11 @@
     <Compile Include="Pages\Video\AllTVShowsPage.xaml.cs">
       <DependentUpon>AllTVShowsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Video\TVShowDetailsPanorama.xaml.cs">
-      <DependentUpon>TVShowDetailsPanorama.xaml</DependentUpon>
+    <Compile Include="Pages\Video\MovieDetailsHub.xaml.cs">
+      <DependentUpon>MovieDetailsHub.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Video\TVShowDetailsHub.xaml.cs">
+      <DependentUpon>TVShowDetailsHub.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

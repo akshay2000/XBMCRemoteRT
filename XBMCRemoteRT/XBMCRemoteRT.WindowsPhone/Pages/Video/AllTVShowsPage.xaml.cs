@@ -118,7 +118,7 @@ namespace XBMCRemoteRT.Pages.Video
         {
             TVShow tappedTVShow = (sender as Grid).DataContext as TVShow;
             GlobalVariables.CurrentTVShow = tappedTVShow;
-            Frame.Navigate(typeof(TVShowDetailsPanorama));
+            Frame.Navigate(typeof(TVShowDetailsHub));
         }
 
         private async void LoadTVShows()
