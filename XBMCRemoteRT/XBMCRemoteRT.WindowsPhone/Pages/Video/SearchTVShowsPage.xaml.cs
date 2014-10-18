@@ -26,15 +26,15 @@ namespace XBMCRemoteRT.Pages.Video
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SearchMoviesPage : Page
+    public sealed partial class SearchTVShowsPage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        private List<Movie> allMovies;
-        private List<Movie> filteredMovies;
+        private List<TVShow> allTVShows;
+        private List<TVShow> filteredTVShows;
 
-        public SearchMoviesPage()
+        public SearchTVShowsPage()
         {
             this.InitializeComponent();
 
@@ -114,36 +114,36 @@ namespace XBMCRemoteRT.Pages.Video
 
         #endregion
 
-        private void SearchMoviesTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
+        private void SearchTVShowsTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
             {
                 LoseFocus(sender);
-                SearchAndReload(SearchMoviesTextBox.Text);
+                SearchAndReload(SearchTVShowsTextBox.Text);
             }
+        }
+
+        private void SearchTVShowsTextBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            SearchTVShowsTextBox.Focus(FocusState.Keyboard);
+        }
+
+        private void TVShowWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            TVShow tappedTVShow = (sender as Grid).DataContext as TVShow;
+            GlobalVariables.CurrentTVShow = tappedTVShow;
+            Frame.Navigate(typeof(TVShowDetailsHub));
         }
 
         private async void SearchAndReload(string query)
         {
             ConnectionManager.ManageSystemTray(true);
-            if (allMovies == null)
-                allMovies = await VideoLibrary.GetMovies();
+            if (allTVShows == null)
+                allTVShows = await VideoLibrary.GetTVShows();
 
-            filteredMovies = allMovies.Where(t => t.Title.ToLower().Contains(query.ToLower())).ToList();
-            SearchMoviesListView.ItemsSource = filteredMovies;
+            filteredTVShows = allTVShows.Where(t => t.Title.ToLower().Contains(query.ToLower())).ToList();
+            SearchTVShowsListView.ItemsSource = filteredTVShows;
             ConnectionManager.ManageSystemTray(false);
-        }
-
-        private void SearchMoviesTextBox_Loaded(object sender, RoutedEventArgs e)
-        {
-            SearchMoviesTextBox.Focus(FocusState.Keyboard);
-        }
-
-        private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Movie tappedMovie = (sender as Grid).DataContext as Movie;
-            GlobalVariables.CurrentMovie = tappedMovie;
-            Frame.Navigate(typeof(MovieDetailsHub));
         }
 
         private void LoseFocus(object sender)
@@ -155,6 +155,5 @@ namespace XBMCRemoteRT.Pages.Video
             control.IsEnabled = true;
             control.IsTabStop = isTabStop;
         }
-
     }
 }

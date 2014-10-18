@@ -40,7 +40,8 @@ namespace XBMCRemoteRT.Pages.Video
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            LoadTVShows();
+            if (allTVShows == null)
+                LoadTVShows();
         }
 
         /// <summary>
@@ -127,6 +128,16 @@ namespace XBMCRemoteRT.Pages.Video
             allTVShows = await VideoLibrary.GetTVShows();
             AllTVShowsListView.ItemsSource = allTVShows;
             ConnectionManager.ManageSystemTray(false);
+        }
+        
+        private void RefreshTVShowsAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadTVShows();
+        }
+
+        private void SearchTVShowsAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SearchTVShowsPage));
         }
     }
 }
