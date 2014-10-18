@@ -45,7 +45,15 @@ namespace XBMCRemoteRT
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
+            ConnectionsListView.Loaded += ConnectionsListView_Loaded;
+
+           
+        }
+
+        void ConnectionsListView_Loaded(object sender, RoutedEventArgs e)
+        {
             DataContext = App.ConnectionsVM;
+            App.ConnectionsVM.LoadConnections();
             string ip = (string)SettingsHelper.GetValue("RecentServerIP");
         }
 

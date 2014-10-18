@@ -29,7 +29,7 @@
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <ListView x:Name="ConnectionsLLS" ItemsSource="{Binding ConnectionItems}">
+            <ListView x:Name="ConnectionsListView" ItemsSource="{Binding ConnectionItems}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel x:Name="ConnectionItemWrapper" Tapped="ConnectionItemWrapper_Tapped">
