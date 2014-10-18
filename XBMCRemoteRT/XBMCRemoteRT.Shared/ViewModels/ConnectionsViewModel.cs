@@ -35,7 +35,7 @@ namespace XBMCRemoteRT.ViewModels
             }
         }
 
-        public async void LoadConnections()
+        public async void ReloadConnections()
         {
             if (ConnectionItems == null)
             {
@@ -49,6 +49,7 @@ namespace XBMCRemoteRT.ViewModels
             }
             JArray connectionsArray = JArray.Parse(connectionsJsonString);
             var t = connectionsArray.ToObject<List<ConnectionItem>>();
+            ConnectionItems.Clear();
             foreach (var item in t)
             {
                 ConnectionItems.Add(item);

@@ -54,4 +54,14 @@
             </PivotItem>
         </Pivot>
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="RefreshMoviesAppBarButton" Click="RefreshMoviesAppBarButton_Click" Label="refresh" Icon="Refresh"/>
+                <AppBarButton x:Name="SeachMoviesAppBarButton" Click="SeachMoviesAppBarButton_Click" Label="search" Icon="Find" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
 </Page>

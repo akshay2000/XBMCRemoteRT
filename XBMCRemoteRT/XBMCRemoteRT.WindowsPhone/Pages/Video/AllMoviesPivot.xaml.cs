@@ -138,5 +138,15 @@ namespace XBMCRemoteRT.Pages.Video
             ConnectionManager.ManageSystemTray(false);
         }
 
+        private void SeachMoviesAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SearchMoviesPage));
+        }
+
+        private void RefreshMoviesAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadMovies();
+        }
+
     }
 }

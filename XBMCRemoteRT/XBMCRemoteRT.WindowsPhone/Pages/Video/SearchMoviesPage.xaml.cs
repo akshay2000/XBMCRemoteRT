@@ -15,46 +15,32 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using XBMCRemoteRT.Models;
-using System.Threading.Tasks;
-using XBMCRemoteRT.RPCWrappers;
+using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.Helpers;
-using Windows.UI.Popups;
-using System.Diagnostics;
-using XBMCRemoteRT.Pages;
+using XBMCRemoteRT.RPCWrappers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace XBMCRemoteRT
+namespace XBMCRemoteRT.Pages.Video
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class SearchMoviesPage : Page
     {
-        private enum PageStates { Ready, Connecting }
-
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public MainPage()
+        private List<Movie> allMovies;
+        private List<Movie> filteredMovies;
+
+        public SearchMoviesPage()
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-
-            ConnectionsListView.Loaded += ConnectionsListView_Loaded;
-
-           
-        }
-
-        void ConnectionsListView_Loaded(object sender, RoutedEventArgs e)
-        {
-            DataContext = App.ConnectionsVM;
-            App.ConnectionsVM.ReloadConnections();
-            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
         }
 
         /// <summary>
@@ -128,50 +114,47 @@ namespace XBMCRemoteRT
 
         #endregion
 
-        private void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private void SearchMoviesTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as StackPanel).DataContext;
-            ConnectToServer(selectedConnection);
-        }
-
-        private void AddConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AddConnectionPage));
-        }
-
-        private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private async Task ConnectToServer(ConnectionItem connectionItem)
-        {
-            SetPageState(PageStates.Connecting);
-
-            bool isSuccessful = await JSONRPC.Ping(connectionItem);
-            if (isSuccessful)
+            if (e.Key == Windows.System.VirtualKey.Enter)
             {
-                ConnectionManager.CurrentConnection = connectionItem;
-                SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
-                Frame.Navigate(typeof(CoverPage));
-                Debug.WriteLine("Connnected!");
+                LoseFocus(sender);
+                SearchAndReload(SearchMoviesTextBox.Text);
             }
-            else
-            {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-                await message.ShowAsync();
-            }
-            SetPageState(PageStates.Ready);
-        }
-        private void SetPageState(PageStates pageStates)
-        {
         }
 
-      
+        private async void SearchAndReload(string query)
+        {
+            ConnectionManager.ManageSystemTray(true);
+            if (allMovies == null)
+                allMovies = await VideoLibrary.GetMovies();
+
+            filteredMovies = allMovies.Where(t => t.Title.ToLower().Contains(query.ToLower())).ToList();
+            SearchMoviesListView.ItemsSource = filteredMovies;
+            ConnectionManager.ManageSystemTray(false);
+        }
+
+        private void SearchMoviesTextBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            SearchMoviesTextBox.Focus(Windows.UI.Xaml.FocusState.Keyboard);
+        }
+
+        private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Movie tappedMovie = (sender as Grid).DataContext as Movie;
+            GlobalVariables.CurrentMovie = tappedMovie;
+            Frame.Navigate(typeof(MovieDetailsHub));
+        }
+
+        private void LoseFocus(object sender)
+        {
+            var control = sender as Control;
+            var isTabStop = control.IsTabStop;
+            control.IsTabStop = false;
+            control.IsEnabled = false;
+            control.IsEnabled = true;
+            control.IsTabStop = isTabStop;
+        }
+
     }
 }
