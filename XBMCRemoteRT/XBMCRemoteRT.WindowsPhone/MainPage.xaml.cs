@@ -159,19 +159,28 @@ namespace XBMCRemoteRT
                 ConnectionManager.CurrentConnection = connectionItem;
                 SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
                 Frame.Navigate(typeof(CoverPage));
-                Debug.WriteLine("Connnected!");
             }
             else
             {
                 MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
                 await message.ShowAsync();
-            }
-            SetPageState(PageStates.Ready);
+                SetPageState(PageStates.Ready);
+            }            
         }
-        private void SetPageState(PageStates pageStates)
+        private void SetPageState(PageStates pageState)
         {
-        }
-
-      
+            if (pageState == PageStates.Connecting)
+            {
+                ConnectionsListView.IsEnabled = false;
+                BottomAppBar.Visibility = Visibility.Collapsed;
+                ProgressRing.IsActive = true;
+            }
+            else
+            {
+                ConnectionsListView.IsEnabled = true;
+                BottomAppBar.Visibility = Visibility.Visible;
+                ProgressRing.IsActive = false;
+            }
+        }      
     }
 }
