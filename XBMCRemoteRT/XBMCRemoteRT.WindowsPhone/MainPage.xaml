@@ -34,7 +34,13 @@
             <ListView x:Name="ConnectionsListView" ItemsSource="{Binding ConnectionItems}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel x:Name="ConnectionItemWrapper" Tapped="ConnectionItemWrapper_Tapped">
+                        <StackPanel x:Name="ConnectionItemWrapper" Tapped="ConnectionItemWrapper_Tapped" Holding="ConnectionItemWrapper_Holding">
+                            <FlyoutBase.AttachedFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem x:Name="EditConnectionMFI" Text="edit connection" Click="EditConnectionMFI_Click" DataContext="{Binding}"/>
+                                    <MenuFlyoutItem x:Name="DeleteConnectionMFI" Text="delete connection" Click="DeleteConnectionMFI_Click" DataContext="{Binding}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.AttachedFlyout>
                             <TextBlock Text="{Binding ConnectionName}" />
                             <TextBlock Text="{Binding IpAddress}"/>
                         </StackPanel>
