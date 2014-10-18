@@ -45,16 +45,22 @@ namespace XBMCRemoteRT
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            ConnectionsListView.Loaded += ConnectionsListView_Loaded;
+            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
 
-           
+            DataContext = App.ConnectionsVM;
+            App.ConnectionsVM.ReloadConnections();
+            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
+            if (ip != null)
+            {
+                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
+                if (connectionItem != null)
+                    ConnectToServer(connectionItem);
+            }
         }
 
         void ConnectionsListView_Loaded(object sender, RoutedEventArgs e)
         {
-            DataContext = App.ConnectionsVM;
-            App.ConnectionsVM.ReloadConnections();
-            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
+            
         }
 
         /// <summary>
@@ -119,6 +125,7 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
+            SetPageState(PageStates.Ready);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -181,6 +188,22 @@ namespace XBMCRemoteRT
                 BottomAppBar.Visibility = Visibility.Visible;
                 ProgressRing.IsActive = false;
             }
+        }
+
+        private void DeleteConnectionMFI_Click(object sender, RoutedEventArgs e)
+        {
+            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
+            App.ConnectionsVM.RemoveConnectionItem(selectedConnection);
+        }
+
+        private void EditConnectionMFI_Click(object sender, RoutedEventArgs e)
+        {
+            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
+        }
+
+        private void ConnectionItemWrapper_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
         }      
     }
 }
