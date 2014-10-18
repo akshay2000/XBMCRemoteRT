@@ -121,6 +121,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Video\SearchTVShowsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Video\TVShowDetailsHub.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +160,9 @@
     </Compile>
     <Compile Include="Pages\Video\SearchMoviesPage.xaml.cs">
       <DependentUpon>SearchMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Video\SearchTVShowsPage.xaml.cs">
+      <DependentUpon>SearchTVShowsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Video\TVShowDetailsHub.xaml.cs">
       <DependentUpon>TVShowDetailsHub.xaml</DependentUpon>
