@@ -45,7 +45,7 @@ namespace XBMCRemoteRT
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
+            this.NavigationCacheMode = NavigationCacheMode.Required;
 
             DataContext = App.ConnectionsVM;
             App.ConnectionsVM.ReloadConnections();

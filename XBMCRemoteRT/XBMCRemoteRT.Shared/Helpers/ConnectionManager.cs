@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using XBMCRemoteRT.Models;
 
 namespace XBMCRemoteRT.Helpers
@@ -77,9 +78,18 @@ namespace XBMCRemoteRT.Helpers
             JObject requestObject = ConstructRequestObject(methodName, parameters);
             string requestData = requestObject.ToString();
             HttpResponseMessage response = await ConnectionManager.ExecuteRequest(requestData);
-            string responseString = await response.Content.ReadAsStringAsync();
-            JObject responseObject = JObject.Parse(responseString);
-            return responseObject;
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                string responseString = await response.Content.ReadAsStringAsync();
+                JObject responseObject = JObject.Parse(responseString);
+                return responseObject;
+            }
+            else
+            {
+                MessageDialog msg = new MessageDialog("Make sure Kodi is running and you're connected.", "Server not found");
+                await msg.ShowAsync();
+                return new JObject();
+            }
         }
 
         public static void ManageSystemTray(bool p)
