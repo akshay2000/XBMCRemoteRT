@@ -40,6 +40,8 @@ namespace XBMCRemoteRT.Pages.Video
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+
             if (allTVShows == null)
                 LoadTVShows();
         }
