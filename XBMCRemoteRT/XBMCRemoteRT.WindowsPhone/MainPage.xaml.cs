@@ -47,20 +47,6 @@ namespace XBMCRemoteRT
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            DataContext = App.ConnectionsVM;
-            App.ConnectionsVM.ReloadConnections();
-            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
-            if (ip != null)
-            {
-                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
-                if (connectionItem != null)
-                    ConnectToServer(connectionItem);
-            }
-        }
-
-        void ConnectionsListView_Loaded(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         /// <summary>
@@ -126,6 +112,23 @@ namespace XBMCRemoteRT
         {
             this.navigationHelper.OnNavigatedTo(e);
             SetPageState(PageStates.Ready);
+            if (e.NavigationMode != NavigationMode.Back)
+            {
+                LoadAndConnnect();
+            }
+        }
+
+        private async void LoadAndConnnect()
+        {
+            await App.ConnectionsVM.ReloadConnections();
+            DataContext = App.ConnectionsVM;
+            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
+            if (ip != null)
+            {
+                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
+                if (connectionItem != null)
+                    ConnectToServer(connectionItem);
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
