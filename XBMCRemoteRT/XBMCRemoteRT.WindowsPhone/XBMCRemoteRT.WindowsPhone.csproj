@@ -109,6 +109,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\InputPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Video\AllMoviesPivot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -155,6 +159,9 @@
     </Compile>
     <Compile Include="Pages\FeedbackPage.xaml.cs">
       <DependentUpon>FeedbackPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InputPage.xaml.cs">
+      <DependentUpon>InputPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Video\AllMoviesPivot.xaml.cs">
       <DependentUpon>AllMoviesPivot.xaml</DependentUpon>
