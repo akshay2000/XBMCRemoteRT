@@ -31,16 +31,11 @@
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <ScrollViewer>
                 <StackPanel>
-                    <TextBlock Text="Name" />
-                    <TextBox x:Name="NameTextBox" InputScope="NameOrPhoneNumber"/>
-                    <TextBlock Text="IP Address/Host Name" />
-                    <TextBox x:Name="IPTextBox"/>
-                    <TextBlock Text="Port" />
-                    <TextBox x:Name="PortTextBox" InputScope="Number" Text="80"/>
-                    <TextBlock Text="Username" />
-                    <TextBox x:Name="UsernameTextBox" Text="xbmc"/>
-                    <TextBlock Text="Password" />
-                    <TextBox x:Name="PasswordTextBox"/>
+                    <TextBox x:Name="NameTextBox" InputScope="NameOrPhoneNumber" Header="Name"/>
+                    <TextBox x:Name="IPTextBox" Header="Server address"/>
+                    <TextBox x:Name="PortTextBox" InputScope="Number" Text="80" Header="Port"/>
+                    <TextBox x:Name="UsernameTextBox" Text="xbmc" Header="Username"/>
+                    <TextBox x:Name="PasswordTextBox" Header="Password"/>
                     <TextBlock Text="Note: Usernames and passwords are stored and transmitted in plain text. Make sure you are not using the same password anywhere else" TextWrapping="Wrap" />
                 </StackPanel>
             </ScrollViewer>

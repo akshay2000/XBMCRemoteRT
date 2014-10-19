@@ -110,13 +110,21 @@ namespace XBMCRemoteRT.Pages
 
         #endregion
 
-        private void SaveConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
+        private async void SaveConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             int port;
 
             if (!int.TryParse(PortTextBox.Text, out port))
             {
-                MessageDialog msg = new MessageDialog("Please, enter a valid port number.", "Invalid Port");
+                MessageDialog msg = new MessageDialog("Please enter a valid port number.", "Invalid Port");
+                await msg.ShowAsync();
+                return;
+            }
+
+            if (NameTextBox.Text.Equals(string.Empty) || IPTextBox.Text.Equals(string.Empty))
+            {
+                MessageDialog msg = new MessageDialog("Please enter valid name and server address", "Invalid Details");
+                await msg.ShowAsync();
                 return;
             }
 
