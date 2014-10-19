@@ -15,38 +15,27 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using XBMCRemoteRT.Models;
-using System.Threading.Tasks;
-using XBMCRemoteRT.RPCWrappers;
 using XBMCRemoteRT.Helpers;
-using Windows.UI.Popups;
-using System.Diagnostics;
-using XBMCRemoteRT.Pages;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace XBMCRemoteRT
+namespace XBMCRemoteRT.Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class FeedbackPage : Page
     {
-        private enum PageStates { Ready, Connecting }
-
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public MainPage()
+        public FeedbackPage()
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-
-            this.NavigationCacheMode = NavigationCacheMode.Required;
-
         }
 
         /// <summary>
@@ -111,24 +100,6 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
-            SetPageState(PageStates.Ready);
-            if (e.NavigationMode != NavigationMode.Back)
-            {
-                LoadAndConnnect();
-            }
-        }
-
-        private async void LoadAndConnnect()
-        {
-            await App.ConnectionsVM.ReloadConnections();
-            DataContext = App.ConnectionsVM;
-            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
-            if (ip != null)
-            {
-                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
-                if (connectionItem != null)
-                    ConnectToServer(connectionItem);
-            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -138,75 +109,9 @@ namespace XBMCRemoteRT
 
         #endregion
 
-        private void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private void SendFeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as StackPanel).DataContext;
-            ConnectToServer(selectedConnection);
+            FeedbackHelper.SendFeedback(FeedbackTextBox.Text);
         }
-
-        private void AddConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AddConnectionPage));
-        }
-
-        private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(FeedbackPage));
-        }
-
-        private async Task ConnectToServer(ConnectionItem connectionItem)
-        {
-            SetPageState(PageStates.Connecting);
-
-            bool isSuccessful = await JSONRPC.Ping(connectionItem);
-            if (isSuccessful)
-            {
-                ConnectionManager.CurrentConnection = connectionItem;
-                SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
-                Frame.Navigate(typeof(CoverPage));
-            }
-            else
-            {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-                await message.ShowAsync();
-                SetPageState(PageStates.Ready);
-            }            
-        }
-        private void SetPageState(PageStates pageState)
-        {
-            if (pageState == PageStates.Connecting)
-            {
-                ConnectionsListView.IsEnabled = false;
-                BottomAppBar.Visibility = Visibility.Collapsed;
-                ProgressRing.IsActive = true;
-            }
-            else
-            {
-                ConnectionsListView.IsEnabled = true;
-                BottomAppBar.Visibility = Visibility.Visible;
-                ProgressRing.IsActive = false;
-            }
-        }
-
-        private void DeleteConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            App.ConnectionsVM.RemoveConnectionItem(selectedConnection);
-        }
-
-        private void EditConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-        }
-
-        private void ConnectionItemWrapper_Holding(object sender, HoldingRoutedEventArgs e)
-        {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-        }      
     }
 }
