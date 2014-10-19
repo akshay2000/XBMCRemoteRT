@@ -35,7 +35,7 @@ namespace XBMCRemoteRT.ViewModels
             }
         }
 
-        public async void ReloadConnections()
+        public async Task ReloadConnections()
         {
             if (ConnectionItems == null)
             {
