@@ -55,37 +55,44 @@
                 </DataTemplate>
             </HubSection>
 
-            <HubSection x:Name="TVHubSection" Header="TV SHOWS">
+            <HubSection x:Name="TVHubSection">
+                <HubSection.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <BitmapIcon UriSource="/Assets/Icons/tv.png" Height="28" Foreground="{StaticResource PhoneForegroundBrush}" />
+                        <StackPanel>
+                            <TextBlock Text="TV SHOWS" Margin="8,0,0,0"/>
+                            <!--Bind the total no of shows property (if available) to the following textblock-->
+                            <TextBlock Text="total shows" Opacity="0.5" FontSize="15" Margin="8,-5,0,0" FontWeight="Thin"/>
+                        </StackPanel>
+                    </StackPanel>
+                </HubSection.Header>
                 <DataTemplate>
                     <ListView ItemsSource="{Binding}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid x:Name="EpisodeWrapper" Height="192" Tapped="EpisodeWrapper_Tapped" Margin="0,0,0,24">
-                                    <Grid.Background>
-                                        <ImageBrush Stretch="UniformToFill">
-                                            <ImageBrush.ImageSource>
-                                                <BitmapImage DecodePixelType="Logical" DecodePixelWidth="341" UriSource="/Assets/DefaultArt.jpg"/>
-                                            </ImageBrush.ImageSource>
-                                        </ImageBrush>
-                                    </Grid.Background>
+                                <Grid x:Name="EpisodeWrapper" Background="{StaticResource PhoneChromeBrush}" Height="220" Tapped="EpisodeWrapper_Tapped" Margin="0,0,0,24">
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="175"/>
                                         <RowDefinition Height="*"/>
-                                        <RowDefinition Height="54"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="54"/>
+                                        <ColumnDefinition Width="75"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Stretch="UniformToFill" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                                    <Image Stretch="UniformToFill" Height="175" Grid.Row="0" Grid.ColumnSpan="2">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="341" UriSource="/Assets/DefaultArt.jpg"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Image Stretch="UniformToFill" Height="175" Grid.Row="0" Grid.ColumnSpan="2">
                                         <Image.Source>
                                             <BitmapImage DecodePixelType="Logical" DecodePixelWidth="405" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                                         </Image.Source>
                                     </Image>
-                                    <Rectangle Grid.Row="1" Grid.ColumnSpan="2" Fill="Black" Opacity="0.4"/>
-                                    <Border BorderBrush="White" Grid.Row="1" CornerRadius="22" BorderThickness="3" Width="41" Height="41">
-                                        <Polygon VerticalAlignment="Center" Margin="4,0,0,0" HorizontalAlignment="Center" Points="0,0 13,10, 0,20 0,0" Fill="White"/>
+                                    <Border Margin="10,145,0,0" Height="60" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
+                                        <Image Source="Assets/Icons/tv.png" Margin="17" />
                                     </Border>
-                                    <TextBlock Text="{Binding Label}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5,0,5,2" Foreground="White"/>
+                                    <TextBlock Text="{Binding Label}" HorizontalAlignment="Right" TextAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5,0,5,2" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16" FontWeight="Bold"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
