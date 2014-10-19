@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="XBMCRemoteRT.Pages.AddConnectionPage"
+    x:Class="XBMCRemoteRT.Pages.FeedbackPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:XBMCRemoteRT.Pages"
@@ -24,30 +24,17 @@
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="add connection" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Text="feedback" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <ScrollViewer>
                 <StackPanel>
-                    <TextBox x:Name="NameTextBox" InputScope="NameOrPhoneNumber" Header="Name"/>
-                    <TextBox x:Name="IPTextBox" Header="Server address"/>
-                    <TextBox x:Name="PortTextBox" InputScope="Number" Text="80" Header="Port"/>
-                    <TextBox x:Name="UsernameTextBox" Text="xbmc" Header="Username"/>
-                    <TextBox x:Name="PasswordTextBox" Header="Password"/>
-                    <TextBlock Text="Note: Usernames and passwords are stored and transmitted in plain text. Make sure you are not using the same password anywhere else" TextWrapping="Wrap" />
+                    <TextBox x:Name="FeedbackTextBox" Header="Feedback" Height="200" TextWrapping="Wrap" PlaceholderText="Enter your message here."/>
+                    <Button x:Name="SendFeedbackButton" Click="SendFeedbackButton_Click" Content="send feedback" HorizontalAlignment="Stretch"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
     </Grid>
-
-    <Page.BottomAppBar>
-        <CommandBar>
-            <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="SaveConnectionAppBarButton" Click="SaveConnectionAppBarButton_Click" Label="save" Icon="Save"/>
-                <AppBarButton x:Name="CancelAppBarButton" Click="CancelAppBarButton_Click" Label="cancel" Icon="Cancel"/>
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>
 </Page>

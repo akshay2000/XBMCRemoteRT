@@ -15,8 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using XBMCRemoteRT.Models;
-using Windows.UI.Popups;
+using XBMCRemoteRT.Helpers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -25,12 +24,12 @@ namespace XBMCRemoteRT.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddConnectionPage : Page
+    public sealed partial class FeedbackPage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public AddConnectionPage()
+        public FeedbackPage()
         {
             this.InitializeComponent();
 
@@ -110,39 +109,9 @@ namespace XBMCRemoteRT.Pages
 
         #endregion
 
-        private async void SaveConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
+        private void SendFeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-            int port;
-
-            if (!int.TryParse(PortTextBox.Text, out port))
-            {
-                MessageDialog msg = new MessageDialog("Please enter a valid port number.", "Invalid Port");
-                await msg.ShowAsync();
-                return;
-            }
-
-            if (NameTextBox.Text.Equals(string.Empty) || IPTextBox.Text.Equals(string.Empty))
-            {
-                MessageDialog msg = new MessageDialog("Please enter valid name and server address", "Invalid Details");
-                await msg.ShowAsync();
-                return;
-            }
-
-            var newConnection = new ConnectionItem
-            {
-                ConnectionName = NameTextBox.Text,
-                IpAddress = IPTextBox.Text,
-                Port = port,
-                Username = UsernameTextBox.Text,
-                Password = PasswordTextBox.Text
-            };
-            App.ConnectionsVM.AddConnectionItem(newConnection);
-            Frame.GoBack();
-        }
-
-        private void CancelAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.GoBack();
+            FeedbackHelper.SendFeedback(FeedbackTextBox.Text);
         }
     }
 }

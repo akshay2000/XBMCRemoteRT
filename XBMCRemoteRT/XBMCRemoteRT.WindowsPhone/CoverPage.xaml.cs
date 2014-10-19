@@ -21,6 +21,7 @@ using XBMCRemoteRT.RPCWrappers;
 using XBMCRemoteRT.Models.Common;
 using XBMCRemoteRT.Pages.Audio;
 using XBMCRemoteRT.Pages.Video;
+using XBMCRemoteRT.Pages;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -155,6 +156,11 @@ namespace XBMCRemoteRT
                 Movies = await VideoLibrary.GetRecentlyAddedMovies(new Limits { Start = 0, End = 15 });
                 MoviesHubSection.DataContext = Movies;
             }
+        }
+
+        private void RemoteAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(InputPage));
         }
     }
 }
