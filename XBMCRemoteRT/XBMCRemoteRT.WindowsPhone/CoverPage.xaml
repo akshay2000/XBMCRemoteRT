@@ -100,30 +100,44 @@
                 </DataTemplate>
             </HubSection>
 
-            <HubSection x:Name="MoviesHubSection" Header="MOVIES">
+            <HubSection x:Name="MoviesHubSection">
+                <HubSection.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <BitmapIcon UriSource="/Assets/Icons/movie.png" Height="28" Foreground="{StaticResource PhoneForegroundBrush}" />
+                        <StackPanel>
+                            <TextBlock Text="MOVIES" Margin="8,0,0,0"/>
+                            <!--Bind the total no of shows property (if available) to the following textblock-->
+                            <TextBlock Text="total movies" Opacity="0.5" FontSize="15" Margin="8,-5,0,0" FontWeight="Thin"/>
+                        </StackPanel>
+                    </StackPanel>
+                </HubSection.Header>
                 <DataTemplate>
                     <GridView ItemsSource="{Binding}">
                         <GridView.ItemTemplate>
                             <DataTemplate>
-                                <Grid x:Name="MovieWrapper" Height="192" Margin="0,0,12,12" Tapped="MovieWrapper_Tapped">
-                                    <Grid.Background>
-                                        <ImageBrush Stretch="UniformToFill">
-                                            <ImageBrush.ImageSource>
-                                                <BitmapImage DecodePixelType="Logical" DecodePixelHeight="192" UriSource="/Assets/DefaultArt.jpg"/>
-                                            </ImageBrush.ImageSource>
-                                        </ImageBrush>
-                                    </Grid.Background>
+                                <Grid x:Name="MovieWrapper" Background="{StaticResource PhoneChromeBrush}" Height="220" Margin="0,0,12,12" Tapped="MovieWrapper_Tapped">
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="175"/>
                                         <RowDefinition Height="*"/>
-                                        <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
-                                    <Image Grid.RowSpan="2" Stretch="UniformToFill">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="75"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Stretch="UniformToFill" Height="175" Grid.Row="0" Grid.ColumnSpan="2">
                                         <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="192" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="341" UriSource="/Assets/DefaultArt.jpg"/>
                                         </Image.Source>
                                     </Image>
-                                    <Rectangle Grid.Row="1" Fill="Black" Opacity="0.4"/>
-                                    <TextBlock Grid.Row="1" Text="{Binding Label}" Foreground="White" Margin="5,0"/>
+                                    <Image Stretch="UniformToFill" Height="175" Grid.Row="0" Grid.ColumnSpan="2">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="405" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Margin="10,145,0,0" Height="60" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
+                                        <Image Source="Assets/Icons/movie.png" Margin="17" />
+                                    </Border>
+                                    <TextBlock Text="{Binding Label}" HorizontalAlignment="Right" TextAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5,0,5,2" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16" FontWeight="Bold"/>
                                 </Grid>
                             </DataTemplate>
                         </GridView.ItemTemplate>
