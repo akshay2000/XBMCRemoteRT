@@ -7,16 +7,23 @@
 
     <Command Name="PlayArtist">
       <Example> play artist Linkin Park </Example>
-      <ListenFor> [and] play artist {artist} </ListenFor>
-      <ListenFor> [and] play songs by {artist} </ListenFor>
-      <Feedback> Playing artist {artist}... </Feedback>
+      <ListenFor> [and] play artist {musicTopic} </ListenFor>
+      <ListenFor> [and] play songs by {musicTopic} </ListenFor>
+      <Feedback> Playing artist {musicTopic}... </Feedback>
       <Navigate />
     </Command>
     
     <Command Name="PlayAlbum">
       <Example> play album Meteora </Example>
-      <ListenFor> play album {*} </ListenFor>
-      <Feedback> Playing album... </Feedback>
+      <ListenFor> play album {musicTopic} </ListenFor>
+      <Feedback> Playing album {musicTopic}... </Feedback>
+      <Navigate/>
+    </Command>
+    
+    <Command Name="PlayMovie">
+      <Example> play movie Inception </Example>
+      <ListenFor> play movie {movieTopic} </ListenFor>
+      <Feedback> Playing movie {movieTopic}... </Feedback>
       <Navigate/>
     </Command>
 
@@ -40,16 +47,19 @@
       <Item> All Things Bright and Beautiful </Item>
     </PhraseList>-->
     
-    <PhraseList Label="artist">
+    <!--<PhraseList Label="artist">
       <Item> Linkin Park </Item>
       <Item> Avril Lavigne </Item>
       <Item> Owl City </Item>
-    </PhraseList>
+    </PhraseList>-->
 
-    <!--<PhraseTopic Label="dateTopic" Scenario="Form Filling"> 
-        <Subject> Date/Time </Subject> 
-        <Subject> MyCustomSubject </Subject> 
-    </PhraseTopic>-->
+    <PhraseTopic Label="movieTopic" Scenario="Search"> 
+        <Subject>Movies</Subject>
+    </PhraseTopic>
+    
+    <PhraseTopic Label="musicTopic" Scenario="Search">
+      <Subject>Music</Subject>
+    </PhraseTopic>
 	
   </CommandSet>
 </VoiceCommands>

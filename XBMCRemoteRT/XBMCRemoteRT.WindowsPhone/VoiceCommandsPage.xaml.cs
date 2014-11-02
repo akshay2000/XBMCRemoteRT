@@ -17,6 +17,12 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.ApplicationModel.Activation;
 using Windows.Media.SpeechRecognition;
+using XBMCRemoteRT.RPCWrappers;
+using Newtonsoft.Json.Linq;
+using XBMCRemoteRT.Helpers;
+using XBMCRemoteRT.Models;
+using Windows.UI.Popups;
+using System.Threading.Tasks;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -102,11 +108,62 @@ namespace XBMCRemoteRT
         {
             var commandArgs = e.Parameter as VoiceCommandActivatedEventArgs;
             SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
-            string voiceCommandName = speechRecognitionResult.RulePath[0];
-            string textSpoken = speechRecognitionResult.Text;
+            ExecuteVoiceCommand(speechRecognitionResult);
+        }
 
-            ReceivedCommandTextBlock.Text = textSpoken;
-            this.navigationHelper.OnNavigatedTo(e);
+        private async void ExecuteVoiceCommand(SpeechRecognitionResult result)
+        {
+            await LoadAndConnnect();
+            string voiceCommandName = result.RulePath[0];
+            string textSpoken = result.Text;
+
+            switch (voiceCommandName)
+            {
+                case "PlayArtist":
+                    string artistName = SemanticInterpretation("musicTopic", result);
+                    var allArtists = await AudioLibrary.GetArtists();
+                    var filteredArtists = allArtists.Where(t => t.Label.ToLower().Contains(artistName.ToLower())).ToList();
+                    if (filteredArtists.Count > 0)
+                    {
+                        GlobalVariables.CurrentArtist = filteredArtists[0];
+                        JObject artistToPlay = new JObject(new JProperty("movieid", GlobalVariables.CurrentMovie.MovieId));
+                        Player.Open(artistToPlay);
+                    }
+                    break;
+                case "PlayMovie":
+                    string movieName = SemanticInterpretation("movieTopic", result);
+                    var allMovies = await VideoLibrary.GetMovies();
+                    var filteredMovies = allMovies.Where(t => t.Title.ToLower().Contains(movieName.ToLower())).ToList();
+                    if (filteredMovies.Count > 0)
+                    {
+                        GlobalVariables.CurrentMovie = filteredMovies[0];
+                        JObject movieToPlay = new JObject(new JProperty("movieid", GlobalVariables.CurrentMovie.MovieId));
+                        Player.Open(movieToPlay);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private async Task LoadAndConnnect()
+        {
+            await App.ConnectionsVM.ReloadConnections();
+            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
+            if (ip != null)
+            {
+                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
+                if (connectionItem != null)
+                {
+                    if (await JSONRPC.Ping(connectionItem))
+                    {
+                        ConnectionManager.CurrentConnection = connectionItem;
+                        return;
+                    }                    
+                }
+            }
+            MessageDialog msg = new MessageDialog("Could not connect to a server. Please check the connection.", "Connection Unsuccessful");
+            await msg.ShowAsync();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
