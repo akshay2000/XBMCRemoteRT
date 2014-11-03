@@ -29,7 +29,7 @@
                     <GridView ItemsSource="{Binding}">
                         <GridView.ItemTemplate>
                             <DataTemplate>
-                                <Grid x:Name="AlbumWrapper" Tapped="AlbumWrapper_Tapped" Height="190" Background="{StaticResource PhoneChromeBrush}" Width="150" Margin="0,0,12,12" >
+                                <Grid x:Name="AlbumWrapper" Tapped="AlbumWrapper_Tapped" Height="195" Background="{StaticResource PhoneChromeBrush}" Width="150" Margin="0,0,12,12" >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="150"/>
                                         <RowDefinition Height="auto"/>
