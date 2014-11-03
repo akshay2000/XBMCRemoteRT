@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="XBMCRemoteRT.Pages.Audio.ArtistDetailsPanorama"
+    x:Class="XBMCRemoteRT.Pages.Audio.ArtistDetailsHub"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:XBMCRemoteRT.Pages.Audio"
@@ -99,4 +99,13 @@
             </HubSection>
         </Hub>
     </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="PlayArtistAppBarButton" Click="PlayArtistAppBarButton_Click" Icon="Play" Label="play"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
 </Page>

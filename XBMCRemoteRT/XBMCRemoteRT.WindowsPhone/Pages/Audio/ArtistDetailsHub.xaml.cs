@@ -27,14 +27,14 @@ namespace XBMCRemoteRT.Pages.Audio
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ArtistDetailsPanorama : Page
+    public sealed partial class ArtistDetailsHub : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
         private List<Song> songsList;
         private List<Album> albumsList;
-        public ArtistDetailsPanorama()
+        public ArtistDetailsHub()
         {
             this.InitializeComponent();
 
@@ -134,6 +134,11 @@ namespace XBMCRemoteRT.Pages.Audio
             SongsHubSection.DataContext = songsList;
             albumsList = await AudioLibrary.GetAlbums(filter);
             AlbumsHubSection.DataContext = albumsList;
+        }
+
+        private void PlayArtistAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Player.PlayArtist(GlobalVariables.CurrentArtist);
         }
     }
 }
