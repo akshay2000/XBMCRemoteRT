@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models;
+using XBMCRemoteRT.Models.Audio;
+using XBMCRemoteRT.Models.Video;
 
 namespace XBMCRemoteRT.RPCWrappers
 {
@@ -149,6 +151,30 @@ namespace XBMCRemoteRT.RPCWrappers
                 case 2:
                     return Players.Picture;
             }
+        }
+
+        //Extra player methods
+        public static async void PlayArtist(Artist artist)
+        {
+            await Playlist.Clear(PlayelistType.Audio);
+            JObject artistItem = new JObject(new JProperty("artistid", artist.ArtistId));
+            await Playlist.Add(PlayelistType.Audio, artistItem);
+            JObject playerItem = new JObject(new JProperty("playlistid", 0));
+            await Player.Open(playerItem);
+        }
+
+        public static async void PlayAlbum(Album album)
+        {
+            await Playlist.Clear(PlayelistType.Audio);
+            JObject albumItem = new JObject(new JProperty("albumid", album.AlbumId));
+            await Playlist.Add(PlayelistType.Audio, albumItem);
+            JObject playerItem = new JObject(new JProperty("playlistid", 0));
+            await Player.Open(playerItem);
+        }
+
+        public static async void PlayMovie(Movie movie)
+        {
+
         }
     }
 }

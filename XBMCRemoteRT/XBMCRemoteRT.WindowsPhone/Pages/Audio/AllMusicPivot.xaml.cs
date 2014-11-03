@@ -147,7 +147,7 @@ namespace XBMCRemoteRT.Pages.Audio
         {
             Artist tappedArtist = (sender as TextBlock).DataContext as Artist;
             GlobalVariables.CurrentArtist = tappedArtist;
-            Frame.Navigate(typeof(ArtistDetailsPanorama));
+            Frame.Navigate(typeof(ArtistDetailsHub));
         }
 
         private void AlbumArtWrapper_Tapped(object sender, TappedRoutedEventArgs e)
