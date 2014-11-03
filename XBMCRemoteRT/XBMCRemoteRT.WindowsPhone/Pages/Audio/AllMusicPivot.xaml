@@ -61,9 +61,9 @@
                             </GridView.GroupStyle>
                             <GridView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid x:Name="AlbumArtWrapper" Tapped="AlbumArtWrapper_Tapped" Height="195" Background="{StaticResource PhoneChromeBrush}" Width="160" Margin="0,0,12,12" >
+                                    <Grid x:Name="AlbumArtWrapper" Tapped="AlbumArtWrapper_Tapped" Height="205" Background="{StaticResource PhoneChromeBrush}" Width="160" Margin="0,0,12,12" >
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="150"/>
+                                            <RowDefinition Height="160"/>
                                             <RowDefinition Height="auto"/>
                                         </Grid.RowDefinitions>
                                         <Image Stretch="UniformToFill">
@@ -71,16 +71,16 @@
                                                 <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
                                             </Image.Source>
                                         </Image>
-                                        <Image Width="150" Height="150" Stretch="UniformToFill" VerticalAlignment="Top" >
+                                        <Image Width="160" Stretch="UniformToFill" VerticalAlignment="Top" >
                                             <Image.Source>
                                                 <BitmapImage DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                                             </Image.Source>
                                         </Image>
-                                        <Border Margin="10,130,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
+                                        <Border Margin="10,140,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
                                             <Image Source="ms-appx:///Assets/Icons/album.png" Margin="10" />
                                         </Border>
                                         <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Right" Margin="0,5,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
-                                        <StackPanel Orientation="Horizontal" Background="{StaticResource PhoneAccentBrush}" Margin="0,5,5,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                        <StackPanel Orientation="Horizontal" Background="{StaticResource PhoneAccentBrush}" Margin="0,7,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
                                             <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" Margin="5" Foreground="White" FontWeight="Bold" MaxWidth="120" MaxHeight="40" TextTrimming="WordEllipsis"/>
                                         </StackPanel>
                                     </Grid>
