@@ -140,10 +140,5 @@ namespace XBMCRemoteRT.Pages.Audio
         {
             Player.PlayArtist(GlobalVariables.CurrentArtist);
         }
-
-        private void AlbumArtWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-
-        }
     }
 }
