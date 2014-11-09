@@ -149,7 +149,7 @@
     </Grid>
     
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="RemoteAppBarButton" Label="remote" Click="RemoteAppBarButton_Click"/>
             </CommandBar.SecondaryCommands>
