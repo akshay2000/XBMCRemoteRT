@@ -32,10 +32,10 @@
             <ListView x:Name="SearchTVShowsListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="TVShowWrapper" Tapped="TVShowWrapper_Tapped" Margin="0,0,0,24" >
+                        <Grid x:Name="TVShowWrapper" Tapped="TVShowWrapper_Tapped" Margin="0,0,0,24" Background="{StaticResource PhoneChromeBrush}" >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="85"/>
-                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="67"/>
+                                <RowDefinition Height="35"/>
                             </Grid.RowDefinitions>
 
                             <Image Stretch="UniformToFill" Grid.Row="0">
@@ -45,10 +45,14 @@
                             </Image>
                             <Image Stretch="UniformToFill" Grid.Row="0">
                                 <Image.Source>
-                                    <BitmapImage DecodePixelType="Logical" DecodePixelWidth="456" UriSource="{Binding Path=Art.Banner, Converter={StaticResource ImagePathConverter}}"/>
+                                    <BitmapImage DecodePixelType="Logical"  DecodePixelWidth="370" UriSource="{Binding Path=Art.Banner, Converter={StaticResource ImagePathConverter}}"/>
                                 </Image.Source>
                             </Image>
-                            <TextBlock Text="{Binding Label}" Grid.Row="1"/>
+
+                            <Border Margin="10,47,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
+                                <Image Source="/Assets/Icons/tv.png" Margin="10" />
+                            </Border>
+                            <TextBlock Text="{Binding Label}" HorizontalAlignment="Right" TextAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5,0,5,2" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16" FontWeight="Bold"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
