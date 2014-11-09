@@ -95,12 +95,22 @@
                                     <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource PhoneGroupHeaderTemplate}"/>
                                 </ListView.GroupStyle>
                                 <ListView.ItemTemplate>
-                                    <DataTemplate>
+                                    <!--<DataTemplate>
                                         <StackPanel x:Name="EpisodeWrapper" Orientation="Horizontal" Margin="8,5,5,5" Tapped="EpisodeWrapper_Tapped">
                                             <Border x:Name="PlayEpisodeBorder" BorderBrush="White" Margin="0,0,0,0" CornerRadius="22" BorderThickness="3" Width="41" Height="41">
                                                 <Polygon VerticalAlignment="Center" Margin="4,0,0,0" HorizontalAlignment="Center" Points="0,0 13,10, 0,20 0,0" Fill="White"/>
                                             </Border>
                                             <TextBlock Text="{Binding Label}" Height="50" Foreground="White"/>
+                                        </StackPanel>
+                                    </DataTemplate>-->
+                                    <DataTemplate>
+                                        <StackPanel x:Name="EpisodeWrapper" Orientation="Horizontal" Margin="0,10" Tapped="EpisodeWrapper_Tapped">
+                                            <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
+                                                <BitmapIcon Margin="12" UriSource="/Assets/Icons/tv.png" Foreground="{StaticResource PhoneForegroundBrush}" />
+                                            </Border>
+                                            <StackPanel Margin="10,-2,0,0"  VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Label}" FontSize="25" FontWeight="SemiBold"/>
+                                            </StackPanel>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
