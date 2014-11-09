@@ -109,6 +109,7 @@ namespace XBMCRemoteRT
         {
             this.navigationHelper.OnNavigatedTo(e);
             RefreshListsIfNull();
+            Frame.BackStack.Clear();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

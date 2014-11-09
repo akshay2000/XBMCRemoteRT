@@ -43,7 +43,14 @@ namespace XBMCRemoteRT
 
         void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
-            Frame.Navigate(typeof(CoverPage));
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
+            else
+            {
+                Frame.Navigate(typeof(CoverPage));
+            }
             e.Handled = true;
             HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
         }
