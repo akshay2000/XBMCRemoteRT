@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+  <CommandSet xml:lang="en-gb">
+    <CommandPrefix>Kodi</CommandPrefix>
+    <Example> Play artist Linkin Park </Example>
+
+    <Command Name="PlayArtist">
+      <Example> play artist Linkin Park </Example>
+      <ListenFor> [and] play artist {musicTopic} </ListenFor>
+      <ListenFor> [and] play songs by {musicTopic} </ListenFor>
+      <Feedback> Playing artist {musicTopic}... </Feedback>
+      <Navigate />
+    </Command>
+    
+    <Command Name="PlayAlbum">
+      <Example> play album Meteora </Example>
+      <ListenFor> play album {musicTopic} </ListenFor>
+      <Feedback> Playing album {musicTopic}... </Feedback>
+      <Navigate/>
+    </Command>
+    
+    <Command Name="PlayMovie">
+      <Example> play movie Inception </Example>
+      <ListenFor> play movie {movieTopic} </ListenFor>
+      <Feedback> Playing movie {movieTopic}... </Feedback>
+      <Navigate/>
+    </Command>
+
+    <!--<Command Name="PlayLevel">
+      <Example> replay level two </Example>
+      <ListenFor> replay level {number} </ListenFor>
+      <Feedback> Going to level {number}... </Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="PlayUnknownLevel">
+      <Example> replay level two </Example>
+      <ListenFor> [and] replay level {*} </ListenFor>
+      <Feedback> Unknown level; going to level selection... </Feedback>
+      <Navigate Target="LevelSelect.xaml" />
+    </Command>-->
+
+    <!--<PhraseList Label="album">
+      <Item> Meteora </Item>
+      <Item> Avril Lavigne </Item>
+      <Item> All Things Bright and Beautiful </Item>
+    </PhraseList>-->
+    
+    <!--<PhraseList Label="artist">
+      <Item> Linkin Park </Item>
+      <Item> Avril Lavigne </Item>
+      <Item> Owl City </Item>
+    </PhraseList>-->
+
+    <PhraseTopic Label="movieTopic" Scenario="Search"> 
+        <Subject>Movies</Subject>
+    </PhraseTopic>
+    
+    <PhraseTopic Label="musicTopic" Scenario="Search">
+      <Subject>Music</Subject>
+    </PhraseTopic>
+	
+  </CommandSet>
+</VoiceCommands>
+
+<!-- Example -->
+<!--
+
+    The preceding example demonstrates a hypothetical game called 'Contoso ROD3O!' which defines two
+    Commands that a user can say to either start a new game or replay one of three levels in the game.  
+    To initiate the PlayGame command, a user can say "Contoso Rodeo play  a new game" or "Contoso Rodeo
+    play new game". Either phrase will start a new game. To initiate the second Command, a user can say
+    "Contoso Rodeo replay level one", "Contoso Rodeo replay level two", or "Contoso Rodeo replay level 
+    three".
+    The second Command demonstrates how to use a PhraseList with a Command. PhraseLists can be updated 
+    dynamically by the application (e.g., if a user unlocks a new level or game or feature, you might 
+    want to allow the user to give commands for newfeatures after voice commands are already registered.)
+    The third Command demonstrates how the {*} sequence can parallel another command to recognize speech
+    that is not defined in the CommandSet.
+
+  Note:
+
+      [and] Indicates that "and" is optional. Making connecting words like this optional
+            can help both "Contoso Rodeo, play new game" and "open Contoso Rodeo and play
+            a new game" feel natural to speak.
+                 
+      {number} Defined separately from the Command, mapping to "one" or "two" or "three".
+
+-->
