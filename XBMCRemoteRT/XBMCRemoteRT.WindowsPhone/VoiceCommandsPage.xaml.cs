@@ -123,22 +123,63 @@ namespace XBMCRemoteRT
                     string artistName = SemanticInterpretation("musicTopic", result);
                     var allArtists = await AudioLibrary.GetArtists();
                     var filteredArtists = allArtists.Where(t => t.Label.ToLower().Contains(artistName.ToLower())).ToList();
-                    if (filteredArtists.Count > 0)
+                    if (filteredArtists.Count > 1)
                     {
-                        GlobalVariables.CurrentArtist = filteredArtists[0];
-                        JObject artistToPlay = new JObject(new JProperty("movieid", GlobalVariables.CurrentMovie.MovieId));
-                        Player.Open(artistToPlay);
+                        ReceivedCommandTextBlock.Text = "We found multiple artists. Choose one...";
+                        SearchedItemsListView.ItemsSource = filteredArtists;
+                    }
+                    else if (filteredArtists.Count > 0)
+                    {
+                        ReceivedCommandTextBlock.Text = "This is the artist we found...";
+                        SearchedItemsListView.ItemsSource = filteredArtists;
+                        Player.PlayArtist(filteredArtists[0]);
+                    }
+                    else
+                    {
+                        ReceivedCommandTextBlock.Text = "Sorry, we couldn't find what you asked for. Here is the list of all artists.";
+                        SearchedItemsListView.ItemsSource = allArtists;
                     }
                     break;
                 case "PlayMovie":
                     string movieName = SemanticInterpretation("movieTopic", result);
                     var allMovies = await VideoLibrary.GetMovies();
                     var filteredMovies = allMovies.Where(t => t.Title.ToLower().Contains(movieName.ToLower())).ToList();
-                    if (filteredMovies.Count > 0)
+                    if (filteredMovies.Count > 1)
                     {
-                        GlobalVariables.CurrentMovie = filteredMovies[0];
-                        JObject movieToPlay = new JObject(new JProperty("movieid", GlobalVariables.CurrentMovie.MovieId));
-                        Player.Open(movieToPlay);
+                        ReceivedCommandTextBlock.Text = "We found multiple movies. Choose one...";
+                        SearchedItemsListView.ItemsSource = filteredMovies;
+                    }
+                    else if (filteredMovies.Count > 0)
+                    {
+                        ReceivedCommandTextBlock.Text = "This is the movie we found...";
+                        SearchedItemsListView.ItemsSource = filteredMovies;
+                        Player.PlayMovie(filteredMovies[0]);
+                    }
+                    else
+                    {
+                        ReceivedCommandTextBlock.Text = "Sorry, we couldn't find what you asked for. Here is the list of all movies.";
+                        SearchedItemsListView.ItemsSource = allMovies;
+                    }
+                    break;
+                case "PlayAlbum":
+                    string albumName = SemanticInterpretation("musicTopic", result);
+                    var allAlbums = await AudioLibrary.GetAlbums();
+                    var filteredAlbums = allAlbums.Where(t => t.Title.ToLower().Contains(albumName.ToLower())).ToList();
+                    if (filteredAlbums.Count > 1)
+                    {
+                        ReceivedCommandTextBlock.Text = "We found multiple albums. Choose one...";
+                        SearchedItemsListView.ItemsSource = filteredAlbums;
+                    }
+                    else if (filteredAlbums.Count > 0)
+                    {
+                        ReceivedCommandTextBlock.Text = "This is the album we found...";
+                        SearchedItemsListView.ItemsSource = filteredAlbums;
+                        Player.PlayAlbum(filteredAlbums[0]);
+                    }
+                    else
+                    {
+                        ReceivedCommandTextBlock.Text = "Sorry, we couldn't find what you asked for. Here is the list of all albums.";
+                        SearchedItemsListView.ItemsSource = allAlbums;
                     }
                     break;
                 default:
