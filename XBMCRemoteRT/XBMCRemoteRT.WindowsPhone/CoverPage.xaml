@@ -115,29 +115,25 @@
                     <GridView ItemsSource="{Binding}">
                         <GridView.ItemTemplate>
                             <DataTemplate>
-                                <Grid x:Name="MovieWrapper" Background="{StaticResource PhoneChromeBrush}" Height="652" Margin="0,0,12,12" Tapped="MovieWrapper_Tapped">
+                                <Grid x:Name="MovieWrapper" Height="195" Background="{StaticResource PhoneChromeBrush}" Width="150" Margin="0,0,12,12" Tapped="MovieWrapper_Tapped">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="607"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="150"/>
+                                        <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="75"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Stretch="UniformToFill" Height="607" Grid.Row="0" Grid.ColumnSpan="2">
+                                    <Image Stretch="UniformToFill">
                                         <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="341" UriSource="/Assets/DefaultArt.jpg"/>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
                                         </Image.Source>
                                     </Image>
-                                    <Image Stretch="UniformToFill" Height="607" Grid.Row="0" Grid.ColumnSpan="2">
+                                    <Image Width="150" Height="150" Stretch="UniformToFill" VerticalAlignment="Top" >
                                         <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="405" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                            <BitmapImage DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                                         </Image.Source>
                                     </Image>
-                                    <Border Margin="10,577,0,0" Height="60" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
-                                        <Image Source="Assets/Icons/movie.png" Margin="17" />
+                                    <Border Margin="10,130,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
+                                        <Image Source="Assets/Icons/movie.png" Margin="10" />
                                     </Border>
-                                    <TextBlock Text="{Binding Label}" HorizontalAlignment="Right" TextAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5,0,5,2" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Right" Margin="0,5,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
                                 </Grid>
                             </DataTemplate>
                         </GridView.ItemTemplate>
