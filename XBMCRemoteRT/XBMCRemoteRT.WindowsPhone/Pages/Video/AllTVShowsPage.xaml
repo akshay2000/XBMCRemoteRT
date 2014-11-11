@@ -23,8 +23,8 @@
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="tv shows" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Text="{StaticResource AppName}" FontWeight="Light" Margin="0,12,0,0"/>
+            <TextBlock Text="tv shows" FontSize="40" FontWeight="Bold" />
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
