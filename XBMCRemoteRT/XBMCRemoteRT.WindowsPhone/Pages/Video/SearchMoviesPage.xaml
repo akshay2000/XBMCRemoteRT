@@ -43,7 +43,7 @@
                                     <BitmapImage DecodePixelHeight="144" DecodePixelType="Logical" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                                 </Image.Source>
                             </Image>
-                            <Rectangle Fill="#FF1F1F1F" Opacity="0.5" />
+                            <Rectangle Fill="#FF1F1F1F" Opacity="0.7" />
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
                                 <BitmapIcon Foreground="White" UriSource="ms-appx:///Assets/Icons/movie.png" Height="25" />
                                 <TextBlock Text="{Binding Label, Converter={StaticResource ToUpperConverter}}" FontSize="22" FontWeight="ExtraBlack" Margin="10,0,0,0" TextWrapping="Wrap" Foreground="White"/>
