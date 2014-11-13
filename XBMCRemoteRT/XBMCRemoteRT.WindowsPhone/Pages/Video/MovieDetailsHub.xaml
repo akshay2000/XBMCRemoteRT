@@ -38,27 +38,27 @@
                             </Image>
 
                             <StackPanel Grid.Row="0" Grid.Column="1">
-                                <TextBlock Text="DIRECTOR" Margin="5,0,0,0" Opacity="0.5"/>
+                                <TextBlock Text="DIRECTOR" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Director, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" FontSize="15" FontWeight="Bold" Margin="5" TextWrapping="Wrap"/>
 
-                                <TextBlock Text="GENRE" Margin="5,10,0,0" Opacity="0.5"/>
+                                <TextBlock Text="GENRE" FontSize="14" Margin="5,10,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Genre, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" FontSize="15" FontWeight="Bold" Margin="5" TextWrapping="Wrap"/>
 
-                                <TextBlock Text="RATING" Margin="5,10,0,0" Opacity="0.5"/>
+                                <TextBlock Text="RATING" FontSize="14" Margin="5,10,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Rating, Converter={StaticResource RatingConverter}}" FontSize="15" FontWeight="Bold" Margin="5"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-                                <TextBlock Text="TAGLINE" Margin="0,15,0,0" Opacity="0.5"/>
+                                <TextBlock Text="TAGLINE" FontSize="14" Margin="0,15,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Tagline}" TextWrapping="Wrap" FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
 
-                                <TextBlock Text="WRITER" Margin="0,5,0,0" Opacity="0.5"/>
+                                <TextBlock Text="WRITER" FontSize="14" Margin="0,5,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Writer, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
 
-                                <TextBlock Text="STUDIO" Margin="0,5,0,0" Opacity="0.5"/>
+                                <TextBlock Text="STUDIO" FontSize="14" Margin="0,5,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Studio, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" Foreground="White" FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
 
-                                <TextBlock Text="RUNTIME" Margin="0,5,0,0" Opacity="0.5"/>
+                                <TextBlock Text="RUNTIME" FontSize="14" Margin="0,5,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Runtime, Converter={StaticResource MinutesToStringConverter}}" Foreground="White" FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
                             </StackPanel>
                         </Grid>
@@ -101,7 +101,7 @@
                                                 <BitmapImage DecodePixelType="Logical" DecodePixelHeight="144" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                                             </Image.Source>
                                         </Image>
-                                        <TextBlock Text="{Binding Name}" FontSize="20" TextWrapping="Wrap" FontWeight="Bold" Margin="10,-5,10,0" Grid.Row="0" Grid.Column="1"/>
+                                        <TextBlock Text="{Binding Name, Converter={StaticResource ToUpperConverter}}" FontSize="20" TextWrapping="Wrap" FontWeight="Bold" Margin="10,-5,10,0" Grid.Row="0" Grid.Column="1"/>
                                         <TextBlock Text="{Binding Role}" FontSize="15" Margin="10,5,10,0" Opacity="0.5" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" />
                                     </Grid>
                                 </DataTemplate>

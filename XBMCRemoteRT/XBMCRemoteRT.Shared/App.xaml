@@ -19,7 +19,8 @@
             <converters:SpeedToImgSrcConverter x:Key="SpeedToImgSrcConverter"/>
             <converters:RepeatStateConverter x:Key="RepeatStateConverter"/>
             <converters:RatingConverter x:Key="RatingConverter"/>
-            <converters:StringToImageBrushConverter x:Key="StringToImageBrushConverter"/>            
+            <converters:StringToImageBrushConverter x:Key="StringToImageBrushConverter"/> 
+            <converters:ToUpperConverter x:Key="ToUpperConverter"/>
 
             <DataTemplate x:Key="PhoneGroupHeaderTemplate">
                 <Border Background="Transparent" Padding="0,12">

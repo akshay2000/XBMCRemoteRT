@@ -28,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RepeatStateConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SpeedToImgSrcConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToImageBrushConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ConnectionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\FeedbackHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GlobalVariables.cs" />
