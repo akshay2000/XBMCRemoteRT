@@ -22,22 +22,17 @@
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="SEARCH MOVIES" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBox x:Name="SearchMoviesTextBox" InputScope="Search" Margin="0,0,12,0" KeyUp="SearchMoviesTextBox_KeyUp" Loaded="SearchMoviesTextBox_Loaded" />
+        <StackPanel Grid.Row="0" Margin="12,0,12,10">
+            <TextBlock Text="search movies" FontSize="20" FontWeight="Light" Opacity="0.7" Margin="0,5,0,0"/>
+            <TextBox x:Name="SearchMoviesTextBox" InputScope="Search" Margin="0,10,0,0" KeyUp="SearchMoviesTextBox_KeyUp" Loaded="SearchMoviesTextBox_Loaded" />
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
             <ListView x:Name="SearchMoviesListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="MovieWrapper" Height="144" Margin="12,0,0,12" Tapped="MovieWrapper_Tapped" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="98"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
+                        <Grid x:Name="MovieWrapper" Height="144" Margin="0,0,0,12" Tapped="MovieWrapper_Tapped" >
                             <Image VerticalAlignment="Top" Stretch="UniformToFill" >
                                 <Image.Source>
                                     <BitmapImage DecodePixelHeight="144" DecodePixelType="Logical" UriSource="/Assets/DefaultArt.jpg"/>
@@ -48,7 +43,11 @@
                                     <BitmapImage DecodePixelHeight="144" DecodePixelType="Logical" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                                 </Image.Source>
                             </Image>
-                            <TextBlock Text="{Binding Label}" Margin="12,-5,12,0" Grid.Column="1" TextWrapping="Wrap"/>
+                            <Rectangle Fill="#FF1F1F1F" Opacity="0.5" />
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                <BitmapIcon Foreground="White" UriSource="ms-appx:///Assets/Icons/movie.png" Height="25" />
+                                <TextBlock Text="{Binding Label, Converter={StaticResource ToUpperConverter}}" FontSize="22" FontWeight="ExtraBlack" Margin="10,0,0,0" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
