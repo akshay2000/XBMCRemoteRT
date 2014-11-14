@@ -10,11 +10,14 @@
 
     <Grid x:Name="LayoutRoot">
 
-        <Hub Header="{Binding Label}">
+        <Hub>
+            <Hub.Header>
+                <TextBlock Text="{Binding Label}" FontFamily="Segoe UI" FontWeight="Bold" FontSize="75" />
+            </Hub.Header>
             <HubSection Header="PLOT">
                 <DataTemplate>
                     <ScrollViewer>
-                        <Grid Margin="12,0,0,12">
+                        <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="212"/>
                                 <ColumnDefinition Width="*"/>
@@ -34,12 +37,12 @@
                                 </Image.Source>
                             </Image>
                             <StackPanel Grid.Column="1" Grid.Row="0">
-                                <TextBlock Margin="12,-12,0,0" Text="mood" Foreground="White" />
-                                <TextBlock Margin="12,0,0,0" Text="{Binding Mood, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" Foreground="White"/>
+                                <TextBlock Text="MOOD" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
+                                <TextBlock Text="{Binding Mood, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" FontSize="15" FontWeight="Bold" Margin="5"/>
                             </StackPanel>
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="2" >
-                                <TextBlock Foreground="White" Margin="0,24,0,0" Text="bio" />
-                                <TextBlock Foreground="White" TextWrapping="Wrap" Text="{Binding Description}"/>
+                                <TextBlock Text="BIO" FontSize="14" Margin="0,15,0,0" Opacity="0.7" />
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Description}" FontSize="15" FontWeight="Medium" Margin="0,5,5,5" />
                             </StackPanel>
                         </Grid>
                     </ScrollViewer>
@@ -70,7 +73,7 @@
             <HubSection x:Name="AlbumsHubSection" Header="ALBUMS">
                 <DataTemplate>
                     <Grid>
-                        <GridView x:Name="AlbumsGridView" Margin="15,0,0,0" ItemsSource="{Binding}">
+                        <GridView x:Name="AlbumsGridView" Margin="0,0,0,0" ItemsSource="{Binding}">
                             <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid x:Name="AlbumWrapper" Tapped="AlbumWrapper_Tapped" Height="195" Background="{StaticResource PhoneChromeBrush}" Width="150" Margin="0,0,12,12" >
