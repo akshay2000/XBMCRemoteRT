@@ -22,6 +22,7 @@ using XBMCRemoteRT.Models.Common;
 using XBMCRemoteRT.Pages.Audio;
 using XBMCRemoteRT.Pages.Video;
 using XBMCRemoteRT.Pages;
+using XBMCRemoteRT.Helpers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -125,17 +126,21 @@ namespace XBMCRemoteRT
 
         private void AlbumWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Frame.Navigate(typeof(AllMusicPivot));
+            var tappedAlbum = (sender as Grid).DataContext as Album;
+            GlobalVariables.CurrentAlbum = tappedAlbum;
+            Frame.Navigate(typeof(AlbumPage));
         }
 
         private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Frame.Navigate(typeof(AllTVShowsPage));
+            var tappedEpisode = (sender as Grid).DataContext as Episode;
         }
 
         private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Frame.Navigate(typeof(AllMoviesPivot));
+            var tappedMovie = (sender as Grid).DataContext as Movie;
+            GlobalVariables.CurrentMovie = tappedMovie;
+            Frame.Navigate(typeof(MovieDetailsHub));
         }
 
         private async void RefreshListsIfNull()
@@ -162,6 +167,21 @@ namespace XBMCRemoteRT
         private void RemoteAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(InputPage));
+        }
+
+        private void MusicHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AllMusicPivot));
+        }
+
+        private void TVShowsHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AllTVShowsPage));
+        }
+
+        private void MoviesHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AllMoviesPivot));
         }
     }
 }

@@ -16,12 +16,11 @@
             </Hub.Header>
             <HubSection x:Name="MusicHubSection" >
                 <HubSection.Header>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel x:Name="MusicHeaderWrapper" Orientation="Horizontal" Tapped="MusicHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/musicnote.png" Height="25" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
                             <TextBlock Text="MUSIC" Margin="5,0,0,0"/>
-                            <!--Bind the total no of songs property (if available) to the following textblock-->
-                            <TextBlock Text="total songs" Opacity="0.5" FontSize="15" Margin="5,-5,0,0" FontWeight="Thin"/>
+                            <TextBlock Text="see all music" Opacity="0.5" FontSize="15" Margin="5,-5,0,0" FontWeight="Thin"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
@@ -57,12 +56,11 @@
 
             <HubSection x:Name="TVHubSection">
                 <HubSection.Header>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel x:Name="TVShowsHeaderWrapper" Orientation="Horizontal" Tapped="TVShowsHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/tv.png" Height="28" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
                             <TextBlock Text="TV SHOWS" Margin="8,0,0,0"/>
-                            <!--Bind the total no of shows property (if available) to the following textblock-->
-                            <TextBlock Text="total shows" Opacity="0.5" FontSize="15" Margin="8,-5,0,0" FontWeight="Thin"/>
+                            <TextBlock Text="see all shows" Opacity="0.5" FontSize="15" Margin="8,-5,0,0" FontWeight="Thin"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
@@ -102,12 +100,11 @@
 
             <HubSection x:Name="MoviesHubSection">
                 <HubSection.Header>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel x:Name="MoviesHeaderWrapper" Orientation="Horizontal" Tapped="MoviesHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/movie.png" Height="28" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
                             <TextBlock Text="MOVIES" Margin="8,0,0,0"/>
-                            <!--Bind the total no of shows property (if available) to the following textblock-->
-                            <TextBlock Text="total movies" Opacity="0.5" FontSize="15" Margin="8,-5,0,0" FontWeight="Thin"/>
+                            <TextBlock Text="see all movies" Opacity="0.5" FontSize="15" Margin="8,-5,0,0" FontWeight="Thin"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
