@@ -11,8 +11,6 @@ namespace XBMCRemoteRT.Helpers
 {
     public static class GlobalVariables
     {
-        public static int CurrentAlbumId { get; set; }
-
         public static Album CurrentAlbum { get; set; }
 
         public static Artist CurrentArtist { get; set; }

@@ -49,11 +49,11 @@ namespace XBMCRemoteRT.Pages.Audio
         async void AlbumPage_Loaded(object sender, RoutedEventArgs e)
         {
             ConnectionManager.ManageSystemTray(true);
-            JObject filter = new JObject(new JProperty("albumid", GlobalVariables.CurrentAlbumId));
+            JObject filter = new JObject(new JProperty("albumid", GlobalVariables.CurrentAlbum.AlbumId));
             songsInAlbum = await AudioLibrary.GetSongs(filter);
             SongsListView.ItemsSource = songsInAlbum;
 
-            currentAlbum = await AudioLibrary.GetAlbumDetails(GlobalVariables.CurrentAlbumId);
+            currentAlbum = await AudioLibrary.GetAlbumDetails(GlobalVariables.CurrentAlbum.AlbumId);
             AlbumInfoGrid.DataContext = currentAlbum;
             ConnectionManager.ManageSystemTray(false);
         }

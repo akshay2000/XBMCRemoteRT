@@ -152,13 +152,8 @@ namespace XBMCRemoteRT.Pages.Audio
 
         private void AlbumArtWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            
-        }
-
-        private void AlbumDetailsWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Album tappedAlbum = (sender as StackPanel).DataContext as Album;
-            GlobalVariables.CurrentAlbumId = tappedAlbum.AlbumId;
+            Album tappedAlbum = (sender as Grid).DataContext as Album;
+            GlobalVariables.CurrentAlbum = tappedAlbum;
             Frame.Navigate(typeof(AlbumPage));
         }
 
