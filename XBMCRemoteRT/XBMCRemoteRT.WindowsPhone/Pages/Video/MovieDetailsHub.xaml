@@ -56,10 +56,10 @@
                                 <TextBlock Text="{Binding Writer, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
 
                                 <TextBlock Text="STUDIO" FontSize="14" Margin="0,5,0,0" Opacity="0.7"/>
-                                <TextBlock Text="{Binding Studio, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" Foreground="White" FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
+                                <TextBlock Text="{Binding Studio, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
 
                                 <TextBlock Text="RUNTIME" FontSize="14" Margin="0,5,0,0" Opacity="0.7"/>
-                                <TextBlock Text="{Binding Runtime, Converter={StaticResource MinutesToStringConverter}}" Foreground="White" FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
+                                <TextBlock Text="{Binding Runtime, Converter={StaticResource MinutesToStringConverter}}"  FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
                             </StackPanel>
                         </Grid>
                     </ScrollViewer>
