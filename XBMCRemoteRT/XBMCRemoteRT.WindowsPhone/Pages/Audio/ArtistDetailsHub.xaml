@@ -14,7 +14,7 @@
             <Hub.Header>
                 <TextBlock Text="{Binding Label}" FontFamily="Segoe UI" FontWeight="Bold" FontSize="75" />
             </Hub.Header>
-            <HubSection Header="PLOT">
+            <HubSection Header="INFO">
                 <DataTemplate>
                     <ScrollViewer>
                         <Grid Margin="0,0,0,12">
@@ -59,9 +59,7 @@
                                         <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                             <BitmapIcon Margin="12" UriSource="/Assets/Icons/musicnote.png" Foreground="{StaticResource PhoneForegroundBrush}" ></BitmapIcon>
                                         </Border>
-                                        <StackPanel Margin="10,-2,0,0"  VerticalAlignment="Center">
-                                            <TextBlock Text="{Binding Label}" FontSize="25" FontWeight="SemiBold"/>
-                                        </StackPanel>
+                                        <TextBlock Text="{Binding Label}" FontSize="25" FontWeight="SemiBold" Margin="10,-2,0,0"  VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

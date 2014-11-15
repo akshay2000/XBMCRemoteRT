@@ -50,11 +50,11 @@
                     <ListView x:Name="SongsListView" Margin="0,36,0,0">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel x:Name="SongItemWrapper" Orientation="Horizontal" Margin="8,0,0,40" Tapped="SongItemWrapper_Tapped">
-                                    <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" CornerRadius="22" BorderThickness="3" Width="41" Height="41">
-                                        <Polygon VerticalAlignment="Center" Margin="4,0,0,0" HorizontalAlignment="Center" Points="0,0 13,10, 0,20 0,0" Fill="{StaticResource ApplicationForegroundThemeBrush}"/>
+                                <StackPanel x:Name="SongItemWrapper" Orientation="Horizontal" Margin="0,10" Tapped="SongItemWrapper_Tapped">
+                                    <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
+                                        <BitmapIcon Margin="12" UriSource="/Assets/Icons/musicnote.png" Foreground="{StaticResource PhoneForegroundBrush}" ></BitmapIcon>
                                     </Border>
-                                    <TextBlock Text="{Binding Label}" Margin="14,-1,0,0" FontSize="36"  FontFamily="Segoe WP SemiLight"/>
+                                    <TextBlock Text="{Binding Label}" FontSize="25" FontWeight="SemiBold" Margin="10,-2,0,0"  VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
