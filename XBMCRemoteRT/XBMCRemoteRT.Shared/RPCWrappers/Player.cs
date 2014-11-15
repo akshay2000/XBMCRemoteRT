@@ -183,5 +183,11 @@ namespace XBMCRemoteRT.RPCWrappers
             JObject episodeToOpen = new JObject(new JProperty("episodeid", episode.EpisodeId));
             await Player.Open(episodeToOpen);
         }
+
+        public static async void PlaySong(Song song)
+        {
+            JObject songToOpen = new JObject(new JProperty("songid", song.SongId));
+            await Player.Open(songToOpen);
+        }
     }
 }

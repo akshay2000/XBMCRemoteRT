@@ -119,12 +119,15 @@ namespace XBMCRemoteRT.Pages.Audio
 
         private void SongItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            var tappedSong = (sender as StackPanel).DataContext as Song;
+            Player.PlaySong(tappedSong);
         }
 
         private void AlbumWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            var tappedAlbum = (sender as Grid).DataContext as Album;
+            GlobalVariables.CurrentAlbum = tappedAlbum;
+            Frame.Navigate(typeof(AlbumPage));
         }
 
         private async void ReloadAll()

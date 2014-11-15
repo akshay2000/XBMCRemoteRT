@@ -111,4 +111,12 @@
             </HubSection>
         </Hub>
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="PlayMovieAppBarButton" Click="PlayMovieAppBarButton_Click" Icon="Play" Label="play"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

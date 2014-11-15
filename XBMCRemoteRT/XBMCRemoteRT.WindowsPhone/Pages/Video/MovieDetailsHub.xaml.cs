@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Helpers;
+using XBMCRemoteRT.RPCWrappers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -110,5 +111,10 @@ namespace XBMCRemoteRT.Pages.Video
         }
 
         #endregion
+
+        private void PlayMovieAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Player.PlayMovie(GlobalVariables.CurrentMovie);
+        }
     }
 }
