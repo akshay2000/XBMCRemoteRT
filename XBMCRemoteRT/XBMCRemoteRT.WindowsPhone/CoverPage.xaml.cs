@@ -134,6 +134,7 @@ namespace XBMCRemoteRT
         private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var tappedEpisode = (sender as Grid).DataContext as Episode;
+            Player.PlayEpidose(tappedEpisode);
         }
 
         private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)
@@ -159,7 +160,7 @@ namespace XBMCRemoteRT
 
             if (Movies == null)
             {
-                Movies = await VideoLibrary.GetRecentlyAddedMovies(new Limits { Start = 0, End = 15 });
+                Movies = await VideoLibrary.GetRecentlyAddedMovies(new Limits { Start = 0, End = 12 });
                 MoviesHubSection.DataContext = Movies;
             }
         }
