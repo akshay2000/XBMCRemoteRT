@@ -1,0 +1,40 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XBMCRemoteRT">
+
+    <Style x:Key="PageTitleTextStyle" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontFamily" Value="Global User Interface"/>
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="PivotItemHeaderTextStyle">
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <DataTemplate x:Key="PhoneGroupHeaderTemplate">
+        <Border Background="Transparent" Padding="0,12">
+            <Border BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="2,2,2,5" Width="50" Height="50" Margin="0,0,0,0" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding Key}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="35" FontWeight="ExtraBold" Padding="6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Border>
+        </Border>
+    </DataTemplate>
+
+    <GroupStyle x:Key="PhoneListViewGroupStyle" HidesIfEmpty="True" HeaderTemplate="{StaticResource PhoneGroupHeaderTemplate}"/>
+
+    <JumpListItemBackgroundConverter x:Key="BackgroundConverter"/>
+    <JumpListItemForegroundConverter x:Key="ForegroundConverter"/>
+    <DataTemplate x:Key="JumpListTemplate">
+        <Border Padding="5">
+            <Border Background="{Binding Converter={StaticResource BackgroundConverter}}" 
+                        Width="82" Height="82" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding Group.Key}" 
+                               Foreground="{Binding Converter={StaticResource ForegroundConverter}}" 
+                               FontSize="48" Padding="6" 
+                               HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Border>
+        </Border>
+    </DataTemplate>
+</ResourceDictionary>

@@ -42,25 +42,25 @@
 
         <Pivot>
             <Pivot.Title>
-                <TextBlock Text="ALL MUSIC" FontWeight="Light" />
+                <TextBlock Text="ALL MUSIC" Style="{StaticResource PageTitleTextStyle}"/>
             </Pivot.Title>
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="all" FontSize="40" FontWeight="Bold" />
+                    <TextBlock Text="all" Style="{StaticResource PivotItemHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <GridView x:Name="AllMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}"/>
             </PivotItem>
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="new" FontSize="40" FontWeight="Bold" />
+                    <TextBlock Text="new" Style="{StaticResource PivotItemHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <GridView x:Name="UnwatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}"/>
             </PivotItem>
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="watched" FontSize="40" FontWeight="Bold" />
+                    <TextBlock Text="watched" Style="{StaticResource PivotItemHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <GridView x:Name="WatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}"/>
             </PivotItem>

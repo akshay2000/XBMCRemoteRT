@@ -17,11 +17,11 @@
     <Grid x:Name="LayoutRoot">
         <Pivot>
             <Pivot.Title>
-                <TextBlock Text="ALL MUSIC" FontWeight="Light" />
+                <TextBlock Text="ALL MUSIC" Style="{StaticResource PageTitleTextStyle}"/>
             </Pivot.Title>
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="artists" FontSize="40" FontWeight="Bold" />
+                    <TextBlock Text="artists" Style="{StaticResource PivotItemHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
@@ -51,7 +51,7 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="albums" FontSize="40" FontWeight="Bold" />
+                    <TextBlock Text="albums" Style="{StaticResource PivotItemHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
@@ -97,7 +97,7 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="songs" FontSize="40" FontWeight="Bold" />
+                    <TextBlock Text="songs" Style="{StaticResource PivotItemHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
