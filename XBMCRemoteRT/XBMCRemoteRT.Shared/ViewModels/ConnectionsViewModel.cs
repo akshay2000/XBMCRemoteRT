@@ -68,7 +68,7 @@ namespace XBMCRemoteRT.ViewModels
             SaveConnections();
         }
 
-        public void UpdateConnectionItem(ConnectionItem itemToUpdate)
+        public void UpdateConnectionItem()
         {
             SaveConnections();
         }

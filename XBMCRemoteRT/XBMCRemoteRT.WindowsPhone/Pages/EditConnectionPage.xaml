@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="XBMCRemoteRT.Pages.AddConnectionPage"
+    x:Class="XBMCRemoteRT.Pages.EditConnectionPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:XBMCRemoteRT.Pages"
@@ -22,21 +22,20 @@
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="12,0,0,0">
-            <TextBlock Text="{StaticResource AppName}" Style="{StaticResource PageTitleTextStyle}"/>
-            <TextBlock Text="add connection" FontSize="40" FontWeight="Bold" />
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="{StaticResource AppName}" Style="{StaticResource PageTitleTextStyle}" />
+            <TextBlock Text="edit connection" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <ScrollViewer>
                 <StackPanel>
-                    <TextBox x:Name="NameTextBox" InputScope="NameOrPhoneNumber" Header="Name"/>
-                    <TextBox x:Name="IPTextBox" Header="Server address"/>
-                    <TextBox x:Name="PortTextBox" InputScope="Number" Text="80" Header="Port"/>
-                    <TextBox x:Name="UsernameTextBox" Text="xbmc" Header="Username"/>
-                    <TextBox x:Name="PasswordTextBox" Header="Password"/>
-                    <TextBlock Text="Note: Usernames and passwords are stored and transmitted in plain text. Make sure you are not using the same password anywhere else" TextWrapping="Wrap" />
+                    <TextBox x:Name="NameTextBox" InputScope="NameOrPhoneNumber" Header="Name" Text="{Binding ConnectionName}"/>
+                    <TextBox x:Name="IPTextBox" Header="Server address" Text="{Binding IpAddress}"/>
+                    <TextBox x:Name="PortTextBox" InputScope="Number" Header="Port" Text="{Binding Port}"/>
+                    <TextBox x:Name="UsernameTextBox" Header="Username" Text="{Binding Username}"/>
+                    <TextBox x:Name="PasswordTextBox" Header="Password" Text="{Binding Password}"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
