@@ -13,7 +13,7 @@
     </Page.Resources>
     
     <Grid x:Name="LayoutRoot">
-        <Hub>
+        <Hub Background="{Binding Fanart, Converter={StaticResource StringToImageBrushConverter}}">            
             <Hub.Header>
                 <TextBlock Text="{Binding Label}" FontFamily="Segoe UI" FontWeight="Bold" FontSize="75" />
             </Hub.Header>
