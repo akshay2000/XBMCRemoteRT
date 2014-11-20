@@ -30,7 +30,7 @@
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
 
-            <Slider Value="10" Minimum="0" Maximum="100" StepFrequency="10" x:Name="VolumeSlider" ValueChanged="VolumeSlider_ValueChanged"/>
+            <Slider Value="10" Minimum="0" Maximum="100" StepFrequency="10" x:Name="VolumeSlider" ValueChanged="VolumeSlider_ValueChanged" Loaded="VolumeSlider_Loaded"/>
         </Grid>
     </Grid>
 </Page>

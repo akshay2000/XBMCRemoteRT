@@ -31,6 +31,7 @@ namespace XBMCRemoteRT.Pages
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
+        private bool isVolumeSetProgrammatically;
         int[] Speeds = { -32, -16, -8, -4, -2, -1, 1, 2, 4, 8, 16, 32 };
 
         public InputPage()
@@ -216,12 +217,13 @@ namespace XBMCRemoteRT.Pages
             await PlayerHelper.RefreshPlayerState();
         }
 
-        //private async void VolumeSlider_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    JObject result = await Applikation.GetProperties();
-        //    int volume = (int)result["volume"];
-        //    VolumeSlider.Value = volume;
-        //}
+        private async void VolumeSlider_Loaded(object sender, RoutedEventArgs e)
+        {
+            JObject result = await Applikation.GetProperties();
+            int volume = (int)result["volume"];
+            VolumeSlider.Value = volume;
+            isVolumeSetProgrammatically = true;
+        }
 
         //private async void VolumeSlider_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         //{
@@ -239,15 +241,23 @@ namespace XBMCRemoteRT.Pages
         private DispatcherTimer timer;
         private void VolumeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            if (timer != null)
-                timer.Stop();
+            if (isVolumeSetProgrammatically)
+            {
+                isVolumeSetProgrammatically = false;
+                return;
+            }
+            else
+            {
+                if (timer != null)
+                    timer.Stop();
 
-            timer = new DispatcherTimer();
+                timer = new DispatcherTimer();
 
-            timer.Interval = new TimeSpan(0, 0, 1);
-            timer.Tick += timer_Tick;
+                timer.Interval = new TimeSpan(0, 0, 1);
+                timer.Tick += timer_Tick;
 
-            timer.Start();            
+                timer.Start();
+            }
         }
 
         void timer_Tick(object sender, object e)
