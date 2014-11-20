@@ -31,9 +31,9 @@ namespace XBMCRemoteRT.Converters
             }
             else
             {
-                imageURL = "/Assets/DefaultArt.jpg";
+                imageURL = "ms-appx:///Assets/DefaultArt.jpg";
             }
-            Uri imageURI = new Uri(imageURL, UriKind.RelativeOrAbsolute);
+            Uri imageURI = new Uri(imageURL, UriKind.Absolute);
             return imageURI;
         }
 

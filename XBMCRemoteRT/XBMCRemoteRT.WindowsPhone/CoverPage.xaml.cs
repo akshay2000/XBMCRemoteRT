@@ -23,6 +23,7 @@ using XBMCRemoteRT.Pages.Audio;
 using XBMCRemoteRT.Pages.Video;
 using XBMCRemoteRT.Pages;
 using XBMCRemoteRT.Helpers;
+using XBMCRemoteRT.Models;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -36,6 +37,8 @@ namespace XBMCRemoteRT
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
+        private DispatcherTimer timer;
+
         public CoverPage()
         {
             this.InitializeComponent();
@@ -45,6 +48,20 @@ namespace XBMCRemoteRT
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
+
+            if (GlobalVariables.CurrentPlayerState == null)
+                GlobalVariables.CurrentPlayerState = new PlayerState();
+            NowPlayingHubSection.DataContext = GlobalVariables.CurrentPlayerState;
+            PlayerHelper.RefreshPlayerState();
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(10);
+            timer.Start();
+            timer.Tick += timer_Tick;
+        }
+
+        private void timer_Tick(object sender, object e)
+        {
+            PlayerHelper.RefreshPlayerState();
         }
 
         /// <summary>
@@ -183,6 +200,27 @@ namespace XBMCRemoteRT
         private void MoviesHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Frame.Navigate(typeof(AllMoviesPivot));
+        }
+
+        private void NowPlayingHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private async void PreviousButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Player.GoTo(GlobalVariables.CurrentPlayerState.PlayerType, GoTo.Previous);
+            await PlayerHelper.RefreshPlayerState();
+        }
+        private async void PlayPauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Player.PlayPause(GlobalVariables.CurrentPlayerState.PlayerType);
+            await PlayerHelper.RefreshPlayerState();
+        }
+        private async void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Player.GoTo(GlobalVariables.CurrentPlayerState.PlayerType, GoTo.Next);
+            await PlayerHelper.RefreshPlayerState();
         }
     }
 }
