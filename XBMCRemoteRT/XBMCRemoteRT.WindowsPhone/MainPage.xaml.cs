@@ -112,10 +112,16 @@ namespace XBMCRemoteRT
         {
             this.navigationHelper.OnNavigatedTo(e);
             SetPageState(PageStates.Ready);
-            if (e.NavigationMode != NavigationMode.Back)
+            Frame.BackStack.Clear();
+            bool tryAutoLoad = true;
+            if (e.Parameter.ToString() != string.Empty)
+                tryAutoLoad = (bool)e.Parameter;
+
+            if (e.NavigationMode != NavigationMode.Back && tryAutoLoad)
             {
                 LoadAndConnnect();
             }
+
         }
 
         private async void LoadAndConnnect()

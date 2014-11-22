@@ -23,31 +23,50 @@
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="page title" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Text="{StaticResource AppName}" Style="{StaticResource PageTitleTextStyle}" Margin="0,12,0,0"/>
+            <!--<TextBlock Text="page title" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>-->
         </StackPanel>
 
-        <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="ReceivedCommandTextBlock" Text="Just a moment..."/>
+            <TextBlock x:Name="ReceivedCommandTextBlock" Text="Just a moment..." FontSize="22" TextWrapping="Wrap"/>
+
             <ListView x:Name="SearchedItemsListView" Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid Margin="0,12,0,0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Source="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}" Stretch="UniformToFill" Grid.Column="0"/>
-                            <TextBlock Text="{Binding Label}" Grid.Column="1"/>
+                            <Image Width="150" Height="150" Stretch="UniformToFill" Grid.Column="0">
+                                <Image.Source>
+                                    <BitmapImage DecodePixelType="Logical" DecodePixelHeight="150" UriSource="/Assets/DefaultArt.jpg"/>
+                                </Image.Source>
+                            </Image>
+                            <Image Width="150" Height="150" Stretch="UniformToFill" Grid.Column="0">
+                                <Image.Source>
+                                    <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                </Image.Source>
+                            </Image>
+                            <TextBlock Text="{Binding Label}" Grid.Column="1" FontSize="30" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,-5,0,0" FontFamily="Global User Interface"  FontWeight="SemiLight" MaxLines="3"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <StackPanel x:Name="QuestionWrapper" Grid.Row="2" Visibility="Collapsed">
+                <TextBlock x:Name="QuestionNameTextBlock" Text="Did we get the right one?" FontSize="22" TextWrapping="Wrap"/>
+                <!--<TextBlock Text="I'm right here trying some stuff for fun. What do you say about it?" Grid.Column="1" FontSize="30" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,-6,0,0" LineStackingStrategy="BaselineToBaseline"/>-->
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="YesButton" Content="Yes" Click="YesButton_Click"/>
+                    <Button x:Name="NoButton" Content="No" Margin="6,0,0,0" Click="NoButton_Click"/>
+                </StackPanel>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>
