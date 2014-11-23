@@ -11,8 +11,6 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
     </Page.Resources>
 
     <!--
@@ -27,24 +25,48 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Back button and page title -->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-                        Style="{StaticResource NavigationBackButtonNormalStyle}"
-                        VerticalAlignment="Top"
-                        AutomationProperties.Name="Back"
-                        AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button"/>
-            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+        <Grid Margin="12,15,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{StaticResource AppName}" FontWeight="Light" Margin="0,12,0,0" FontSize="18" Grid.Row="0"/>
+            <TextBlock Text="connections" FontSize="40" FontWeight="Bold" Grid.Row="1"/>
         </Grid>
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
+            <ListView x:Name="ConnectionsListView" ItemsSource="{Binding ConnectionItems}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel x:Name="ConnectionItemWrapper" Tapped="ConnectionItemWrapper_Tapped" RightTapped="ConnectionItemWrapper_OnRightTapped">
+                            <FlyoutBase.AttachedFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem x:Name="EditConnectionMFI" Text="edit connection" Click="EditConnectionMFI_Click" DataContext="{Binding}"/>
+                                    <MenuFlyoutItem x:Name="DeleteConnectionMFI" Text="delete connection" Click="DeleteConnectionMFI_Click" DataContext="{Binding}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.AttachedFlyout>
+                            <TextBlock Text="{Binding ConnectionName}" />
+                            <TextBlock Text="{Binding IpAddress}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <ProgressRing x:Name="ProgressRing" IsActive="False" Grid.RowSpan="10" />
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar x:Name="BottomBar">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="AddConnectionAppBarButton" Click="AddConnectionAppBarButton_Click" Label="add server" Icon="Add" />
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="AboutAppBarButton" Click="AboutAppBarButton_Click" Label="about"/>
+                <AppBarButton x:Name="FeedbackAppBarButton" Click="FeedbackAppBarButton_Click" Label="feedback"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
