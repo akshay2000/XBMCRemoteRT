@@ -149,5 +149,10 @@ namespace XBMCRemoteRT.Pages.Audio
             var tappedSong = (sender as StackPanel).DataContext as Song;
             Player.PlaySong(tappedSong);
         }
+
+        private void PlayArtistBorder_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
     }
 }
