@@ -1,4 +1,6 @@
-﻿using XBMCRemoteRT.Common;
+﻿using System.Threading.Tasks;
+using Windows.UI.Popups;
+using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +17,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+using XBMCRemoteRT.Helpers;
+using XBMCRemoteRT.Models;
+using XBMCRemoteRT.RPCWrappers;
 
 namespace XBMCRemoteRT
 {
@@ -94,6 +99,42 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
+
+            LoadAndConnnect(); 
+        }
+
+
+        private async void LoadAndConnnect()
+        {
+            await App.ConnectionsVM.ReloadConnections();
+            DataContext = App.ConnectionsVM;
+            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
+            if (ip != null)
+            {
+                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
+                if (connectionItem != null)
+                    await ConnectToServer(connectionItem);
+            }
+            else//temporarily until connections page implemented
+                Frame.Navigate(typeof(CoverPage));
+        }
+        private async Task ConnectToServer(ConnectionItem connectionItem)
+        {
+            //SetPageState(PageStates.Connecting);
+
+            bool isSuccessful = await JSONRPC.Ping(connectionItem);
+            if (isSuccessful)
+            {
+                ConnectionManager.CurrentConnection = connectionItem;
+                SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
+                Frame.Navigate(typeof(CoverPage));
+            }
+            else
+            {
+                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
+                await message.ShowAsync();
+                //SetPageState(PageStates.Ready);
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
