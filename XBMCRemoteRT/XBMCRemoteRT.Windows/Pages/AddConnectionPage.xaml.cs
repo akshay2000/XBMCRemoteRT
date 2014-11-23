@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Windows.UI.Popups;
+﻿using Windows.UI.Popups;
 using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
@@ -17,19 +16,15 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
-using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models;
-using XBMCRemoteRT.Pages;
-using XBMCRemoteRT.RPCWrappers;
 
-namespace XBMCRemoteRT
+namespace XBMCRemoteRT.Pages
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class AddConnectionPage : Page
     {
-        private enum PageStates { Ready, Connecting }
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -52,7 +47,7 @@ namespace XBMCRemoteRT
         }
 
 
-        public MainPage()
+        public AddConnectionPage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -101,8 +96,6 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
-
-            LoadAndConnnect(); 
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -112,99 +105,40 @@ namespace XBMCRemoteRT
 
         #endregion
 
-
-        private async void LoadAndConnnect()
+        
+        private async void SaveConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            await App.ConnectionsVM.ReloadConnections();
-            DataContext = App.ConnectionsVM;
-            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
-            if (ip != null)
+            int port;
+
+            if (!int.TryParse(PortTextBox.Text, out port))
             {
-                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
-                if (connectionItem != null)
-                    await ConnectToServer(connectionItem);
+                MessageDialog msg = new MessageDialog("Please enter a valid port number.", "Invalid Port");
+                await msg.ShowAsync();
+                return;
             }
-        }
 
-        private async Task ConnectToServer(ConnectionItem connectionItem)
-        {
-            SetPageState(PageStates.Connecting);
-            bool isSuccessful = false;
-            try
+            if (NameTextBox.Text.Equals(string.Empty) || IPTextBox.Text.Equals(string.Empty))
             {
-                isSuccessful = await JSONRPC.Ping(connectionItem);
+                MessageDialog msg = new MessageDialog("Please enter valid name and server address", "Invalid Details");
+                await msg.ShowAsync();
+                return;
             }
-            catch (Exception exc)
+
+            var newConnection = new ConnectionItem
             {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-            }
-            if (isSuccessful)
-            {
-                ConnectionManager.CurrentConnection = connectionItem;
-                SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
-                Frame.Navigate(typeof(CoverPage));
-            }
-            else
-            {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-                await message.ShowAsync();
-                SetPageState(PageStates.Ready);
-            }
+                ConnectionName = NameTextBox.Text,
+                IpAddress = IPTextBox.Text,
+                Port = port,
+                Username = UsernameTextBox.Text,
+                Password = PasswordTextBox.Text
+            };
+            App.ConnectionsVM.AddConnectionItem(newConnection);
+            Frame.GoBack();
         }
 
-        private void SetPageState(PageStates pageState)
+        private void CancelAppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (pageState == PageStates.Connecting)
-            {
-                ConnectionsListView.IsEnabled = false;
-                BottomAppBar.Visibility = Visibility.Collapsed;
-                ProgressRing.IsActive = true;
-            }
-            else
-            {
-                ConnectionsListView.IsEnabled = true;
-                BottomAppBar.Visibility = Visibility.Visible;
-                ProgressRing.IsActive = false;
-            }
-        }
-
-        private void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as StackPanel).DataContext;
-            ConnectToServer(selectedConnection);
-        }
-
-        private void AddConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AddConnectionPage));
-        }
-
-        private void DeleteConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            App.ConnectionsVM.RemoveConnectionItem(selectedConnection);
-        }
-
-        private void EditConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            Frame.Navigate(typeof(EditConnectionPage), selectedConnection);
-        }
-
-
-        private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ConnectionItemWrapper_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            NavigationHelper.GoBack();
         }
     }
 }
