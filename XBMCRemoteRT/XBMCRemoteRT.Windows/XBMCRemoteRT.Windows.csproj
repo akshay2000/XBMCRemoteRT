@@ -103,8 +103,23 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CoverPage.xaml.cs">
+      <DependentUpon>CoverPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddConnectionPage.xaml.cs">
+      <DependentUpon>AddConnectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Audio\AllMusicPage.xaml.cs">
+      <DependentUpon>AllMusicPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditConnectionPage.xaml.cs">
+      <DependentUpon>EditConnectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InputPage.xaml.cs">
+      <DependentUpon>InputPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -116,15 +131,81 @@
     <None Include="XBMCRemoteRT.Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\XBMCRemoteRT.WindowsPhone\Assets\Icons\album.png">
+      <Link>Assets\Icons\album.png</Link>
+    </Content>
+    <Content Include="..\XBMCRemoteRT.WindowsPhone\Assets\Icons\movie.png">
+      <Link>Assets\Icons\movie.png</Link>
+    </Content>
+    <Content Include="..\XBMCRemoteRT.WindowsPhone\Assets\Icons\musicnote.png">
+      <Link>Assets\Icons\musicnote.png</Link>
+    </Content>
+    <Content Include="..\XBMCRemoteRT.WindowsPhone\Assets\Icons\singer.png">
+      <Link>Assets\Icons\singer.png</Link>
+    </Content>
+    <Content Include="..\XBMCRemoteRT.WindowsPhone\Assets\Icons\tv.png">
+      <Link>Assets\Icons\tv.png</Link>
+    </Content>
+    <Content Include="Assets\DefaultArt.jpg" />
+    <Content Include="Assets\Glyphs\add.png" />
+    <Content Include="Assets\Glyphs\appbar.back.rest.png" />
+    <Content Include="Assets\Glyphs\appbar.down.png" />
+    <Content Include="Assets\Glyphs\appbar.lines.horizontal.4.png" />
+    <Content Include="Assets\Glyphs\appbar.next.rest.png" />
+    <Content Include="Assets\Glyphs\appbar.speakerphone.png" />
+    <Content Include="Assets\Glyphs\appbar.transport.ff.rest.png" />
+    <Content Include="Assets\Glyphs\appbar.transport.pause.rest.png" />
+    <Content Include="Assets\Glyphs\appbar.transport.play.rest.png" />
+    <Content Include="Assets\Glyphs\appbar.transport.rew.rest.png" />
+    <Content Include="Assets\Glyphs\appbar.up.png" />
+    <Content Include="Assets\Glyphs\cancel.png" />
+    <Content Include="Assets\Glyphs\check.png" />
+    <Content Include="Assets\Glyphs\delete.png" />
+    <Content Include="Assets\Glyphs\feature.search.png" />
+    <Content Include="Assets\Glyphs\goback.png" />
+    <Content Include="Assets\Glyphs\home.png" />
+    <Content Include="Assets\Glyphs\menulines.png" />
+    <Content Include="Assets\Glyphs\page.png" />
+    <Content Include="Assets\Glyphs\power.png" />
+    <Content Include="Assets\Glyphs\refresh.png" />
+    <Content Include="Assets\Glyphs\repeat.png" />
+    <Content Include="Assets\Glyphs\save.png" />
+    <Content Include="Assets\Glyphs\shuffle.png" />
+    <Content Include="Assets\Glyphs\speeddown.png" />
+    <Content Include="Assets\Glyphs\speedup.png" />
+    <Content Include="Assets\Glyphs\stop.png" />
+    <Content Include="Assets\Glyphs\transport.repeat.png" />
+    <Content Include="Assets\Glyphs\transport.repeatone.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="ReadMe.Coding4Fun.Toolkit.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="CoverPage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddConnectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Audio\AllMusicPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditConnectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\InputPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PlatformSpecificStyles.xaml">
       <SubType>Designer</SubType>
@@ -133,10 +214,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Coding4Fun.Toolkit">
+      <HintPath>..\..\packages\Coding4Fun.Toolkit.Controls.2.0.8\lib\netcore451\Coding4Fun.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Toolkit.Controls">
+      <HintPath>..\..\packages\Coding4Fun.Toolkit.Controls.2.0.8\lib\netcore451\Coding4Fun.Toolkit.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\netcore45\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

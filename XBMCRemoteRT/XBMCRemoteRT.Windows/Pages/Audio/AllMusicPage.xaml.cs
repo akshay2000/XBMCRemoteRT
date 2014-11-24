@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Windows.UI.Popups;
+﻿using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
@@ -18,21 +17,23 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using XBMCRemoteRT.Helpers;
-using XBMCRemoteRT.Models;
-using XBMCRemoteRT.Pages;
+using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.RPCWrappers;
 
-namespace XBMCRemoteRT
+namespace XBMCRemoteRT.Pages.Audio
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class AllMusicPage : Page
     {
-        private enum PageStates { Ready, Connecting }
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+
+        private List<Artist> allArtists;
+        private List<Album> allAlbums;
+        private List<Song> allSongs;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -52,7 +53,7 @@ namespace XBMCRemoteRT
         }
 
 
-        public MainPage()
+        public AllMusicPage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -101,8 +102,6 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
-
-            LoadAndConnnect(); 
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -112,99 +111,48 @@ namespace XBMCRemoteRT
 
         #endregion
 
-
-        private async void LoadAndConnnect()
+        private async void ReloadAll()
         {
-            await App.ConnectionsVM.ReloadConnections();
-            DataContext = App.ConnectionsVM;
-            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
-            if (ip != null)
-            {
-                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
-                if (connectionItem != null)
-                    await ConnectToServer(connectionItem);
-            }
-        }
+            ConnectionManager.ManageSystemTray(true);
+            allArtists = await AudioLibrary.GetArtists();
+            var groupedAllArtists = GroupingHelper.GroupList(allArtists, (Artist a) => { return a.Label; }, true);
+            ArtistsCVS.Source = groupedAllArtists;
 
-        private async Task ConnectToServer(ConnectionItem connectionItem)
-        {
-            SetPageState(PageStates.Connecting);
-            bool isSuccessful = false;
-            try
-            {
-                isSuccessful = await JSONRPC.Ping(connectionItem);
-            }
-            catch (Exception exc)
-            {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-            }
-            if (isSuccessful)
-            {
-                ConnectionManager.CurrentConnection = connectionItem;
-                SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
-                Frame.Navigate(typeof(CoverPage));
-            }
-            else
-            {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-                await message.ShowAsync();
-                SetPageState(PageStates.Ready);
-            }
-        }
+            JObject sortWith = new JObject(new JProperty("method", "label"));
+            allAlbums = await AudioLibrary.GetAlbums(sort: sortWith);
+            var groupedAllAlbums = GroupingHelper.GroupList(allAlbums, (Album a) => { return a.Label; }, true);
+            AlbumsCVS.Source = groupedAllAlbums;
 
-        private void SetPageState(PageStates pageState)
-        {
-            if (pageState == PageStates.Connecting)
-            {
-                ConnectionsListView.IsEnabled = false;
-                BottomAppBar.Visibility = Visibility.Collapsed;
-                ProgressRing.IsActive = true;
-            }
-            else
-            {
-                ConnectionsListView.IsEnabled = true;
-                BottomAppBar.Visibility = Visibility.Visible;
-                ProgressRing.IsActive = false;
-            }
-        }
-
-        private void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as StackPanel).DataContext;
-            ConnectToServer(selectedConnection);
-        }
-
-        private void AddConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AddConnectionPage));
-        }
-
-        private void DeleteConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            App.ConnectionsVM.RemoveConnectionItem(selectedConnection);
-        }
-
-        private void EditConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            Frame.Navigate(typeof(EditConnectionPage), selectedConnection);
+            allSongs = await AudioLibrary.GetSongs(sort: sortWith);
+            var groupedAllSongs = GroupingHelper.GroupList(allSongs, (Song s) => { return s.Label; }, true);
+            SongsCVS.Source = groupedAllSongs;
+            ConnectionManager.ManageSystemTray(false);
         }
 
 
-        private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
+        private void ArtistNameTextBlock_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Artist tappedArtist = (sender as TextBlock).DataContext as Artist;
+            GlobalVariables.CurrentArtist = tappedArtist;
+            //Frame.Navigate(typeof(ArtistDetailsHub));
         }
 
-        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
+        private void AlbumArtWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Album tappedAlbum = (sender as Grid).DataContext as Album;
+            GlobalVariables.CurrentAlbum = tappedAlbum;
+            //Frame.Navigate(typeof(AlbumPage));
         }
 
-        private void ConnectionItemWrapper_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void SongItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            var tappedSong = (sender as StackPanel).DataContext as Song;
+            Player.PlaySong(tappedSong);
+        }
+
+        private void PlayArtistBorder_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
         }
     }
 }
