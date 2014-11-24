@@ -18,7 +18,7 @@
                     <converters:MinutesToStringConverter x:Key="MinutesToStringConverter"/>
                     <converters:ListTrimmer x:Key="ListTrimmer"/>
                     <converters:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>
-                    <converters:SpeedToImgSrcConverter x:Key="SpeedToImgSrcConverter"/>
+                    <converters:SpeedToSymbolIconConverter x:Key="SpeedToSymbolIconConverter"/>
                     <converters:RepeatStateConverter x:Key="RepeatStateConverter"/>
                     <converters:RatingConverter x:Key="RatingConverter"/>
                     <converters:StringToImageBrushConverter x:Key="StringToImageBrushConverter"/>
