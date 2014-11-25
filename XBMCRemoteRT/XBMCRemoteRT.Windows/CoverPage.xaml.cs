@@ -199,5 +199,9 @@ namespace XBMCRemoteRT
             await PlayerHelper.RefreshPlayerState();
         }
 
+        private void ConnectionsAppBarButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage), true);
+        }
     }
 }
