@@ -212,12 +212,17 @@
   <ItemGroup>
     <Content Include="Assets\DefaultArt.jpg" />
     <Content Include="Assets\Icons\album.png" />
+    <Content Include="Assets\Icons\fastforward.png" />
+    <Content Include="Assets\Icons\home.png" />
     <Content Include="Assets\Icons\movie.png" />
     <Content Include="Assets\Icons\musicnote.png" />
     <Content Include="Assets\Icons\next.png" />
     <Content Include="Assets\Icons\play.png" />
     <Content Include="Assets\Icons\previous.png" />
+    <Content Include="Assets\Icons\return.png" />
+    <Content Include="Assets\Icons\rewind.png" />
     <Content Include="Assets\Icons\singer.png" />
+    <Content Include="Assets\Icons\stop.png" />
     <Content Include="Assets\Icons\tv.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\SmallLogo.scale-240.png" />

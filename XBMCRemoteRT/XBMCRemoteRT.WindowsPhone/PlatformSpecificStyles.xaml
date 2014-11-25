@@ -93,7 +93,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid HorizontalAlignment="Center" Height="80" Margin="0,12,0,4" Width="80">
-                            <Ellipse x:Name="Ellipse" Fill="{ThemeResource AppBarItemBackgroundThemeBrush}" Height="80" Stroke="{ThemeResource AppBarItemForegroundThemeBrush}" StrokeThickness="1.5" UseLayoutRounding="False" Width="80"/>
+                            <Ellipse x:Name="Ellipse" Fill="{ThemeResource AppBarItemBackgroundThemeBrush}" Height="70" Stroke="{ThemeResource AppBarItemForegroundThemeBrush}" StrokeThickness="1.5" UseLayoutRounding="False" Width="70"/>
                             <Grid x:Name="ContentRoot" Background="Transparent">
                                 <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                             </Grid>
@@ -114,7 +114,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="AppBarButton">
-                    <StackPanel x:Name="LayoutRoot" Background="Transparent" Width="80">
+                    <StackPanel x:Name="LayoutRoot" Background="Transparent" Width="55">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ApplicationViewStates">
                                 <VisualState x:Name="FullSize"/>
