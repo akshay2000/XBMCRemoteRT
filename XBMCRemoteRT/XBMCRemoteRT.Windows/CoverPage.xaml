@@ -10,6 +10,7 @@
     xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="using:Coding4Fun.Toolkit.Controls"
+    xmlns:userControls="using:XBMCRemoteRT.UserControls"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -94,47 +95,43 @@
                     </Grid>
                 </DataTemplate>
             </HubSection>
-            <HubSection Width="520" x:Name="MusicHubSection">
+            <HubSection x:Name="MusicHubSection" Width="700">
                 <HubSection.Header>
                     <StackPanel x:Name="MusicHeaderWrapper" Orientation="Horizontal" Tapped="MusicHeaderWrapper_Tapped">
-                        <BitmapIcon UriSource="/Assets/Icons/musicnote.png" Height="25" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
+                        <BitmapIcon UriSource="/Assets/Icons/musicnote.png" Height="28" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
                         <StackPanel>
-                            <TextBlock Text="MUSIC" Margin="5,0,0,0"/>
-                            <TextBlock Text="see all music" Opacity="0.5" FontSize="15" Margin="5,-5,0,0" FontWeight="Thin"/>
+                            <TextBlock Text="MUSIC" Margin="8,0,0,0"/>
+                            <TextBlock Text="see all music" Opacity="0.5" FontSize="15" Margin="8,-5,0,0" FontWeight="Thin"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
                 <DataTemplate>
-                    <GridView ItemsSource="{Binding}">
-                        <GridView.ItemTemplate>
+                    <userControls:ColumnGridView ItemsSource="{Binding}" Columns="4" Width="600">
+                        <userControls:ColumnGridView.ItemTemplate>
                             <DataTemplate>
-                                <Grid x:Name="AlbumWrapper" Height="195" Width="150" Margin="0,0,12,12" Tapped="AlbumWrapper_Tapped">
+                                <Grid x:Name="AlbumWrapper" Height="150" Width="150" Margin="0,0,12,12" Tapped="AlbumWrapper_Tapped">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="150"/>
+                                        <RowDefinition Height="205"/>
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
-                                    <Image Stretch="UniformToFill">
+                                    <Image Stretch="Uniform">
                                         <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="130" UriSource="/Assets/DefaultArt.jpg"/>
                                         </Image.Source>
                                     </Image>
-                                    <Image Width="150" Height="150" Stretch="UniformToFill" VerticalAlignment="Top" >
+                                    <Image Stretch="Uniform" VerticalAlignment="Top" >
                                         <Image.Source>
-                                            <BitmapImage DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="130" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                                         </Image.Source>
                                     </Image>
-                                    <Border Margin="10,130,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}" Grid.RowSpan="2" >
-                                        <Image Source="Assets/Icons/musicnote.png" Margin="10" />
-                                    </Border>
-                                    <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Right" Margin="0,5,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Left" Margin="0,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
                                 </Grid>
                             </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
+                        </userControls:ColumnGridView.ItemTemplate>
+                    </userControls:ColumnGridView>
                 </DataTemplate>
             </HubSection>
-
-            <HubSection Width="500" x:Name="TVHubSection">
+            <HubSection x:Name="TVHubSection" Width="700">
                 <HubSection.Header>
                     <StackPanel x:Name="TVShowsHeaderWrapper" Orientation="Horizontal" Tapped="TVShowsHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/tv.png" Height="28" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
@@ -145,8 +142,8 @@
                     </StackPanel>
                 </HubSection.Header>
                 <DataTemplate>
-                    <ListView ItemsSource="{Binding}">
-                        <ListView.ItemTemplate>
+                    <userControls:ColumnGridView ItemsSource="{Binding}" Columns="4">
+                        <userControls:ColumnGridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid x:Name="EpisodeWrapper" Height="220" Margin="0,0,0,24" Tapped="EpisodeWrapper_Tapped">
                                     <Grid.RowDefinitions>
@@ -157,12 +154,12 @@
                                         <ColumnDefinition Width="75"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Stretch="UniformToFill" Height="175" Grid.Row="0" Grid.ColumnSpan="2">
+                                    <Image Stretch="Uniform" Height="175" Grid.Row="0" Grid.ColumnSpan="2">
                                         <Image.Source>
                                             <BitmapImage DecodePixelType="Logical" DecodePixelWidth="341" UriSource="/Assets/DefaultArt.jpg"/>
                                         </Image.Source>
                                     </Image>
-                                    <Image Stretch="UniformToFill" Height="175" Grid.Row="0" Grid.ColumnSpan="2">
+                                    <Image Stretch="Uniform" Height="175" Grid.Row="0" Grid.ColumnSpan="2">
                                         <Image.Source>
                                             <BitmapImage DecodePixelType="Logical" DecodePixelWidth="405" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                                         </Image.Source>
@@ -173,12 +170,12 @@
                                     <TextBlock Text="{Binding Label}" HorizontalAlignment="Right" TextAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5,0,5,2" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16" FontWeight="Bold"/>
                                 </Grid>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </userControls:ColumnGridView.ItemTemplate>
+                    </userControls:ColumnGridView>
                 </DataTemplate>
             </HubSection>
 
-            <HubSection x:Name="MoviesHubSection">
+            <HubSection x:Name="MoviesHubSection" Width="700">
                 <HubSection.Header>
                     <StackPanel x:Name="MoviesHeaderWrapper" Orientation="Horizontal" Tapped="MoviesHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/movie.png" Height="28" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
@@ -189,38 +186,36 @@
                     </StackPanel>
                 </HubSection.Header>
                 <DataTemplate>
-                    <GridView ItemsSource="{Binding}">
-                        <GridView.ItemTemplate>
+                    <userControls:ColumnGridView ItemsSource="{Binding}" Columns="4" Width="600">
+                        <userControls:ColumnGridView.ItemTemplate>
                             <DataTemplate>
-                                <Grid x:Name="MovieWrapper" Height="270" Width="150" Margin="0,0,12,12" Tapped="MovieWrapper_Tapped">
+                                <Grid x:Name="MovieWrapper" Height="250" Width="150" Margin="0,0,12,12" Tapped="MovieWrapper_Tapped">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="225"/>
+                                        <RowDefinition Height="205"/>
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
-                                    <Image Stretch="UniformToFill">
+                                    <Image Stretch="Uniform">
                                         <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="155" UriSource="/Assets/DefaultArt.jpg"/>
                                         </Image.Source>
                                     </Image>
-                                    <Image Stretch="UniformToFill" VerticalAlignment="Top" >
+                                    <Image Stretch="Uniform" VerticalAlignment="Top" >
                                         <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="150" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="130" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                                         </Image.Source>
                                     </Image>
-                                    <Border Margin="10,205,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}" Grid.RowSpan="2" >
-                                        <Image Source="Assets/Icons/movie.png" Margin="10" />
-                                    </Border>
-                                    <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Right" Margin="0,5,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Left" Margin="0,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
                                 </Grid>
                             </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
+                        </userControls:ColumnGridView.ItemTemplate>
+                    </userControls:ColumnGridView>
                 </DataTemplate>
             </HubSection>
         </Hub>
     </Grid>
     <Page.BottomAppBar>
         <CommandBar>
+            <AppBarButton x:Name="ConnectionsAppBarButton" Label="Connections" Icon="Globe" Click="ConnectionsAppBarButton_OnClick"/>
             <AppBarButton x:Name="RemoteAppBarButton" Label="Remote" Icon="Remote" Click="RemoteAppBarButton_OnClick"/>
         </CommandBar>
     </Page.BottomAppBar>

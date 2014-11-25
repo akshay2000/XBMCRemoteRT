@@ -101,8 +101,8 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
-
-            LoadAndConnnect(); 
+            bool showConnections = e.Parameter as bool? ?? false;
+            LoadAndConnnect(showConnections);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -113,31 +113,26 @@ namespace XBMCRemoteRT
         #endregion
 
 
-        private async void LoadAndConnnect()
+        private async void LoadAndConnnect(bool showConnections)
         {
             await App.ConnectionsVM.ReloadConnections();
             DataContext = App.ConnectionsVM;
-            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
-            if (ip != null)
+            if (!showConnections)
             {
-                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
-                if (connectionItem != null)
-                    await ConnectToServer(connectionItem);
+                var ip = (string)SettingsHelper.GetValue("RecentServerIP");
+                if (ip != null)
+                {
+                    var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
+                    if (connectionItem != null)
+                        await ConnectToServer(connectionItem);
+                }
             }
         }
 
         private async Task ConnectToServer(ConnectionItem connectionItem)
         {
             SetPageState(PageStates.Connecting);
-            bool isSuccessful = false;
-            try
-            {
-                isSuccessful = await JSONRPC.Ping(connectionItem);
-            }
-            catch (Exception exc)
-            {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-            }
+            var isSuccessful = await JSONRPC.Ping(connectionItem);
             if (isSuccessful)
             {
                 ConnectionManager.CurrentConnection = connectionItem;
