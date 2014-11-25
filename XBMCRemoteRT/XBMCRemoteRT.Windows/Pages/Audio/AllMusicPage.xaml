@@ -29,6 +29,7 @@
         </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -44,10 +45,22 @@
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+            <TextBlock x:Name="pageTitle" Text="music" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
         <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Filter by: " Grid.Column="0" FontSize="20" Margin="12"/>
+            <ComboBox x:Name="FilterComboBox" Grid.Column="1" SelectionChanged="FilterComboBox_OnSelectionChanged"  Width="300" HorizontalAlignment="Left">
+                <x:String>Artist</x:String>
+                <x:String>Album</x:String>
+                <x:String>Song</x:String>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="2" x:Name="ArtistsCVSGrid">
             <SemanticZoom>
                 <SemanticZoom.ZoomedInView>
                     <ListView ItemsSource="{Binding Source={StaticResource ArtistsCVS}}" Margin="0,-20,0,0">
@@ -69,6 +82,74 @@
 
                 <SemanticZoom.ZoomedOutView>
                     <GridView ItemsSource="{Binding Source={StaticResource ArtistsCVS}, Path=CollectionGroups}" />
+                </SemanticZoom.ZoomedOutView>
+            </SemanticZoom>
+        </Grid>
+        <Grid Grid.Row="2" x:Name="AlbumsCVSGrid">
+            <SemanticZoom>
+                <SemanticZoom.ZoomedInView>
+                    <GridView ItemsSource="{Binding Source={StaticResource AlbumsCVS}}" Margin="0,-20,0,0">
+                        <GridView.GroupStyle>
+                            <GroupStyle HidesIfEmpty="True"/>
+                        </GridView.GroupStyle>
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid x:Name="AlbumArtWrapper" Tapped="AlbumArtWrapper_Tapped" Height="205" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Width="160" Margin="0,0,12,12" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="160"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Stretch="UniformToFill">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Image Width="160" Stretch="UniformToFill" VerticalAlignment="Top" >
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Border Margin="10,140,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}" Grid.RowSpan="2" >
+                                        <Image Source="ms-appx:///Assets/Icons/album.png" Margin="10" />
+                                    </Border>
+                                    <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Right" Margin="0,5,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
+                                    <StackPanel Orientation="Horizontal" Background="{StaticResource ApplicationForegroundThemeBrush}" Margin="0,7,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" Margin="5" Foreground="White" FontWeight="Bold" MaxWidth="120" MaxHeight="40" TextTrimming="WordEllipsis"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </SemanticZoom.ZoomedInView>
+                <SemanticZoom.ZoomedOutView>
+                    <GridView ItemsSource="{Binding Source={StaticResource AlbumsCVS}, Path=CollectionGroups}"/>
+                </SemanticZoom.ZoomedOutView>
+            </SemanticZoom>
+        </Grid>
+        <Grid Grid.Row="2" x:Name="SongsCVSGrid">
+            <SemanticZoom>
+                <SemanticZoom.ZoomedInView>
+                    <ListView ItemsSource="{Binding Source={StaticResource SongsCVS}}" Margin="0,-20,0,0">
+                        <ListView.GroupStyle>
+                            <GroupStyle HidesIfEmpty="True"/>
+                        </ListView.GroupStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel x:Name="SongItemWrapper" Orientation="Horizontal" Margin="0,10" Tapped="SongItemWrapper_Tapped">
+                                    <Border x:Name="PlayArtistBorder" Tapped="PlayArtistBorder_Tapped" BorderThickness="2" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
+                                        <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/musicnote.png" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
+                                    </Border>
+                                    <StackPanel Margin="10,0,0,0" >
+                                        <TextBlock Text="{Binding Label}" FontSize="25" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding AlbumArtist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" Opacity="0.5" FontSize="16" TextWrapping="Wrap" Margin="0,-5,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </SemanticZoom.ZoomedInView>
+                <SemanticZoom.ZoomedOutView>
+                    <GridView ItemsSource="{Binding Source={StaticResource SongsCVS}, Path=CollectionGroups}"/>
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
         </Grid>

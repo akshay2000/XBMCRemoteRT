@@ -134,9 +134,9 @@ namespace XBMCRemoteRT
             {
                 isSuccessful = await JSONRPC.Ping(connectionItem);
             }
-            catch (Exception exc)
+            catch
             {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
+                
             }
             if (isSuccessful)
             {
