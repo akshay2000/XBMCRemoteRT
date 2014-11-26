@@ -101,8 +101,12 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
+
             bool showConnections = e.Parameter as bool? ?? false;
-            LoadAndConnnect(showConnections);
+
+            LoadConnections();
+            if (!showConnections)
+                ConnnectToRecentIp();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -112,20 +116,20 @@ namespace XBMCRemoteRT
 
         #endregion
 
-
-        private async void LoadAndConnnect(bool showConnections)
+        private async void LoadConnections()
         {
             await App.ConnectionsVM.ReloadConnections();
             DataContext = App.ConnectionsVM;
-            if (!showConnections)
+        }
+
+        private async void ConnnectToRecentIp()
+        {
+            var ip = (string)SettingsHelper.GetValue("RecentServerIP");
+            if (ip != null)
             {
-                var ip = (string)SettingsHelper.GetValue("RecentServerIP");
-                if (ip != null)
-                {
-                    var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
-                    if (connectionItem != null)
-                        await ConnectToServer(connectionItem);
-                }
+                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
+                if (connectionItem != null)
+                    await ConnectToServer(connectionItem);
             }
         }
 
