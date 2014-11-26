@@ -59,6 +59,8 @@ namespace XBMCRemoteRT.Pages.Audio
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+
+            FilterComboBox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -102,6 +104,7 @@ namespace XBMCRemoteRT.Pages.Audio
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
+            ReloadAll();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -115,17 +118,21 @@ namespace XBMCRemoteRT.Pages.Audio
         {
             ConnectionManager.ManageSystemTray(true);
             allArtists = await AudioLibrary.GetArtists();
-            var groupedAllArtists = GroupingHelper.GroupList(allArtists, (Artist a) => { return a.Label; }, true);
+            var groupedAllArtists = GroupingHelper.GroupList(allArtists, (Artist a) => a.Label, true);
             ArtistsCVS.Source = groupedAllArtists;
+            (ArtistsSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = ArtistsCVS.View.CollectionGroups;
 
             JObject sortWith = new JObject(new JProperty("method", "label"));
             allAlbums = await AudioLibrary.GetAlbums(sort: sortWith);
-            var groupedAllAlbums = GroupingHelper.GroupList(allAlbums, (Album a) => { return a.Label; }, true);
+            var groupedAllAlbums = GroupingHelper.GroupList(allAlbums, (Album a) => a.Label, true);
             AlbumsCVS.Source = groupedAllAlbums;
+            (AlbumsSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = AlbumsCVS.View.CollectionGroups;
 
             allSongs = await AudioLibrary.GetSongs(sort: sortWith);
-            var groupedAllSongs = GroupingHelper.GroupList(allSongs, (Song s) => { return s.Label; }, true);
+            var groupedAllSongs = GroupingHelper.GroupList(allSongs, (Song s) => s.Label, true);
             SongsCVS.Source = groupedAllSongs;
+            (SongsSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = SongsCVS.View.CollectionGroups;
+
             ConnectionManager.ManageSystemTray(false);
         }
 
@@ -153,6 +160,30 @@ namespace XBMCRemoteRT.Pages.Audio
         private void PlayArtistBorder_Tapped(object sender, TappedRoutedEventArgs e)
         {
 
+        }
+
+        private void FilterComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var choice = (sender as ComboBox).SelectedValue.ToString();
+
+            switch (choice)
+            {
+                case "Artist" :
+                    ArtistsCVSGrid.Visibility = Visibility.Visible;
+                    AlbumsCVSGrid.Visibility = Visibility.Collapsed;
+                    SongsCVSGrid.Visibility = Visibility.Collapsed;
+                    break;
+                case "Album":
+                    AlbumsCVSGrid.Visibility = Visibility.Visible;
+                    ArtistsCVSGrid.Visibility = Visibility.Collapsed;
+                    SongsCVSGrid.Visibility = Visibility.Collapsed;
+                    break;
+                case "Song":
+                    SongsCVSGrid.Visibility = Visibility.Visible;
+                    ArtistsCVSGrid.Visibility = Visibility.Collapsed;
+                    AlbumsCVSGrid.Visibility = Visibility.Collapsed;
+                    break;
+            }
         }
     }
 }

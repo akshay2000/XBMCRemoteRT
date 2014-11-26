@@ -20,6 +20,7 @@ using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Models.Common;
 using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.Pages;
+using XBMCRemoteRT.Pages.Audio;
 using XBMCRemoteRT.RPCWrappers;
 
 namespace XBMCRemoteRT
@@ -155,7 +156,7 @@ namespace XBMCRemoteRT
 
             if (Movies == null)
             {
-                Movies = await VideoLibrary.GetRecentlyAddedMovies(new Limits { Start = 0, End = 12 });
+                Movies = await VideoLibrary.GetRecentlyAddedMovies(new Limits { Start = 0, End = 8 });
                 MoviesHubSection.DataContext = Movies;
             }
         }
@@ -167,7 +168,7 @@ namespace XBMCRemoteRT
 
         private void MusicHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            //Frame.Navigate(typeof(AllMusicPage));
+            Frame.Navigate(typeof(AllMusicPage));
         }
 
         private void TVShowsHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
@@ -196,6 +197,11 @@ namespace XBMCRemoteRT
         {
             await Player.GoTo(GlobalVariables.CurrentPlayerState.PlayerType, GoTo.Next);
             await PlayerHelper.RefreshPlayerState();
+        }
+
+        private void ConnectionsAppBarButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage), true);
         }
     }
 }
