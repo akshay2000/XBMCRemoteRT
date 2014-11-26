@@ -17,12 +17,12 @@ namespace XBMCRemoteRT.RPCWrappers
                 new JProperty("jsonrpc", "2.0"),
                 new JProperty("id", 234),
                 new JProperty("method", "JSONRPC.ping"));
-                
+
             string requestData = requestObject.ToString();
 
             HttpClientHandler handler = new HttpClientHandler();
             HttpClient httpClient = new HttpClient(handler);
-            
+
             string uriString = "http://" + connectionItem.IpAddress + ":" + connectionItem.Port.ToString() + "/jsonrpc?request=";
             httpClient.BaseAddress = new Uri(uriString);
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "");

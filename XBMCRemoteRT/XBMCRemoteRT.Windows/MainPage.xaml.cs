@@ -102,7 +102,11 @@ namespace XBMCRemoteRT
         {
             navigationHelper.OnNavigatedTo(e);
 
-            LoadAndConnnect(); 
+            bool showConnections = e.Parameter as bool? ?? false;
+
+            LoadConnections();
+            if (!showConnections)
+                ConnnectToRecentIp();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -112,12 +116,15 @@ namespace XBMCRemoteRT
 
         #endregion
 
-
-        private async void LoadAndConnnect()
+        private async void LoadConnections()
         {
             await App.ConnectionsVM.ReloadConnections();
             DataContext = App.ConnectionsVM;
-            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
+        }
+
+        private async void ConnnectToRecentIp()
+        {
+            var ip = (string)SettingsHelper.GetValue("RecentServerIP");
             if (ip != null)
             {
                 var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
@@ -129,15 +136,7 @@ namespace XBMCRemoteRT
         private async Task ConnectToServer(ConnectionItem connectionItem)
         {
             SetPageState(PageStates.Connecting);
-            bool isSuccessful = false;
-            try
-            {
-                isSuccessful = await JSONRPC.Ping(connectionItem);
-            }
-            catch (Exception exc)
-            {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-            }
+            var isSuccessful = await JSONRPC.Ping(connectionItem);
             if (isSuccessful)
             {
                 ConnectionManager.CurrentConnection = connectionItem;
