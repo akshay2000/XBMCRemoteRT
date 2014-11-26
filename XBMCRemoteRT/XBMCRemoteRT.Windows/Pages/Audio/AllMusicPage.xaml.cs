@@ -104,6 +104,7 @@ namespace XBMCRemoteRT.Pages.Audio
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
+            ReloadAll();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -119,15 +120,19 @@ namespace XBMCRemoteRT.Pages.Audio
             allArtists = await AudioLibrary.GetArtists();
             var groupedAllArtists = GroupingHelper.GroupList(allArtists, (Artist a) => a.Label, true);
             ArtistsCVS.Source = groupedAllArtists;
+            (ArtistsSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = ArtistsCVS.View.CollectionGroups;
 
             JObject sortWith = new JObject(new JProperty("method", "label"));
             allAlbums = await AudioLibrary.GetAlbums(sort: sortWith);
             var groupedAllAlbums = GroupingHelper.GroupList(allAlbums, (Album a) => a.Label, true);
             AlbumsCVS.Source = groupedAllAlbums;
+            (AlbumsSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = AlbumsCVS.View.CollectionGroups;
 
             allSongs = await AudioLibrary.GetSongs(sort: sortWith);
             var groupedAllSongs = GroupingHelper.GroupList(allSongs, (Song s) => s.Label, true);
             SongsCVS.Source = groupedAllSongs;
+            (SongsSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = SongsCVS.View.CollectionGroups;
+
             ConnectionManager.ManageSystemTray(false);
         }
 
@@ -159,7 +164,7 @@ namespace XBMCRemoteRT.Pages.Audio
 
         private void FilterComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var choice = ((ComboBox) e.OriginalSource).SelectedValue.ToString();
+            var choice = (sender as ComboBox).SelectedValue.ToString();
 
             switch (choice)
             {

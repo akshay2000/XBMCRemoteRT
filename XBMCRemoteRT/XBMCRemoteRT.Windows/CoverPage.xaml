@@ -89,21 +89,25 @@
 
                         <Grid Grid.Row="2" Margin="-10,0">
                             <Image x:Name="PreviousButton" Source="Assets/Glyphs/appbar.transport.rew.rest.png" HorizontalAlignment="Left" Width="50" Height="48" Tapped="PreviousButton_Click"/>
-                            <Image x:Name="PlayPauseButton" Source="{Binding CurrentPlayerProperties.Speed, Converter={StaticResource SpeedToImgSrcConverter}}" HorizontalAlignment="Center"  Width="50" Height="48" Tapped="PlayPauseButton_Click"/>
+                            <Image x:Name="PlayPauseButton" Source="{Binding CurrentPlayerProperties.Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" HorizontalAlignment="Center"  Width="50" Height="48" Tapped="PlayPauseButton_Click"/>
                             <Image x:Name="NextButton" Source="Assets/Glyphs/appbar.transport.ff.rest.png" HorizontalAlignment="Right"  Width="50" Height="48" Tapped="NextButton_Click"/>
                         </Grid>
                     </Grid>
                 </DataTemplate>
             </HubSection>
-            <HubSection x:Name="MusicHubSection" Width="700">
+            <HubSection x:Name="MusicHubSection" Width="700" IsHeaderInteractive="True">
                 <HubSection.Header>
-                    <StackPanel x:Name="MusicHeaderWrapper" Orientation="Horizontal" Tapped="MusicHeaderWrapper_Tapped">
-                        <BitmapIcon UriSource="/Assets/Icons/musicnote.png" Height="28" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
-                        <StackPanel>
+                    <Grid x:Name="MusicHeaderWrapper" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Tapped="MusicHeaderWrapper_Tapped">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <BitmapIcon UriSource="/Assets/Icons/musicnote.png" Height="28" Foreground="{StaticResource ApplicationForegroundThemeBrush}" Grid.Column="0"/>
+                        <StackPanel Grid.Column="1">
                             <TextBlock Text="MUSIC" Margin="8,0,0,0"/>
                             <TextBlock Text="see all music" Opacity="0.5" FontSize="15" Margin="8,-5,0,0" FontWeight="Thin"/>
                         </StackPanel>
-                    </StackPanel>
+                    </Grid>
                 </HubSection.Header>
                 <DataTemplate>
                     <userControls:ColumnGridView ItemsSource="{Binding}" Columns="4" Width="600">
@@ -131,7 +135,7 @@
                     </userControls:ColumnGridView>
                 </DataTemplate>
             </HubSection>
-            <HubSection x:Name="TVHubSection" Width="700">
+            <HubSection x:Name="TVHubSection" Width="700" IsHeaderInteractive="True">
                 <HubSection.Header>
                     <StackPanel x:Name="TVShowsHeaderWrapper" Orientation="Horizontal" Tapped="TVShowsHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/tv.png" Height="28" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
@@ -175,7 +179,7 @@
                 </DataTemplate>
             </HubSection>
 
-            <HubSection x:Name="MoviesHubSection" Width="700">
+            <HubSection x:Name="MoviesHubSection" Width="700" IsHeaderInteractive="True">
                 <HubSection.Header>
                     <StackPanel x:Name="MoviesHeaderWrapper" Orientation="Horizontal" Tapped="MoviesHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/movie.png" Height="28" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
