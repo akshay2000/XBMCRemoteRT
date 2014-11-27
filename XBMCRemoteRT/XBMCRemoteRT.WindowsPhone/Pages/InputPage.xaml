@@ -15,95 +15,109 @@
                 <EntranceThemeTransition/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-        
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="310"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="remote" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
-        </StackPanel>
+        <!--<Image Source="/Assets/RemoteControl.png" Grid.RowSpan="10"/>-->
 
-        <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="10,0,10,0">
-            <Slider Value="10" Minimum="0" Maximum="100" StepFrequency="10" x:Name="VolumeSlider" ValueChanged="VolumeSlider_ValueChanged" Loaded="VolumeSlider_Loaded" Margin="0,200,0,0" VerticalAlignment="Top"/>
-            <Grid VerticalAlignment="Bottom" Margin="0,0,0,10" Height="180">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="120"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                
+        <TextBox Grid.Row="0" Margin="10,0" VerticalAlignment="Center" />
+        <Grid Grid.Row="1">
+            <AppBarButton Margin="50,0,0,10" Style="{StaticResource ExtraLargeRoundButton}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <AppBarButton.Icon>
+                    <SymbolIcon Symbol="Page2"  RenderTransformOrigin="0.5,0.5">
+                        <SymbolIcon.RenderTransform>
+                            <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
+                        </SymbolIcon.RenderTransform>
+                    </SymbolIcon>
+                </AppBarButton.Icon>
+            </AppBarButton>
 
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" >
-                    <AppBarButton Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center">
-                        <AppBarButton.Icon>
-                            <SymbolIcon Symbol="Previous"/>
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                    <AppBarButton Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center">
-                        <AppBarButton.Icon>
-                            <!--<BitmapIcon UriSource="ms-appx:///Assets/Icons/rewind.png" Margin="14"/>-->
-                            <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Glyph="&#57769;" Margin="0,1,3,0"/>
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                </StackPanel>
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <AppBarButton Style="{StaticResource ExtraLargeRoundButton}">
-                        <AppBarButton.Icon>
-                            <!--<SymbolIcon Symbol="{Binding CurrentPlayerProperties.Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" RenderTransformOrigin="0.5,0.5" >-->
-                            <SymbolIcon Symbol="Play" RenderTransformOrigin="0.5,0.5" >
+            <AppBarButton Margin="0,0,50,10" Style="{StaticResource ExtraLargeRoundButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="45" Margin="0,5,0,0"  Glyph="&#57605;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </Grid>
+        <Slider Grid.Row="2" Value="100" Minimum="0" Maximum="100" StepFrequency="10" x:Name="VolumeSlider" ValueChanged="VolumeSlider_ValueChanged" Loaded="VolumeSlider_Loaded" VerticalAlignment="Top"/>
+
+
+
+        <Grid Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+                <AppBarButton Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Previous"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center" Grid.Column="1">
+                    <AppBarButton.Icon>
+                        <!--<BitmapIcon UriSource="ms-appx:///Assets/Icons/rewind.png" Margin="14"/>-->
+                        <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Glyph="&#57769;" Margin="0,1,3,0"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Style="{StaticResource ExtraLargeRoundButton}" Grid.Column="2">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Play" RenderTransformOrigin="0.5,0.5" >
                             <SymbolIcon.RenderTransform>
-                                    <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
-                                </SymbolIcon.RenderTransform>
-                            </SymbolIcon>
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                    <AppBarButton Style="{StaticResource ExtraLargeRoundButton}" Margin="-7,0,0,0">
-                        <AppBarButton.Icon>
-                            <SymbolIcon Symbol="Stop" RenderTransformOrigin="0.5,0.5" >
-                                <SymbolIcon.RenderTransform>
-                                    <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
-                                </SymbolIcon.RenderTransform>
-                            </SymbolIcon>
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                </StackPanel>
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <AppBarButton Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center">
-                        <AppBarButton.Icon>
-                            <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Margin="3,1,0,0" Glyph="&#57768;"/>
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                    <AppBarButton Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center" >
-                        <AppBarButton.Icon>
-                            <SymbolIcon Symbol="Next"/>
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                </StackPanel>
-                <Grid Grid.Row="1">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,-20,0,0">
-                        <AppBarButton Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center">
-                            <AppBarButton.Icon>
-                                <!--<BitmapIcon UriSource="ms-appx:///Assets/Icons/return.png" Margin="14"/>-->
-                                <SymbolIcon Symbol="Undo"  RenderTransformOrigin="0.5,0.5">
-                                    <SymbolIcon.RenderTransform>
-                                        <CompositeTransform Rotation="45"/>
-                                    </SymbolIcon.RenderTransform>
-                                </SymbolIcon>
-                            </AppBarButton.Icon>
-                        </AppBarButton>
-                        <AppBarButton Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center">
-                            <AppBarButton.Icon>
-                                <!--<BitmapIcon UriSource="ms-appx:///Assets/Icons/home.png" Margin="14"/>-->
-                                <SymbolIcon Symbol="Home"/>
-                            </AppBarButton.Icon>
-                        </AppBarButton>
-                    </StackPanel>
-                </Grid>
-            </Grid>
+                                <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
+                            </SymbolIcon.RenderTransform>
+                        </SymbolIcon>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Style="{StaticResource ExtraLargeRoundButton}" Grid.Column="3">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Stop" RenderTransformOrigin="0.5,0.5" >
+                            <SymbolIcon.RenderTransform>
+                                <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
+                            </SymbolIcon.RenderTransform>
+                        </SymbolIcon>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center" Grid.Column="4">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Margin="3,1,0,0" Glyph="&#57768;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center" Grid.Column="5">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Next"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+        </Grid>
+        <Grid Grid.Row="4" HorizontalAlignment="Center" Background="Black" VerticalAlignment="Top" Margin="0,-10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <AppBarButton Style="{StaticResource LargeRoundButton}" Margin="0,0,3,0">
+                <AppBarButton.Icon>
+                    <SymbolIcon Symbol="Undo"  RenderTransformOrigin="0.5,0.5">
+                        <SymbolIcon.RenderTransform>
+                            <CompositeTransform Rotation="45"/>
+                        </SymbolIcon.RenderTransform>
+                    </SymbolIcon>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Style="{StaticResource LargeRoundButton}" Margin="3,0,0,0" Grid.Column="1">
+                <AppBarButton.Icon>
+                    <SymbolIcon Symbol="Home"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
         </Grid>
     </Grid>
 </Page>

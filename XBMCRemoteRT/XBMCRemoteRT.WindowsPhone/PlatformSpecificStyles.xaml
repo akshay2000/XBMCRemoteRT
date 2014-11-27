@@ -95,7 +95,7 @@
                                 <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                             </Grid>
                         </Grid>
-                        <TextBlock x:Name="TextLabel" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" FontSize="9.5" FontFamily="{TemplateBinding FontFamily}" Margin="0,0,0,10.5" TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Label}" Width="70.5"/>
+                        <!--<TextBlock x:Name="TextLabel" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" FontSize="9.5" FontFamily="{TemplateBinding FontFamily}" Margin="0,0,0,10.5" TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Label}" Width="70.5"/>-->
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -159,7 +159,7 @@
                                 <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                             </Grid>
                         </Grid>
-                        <TextBlock x:Name="TextLabel" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" FontSize="9.5" FontFamily="{TemplateBinding FontFamily}" Margin="0,0,0,10.5" TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Label}" Width="70.5"/>
+                        <!--<TextBlock x:Name="TextLabel" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" FontSize="9.5" FontFamily="{TemplateBinding FontFamily}" Margin="0,0,0,10.5" TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Label}" Width="70.5"/>-->
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
