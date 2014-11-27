@@ -137,29 +137,24 @@ namespace XBMCRemoteRT.Pages.Audio
         }
 
 
-        private void ArtistNameTextBlock_Tapped(object sender, TappedRoutedEventArgs e)
+        private void ArtistName_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Artist tappedArtist = (sender as TextBlock).DataContext as Artist;
+            Artist tappedArtist = (sender as StackPanel).DataContext as Artist;
             GlobalVariables.CurrentArtist = tappedArtist;
-            //Frame.Navigate(typeof(ArtistDetailsHub));
+            Frame.Navigate(typeof(ArtistDetailsPage));
         }
 
         private void AlbumArtWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Album tappedAlbum = (sender as Grid).DataContext as Album;
             GlobalVariables.CurrentAlbum = tappedAlbum;
-            //Frame.Navigate(typeof(AlbumPage));
+            Frame.Navigate(typeof(AlbumPage));
         }
 
         private void SongItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var tappedSong = (sender as StackPanel).DataContext as Song;
             Player.PlaySong(tappedSong);
-        }
-
-        private void PlayArtistBorder_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-
         }
 
         private void FilterComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

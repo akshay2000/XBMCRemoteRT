@@ -23,6 +23,7 @@
                     <converters:RatingConverter x:Key="RatingConverter"/>
                     <converters:StringToImageBrushConverter x:Key="StringToImageBrushConverter"/>
                     <converters:ToUpperConverter x:Key="ToUpperConverter"/>
+                    <converters:CountToOpacityConverter x:Key="CountToOpacityConverter"/>
 
                 </ResourceDictionary>
 
