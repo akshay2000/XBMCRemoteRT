@@ -9,7 +9,7 @@
     x:Name="ControlRoot">
 
     <Grid DataContext="{Binding ElementName=ControlRoot}">
-        <GridView ItemsSource="{Binding ItemsSource}" ItemTemplate="{Binding ItemTemplate}">
+        <GridView ItemsSource="{Binding ItemsSource}" ItemTemplate="{Binding ItemTemplate}" SelectionMode="{Binding SelectionMode}">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal" SizeChanged="ItemsWrapGrid_SizeChanged" />

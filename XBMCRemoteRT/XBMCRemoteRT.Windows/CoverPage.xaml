@@ -110,7 +110,7 @@
                     </Grid>
                 </HubSection.Header>
                 <DataTemplate>
-                    <userControls:ColumnGridView ItemsSource="{Binding}" Columns="4" Width="600">
+                    <userControls:ColumnGridView ItemsSource="{Binding}" Columns="4" Width="600" SelectionMode="None">
                         <userControls:ColumnGridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid x:Name="AlbumWrapper" Height="150" Width="150" Margin="0,0,12,12" Tapped="AlbumWrapper_Tapped">
@@ -146,7 +146,7 @@
                     </StackPanel>
                 </HubSection.Header>
                 <DataTemplate>
-                    <userControls:ColumnGridView ItemsSource="{Binding}" Columns="4">
+                    <userControls:ColumnGridView ItemsSource="{Binding}" Columns="4" SelectionMode="None">
                         <userControls:ColumnGridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid x:Name="EpisodeWrapper" Height="220" Margin="0,0,0,24" Tapped="EpisodeWrapper_Tapped">
@@ -190,7 +190,7 @@
                     </StackPanel>
                 </HubSection.Header>
                 <DataTemplate>
-                    <userControls:ColumnGridView ItemsSource="{Binding}" Columns="4" Width="600">
+                    <userControls:ColumnGridView ItemsSource="{Binding}" Columns="4" Width="600" SelectionMode="None">
                         <userControls:ColumnGridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid x:Name="MovieWrapper" Height="250" Width="150" Margin="0,0,12,12" Tapped="MovieWrapper_Tapped">

@@ -19,6 +19,14 @@ namespace XBMCRemoteRT.UserControls
 {
     public sealed partial class ColumnGridView : UserControl
     {
+        public static readonly DependencyProperty SelectionModeProperty =
+                    DependencyProperty.Register("SelectionMode", typeof(ListViewSelectionMode), typeof(ColumnGridView), new PropertyMetadata(null));
+
+        public ListViewSelectionMode SelectionMode
+        {
+            get { return (ListViewSelectionMode)GetValue(SelectionModeProperty); }
+            set { SetValue(SelectionModeProperty, value); }
+        }
         public static readonly DependencyProperty ItemTemplateProperty =
                     DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(ColumnGridView), new PropertyMetadata(null));
 

@@ -41,7 +41,8 @@ namespace XBMCRemoteRT.Converters
             ImageBrush imageBrush = new ImageBrush();
             imageBrush.Stretch = Stretch.UniformToFill;
             imageBrush.Opacity = 0.6;
-            imageBrush.ImageSource = new BitmapImage(new Uri(imageURL, UriKind.RelativeOrAbsolute));
+            if(!string.IsNullOrEmpty(imageURL))
+                imageBrush.ImageSource = new BitmapImage(new Uri(imageURL, UriKind.RelativeOrAbsolute));
             return imageBrush;
         }
 
