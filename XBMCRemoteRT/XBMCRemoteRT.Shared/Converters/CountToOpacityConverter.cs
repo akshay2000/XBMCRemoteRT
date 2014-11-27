@@ -11,6 +11,7 @@ namespace XBMCRemoteRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            //if the list is empty return a faded opacity
             int count = (int)value;
             return count > 0 ? 1 : 0.3;
         }

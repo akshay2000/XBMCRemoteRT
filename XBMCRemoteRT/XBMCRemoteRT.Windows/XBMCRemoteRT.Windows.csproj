@@ -103,7 +103,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Converters\CountToOpacityConverter.cs" />
     <Compile Include="CoverPage.xaml.cs">
       <DependentUpon>CoverPage.xaml</DependentUpon>
     </Compile>
@@ -113,8 +112,14 @@
     <Compile Include="Pages\AddConnectionPage.xaml.cs">
       <DependentUpon>AddConnectionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Audio\AlbumPage.xaml.cs">
+      <DependentUpon>AlbumPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Audio\AllMusicPage.xaml.cs">
       <DependentUpon>AllMusicPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Audio\ArtistDetailsPage.xaml.cs">
+      <DependentUpon>ArtistDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EditConnectionPage.xaml.cs">
       <DependentUpon>EditConnectionPage.xaml</DependentUpon>
@@ -199,7 +204,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Audio\AlbumPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Audio\AllMusicPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Audio\ArtistDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
