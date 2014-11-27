@@ -123,7 +123,7 @@ namespace XBMCRemoteRT
         {
             var tappedAlbum = (sender as Grid).DataContext as Album;
             GlobalVariables.CurrentAlbum = tappedAlbum;
-            //Frame.Navigate(typeof(AlbumPage));
+            Frame.Navigate(typeof(AlbumPage));
         }
 
         private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
