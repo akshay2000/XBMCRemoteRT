@@ -28,8 +28,6 @@ namespace XBMCRemoteRT.Helpers
             }
             return itemName;
         }
-        private static string allLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTWXYZ";
-        private static string allNumbers = "0123456789";
         
         public static List<ListGroup<T>> GroupList<T>(IEnumerable<T> listToGroup, GetNameDelegate<T> getName, bool sort)
         {
@@ -41,13 +39,31 @@ namespace XBMCRemoteRT.Helpers
                     groupedList.Add(new ListGroup<T>(key.Label));
             }
 
+#if WINDOWS_APP //Duct tape for Windows 8
+            if (groupedList.Find(t => t.Key == "...") == null)
+            {
+                groupedList.Add(new ListGroup<T>("..."));
+            }
+#endif //Duct tape ends
+
             foreach (T item in listToGroup)
             {
                 string itemName = GetTrimmedName(getName(item));
 
                 string groupLabel = slg.Lookup(itemName);
                 if (!string.IsNullOrEmpty(groupLabel))
-                    groupedList.Find(t => t.Key == groupLabel).Add(item);
+                {
+                    var groupToAddTo = groupedList.Find(t => t.Key == groupLabel);
+
+#if WINDOWS_APP //Duct tape for Windows 8
+                    if (groupToAddTo == null)
+                    {
+                        groupToAddTo = groupedList.Find(t => t.Key == "...");
+                    }
+#endif //Duct tape ends
+
+                    groupToAddTo.Add(item);                    
+                }
             }
 
             if (sort)
