@@ -32,5 +32,12 @@ namespace XBMCRemoteRT.RPCWrappers
         {
             await ConnectionManager.ExecuteRPCRequest("Application.Quit");
         }
+
+        //Extra methods
+        public static async Task<int> GetVolume()
+        {
+            JObject result = await Applikation.GetProperties();
+            return (int)result["volume"];
+        }
     }
 }

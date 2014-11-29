@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.RPCWrappers;
 using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Helpers;
+using System.Threading.Tasks;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -219,11 +220,9 @@ namespace XBMCRemoteRT.Pages
 
         private async void VolumeSlider_Loaded(object sender, RoutedEventArgs e)
         {
-            JObject result = await Applikation.GetProperties();
-            int volume = (int)result["volume"];
-            VolumeSlider.Value = volume;
-            isVolumeSetProgrammatically = true;
-        }
+            int volume = await Applikation.GetVolume();
+            SetVolumeSliderValue(volume);
+        }        
 
         //private async void VolumeSlider_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         //{
@@ -269,15 +268,25 @@ namespace XBMCRemoteRT.Pages
             timer.Tick -= timer_Tick;
         }
 
-        private void VolumeDownWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void VolumeDownWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            int currentVolume = await Applikation.GetVolume();
+            Applikation.SetVolume(--currentVolume);
+            SetVolumeSliderValue(currentVolume);
         }
 
-        private void VolumeUpWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void VolumeUpWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            int currentVolume = await Applikation.GetVolume();
+            Applikation.SetVolume(++currentVolume);
+            SetVolumeSliderValue(currentVolume);
         }
 
+        private void SetVolumeSliderValue(int value)
+        {
+            isVolumeSetProgrammatically = true;
+            VolumeSlider.Value = value;
+        }
         //private void SendTextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         //{
         //    if (e.Key == Key.Enter)
