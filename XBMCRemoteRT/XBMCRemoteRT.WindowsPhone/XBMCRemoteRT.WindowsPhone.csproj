@@ -224,6 +224,8 @@
     <Content Include="Assets\Icons\singer.png" />
     <Content Include="Assets\Icons\stop.png" />
     <Content Include="Assets\Icons\tv.png" />
+    <Content Include="Assets\Icons\VolDown.png" />
+    <Content Include="Assets\Icons\VolUp.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\RemoteControl.png" />
     <Content Include="Assets\SmallLogo.scale-240.png" />

@@ -269,6 +269,15 @@ namespace XBMCRemoteRT.Pages
             timer.Tick -= timer_Tick;
         }
 
+        private void VolumeDownWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void VolumeUpWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+        }
+
         //private void SendTextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         //{
         //    if (e.Key == Key.Enter)
