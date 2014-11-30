@@ -42,6 +42,8 @@ namespace XBMCRemoteRT.Pages
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            DataContext = GlobalVariables.CurrentPlayerState;
         }
 
         /// <summary>
@@ -224,18 +226,10 @@ namespace XBMCRemoteRT.Pages
             SetVolumeSliderValue(volume);
         }        
 
-        //private async void VolumeSlider_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        //{
-        //    double doubleValue = VolumeSlider.Value;
-        //    int value = (int)Math.Round(doubleValue);
-        //    int newValue = await Applikation.SetVolume(value);
-        //}
-
         private void QuitButton_Click(object sender, RoutedEventArgs e)
         {
             Applikation.Quit();
         }
-
 
         private DispatcherTimer timer;
         private void VolumeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -287,14 +281,25 @@ namespace XBMCRemoteRT.Pages
             isVolumeSetProgrammatically = true;
             VolumeSlider.Value = value;
         }
-        //private void SendTextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        //{
-        //    if (e.Key == Key.Enter)
-        //    {
-        //        Input.SendText(SendTextBox.Text, true);
-        //        SendTextBox.Text = string.Empty;
-        //        this.Focus();
-        //    }
-        //}
+
+        private void SendTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                Input.SendText(SendTextBox.Text, true);
+                SendTextBox.Text = string.Empty;
+                LoseFocus(sender);
+            }
+        }
+
+        private void LoseFocus(object sender)
+        {
+            var control = sender as Control;
+            var isTabStop = control.IsTabStop;
+            control.IsTabStop = false;
+            control.IsEnabled = false;
+            control.IsEnabled = true;
+            control.IsTabStop = isTabStop;
+        }
     }
 }
