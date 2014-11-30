@@ -51,5 +51,17 @@ namespace XBMCRemoteRT.Models
                 NotifyPropertyChanged("Repeat");
             }
         }
+
+        public bool RoughlyEquals(Object obj)
+        {
+            var newObject = obj as PlayerProperties;
+            bool isEqual =
+                this.PartyMode == newObject.PartyMode
+                && this.Repeat == newObject.Repeat
+                && this.Shuffled == newObject.Shuffled
+                && this.Speed == newObject.Speed
+                ;
+            return isEqual;
+        }
     }
 }

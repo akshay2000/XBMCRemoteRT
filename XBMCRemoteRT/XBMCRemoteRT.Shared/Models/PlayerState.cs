@@ -22,7 +22,7 @@ namespace XBMCRemoteRT.Models
             get { return currentPlayerItem; }
             set
             {
-                if (currentPlayerItem !=value)
+                if (currentPlayerItem == null || !currentPlayerItem.RoughlyEquals(value))
                 {
                     currentPlayerItem = value;
                     NotifyPropertyChanged("CurrentPlayerItem");
@@ -36,7 +36,7 @@ namespace XBMCRemoteRT.Models
             get { return currentPlayerProperties; }
             set
             {
-                if (currentPlayerProperties != value)
+                if (currentPlayerProperties == null || !currentPlayerProperties.RoughlyEquals(value))
                 {
                     currentPlayerProperties = value;
                     NotifyPropertyChanged("CurrentPlayerProperties");

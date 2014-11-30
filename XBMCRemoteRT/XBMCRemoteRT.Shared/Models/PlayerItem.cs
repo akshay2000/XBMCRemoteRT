@@ -95,18 +95,19 @@ namespace XBMCRemoteRT.Models
         public int Id { get; set; }
         public string Type { get; set; }
 
-        public override bool Equals(object obj)
+        public bool RoughlyEquals(object obj)
         {
             var newObject = obj as PlayerItem;
-            bool isEqual = this.Artist == newObject.Artist && 
-                this.Fanart == newObject.Fanart && 
-                this.Id == newObject.Id && 
-                this.Label == newObject.Label && 
-                this.ShowTitle == newObject.ShowTitle && 
-                this.Tagline == newObject.Tagline && 
-                this.Thumbnail == newObject.Thumbnail && 
-                this.Title == newObject.Title && 
-                this.Type == newObject.Type;
+            bool isEqual = 
+                this.Fanart == newObject.Fanart 
+                && this.Id == newObject.Id
+                && this.Label == newObject.Label 
+                && this.ShowTitle == newObject.ShowTitle 
+                && this.Tagline == newObject.Tagline 
+                && this.Thumbnail == newObject.Thumbnail 
+                && this.Title == newObject.Title 
+                && this.Type == newObject.Type
+                ;
             return isEqual;
         }
 
