@@ -15,8 +15,11 @@ namespace XBMCRemoteRT.Models
             get { return thumbnail; }
             set
             {
-                thumbnail = value;
-                NotifyPropertyChanged("Thumbnail");
+                if (thumbnail != value)
+                {
+                    thumbnail = value;
+                    NotifyPropertyChanged("Thumbnail");
+                }
             }
         }
 
@@ -26,8 +29,11 @@ namespace XBMCRemoteRT.Models
             get { return fanart; }
             set
             {
-                fanart = value;
-                NotifyPropertyChanged("Fanart");
+                if (fanart != value)
+                {
+                    fanart = value;
+                    NotifyPropertyChanged("Fanart");
+                }
             }
         }
 
@@ -37,8 +43,11 @@ namespace XBMCRemoteRT.Models
             get { return title; }
             set 
             {
-                title = value;
-                NotifyPropertyChanged("Title");
+                if (title != value)
+                {
+                    title = value;
+                    NotifyPropertyChanged("Title");
+                }
             }
         }
 
@@ -48,8 +57,11 @@ namespace XBMCRemoteRT.Models
             get { return showTitle; }
             set 
             {
-                showTitle = value;
-                NotifyPropertyChanged("ShowTitle");
+                if (showTitle != value)
+                {
+                    showTitle = value;
+                    NotifyPropertyChanged("ShowTitle"); 
+                }
             }
         }
 
@@ -59,8 +71,11 @@ namespace XBMCRemoteRT.Models
             get { return tagline; }
             set
             {
-                tagline = value;
-                NotifyPropertyChanged("Tagline");
+                if (tagline != value)
+                {
+                    tagline = value;
+                    NotifyPropertyChanged("Tagline"); 
+                }
             }
         }
 
@@ -69,13 +84,31 @@ namespace XBMCRemoteRT.Models
         {
             get { return artist; }
             set {
-                artist = value;
-                NotifyPropertyChanged("Artist");
+                if (artist != value)
+                {
+                    artist = value;
+                    NotifyPropertyChanged("Artist"); 
+                }
             }
         }
         public string Label { get; set; }
         public int Id { get; set; }
-        public string Type { get; set; }        
+        public string Type { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var newObject = obj as PlayerItem;
+            bool isEqual = this.Artist == newObject.Artist && 
+                this.Fanart == newObject.Fanart && 
+                this.Id == newObject.Id && 
+                this.Label == newObject.Label && 
+                this.ShowTitle == newObject.ShowTitle && 
+                this.Tagline == newObject.Tagline && 
+                this.Thumbnail == newObject.Thumbnail && 
+                this.Title == newObject.Title && 
+                this.Type == newObject.Type;
+            return isEqual;
+        }
 
     }
 }

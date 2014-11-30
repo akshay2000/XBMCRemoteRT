@@ -10,7 +10,7 @@
 
     <Grid x:Name="LayoutRoot">
 
-        <Hub x:Name="CoverHub">
+        <Hub x:Name="CoverHub" Background="{Binding CurrentPlayerItem.Fanart, Converter={StaticResource StringToImageBrushConverter}}">
             <Hub.Header>
                 <TextBlock Text="kodi assist" FontFamily="Segoe UI" FontWeight="Bold" FontSize="75" />
             </Hub.Header>

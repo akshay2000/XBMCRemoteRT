@@ -22,8 +22,11 @@ namespace XBMCRemoteRT.Models
             get { return currentPlayerItem; }
             set
             {
-                currentPlayerItem = value;
-                NotifyPropertyChanged("CurrentPlayerItem");
+                if (currentPlayerItem !=value)
+                {
+                    currentPlayerItem = value;
+                    NotifyPropertyChanged("CurrentPlayerItem");
+                }
             }
         }
 
@@ -33,8 +36,11 @@ namespace XBMCRemoteRT.Models
             get { return currentPlayerProperties; }
             set
             {
-                currentPlayerProperties = value;
-                NotifyPropertyChanged("CurrentPlayerProperties");
+                if (currentPlayerProperties != value)
+                {
+                    currentPlayerProperties = value;
+                    NotifyPropertyChanged("CurrentPlayerProperties");
+                }
             }
         }
 

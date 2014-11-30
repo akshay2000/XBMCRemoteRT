@@ -51,7 +51,7 @@ namespace XBMCRemoteRT
 
             if (GlobalVariables.CurrentPlayerState == null)
                 GlobalVariables.CurrentPlayerState = new PlayerState();
-            NowPlayingHubSection.DataContext = GlobalVariables.CurrentPlayerState;
+            DataContext = GlobalVariables.CurrentPlayerState;
             PlayerHelper.RefreshPlayerState();
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(10);
