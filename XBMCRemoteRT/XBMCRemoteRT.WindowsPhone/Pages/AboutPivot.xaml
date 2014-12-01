@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="XBMCRemoteRT.Pages.AboutPivot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XBMCRemoteRT.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Pivot>
+            <Pivot.Title>
+                <TextBlock Text="{StaticResource AppName}" Style="{StaticResource PageTitleTextStyle}"/>
+            </Pivot.Title>
+            <PivotItem Header="about">
+                <StackPanel>
+                    <TextBlock Text="about app" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                    <TextBlock TextWrapping="Wrap" Text="The app aims to be the ultimate remote control client for XBMC. The app is made open source in spirit of XBMC and all the source code is available at GitHub."/>
+                    <TextBlock TextWrapping="Wrap" Text="about project" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                    <TextBlock TextWrapping="Wrap" Text="This app is a part of an open source project. If you wish to contribute, feel free to do so at the URL below. Be sure to check out the project wiki before submitting pull requests."/>
+                    <TextBlock Text="http://git.io/S2Wj5A" HorizontalAlignment="Left" />
+                    <TextBlock Text="about developer" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Left" ><Run Text="apps from developer:"/></TextBlock>
+                        <TextBlock Text="akshay2000" Width="auto" x:Name="DevProfile"  HorizontalAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Left" ><Run Text="email support:"/></TextBlock>
+                        <TextBlock Text="appsupport@indestructible.in" x:Name="Email" HorizontalAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  HorizontalAlignment="Left"><Run Text="website:"/></TextBlock>
+                        <TextBlock Text="http://indestructible.in" x:Name="Website" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <Button Content="Rate app" Height="72" HorizontalAlignment="Stretch" x:Name="RateApp" Click="RateApp_Click" />
+                </StackPanel>
+            </PivotItem>
+            
+            <PivotItem Header="feedback">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBox x:Name="FeedbackTextBox" Height="200" TextWrapping="Wrap" PlaceholderText="Enter your message here."/>
+                        <Button x:Name="SendFeedbackButton" Click="SendFeedbackButton_Click" Content="send feedback" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+            <!--<PivotItem Header="apps">
+                
+            </PivotItem>-->
+            <PivotItem Header="contribute">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="This app is part of open source project on GitHub. There are a number of ways you can contribute to it." Style="{StaticResource ParagraphTextStyle}"/>
+                        <TextBlock Text="Report issues" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="Find something not working to perfection in app? Discovered a bug? Think something could be better? Just create issue at the URl below. One of the developers will get back to you as soon as possible." Style="{StaticResource ParagraphTextStyle}"/>
+                        <TextBlock Text="http://github.com/akshay2000/XBMCRemoteRT/issues" Style="{StaticResource ParagraphTextStyle}" />
+                        <TextBlock Text="Code in" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="Found something that you can fix or make better? Awesome. Create a fork of repository here and start coding. If we like your code, we will definitely accept it. You also get a thank you note!" Style="{StaticResource ParagraphTextStyle}"/>
+                        <TextBlock Text="Send greetings" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="A simple gesture of gratitude can work wonders in open source community. You can contribute simply by sending a thank you note via a tweet, an email, a rating on Store or any other way you prefer. It means a lot to developers." Style="{StaticResource ParagraphTextStyle}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>

@@ -199,5 +199,11 @@
     <MainPackageIdentityName>51231akshay2000.Remembrall</MainPackageIdentityName>
     <MainPackageIdentityName>51231akshay2000.XBMCAssistRemote</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=3d080e90-d38d-4600-b2c9-7e2df605dd3c" />
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=3d080e90-d38d-4600-b2c9-7e2df605dd3c">
+    <PackageInfo>
+      <OsMinVersion>6.3.0.0</OsMinVersion>
+      <PackageArchitecture>neutral</PackageArchitecture>
+      <PackageMaxArchitectureVersion>1.1.0.3</PackageMaxArchitectureVersion>
+    </PackageInfo>
+  </PackageInfoList>
 </StoreAssociation>

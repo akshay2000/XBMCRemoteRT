@@ -13,6 +13,12 @@
         <Setter Property="FontSize" Value="40"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
+    
+    <Style TargetType="TextBlock" x:Key="ParagraphTextStyle" BasedOn="{StaticResource BodyTextBlockStyle}">
+        
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="ParagraphHeaderTextStyle" BasedOn="{StaticResource GroupHeaderTextBlockStyle}"/>
 
     <DataTemplate x:Key="PhoneGroupHeaderTemplate">
         <Border Background="Transparent" Padding="0,12">
