@@ -16,6 +16,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Helpers;
+using Windows.System;
+using Windows.ApplicationModel.Store;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -112,6 +114,16 @@ namespace XBMCRemoteRT.Pages
         private void SendFeedbackButton_Click(object sender, RoutedEventArgs e)
         {
             FeedbackHelper.SendFeedback(FeedbackTextBox.Text);
+        }
+
+        private async void RateApp_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + CurrentApp.AppId));
+        }
+
+        private async void DevProfile_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri(string.Format("ms-windows-store:search?publisher=akshay2000")));
         }
     }
 }

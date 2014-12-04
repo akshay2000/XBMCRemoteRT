@@ -20,7 +20,11 @@
             <Pivot.Title>
                 <TextBlock Text="{StaticResource AppName}" Style="{StaticResource PageTitleTextStyle}"/>
             </Pivot.Title>
-            <PivotItem Header="about">
+            
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="about" Style="{StaticResource PivotItemHeaderTextStyle}"/>
+                </PivotItem.Header>
                 <ScrollViewer>
                     <StackPanel>
                         <TextBlock Text="about app" Style="{StaticResource ParagraphHeaderTextStyle}"/>
@@ -45,7 +49,10 @@
                 </ScrollViewer>
             </PivotItem>
             
-            <PivotItem Header="feedback">
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="feedback" Style="{StaticResource PivotItemHeaderTextStyle}"/>
+                </PivotItem.Header>
                 <ScrollViewer>
                     <StackPanel>
                         <TextBox x:Name="FeedbackTextBox" Height="200" TextWrapping="Wrap" PlaceholderText="Enter your message here."/>
@@ -53,11 +60,12 @@
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
-            <!--<PivotItem Header="apps">
-                
-            </PivotItem>-->
-            <PivotItem Header="contribute">
-                <ScrollViewer>
+
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="contribute" Style="{StaticResource PivotItemHeaderTextStyle}"/>
+                </PivotItem.Header>
+            <ScrollViewer>
                     <StackPanel>
                         <TextBlock Text="This app is part of open source project on GitHub. There are a number of ways you can contribute to it." Style="{StaticResource ParagraphTextStyle}"/>
                         <TextBlock Text="Report issues" Style="{StaticResource ParagraphHeaderTextStyle}"/>

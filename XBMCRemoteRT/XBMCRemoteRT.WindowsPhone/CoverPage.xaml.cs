@@ -222,5 +222,10 @@ namespace XBMCRemoteRT
             await Player.GoTo(GlobalVariables.CurrentPlayerState.PlayerType, GoTo.Next);
             await PlayerHelper.RefreshPlayerState();
         }
+
+        private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AboutPivot));
+        }
     }
 }

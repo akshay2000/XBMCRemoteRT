@@ -157,7 +157,7 @@ namespace XBMCRemoteRT
 
         private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(AboutPivot));
         }
 
         private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
