@@ -21,27 +21,28 @@
                 <TextBlock Text="{StaticResource AppName}" Style="{StaticResource PageTitleTextStyle}"/>
             </Pivot.Title>
             <PivotItem Header="about">
-                <StackPanel>
-                    <TextBlock Text="about app" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                    <TextBlock TextWrapping="Wrap" Text="The app aims to be the ultimate remote control client for XBMC. The app is made open source in spirit of XBMC and all the source code is available at GitHub."/>
-                    <TextBlock TextWrapping="Wrap" Text="about project" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                    <TextBlock TextWrapping="Wrap" Text="This app is a part of an open source project. If you wish to contribute, feel free to do so at the URL below. Be sure to check out the project wiki before submitting pull requests."/>
-                    <TextBlock Text="http://git.io/S2Wj5A" HorizontalAlignment="Left" />
-                    <TextBlock Text="about developer" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock HorizontalAlignment="Left" ><Run Text="apps from developer:"/></TextBlock>
-                        <TextBlock Text="akshay2000" Width="auto" x:Name="DevProfile"  HorizontalAlignment="Left" />
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="about app" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="The app aims to be the ultimate remote control client for XBMC. The app is made open source in spirit of XBMC and all the source code is available at GitHub." Style="{StaticResource ParagraphTextStyle}" />
+                        <TextBlock Text="about project" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="This app is a part of an open source project. If you wish to contribute, feel free to do so at the URL below. Be sure to check out the project wiki before submitting pull requests." Style="{StaticResource ParagraphTextStyle}"/>
+                        <TextBlock Text="http://git.io/S2Wj5A" Style="{StaticResource ParagraphTextStyle}"/>
+                        <TextBlock Text="about developer" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock HorizontalAlignment="Left" Style="{StaticResource ParagraphTextStyle}" ><Run Text="apps from developer:"/></TextBlock>
+                            <TextBlock Text="akshay2000" Width="auto" x:Name="DevProfile"  HorizontalAlignment="Left" Style="{StaticResource ParagraphTextStyle}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock HorizontalAlignment="Left" Style="{StaticResource ParagraphTextStyle}"><Run Text="email support:"/></TextBlock>
+                            <TextBlock Text="appsupport@indestructible.in" x:Name="Email" HorizontalAlignment="Left" Style="{StaticResource ParagraphTextStyle}" />
+                        </StackPanel>
+                        <TextBlock Text="credits" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="Excellent designs by @AnaghSharma." Style="{StaticResource ParagraphTextStyle}"/>
+                        <TextBlock Text="Very useful feedback by reddit community at r/WindowsPhone." Style="{StaticResource ParagraphTextStyle}"/>
+                        <Button Content="Rate app" HorizontalAlignment="Stretch" x:Name="RateApp" Click="RateApp_Click" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock HorizontalAlignment="Left" ><Run Text="email support:"/></TextBlock>
-                        <TextBlock Text="appsupport@indestructible.in" x:Name="Email" HorizontalAlignment="Left" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock  HorizontalAlignment="Left"><Run Text="website:"/></TextBlock>
-                        <TextBlock Text="http://indestructible.in" x:Name="Website" HorizontalAlignment="Left"/>
-                    </StackPanel>
-                    <Button Content="Rate app" Height="72" HorizontalAlignment="Stretch" x:Name="RateApp" Click="RateApp_Click" />
-                </StackPanel>
+                </ScrollViewer>
             </PivotItem>
             
             <PivotItem Header="feedback">
