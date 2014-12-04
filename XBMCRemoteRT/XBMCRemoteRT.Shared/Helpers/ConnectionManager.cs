@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using XBMCRemoteRT.Models;
 
 namespace XBMCRemoteRT.Helpers
@@ -92,9 +93,20 @@ namespace XBMCRemoteRT.Helpers
             }
         }
 
-        public static void ManageSystemTray(bool p)
+        public static void ManageSystemTray(bool isActive, string message = "Loading...")
         {
-            //TODO!
+#if WINDOWS_PHONE_APP
+            StatusBarProgressIndicator progressIndicator = StatusBar.GetForCurrentView().ProgressIndicator;
+            progressIndicator.Text = message;
+            if (isActive)
+            {
+                progressIndicator.ShowAsync();
+            }
+            else
+            {
+                progressIndicator.HideAsync();
+            }
+#endif
         }
     }
 }
