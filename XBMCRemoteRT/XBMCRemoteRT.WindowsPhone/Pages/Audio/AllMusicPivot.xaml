@@ -112,8 +112,8 @@
                                             <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/musicnote.png" Foreground="{StaticResource PhoneForegroundBrush}" />
                                         </Border>
                                         <StackPanel Margin="10,0,0,0" >
-                                            <TextBlock Text="{Binding Label}" FontSize="25" FontWeight="SemiBold"/>
-                                            <TextBlock Text="{Binding AlbumArtist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" Opacity="0.5" FontSize="16" TextWrapping="Wrap" Margin="0,-5,0,0"/>
+                                            <TextBlock Text="{Binding Label}" FontSize="25" FontWeight="SemiBold" Pivot.SlideInAnimationGroup="GroupOne"/>
+                                            <TextBlock Text="{Binding AlbumArtist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" Opacity="0.5" FontSize="16" TextWrapping="Wrap" Margin="0,-5,0,0" Pivot.SlideInAnimationGroup="GroupTwo"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </DataTemplate>

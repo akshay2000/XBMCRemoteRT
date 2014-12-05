@@ -314,13 +314,24 @@
 		</Style>
 	</Page.Resources>
 
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
     <Grid x:Name="LayoutRoot">
 
-        <Grid.ChildrenTransitions>
+        <!--<Grid.ChildrenTransitions>
             <TransitionCollection>
-                <NavigationThemeTransition />
+                <NavigationThemeTransition>
+                    <SlideNavigationTransitionInfo />
+                </NavigationThemeTransition>
             </TransitionCollection>
-        </Grid.ChildrenTransitions>
+        </Grid.ChildrenTransitions>-->
 
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
