@@ -8,6 +8,16 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <Style x:Key="HubSectionHeaderSubHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="5,-5,0,0"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
+        </Style>
+    </Page.Resources>
+    
     <Grid x:Name="LayoutRoot">
 
         <Hub x:Name="CoverHub" Background="{Binding CurrentPlayerItem.Fanart, Converter={StaticResource StringToImageBrushConverter}}">
@@ -18,10 +28,10 @@
             <HubSection x:Name="NowPlayingHubSection">
                 <HubSection.Header>
                     <StackPanel x:Name="NowPlayingHeaderWrapper" Orientation="Horizontal" Tapped="NowPlayingHeaderWrapper_Tapped">
-                        <BitmapIcon UriSource="/Assets/Icons/musicnote.png" Height="25" Foreground="{StaticResource PhoneForegroundBrush}" />
+                        <BitmapIcon UriSource="/Assets/Icons/nowplaying.png" Height="25" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
                             <TextBlock Text="NOW PLAYING" Margin="5,0,0,0"/>
-                            <TextBlock Text="open remote" Opacity="0.5" FontSize="15" Margin="5,-5,0,0" FontWeight="Normal"/>
+                            <TextBlock Text="open remote" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
@@ -97,7 +107,7 @@
                         <BitmapIcon UriSource="/Assets/Icons/musicnote.png" Height="25" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
                             <TextBlock Text="MUSIC" Margin="5,0,0,0"/>
-                            <TextBlock Text="see all music" Opacity="0.5" FontSize="15" Margin="5,-5,0,0" FontWeight="Thin"/>
+                            <TextBlock Text="see all music" Style="{StaticResource HubSectionHeaderSubHeaderStyle}" FontFamily="Global User Interface" />
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
@@ -136,8 +146,8 @@
                     <StackPanel x:Name="TVShowsHeaderWrapper" Orientation="Horizontal" Tapped="TVShowsHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/tv.png" Height="28" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
-                            <TextBlock Text="TV SHOWS" Margin="8,0,0,0"/>
-                            <TextBlock Text="see all shows" Opacity="0.5" FontSize="15" Margin="8,-5,0,0" FontWeight="Thin"/>
+                            <TextBlock Text="TV SHOWS" Margin="5,0,0,0" />
+                            <TextBlock Text="see all shows" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
@@ -180,8 +190,8 @@
                     <StackPanel x:Name="MoviesHeaderWrapper" Orientation="Horizontal" Tapped="MoviesHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/movie.png" Height="28" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
-                            <TextBlock Text="MOVIES" Margin="8,0,0,0"/>
-                            <TextBlock Text="see all movies" Opacity="0.5" FontSize="15" Margin="8,-5,0,0" FontWeight="Thin"/>
+                            <TextBlock Text="MOVIES" Margin="5,0,0,0"/>
+                            <TextBlock Text="see all movies" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>

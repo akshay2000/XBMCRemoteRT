@@ -221,6 +221,7 @@
     <Content Include="Assets\Icons\album.png" />
     <Content Include="Assets\Icons\movie.png" />
     <Content Include="Assets\Icons\musicnote.png" />
+    <Content Include="Assets\Icons\nowplaying.png" />
     <Content Include="Assets\Icons\singer.png" />
     <Content Include="Assets\Icons\tv.png" />
     <Content Include="Assets\Logo.scale-240.png" />

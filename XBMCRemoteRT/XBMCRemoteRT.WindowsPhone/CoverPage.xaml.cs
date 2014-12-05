@@ -204,7 +204,7 @@ namespace XBMCRemoteRT
 
         private void NowPlayingHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(InputPage));
         }
 
         private async void PreviousButton_Click(object sender, RoutedEventArgs e)
