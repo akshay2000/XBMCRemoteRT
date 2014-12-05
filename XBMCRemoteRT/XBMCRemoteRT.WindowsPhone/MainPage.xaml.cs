@@ -160,11 +160,6 @@ namespace XBMCRemoteRT
             Frame.Navigate(typeof(AboutPivot));
         }
 
-        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(FeedbackPage));
-        }
-
         private async Task ConnectToServer(ConnectionItem connectionItem)
         {
             SetPageState(PageStates.Connecting);
