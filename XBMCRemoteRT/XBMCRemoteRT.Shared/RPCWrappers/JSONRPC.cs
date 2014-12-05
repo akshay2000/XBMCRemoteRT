@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -37,8 +38,9 @@ namespace XBMCRemoteRT.RPCWrappers
             string responseString = await response.Content.ReadAsStringAsync();
             if (responseString.Length == 0)
                 return false;
-            dynamic responseObject = JObject.Parse(responseString);
-            bool isSuccessful = responseObject.result == "pong";
+            //dynamic responseObject = JObject.Parse(responseString);
+            JObject responseObject = JObject.Parse(responseString);
+            bool isSuccessful = responseObject["result"].ToString() == "pong";
             return isSuccessful;
         }
     }

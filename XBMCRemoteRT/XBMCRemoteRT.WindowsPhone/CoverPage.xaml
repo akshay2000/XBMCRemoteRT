@@ -21,7 +21,7 @@
                         <BitmapIcon UriSource="/Assets/Icons/musicnote.png" Height="25" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
                             <TextBlock Text="NOW PLAYING" Margin="5,0,0,0"/>
-                            <TextBlock Text="what should go here?" Opacity="0.5" FontSize="15" Margin="5,-5,0,0" FontWeight="Thin"/>
+                            <TextBlock Text="open remote" Opacity="0.5" FontSize="15" Margin="5,-5,0,0" FontWeight="Normal"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
