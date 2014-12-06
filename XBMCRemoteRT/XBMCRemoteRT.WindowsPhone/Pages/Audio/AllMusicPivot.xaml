@@ -35,7 +35,7 @@
                                         <Border x:Name="PlayArtistBorder" Tapped="PlayArtistBorder_Tapped" BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                             <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/singer.png" Foreground="{StaticResource PhoneForegroundBrush}" />
                                         </Border>
-                                        <TextBlock x:Name="ArtistNameTextBlock" Tapped="ArtistNameTextBlock_Tapped" Text="{Binding Label}" FontSize="28" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                        <TextBlock x:Name="ArtistNameTextBlock" Tapped="ArtistNameTextBlock_Tapped" Text="{Binding Label}" FontSize="28" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold" Pivot.SlideInAnimationGroup="GroupOne"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -61,7 +61,7 @@
                             </GridView.GroupStyle>
                             <GridView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid x:Name="AlbumArtWrapper" Tapped="AlbumArtWrapper_Tapped" Height="205" Background="{StaticResource PhoneChromeBrush}" Width="160" Margin="0,0,12,12" >
+                                    <Grid x:Name="AlbumArtWrapper" Tapped="AlbumArtWrapper_Tapped" Height="205" Background="{StaticResource PhoneChromeBrush}" Width="160" Margin="0,0,12,12" Pivot.SlideInAnimationGroup="GroupOne" >
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="160"/>
                                             <RowDefinition Height="auto"/>

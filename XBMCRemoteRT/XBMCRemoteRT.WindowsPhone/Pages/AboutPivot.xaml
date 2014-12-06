@@ -27,20 +27,20 @@
                 </PivotItem.Header>
                 <ScrollViewer>
                     <StackPanel>
-                        <TextBlock Text="APP" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                        <TextBlock Text="The app aims to be the ultimate remote control client for XBMC. The app is made open source in spirit of XBMC and all the source code is available at GitHub." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" />
-                        <TextBlock Text="PROJECT" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                        <TextBlock Text="This app is a part of an open source project. If you wish to contribute, feel free to do so at the URL below. Be sure to check out the project wiki before submitting pull requests." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
-                        <HyperlinkButton Content="http://git.io/S2Wj5A" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20"/>
-                        <TextBlock Text="DEVELOPER" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                        <HyperlinkButton x:Name="DevProfile" Content="Apps from Developer" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Click="DevProfile_Click" />
-                        <HyperlinkButton Content="Email Support" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20"/>
-                        <TextBlock Text="CREDITS" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="APP" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock Text="The app aims to be the ultimate remote control client for XBMC. The app is made open source in spirit of XBMC and all the source code is available at GitHub." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo" />
+                        <TextBlock Text="PROJECT" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock Text="This app is a part of an open source project. If you wish to contribute, feel free to do so at the URL below. Be sure to check out the project wiki before submitting pull requests." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        <HyperlinkButton Content="http://git.io/S2Wj5A" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        <TextBlock Text="DEVELOPER" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <HyperlinkButton x:Name="DevProfile" Content="Apps from Developer" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Click="DevProfile_Click" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        <HyperlinkButton Content="Email Support" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        <TextBlock Text="CREDITS" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Excellent designs by " Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
-                            <HyperlinkButton Content=" @AnaghSharma" Margin="0,-2,0,0" Foreground="{StaticResource PhoneAccentBrush}" NavigateUri="https://www.twitter.com/AnaghSharma" FontSize="20"/>
+                            <TextBlock Text="Excellent designs by " Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                            <HyperlinkButton Content=" @AnaghSharma" Margin="0,2,0,0" Foreground="{StaticResource PhoneAccentBrush}" NavigateUri="https://www.twitter.com/AnaghSharma" FontSize="20" Pivot.SlideInAnimationGroup="GroupTwo"/>
                         </StackPanel>
-                        <TextBlock Text="Very useful feedback by reddit community at /r/WindowsPhone." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                        <TextBlock Text="Very useful feedback by reddit community at /r/WindowsPhone." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
                         <Button BorderThickness="1.5" Height="70" Content="rate app" HorizontalAlignment="Stretch" x:Name="RateApp" Click="RateApp_Click" />
                     </StackPanel>
                 </ScrollViewer>
@@ -64,14 +64,14 @@
                 </PivotItem.Header>
             <ScrollViewer>
                     <StackPanel>
-                        <TextBlock Text="This app is part of open source project on GitHub. There are a number of ways you can contribute to it." Style="{StaticResource ParagraphTextStyle}"/>
-                        <TextBlock Text="REPORT ISSUES" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                        <TextBlock Text="Find something not working to perfection in app? Discovered a bug? Think something could be better? Just create issue at the URl below. One of the developers will get back to you as soon as possible." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
-                        <HyperlinkButton Content="Go to GitHub/issues" NavigateUri="http://github.com/akshay2000/XBMCRemoteRT/issues" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20"/>
-                        <TextBlock Text="CODE IN" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                        <TextBlock Text="Found something that you can fix or make better? Awesome. Create a fork of repository here and start coding. If we like your code, we will definitely accept it. You also get a thank you note!" Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
-                        <TextBlock Text="SEND GREETINGS" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                        <TextBlock Text="A simple gesture of gratitude can work wonders in open source community. You can contribute simply by sending a thank you note via a tweet, an email, a rating on Store or any other way you prefer. It means a lot to developers." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                        <TextBlock Text="This app is part of open source project on GitHub. There are a number of ways you can contribute to it." Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        <TextBlock Text="REPORT ISSUES" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock Text="Find something not working to perfection in app? Discovered a bug? Think something could be better? Just create issue at the URl below. One of the developers will get back to you as soon as possible." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        <HyperlinkButton Content="Go to GitHub/issues" NavigateUri="http://github.com/akshay2000/XBMCRemoteRT/issues" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        <TextBlock Text="CODE IN" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock Text="Found something that you can fix or make better? Awesome. Create a fork of repository here and start coding. If we like your code, we will definitely accept it. You also get a thank you note!" Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        <TextBlock Text="SEND GREETINGS" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock Text="A simple gesture of gratitude can work wonders in open source community. You can contribute simply by sending a thank you note via a tweet, an email, a rating on Store or any other way you prefer. It means a lot to developers." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>

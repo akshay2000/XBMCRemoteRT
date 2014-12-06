@@ -19,6 +19,11 @@
     </Page.Resources>
     
     <Grid x:Name="LayoutRoot">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
 
         <Hub x:Name="CoverHub" Background="{Binding CurrentPlayerItem.Fanart, Converter={StaticResource StringToImageBrushConverter}}">
             <Hub.Header>

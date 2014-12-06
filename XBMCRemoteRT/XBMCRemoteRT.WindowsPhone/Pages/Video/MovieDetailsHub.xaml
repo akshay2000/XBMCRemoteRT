@@ -8,7 +8,8 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot">      
+        
         <Hub Background="{Binding Fanart, Converter={StaticResource StringToImageBrushConverter}}">
             <Hub.Header>
                 <TextBlock Text="{Binding Label}" FontFamily="Segoe UI" FontWeight="Bold" FontSize="75" />
