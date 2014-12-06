@@ -106,6 +106,7 @@ namespace XBMCRemoteRT.Pages.Video
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendView("TVShowDetailsPage");
             this.navigationHelper.OnNavigatedTo(e);
         }
 
@@ -118,6 +119,7 @@ namespace XBMCRemoteRT.Pages.Video
 
         private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.UIInteraction, EventActions.Click, "TVShowDetailsHubEpisodeWrapper", 0);
             var tappedEpisode = (sender as StackPanel).DataContext as Episode;
             Player.PlayEpidose(tappedEpisode);
         }

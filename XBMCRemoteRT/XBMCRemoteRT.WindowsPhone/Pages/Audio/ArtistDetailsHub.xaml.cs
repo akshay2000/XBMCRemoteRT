@@ -107,6 +107,7 @@ namespace XBMCRemoteRT.Pages.Audio
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendView("ArtistDetailsPage");
             this.navigationHelper.OnNavigatedTo(e);
         }
 

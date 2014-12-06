@@ -136,6 +136,9 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="analytics.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="XBMCRemoteRT.Windows_TemporaryKey.pfx" />
   </ItemGroup>
@@ -155,6 +158,7 @@
     <Content Include="..\XBMCRemoteRT.WindowsPhone\Assets\Icons\tv.png">
       <Link>Assets\Icons\tv.png</Link>
     </Content>
+    <Content Include="analytics.xml" />
     <Content Include="Assets\DefaultArt.jpg" />
     <Content Include="Assets\Glyphs\add.png" />
     <Content Include="Assets\Glyphs\appbar.back.rest.png" />
@@ -240,6 +244,12 @@
     </Reference>
     <Reference Include="Coding4Fun.Toolkit.Controls">
       <HintPath>..\..\packages\Coding4Fun.Toolkit.Controls.2.0.8\lib\netcore451\Coding4Fun.Toolkit.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="GoogleAnalytics">
+      <HintPath>..\..\packages\GoogleAnalyticsSDK.1.2.12\lib\windows81\GoogleAnalytics.winmd</HintPath>
+    </Reference>
+    <Reference Include="GoogleAnalytics.Core">
+      <HintPath>..\..\packages\GoogleAnalyticsSDK.1.2.12\lib\windows81\GoogleAnalytics.Core.winmd</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\netcore45\Newtonsoft.Json.dll</HintPath>

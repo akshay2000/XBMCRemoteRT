@@ -107,6 +107,7 @@ namespace XBMCRemoteRT.Pages.Video
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendView("AllTVShowsPage");
             this.navigationHelper.OnNavigatedTo(e);
         }
 
@@ -126,10 +127,14 @@ namespace XBMCRemoteRT.Pages.Video
 
         private async void LoadTVShows()
         {
+            var loadStartTime = DateTime.Now;
+
             ConnectionManager.ManageSystemTray(true);
             allTVShows = await VideoLibrary.GetTVShows();
             AllTVShowsListView.ItemsSource = allTVShows;
             ConnectionManager.ManageSystemTray(false);
+
+            GlobalVariables.CurrentTracker.SendTiming(DateTime.Now.Subtract(loadStartTime), TimingCategories.LoadTime, "AllTVShows", "AllTVShows");
         }
         
         private void RefreshTVShowsAppBarButton_Click(object sender, RoutedEventArgs e)

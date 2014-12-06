@@ -22,6 +22,8 @@ using XBMCRemoteRT.Helpers;
 using Windows.UI.Popups;
 using System.Diagnostics;
 using XBMCRemoteRT.Pages;
+using GoogleAnalytics;
+using GoogleAnalytics.Core;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -46,7 +48,6 @@ namespace XBMCRemoteRT
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
-
         }
 
         /// <summary>
@@ -111,6 +112,9 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
+
+            GlobalVariables.CurrentTracker.SendView("MainPage");
+
             SetPageState(PageStates.Ready);
             Frame.BackStack.Clear();
             bool tryAutoLoad = true;
@@ -178,6 +182,7 @@ namespace XBMCRemoteRT
             }
             else
             {
+                GlobalVariables.CurrentTracker.SendException("Ping failed", false);
                 MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
                 await message.ShowAsync();
                 SetPageState(PageStates.Ready);

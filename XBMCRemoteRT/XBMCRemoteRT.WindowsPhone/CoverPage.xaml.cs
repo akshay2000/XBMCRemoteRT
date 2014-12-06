@@ -24,6 +24,8 @@ using XBMCRemoteRT.Pages.Video;
 using XBMCRemoteRT.Pages;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models;
+using GoogleAnalytics.Core;
+using GoogleAnalytics;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -126,6 +128,7 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
+            GlobalVariables.CurrentTracker.SendView("CoverPage");
             RefreshListsIfNull();
             Frame.BackStack.Clear();
         }
@@ -150,6 +153,7 @@ namespace XBMCRemoteRT
 
         private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.UIInteraction, EventActions.Click, "CoverPageEpisodeWrapper", 0);
             var tappedEpisode = (sender as Grid).DataContext as Episode;
             Player.PlayEpidose(tappedEpisode);
         }
@@ -184,6 +188,7 @@ namespace XBMCRemoteRT
 
         private void RemoteAppBarButton_Click(object sender, RoutedEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.UIInteraction, EventActions.Click, "RemoteAppBarButton", 0);
             Frame.Navigate(typeof(InputPage));
         }
 
@@ -204,6 +209,7 @@ namespace XBMCRemoteRT
 
         private void NowPlayingHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.UIInteraction, EventActions.Click, "NowPlayingHeader", 0);
             Frame.Navigate(typeof(InputPage));
         }
 

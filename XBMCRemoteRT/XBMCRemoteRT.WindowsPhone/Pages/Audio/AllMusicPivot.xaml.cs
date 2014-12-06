@@ -19,6 +19,7 @@ using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.RPCWrappers;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -110,6 +111,7 @@ namespace XBMCRemoteRT.Pages.Audio
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendView("AllMusicPage");
             this.navigationHelper.OnNavigatedTo(e);
         }
 
@@ -122,6 +124,8 @@ namespace XBMCRemoteRT.Pages.Audio
 
         private async void ReloadAll()
         {
+            var loadSartTime = DateTime.Now;
+
             ConnectionManager.ManageSystemTray(true);
             allArtists = await AudioLibrary.GetArtists();
             var groupedAllArtists = GroupingHelper.GroupList(allArtists, (Artist a) => { return a.Label; }, true);
@@ -136,6 +140,8 @@ namespace XBMCRemoteRT.Pages.Audio
             var groupedAllSongs = GroupingHelper.GroupList(allSongs, (Song s) => { return s.Label; }, true);
             SongsCVS.Source = groupedAllSongs;
             ConnectionManager.ManageSystemTray(false);
+
+            GlobalVariables.CurrentTracker.SendTiming((DateTime.Now.Subtract(loadSartTime)), TimingCategories.LoadTime, "AllMusic", "AllMusic");
         }
 
         private void PlayArtistBorder_Tapped(object sender, TappedRoutedEventArgs e)

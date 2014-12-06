@@ -101,6 +101,7 @@ namespace XBMCRemoteRT.Pages
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendView("AboutPage");
             this.navigationHelper.OnNavigatedTo(e);
         }
 

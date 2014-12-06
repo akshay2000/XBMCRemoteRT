@@ -109,6 +109,7 @@ namespace XBMCRemoteRT.Pages.Video
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendView("AllMoviesPage");
             this.navigationHelper.OnNavigatedTo(e);
         }
 
@@ -128,6 +129,8 @@ namespace XBMCRemoteRT.Pages.Video
 
         private async void LoadMovies()
         {
+            var loadStartTime = DateTime.Now;
+
             ConnectionManager.ManageSystemTray(true);
             allMovies = await VideoLibrary.GetMovies();
             AllMoviesListView.ItemsSource = allMovies;
@@ -138,6 +141,8 @@ namespace XBMCRemoteRT.Pages.Video
             watchedMovies = allMovies.Where(movie => movie.PlayCount > 0).ToList<Movie>();
             WatchedMoviesListView.ItemsSource = watchedMovies;
             ConnectionManager.ManageSystemTray(false);
+
+            GlobalVariables.CurrentTracker.SendTiming(DateTime.Now.Subtract(loadStartTime), TimingCategories.LoadTime, "AllMovies", "AllMovies");
         }
 
         private void SeachMoviesAppBarButton_Click(object sender, RoutedEventArgs e)

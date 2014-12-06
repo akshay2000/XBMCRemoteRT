@@ -104,6 +104,7 @@ namespace XBMCRemoteRT.Pages.Video
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendView("SearchMoviesPage");
             this.navigationHelper.OnNavigatedTo(e);
         }
 

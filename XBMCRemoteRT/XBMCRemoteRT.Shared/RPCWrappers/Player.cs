@@ -156,6 +156,7 @@ namespace XBMCRemoteRT.RPCWrappers
         //Extra player methods
         public static async void PlayArtist(Artist artist)
         {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.Programmatic, EventActions.Play, EventNames.PlayArtist, 0);
             await Playlist.Clear(PlayelistType.Audio);
             JObject artistItem = new JObject(new JProperty("artistid", artist.ArtistId));
             await Playlist.Add(PlayelistType.Audio, artistItem);
@@ -165,6 +166,7 @@ namespace XBMCRemoteRT.RPCWrappers
 
         public static async void PlayAlbum(Album album)
         {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.Programmatic, EventActions.Play, EventNames.PlayAlbum, 0);
             await Playlist.Clear(PlayelistType.Audio);
             JObject albumItem = new JObject(new JProperty("albumid", album.AlbumId));
             await Playlist.Add(PlayelistType.Audio, albumItem);
@@ -174,18 +176,21 @@ namespace XBMCRemoteRT.RPCWrappers
 
         public static async void PlayMovie(Movie movie)
         {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.Programmatic, EventActions.Play, EventNames.PlayMovie, 0);
             JObject playerItem = new JObject(new JProperty("movieid", movie.MovieId));
             await Player.Open(playerItem);
         }
 
         public static async void PlayEpidose(Episode episode)
         {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.Programmatic, EventActions.Play, EventNames.PlayEpisode, 0);
             JObject episodeToOpen = new JObject(new JProperty("episodeid", episode.EpisodeId));
             await Player.Open(episodeToOpen);
         }
 
         public static async void PlaySong(Song song)
         {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.Programmatic, EventActions.Play, EventNames.PlaySong, 0);
             JObject songToOpen = new JObject(new JProperty("songid", song.SongId));
             await Player.Open(songToOpen);
         }
