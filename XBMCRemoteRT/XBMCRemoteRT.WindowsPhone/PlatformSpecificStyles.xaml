@@ -15,10 +15,15 @@
     </Style>
     
     <Style TargetType="TextBlock" x:Key="ParagraphTextStyle" BasedOn="{StaticResource BodyTextBlockStyle}">
-        
+        <Setter Property="FontWeight" Value="SemiLight" />
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
     </Style>
-    
-    <Style TargetType="TextBlock" x:Key="ParagraphHeaderTextStyle" BasedOn="{StaticResource GroupHeaderTextBlockStyle}"/>
+
+    <Style TargetType="TextBlock" x:Key="ParagraphHeaderTextStyle">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="21"/>
+    </Style>
 
     <DataTemplate x:Key="PhoneGroupHeaderTemplate">
         <Border Background="Transparent" Padding="0,12">
