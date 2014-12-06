@@ -53,6 +53,9 @@ namespace XBMCRemoteRT.Pages.Audio
             songsInAlbum = await AudioLibrary.GetSongs(filter);
             SongsListView.ItemsSource = songsInAlbum;
 
+            TrackCountTextBlock.Text = songsInAlbum.Count.ToString();
+            TracksTextBlock.Text = songsInAlbum.Count > 1 ? "tracks" : "track";
+
             currentAlbum = await AudioLibrary.GetAlbumDetails(GlobalVariables.CurrentAlbum.AlbumId);
             AlbumInfoGrid.DataContext = currentAlbum;
             ConnectionManager.ManageSystemTray(false);
@@ -134,6 +137,11 @@ namespace XBMCRemoteRT.Pages.Audio
         {
             var tappedSong = (sender as StackPanel).DataContext as Song;
             Player.PlaySong(tappedSong);
+        }
+
+        private void PlayAlbumButton_Click(object sender, RoutedEventArgs e)
+        {
+            Player.PlayAlbum(GlobalVariables.CurrentAlbum);
         }
     }
 }
