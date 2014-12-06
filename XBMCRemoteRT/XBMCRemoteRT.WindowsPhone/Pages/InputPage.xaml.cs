@@ -19,6 +19,7 @@ using XBMCRemoteRT.RPCWrappers;
 using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Helpers;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -300,6 +301,18 @@ namespace XBMCRemoteRT.Pages
             control.IsEnabled = false;
             control.IsEnabled = true;
             control.IsTabStop = isTabStop;
+        }
+
+        private void TextInputButton_Click(object sender, RoutedEventArgs e)
+        {
+            SendTextBox.Visibility = Visibility.Visible;
+            (this.Resources["ShowSendTextBox"] as Storyboard).Begin();
+            SendTextBox.Focus(FocusState.Keyboard);
+        }
+
+        private void SendTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ((this.Resources["HideSendTextBox"]) as Storyboard).Begin();
         }
     }
 }

@@ -312,6 +312,38 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Storyboard x:Name="ShowSendTextBox">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="SendTextBox">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="-90"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<QuarticEase EasingMode="EaseOut"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="HideSendTextBox">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="SendTextBox">
+        		<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-90">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<QuinticEase EasingMode="EaseIn"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="SendTextBox">
+        		<DiscreteObjectKeyFrame KeyTime="0">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Visible</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Collapsed</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        	</ObjectAnimationUsingKeyFrames>
+        </Storyboard>
     </Page.Resources>
 
     <Page.Transitions>
@@ -343,7 +375,11 @@
 
         <!--<Image Source="/Assets/RemoteControl.png" Grid.RowSpan="10"/>-->
 
-        <TextBox x:Name="SendTextBox" Grid.Row="0" Margin="10,0" VerticalAlignment="Center" KeyUp="SendTextBox_KeyUp" />
+        <TextBox x:Name="SendTextBox" Grid.Row="0" Margin="10,0" VerticalAlignment="Center" KeyUp="SendTextBox_KeyUp" LostFocus="SendTextBox_LostFocus" Visibility="Collapsed" >
+        	<TextBox.Projection>
+        		<PlaneProjection RotationX="-90" CenterOfRotationZ="-20"/>
+        	</TextBox.Projection>
+        </TextBox>
 
         <Grid Grid.Row="1">
             <Grid Margin="0,2,0,0" Height="255" Width="260" HorizontalAlignment="Center" VerticalAlignment="Top">
@@ -466,7 +502,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <AppBarButton x:Name="GoBackButton" Click="GoBackButton_Click" Style="{StaticResource LargeRoundButton}" Margin="0,0,3,0">
+            <AppBarButton x:Name="GoBackButton" Click="GoBackButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="Undo"  RenderTransformOrigin="0.5,0.5">
                         <SymbolIcon.RenderTransform>
@@ -475,12 +511,12 @@
                     </SymbolIcon>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Name="HomeButton" Click="HomeButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,0,0" Grid.Column="1">
+            <AppBarButton x:Name="HomeButton" Click="HomeButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="1">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="Home"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Name="InputButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,0,0" Grid.Column="2">
+            <AppBarButton x:Name="TextInputButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="2" Click="TextInputButton_Click">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="Keyboard"/>
                 </AppBarButton.Icon>
