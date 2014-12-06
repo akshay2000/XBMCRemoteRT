@@ -155,6 +155,11 @@ namespace XBMCRemoteRT
             Frame.Navigate(typeof(AddConnectionPage));
         }
 
+        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Frame.Navigate(typeof(AddConnectionPage));
+        }
+
         private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(AboutPivot));
