@@ -27,24 +27,21 @@
                 </PivotItem.Header>
                 <ScrollViewer>
                     <StackPanel>
-                        <TextBlock Text="about app" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                        <TextBlock Text="The app aims to be the ultimate remote control client for XBMC. The app is made open source in spirit of XBMC and all the source code is available at GitHub." Style="{StaticResource ParagraphTextStyle}" />
-                        <TextBlock Text="about project" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                        <TextBlock Text="This app is a part of an open source project. If you wish to contribute, feel free to do so at the URL below. Be sure to check out the project wiki before submitting pull requests." Style="{StaticResource ParagraphTextStyle}"/>
-                        <TextBlock Text="http://git.io/S2Wj5A" Style="{StaticResource ParagraphTextStyle}"/>
-                        <TextBlock Text="about developer" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="APP" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="The app aims to be the ultimate remote control client for XBMC. The app is made open source in spirit of XBMC and all the source code is available at GitHub." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" />
+                        <TextBlock Text="PROJECT" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="This app is a part of an open source project. If you wish to contribute, feel free to do so at the URL below. Be sure to check out the project wiki before submitting pull requests." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                        <HyperlinkButton Content="http://git.io/S2Wj5A" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20"/>
+                        <TextBlock Text="DEVELOPER" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <HyperlinkButton x:Name="DevProfile" Content="Apps from Developer" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Click="DevProfile_Click" />
+                        <HyperlinkButton Content="Email Support" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20"/>
+                        <TextBlock Text="CREDITS" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock HorizontalAlignment="Left" Style="{StaticResource ParagraphTextStyle}" ><Run Text="apps from developer:"/></TextBlock>
-                            <TextBlock Text="akshay2000" Width="auto" x:Name="DevProfile"  HorizontalAlignment="Left" Style="{StaticResource ParagraphTextStyle}"/>
+                            <TextBlock Text="Excellent designs by " Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                            <HyperlinkButton Content=" @AnaghSharma" Margin="0,-2,0,0" Foreground="{StaticResource PhoneAccentBrush}" NavigateUri="https://www.twitter.com/AnaghSharma" FontSize="20"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock HorizontalAlignment="Left" Style="{StaticResource ParagraphTextStyle}"><Run Text="email support:"/></TextBlock>
-                            <TextBlock Text="appsupport@indestructible.in" x:Name="Email" HorizontalAlignment="Left" Style="{StaticResource ParagraphTextStyle}" />
-                        </StackPanel>
-                        <TextBlock Text="credits" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                        <TextBlock Text="Excellent designs by @AnaghSharma." Style="{StaticResource ParagraphTextStyle}"/>
-                        <TextBlock Text="Very useful feedback by reddit community at r/WindowsPhone." Style="{StaticResource ParagraphTextStyle}"/>
-                        <Button Content="Rate app" HorizontalAlignment="Stretch" x:Name="RateApp" Click="RateApp_Click" />
+                        <TextBlock Text="Very useful feedback by reddit community at /r/WindowsPhone." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                        <Button BorderThickness="1.5" Height="70" Content="rate app" HorizontalAlignment="Stretch" x:Name="RateApp" Click="RateApp_Click" />
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
@@ -56,7 +53,7 @@
                 <ScrollViewer>
                     <StackPanel>
                         <TextBox x:Name="FeedbackTextBox" Height="200" TextWrapping="Wrap" PlaceholderText="Enter your message here."/>
-                        <Button x:Name="SendFeedbackButton" Click="SendFeedbackButton_Click" Content="send feedback" HorizontalAlignment="Stretch"/>
+                        <Button x:Name="SendFeedbackButton" Click="SendFeedbackButton_Click" Content="send feedback" BorderThickness="1.5" Height="70" HorizontalAlignment="Stretch"/>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
@@ -68,13 +65,13 @@
             <ScrollViewer>
                     <StackPanel>
                         <TextBlock Text="This app is part of open source project on GitHub. There are a number of ways you can contribute to it." Style="{StaticResource ParagraphTextStyle}"/>
-                        <TextBlock Text="Report issues" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                        <TextBlock Text="Find something not working to perfection in app? Discovered a bug? Think something could be better? Just create issue at the URl below. One of the developers will get back to you as soon as possible." Style="{StaticResource ParagraphTextStyle}"/>
-                        <TextBlock Text="http://github.com/akshay2000/XBMCRemoteRT/issues" Style="{StaticResource ParagraphTextStyle}" />
-                        <TextBlock Text="Code in" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                        <TextBlock Text="Found something that you can fix or make better? Awesome. Create a fork of repository here and start coding. If we like your code, we will definitely accept it. You also get a thank you note!" Style="{StaticResource ParagraphTextStyle}"/>
-                        <TextBlock Text="Send greetings" Style="{StaticResource ParagraphHeaderTextStyle}"/>
-                        <TextBlock Text="A simple gesture of gratitude can work wonders in open source community. You can contribute simply by sending a thank you note via a tweet, an email, a rating on Store or any other way you prefer. It means a lot to developers." Style="{StaticResource ParagraphTextStyle}"/>
+                        <TextBlock Text="REPORT ISSUES" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="Find something not working to perfection in app? Discovered a bug? Think something could be better? Just create issue at the URl below. One of the developers will get back to you as soon as possible." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                        <HyperlinkButton Content="Go to GitHub/issues" NavigateUri="http://github.com/akshay2000/XBMCRemoteRT/issues" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20"/>
+                        <TextBlock Text="CODE IN" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="Found something that you can fix or make better? Awesome. Create a fork of repository here and start coding. If we like your code, we will definitely accept it. You also get a thank you note!" Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                        <TextBlock Text="SEND GREETINGS" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}"/>
+                        <TextBlock Text="A simple gesture of gratitude can work wonders in open source community. You can contribute simply by sending a thank you note via a tweet, an email, a rating on Store or any other way you prefer. It means a lot to developers." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
