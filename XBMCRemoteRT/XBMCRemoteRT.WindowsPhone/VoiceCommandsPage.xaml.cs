@@ -84,6 +84,7 @@ namespace XBMCRemoteRT
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendView("VoiceCommandsPage");
             var commandArgs = e.Parameter as VoiceCommandActivatedEventArgs;
             SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
             ExecuteVoiceCommand(speechRecognitionResult);
@@ -98,7 +99,7 @@ namespace XBMCRemoteRT
 
             string voiceCommandName = result.RulePath[0];
             string textSpoken = result.Text;
-
+            
             switch (voiceCommandName)
             {
                 case "PlayArtist":
@@ -191,6 +192,14 @@ namespace XBMCRemoteRT
                 default:
                     break;
             }
+            if (searchHitState == SearchHitState.Single)
+            {
+                GlobalVariables.CurrentTracker.SendEvent(EventCategories.VoiceCommand, EventActions.VoiceCommand, voiceCommandName, 1);
+            }
+            else if (searchHitState == SearchHitState.None)
+            {
+                GlobalVariables.CurrentTracker.SendEvent(EventCategories.VoiceCommand, EventActions.VoiceCommand, voiceCommandName, 0);
+            }
         }
 
         private async Task<bool> LoadAndConnnect()
@@ -231,6 +240,7 @@ namespace XBMCRemoteRT
 
         private void YesButton_Click(object sender, RoutedEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.VoiceCommand, EventActions.Click, "VoiceCommandYes", 0);
             switch (searchHitState)
             {
                 case SearchHitState.Single:
@@ -262,6 +272,7 @@ namespace XBMCRemoteRT
 
         private void NoButton_Click(object sender, RoutedEventArgs e)
         {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.VoiceCommand, EventActions.Click, "VoiceCommandNo", 0);
             if (searchHitState == SearchHitState.Single)
                 Player.Stop(GlobalVariables.CurrentPlayerState.PlayerType);
 

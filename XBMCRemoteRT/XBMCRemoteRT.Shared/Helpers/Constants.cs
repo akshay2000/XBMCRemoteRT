@@ -8,12 +8,14 @@ namespace XBMCRemoteRT.Helpers
     {
         public const string UIInteraction = "UIInteraction";
         public const string Programmatic = "Programmatic";
+        public const string VoiceCommand = "VoiceCommand";
     }
 
     public static class EventActions
     {
         public const string Click = "Click";
         public const string Play = "Play";
+        public const string VoiceCommand = "VoiceCommand";
     }
 
     public static class EventNames
