@@ -194,11 +194,11 @@ namespace XBMCRemoteRT
             }
             if (searchHitState == SearchHitState.Single)
             {
-                GlobalVariables.CurrentTracker.SendEvent(EventCategories.VoiceCommand, EventActions.VoiceCommand, voiceCommandName, 1);
+                GlobalVariables.CurrentTracker.SendEvent(EventCategories.VoiceCommand, EventActions.VoiceCommand, "Single" + voiceCommandName, 0);
             }
             else if (searchHitState == SearchHitState.None)
             {
-                GlobalVariables.CurrentTracker.SendEvent(EventCategories.VoiceCommand, EventActions.VoiceCommand, voiceCommandName, 0);
+                GlobalVariables.CurrentTracker.SendEvent(EventCategories.VoiceCommand, EventActions.VoiceCommand, "Zero" + voiceCommandName, 0);
             }
         }
 
