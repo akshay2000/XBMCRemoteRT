@@ -15,9 +15,9 @@
     </Style>
     
     <Style TargetType="TextBlock" x:Key="ParagraphTextStyle" BasedOn="{StaticResource BodyTextBlockStyle}">
-        <Setter Property="FontWeight" Value="SemiLight" />
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="FontFamily" Value="Segoe WP SemiLight"/>
     </Style>
 
     <Style TargetType="TextBlock" x:Key="ParagraphHeaderTextStyle">

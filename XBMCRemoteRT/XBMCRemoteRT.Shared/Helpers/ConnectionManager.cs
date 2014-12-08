@@ -87,7 +87,6 @@ namespace XBMCRemoteRT.Helpers
             }
             else
             {
-                GlobalVariables.CurrentTracker.SendException("HttpRequest Failed", true);
                 MessageDialog msg = new MessageDialog("Make sure Kodi is running and you're connected.", "Server not found");
                 await msg.ShowAsync();
                 return new JObject();
