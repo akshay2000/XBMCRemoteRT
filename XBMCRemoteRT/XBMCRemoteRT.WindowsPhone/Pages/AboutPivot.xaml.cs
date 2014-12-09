@@ -126,5 +126,10 @@ namespace XBMCRemoteRT.Pages
         {
             await Launcher.LaunchUriAsync(new Uri(string.Format("ms-windows-store:search?publisher=akshay2000")));
         }
+
+        private void AppSupportButton_Click(object sender, RoutedEventArgs e)
+        {
+            AboutDetailsPivot.SelectedIndex = 1;
+        }
     }
 }

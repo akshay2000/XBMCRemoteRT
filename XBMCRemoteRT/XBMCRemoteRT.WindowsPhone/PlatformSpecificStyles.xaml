@@ -25,6 +25,12 @@
         <Setter Property="FontSize" Value="21"/>
     </Style>
 
+    <Style TargetType="RichTextBlock" x:Key="RichParagraphTextStyle" BasedOn="{StaticResource BodyRichTextBlockStyle}" >
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="FontFamily" Value="Segoe WP SemiLight"/>
+    </Style>
+
     <DataTemplate x:Key="PhoneGroupHeaderTemplate">
         <Border Background="Transparent" Padding="0,12">
             <Border BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="2,2,2,5" Width="50" Height="50" Margin="0,0,0,0" HorizontalAlignment="Left">
