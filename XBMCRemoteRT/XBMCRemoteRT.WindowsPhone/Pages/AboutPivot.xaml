@@ -33,12 +33,12 @@
                         <TextBlock Text="This app is a part of an open source project. If you wish to contribute, feel free to do so at the URL below. Be sure to check out the project wiki before submitting pull requests." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
                         <HyperlinkButton Content="http://git.io/vp16eg" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Pivot.SlideInAnimationGroup="GroupThree" NavigateUri="http://git.io/vp16eg"/>
                         <TextBlock Text="DEVELOPER" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <HyperlinkButton x:Name="DevProfile" Content="Apps from Developer" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Click="DevProfile_Click" Pivot.SlideInAnimationGroup="GroupThree"/>
+                        <HyperlinkButton x:Name="DevProfile" Content="Apps from the developer" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Click="DevProfile_Click" Pivot.SlideInAnimationGroup="GroupThree"/>
                         <HyperlinkButton x:Name="AppSupportButton" Content="App Support" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Pivot.SlideInAnimationGroup="GroupThree" Click="AppSupportButton_Click"/>
                         <TextBlock Text="CREDITS" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
                         <RichTextBlock Style="{StaticResource RichParagraphTextStyle}" Margin="0,5,0,0"  Pivot.SlideInAnimationGroup="GroupTwo">
                             <Paragraph>Excellent designs by
-                                <Hyperlink NavigateUri="http://www.twitter.com/AnaghSharma" Foreground="{StaticResource PhoneAccentBrush}">@AnaghSharma</Hyperlink> .
+                                <Hyperlink NavigateUri="http://www.twitter.com/AnaghSharma" Foreground="{StaticResource PhoneAccentBrush}">@AnaghSharma</Hyperlink>.
                             </Paragraph>
                         </RichTextBlock>
                         
