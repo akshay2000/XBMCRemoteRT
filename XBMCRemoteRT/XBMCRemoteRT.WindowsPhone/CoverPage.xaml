@@ -170,7 +170,7 @@
                                         </Image.Source>
                                     </Image>
                                     <Border Margin="10,145,0,0" Height="60" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
-                                        <Image Source="Assets/Icons/tv.png" Margin="17" />
+                                        <Image Source="Assets/Icons/tv.png" Margin="17,20,17,17" />
                                     </Border>
                                     <TextBlock Text="{Binding Label}" HorizontalAlignment="Right" TextAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5,0,5,2" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16" FontWeight="Bold"/>
                                 </Grid>
