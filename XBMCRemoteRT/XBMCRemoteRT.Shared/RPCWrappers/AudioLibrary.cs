@@ -150,5 +150,10 @@ namespace XBMCRemoteRT.RPCWrappers
             List<Album> listToReturn = albumListObject != null ? albumListObject.ToObject<List<Album>>() : new List<Album>();
             return listToReturn;
         }
+
+        public static async void Scan()
+        {
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("AudioLibrary.Scan");
+        }
     }
 }

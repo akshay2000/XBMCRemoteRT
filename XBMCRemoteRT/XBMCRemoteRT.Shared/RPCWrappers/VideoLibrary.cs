@@ -162,5 +162,10 @@ namespace XBMCRemoteRT.RPCWrappers
             List<Episode> listToReturn = episodeListObject != null ? episodeListObject.ToObject<List<Episode>>() : new List<Episode>();
             return listToReturn;
         }
+
+        public static async void Scan()
+        {
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.Scan");
+        }
     }
 }
