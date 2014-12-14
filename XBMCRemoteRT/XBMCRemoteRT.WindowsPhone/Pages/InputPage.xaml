@@ -500,6 +500,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <AppBarButton x:Name="GoBackButton" Click="GoBackButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0">
@@ -519,6 +520,11 @@
             <AppBarButton x:Name="TextInputButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="2" Click="TextInputButton_Click">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="Keyboard"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Name="SubtitlesButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="SubtitlesButton_Click">
+                <AppBarButton.Icon>
+                    <SymbolIcon Symbol="ClosedCaption"/>
                 </AppBarButton.Icon>
             </AppBarButton>
         </Grid>

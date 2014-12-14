@@ -325,5 +325,10 @@ namespace XBMCRemoteRT.Pages
         {
             VideoLibrary.Scan();
         }
+
+        private void SubtitlesButton_Click(object sender, RoutedEventArgs e)
+        {
+            Input.ExecuteAction("nextsubtitle");
+        }
     }
 }
