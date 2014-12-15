@@ -28,7 +28,7 @@
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,0">
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
             <ListView x:Name="SearchMoviesListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -40,14 +40,18 @@
                             </Image>
                             <Image VerticalAlignment="Top" Stretch="UniformToFill" >
                                 <Image.Source>
-                                    <BitmapImage DecodePixelHeight="144" DecodePixelType="Logical" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                    <BitmapImage DecodePixelWidth="380" DecodePixelType="Logical" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                                 </Image.Source>
                             </Image>
                             <Rectangle Fill="#FF1F1F1F" Opacity="0.7" />
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                <BitmapIcon Foreground="White" UriSource="ms-appx:///Assets/Icons/movie.png" Height="25" />
-                                <TextBlock Text="{Binding Label, Converter={StaticResource ToUpperConverter}}" FontSize="22" FontWeight="ExtraBlack" Margin="10,0,0,0" TextWrapping="Wrap" Foreground="White"/>
-                            </StackPanel>
+                            <Grid HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <BitmapIcon Margin="10,0" Foreground="White" UriSource="ms-appx:///Assets/Icons/movie.png" Height="25" />
+                                <TextBlock Text="{Binding Label, Converter={StaticResource ToUpperConverter}}" FontSize="22" FontWeight="ExtraBlack" TextWrapping="Wrap" Foreground="White" Grid.Column="1" VerticalAlignment="Center"/>
+                            </Grid>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
