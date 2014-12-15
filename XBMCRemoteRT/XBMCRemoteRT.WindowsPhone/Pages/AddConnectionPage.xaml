@@ -21,14 +21,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="12,0,0,0">
-            <TextBlock Text="{StaticResource AppName}" Style="{StaticResource PageTitleTextStyle}"/>
-            <TextBlock Text="add connection" FontSize="40" FontWeight="Bold" />
+            <TextBlock Text="{StaticResource AppName}" Margin="3,12,0,-8"  Style="{StaticResource PageTitleTextStyle}"/>
+            <TextBlock Text="ADD CONNECTION" Style="{StaticResource PageHeaderTextStyle}" />
         </StackPanel>
 
-        <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,0">
             <ScrollViewer>
                 <StackPanel>
                     <TextBox x:Name="NameTextBox" InputScope="NameOrPhoneNumber" Header="Name"/>
@@ -36,7 +34,7 @@
                     <TextBox x:Name="PortTextBox" InputScope="Number" Text="80" Header="Port"/>
                     <TextBox x:Name="UsernameTextBox" Text="xbmc" Header="Username"/>
                     <TextBox x:Name="PasswordTextBox" Header="Password"/>
-                    <TextBlock Text="Note: Usernames and passwords are stored and transmitted in plain text. Make sure you are not using the same password anywhere else" TextWrapping="Wrap" />
+                    <TextBlock Text="Note: Usernames and passwords are stored and transmitted in plain text. Make sure you are not using the same password anywhere else" Style="{StaticResource ParagraphTextStyle}" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>

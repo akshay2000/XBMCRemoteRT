@@ -23,8 +23,8 @@
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="12,0,0,0">
-            <TextBlock Text="{StaticResource AppName}" FontWeight="Light" Margin="0,12,0,0" FontSize="18"/>
-            <TextBlock Text="connections" FontSize="40" FontWeight="Bold" />
+            <TextBlock Text="{StaticResource AppName}" Margin="3,12,0,-8"  Style="{StaticResource PageTitleTextStyle}"/>
+            <TextBlock Text="CONNECTIONS" Style="{StaticResource PageHeaderTextStyle}" />
         </StackPanel>
 
         <!--Content should be placed within the following grid-->

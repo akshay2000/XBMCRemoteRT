@@ -22,13 +22,13 @@
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="KODI ASSIST" Style="{StaticResource PageTitleTextStyle}"/>
-            <TextBlock Text="songs" Margin="0,-6.5,0,0" FontSize="40" FontWeight="Bold" />
+        <StackPanel Grid.Row="0" Margin="12,0,0,0">
+            <TextBlock Text="KODI ASSIST" Margin="3,12,0,-8"  Style="{StaticResource PageTitleTextStyle}"/>
+            <TextBlock Text="SONGS" Style="{StaticResource PageHeaderTextStyle}"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
             <ScrollViewer>
                 <StackPanel>
                     <Grid x:Name="AlbumInfoGrid" Background="{StaticResource PhoneChromeBrush}">

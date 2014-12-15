@@ -4,14 +4,15 @@
     xmlns:local="using:XBMCRemoteRT">
 
     <Style x:Key="PageTitleTextStyle" TargetType="TextBlock">
-        <Setter Property="FontWeight" Value="Light"/>
         <Setter Property="FontSize" Value="18"/>
-        <Setter Property="FontFamily" Value="Global User Interface"/>
+        <Setter Property="FontFamily" Value="Segoe WP"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
     
-    <Style TargetType="TextBlock" x:Key="PivotItemHeaderTextStyle">
+    <Style TargetType="TextBlock" x:Key="PageHeaderTextStyle">
         <Setter Property="FontSize" Value="40"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Segoe WP"/>
     </Style>
     
     <Style TargetType="TextBlock" x:Key="ParagraphTextStyle" BasedOn="{StaticResource BodyTextBlockStyle}">

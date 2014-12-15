@@ -23,12 +23,12 @@
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="12,0,12,10">
-            <TextBlock Text="search movies" Style="{StaticResource PageTitleTextStyle}"/>
+            <TextBlock Text="SEARCH MOVIES" Style="{StaticResource PageTitleTextStyle}"/>
             <TextBox x:Name="SearchMoviesTextBox" InputScope="Search" Margin="0,10,0,0" KeyUp="SearchMoviesTextBox_KeyUp" Loaded="SearchMoviesTextBox_Loaded" />
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,0">
             <ListView x:Name="SearchMoviesListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>

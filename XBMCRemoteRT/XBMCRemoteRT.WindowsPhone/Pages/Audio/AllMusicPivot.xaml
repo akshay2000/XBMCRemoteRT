@@ -21,7 +21,7 @@
             </Pivot.Title>
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="artists" Style="{StaticResource PivotItemHeaderTextStyle}"/>
+                    <TextBlock Text="ARTISTS" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
@@ -51,7 +51,7 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="albums" Style="{StaticResource PivotItemHeaderTextStyle}"/>
+                    <TextBlock Text="ALBUMS" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
@@ -97,7 +97,7 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="songs" Style="{StaticResource PivotItemHeaderTextStyle}"/>
+                    <TextBlock Text="SONGS" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>

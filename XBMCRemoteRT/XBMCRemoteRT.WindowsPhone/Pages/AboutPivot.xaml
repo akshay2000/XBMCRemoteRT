@@ -23,7 +23,7 @@
             
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="about" Style="{StaticResource PivotItemHeaderTextStyle}"/>
+                    <TextBlock Text="ABOUT" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
                     <StackPanel>
@@ -67,7 +67,7 @@
             
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="feedback" Style="{StaticResource PivotItemHeaderTextStyle}"/>
+                    <TextBlock Text="FEEDBACK" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
                     <StackPanel>
@@ -79,7 +79,7 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="contribute" Style="{StaticResource PivotItemHeaderTextStyle}"/>
+                    <TextBlock Text="CONTRIBUTE" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
             <ScrollViewer>
                     <StackPanel>
