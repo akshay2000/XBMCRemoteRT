@@ -99,13 +99,11 @@
                                 </ListView.GroupStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel x:Name="EpisodeWrapper" Orientation="Horizontal" Margin="0,10" Tapped="EpisodeWrapper_Tapped">
+                                        <StackPanel x:Name="EpisodeWrapper" Orientation="Horizontal" Margin="0,10" Tapped="EpisodeWrapper_Tapped" Opacity="{Binding PlayCount, Converter={StaticResource CountToOpacityConverter}}">
                                             <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                                 <BitmapIcon Margin="12" UriSource="/Assets/Icons/tv.png" Foreground="{StaticResource PhoneForegroundBrush}" />
                                             </Border>
-                                            <StackPanel Margin="10,-2,0,0"  VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding Label}" FontSize="25" FontWeight="SemiBold"/>
-                                            </StackPanel>
+                                            <TextBlock Text="{Binding Label}" FontSize="25" Margin="10,-2,0,0" FontWeight="SemiBold" VerticalAlignment="Center"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
