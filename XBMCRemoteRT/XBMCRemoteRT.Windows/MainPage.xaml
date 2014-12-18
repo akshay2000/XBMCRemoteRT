@@ -39,7 +39,7 @@
             <TextBlock Text="connections" FontSize="40" FontWeight="Bold" Grid.Row="1"/>
         </Grid>
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
-            <ListView x:Name="ConnectionsListView" ItemsSource="{Binding ConnectionItems}" SelectionMode="None">
+            <ListView x:Name="ConnectionsListView" ItemsSource="{Binding ConnectionItems}" SelectionMode="Single">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel x:Name="ConnectionItemWrapper" Tapped="ConnectionItemWrapper_Tapped" RightTapped="ConnectionItemWrapper_OnRightTapped">

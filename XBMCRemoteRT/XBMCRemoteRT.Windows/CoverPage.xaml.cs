@@ -21,6 +21,7 @@ using XBMCRemoteRT.Models.Common;
 using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.Pages;
 using XBMCRemoteRT.Pages.Audio;
+using XBMCRemoteRT.Pages.Video;
 using XBMCRemoteRT.RPCWrappers;
 
 namespace XBMCRemoteRT
@@ -178,7 +179,7 @@ namespace XBMCRemoteRT
 
         private void MoviesHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            //Frame.Navigate(typeof(AllMoviesPivot));
+            Frame.Navigate(typeof(AllMoviesPage));
         }
 
         private async void PreviousButton_Click(object sender, RoutedEventArgs e)

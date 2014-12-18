@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using Windows.UI.Popups;
-using XBMCRemoteRT.Common;
+﻿using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,21 +16,23 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using XBMCRemoteRT.Helpers;
-using XBMCRemoteRT.Models;
-using XBMCRemoteRT.Pages;
+using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.RPCWrappers;
 
-namespace XBMCRemoteRT
+namespace XBMCRemoteRT.Pages.Video
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class AllMoviesPage : Page
     {
-        private enum PageStates { Ready, Connecting }
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+
+        private List<Movie> allMovies;
+        private List<Movie> unwatchedMovies;
+        private List<Movie> watchedMovies;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -52,12 +52,14 @@ namespace XBMCRemoteRT
         }
 
 
-        public MainPage()
+        public AllMoviesPage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+
+            FilterComboBox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -101,12 +103,7 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
-
-            bool showConnections = e.Parameter as bool? ?? false;
-
-            LoadConnections();
-            if (!showConnections)
-                ConnnectToRecentIp();
+            LoadMovies();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -116,102 +113,60 @@ namespace XBMCRemoteRT
 
         #endregion
 
-        private async void LoadConnections()
+        private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            await App.ConnectionsVM.ReloadConnections();
-            DataContext = App.ConnectionsVM;
+            Movie tappedMovie = (sender as Grid).DataContext as Movie;
+            GlobalVariables.CurrentMovie = tappedMovie;
+            Frame.Navigate(typeof(MovieDetailsHub));
         }
 
-        private async void ConnnectToRecentIp()
+        private async void LoadMovies()
         {
-            var ip = (string)SettingsHelper.GetValue("RecentServerIP");
-            if (ip != null)
+            ProgressRing.IsActive = true;
+            ConnectionManager.ManageSystemTray(true);
+
+            allMovies = await VideoLibrary.GetMovies();
+            unwatchedMovies = allMovies.Where(movie => movie.PlayCount == 0).ToList<Movie>();
+            watchedMovies = allMovies.Where(movie => movie.PlayCount > 0).ToList<Movie>();
+
+            var groupedAllMovies = GroupingHelper.GroupList(allMovies, (Movie a) => a.Label, true);
+            AllCVS.Source = groupedAllMovies;
+            (AllSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = AllCVS.View.CollectionGroups;
+
+            var groupedUnwatchedMovies = GroupingHelper.GroupList(unwatchedMovies, (Movie a) => a.Label, true);
+            NewCVS.Source = groupedUnwatchedMovies;
+            (NewSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = NewCVS.View.CollectionGroups;
+
+            var groupedWatchedMovies = GroupingHelper.GroupList(watchedMovies, (Movie a) => a.Label, true);
+            WatchedCVS.Source = groupedWatchedMovies;
+            (WatchedSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = WatchedCVS.View.CollectionGroups;
+
+            ConnectionManager.ManageSystemTray(false);
+            ProgressRing.IsActive = false;
+        }
+
+        private void FilterComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var choice = (sender as ComboBox).SelectedValue.ToString();
+
+            switch (choice)
             {
-                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
-                if (connectionItem != null)
-                    await ConnectToServer(connectionItem);
+                case "All":
+                    AllCVSGrid.Visibility = Visibility.Visible;
+                    NewCVSGrid.Visibility = Visibility.Collapsed;
+                    WatchedCVSGrid.Visibility = Visibility.Collapsed;
+                    break;
+                case "New":
+                    NewCVSGrid.Visibility = Visibility.Visible;
+                    AllCVSGrid.Visibility = Visibility.Collapsed;
+                    WatchedCVSGrid.Visibility = Visibility.Collapsed;
+                    break;
+                case "Watched":
+                    WatchedCVSGrid.Visibility = Visibility.Visible;
+                    AllCVSGrid.Visibility = Visibility.Collapsed;
+                    NewCVSGrid.Visibility = Visibility.Collapsed;
+                    break;
             }
-        }
-
-        private async Task ConnectToServer(ConnectionItem connectionItem)
-        {
-            SetPageState(PageStates.Connecting);
-            bool isSuccessful = false;
-            try
-            {
-                isSuccessful = await JSONRPC.Ping(connectionItem);
-            }
-            catch
-            {
-                isSuccessful = false;
-            }
-            if (isSuccessful)
-            {
-                ConnectionManager.CurrentConnection = connectionItem;
-                SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
-                Frame.Navigate(typeof(CoverPage));
-            }
-            else
-            {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-                await message.ShowAsync();
-                SetPageState(PageStates.Ready);
-            }
-        }
-
-        private void SetPageState(PageStates pageState)
-        {
-            if (pageState == PageStates.Connecting)
-            {
-                ConnectionsListView.IsEnabled = false;
-                BottomAppBar.Visibility = Visibility.Collapsed;
-                ProgressRing.IsActive = true;
-            }
-            else
-            {
-                ConnectionsListView.IsEnabled = true;
-                BottomAppBar.Visibility = Visibility.Visible;
-                ProgressRing.IsActive = false;
-            }
-        }
-
-        private void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as StackPanel).DataContext;
-            ConnectToServer(selectedConnection);
-        }
-
-        private void AddConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AddConnectionPage));
-        }
-
-        private void DeleteConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            App.ConnectionsVM.RemoveConnectionItem(selectedConnection);
-        }
-
-        private void EditConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            Frame.Navigate(typeof(EditConnectionPage), selectedConnection);
-        }
-
-
-        private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ConnectionItemWrapper_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
         }
     }
 }
