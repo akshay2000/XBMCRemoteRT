@@ -24,15 +24,14 @@ namespace XBMCRemoteRT.Pages.Video
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class AllMoviesPage : Page
+    public sealed partial class SearchMoviesPage : Page
     {
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
         private List<Movie> allMovies;
-        private List<Movie> unwatchedMovies;
-        private List<Movie> watchedMovies;
+        private List<Movie> filteredMovies;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -52,14 +51,12 @@ namespace XBMCRemoteRT.Pages.Video
         }
 
 
-        public AllMoviesPage()
+        public SearchMoviesPage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
-
-            FilterComboBox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -103,7 +100,6 @@ namespace XBMCRemoteRT.Pages.Video
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
-            LoadMovies();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -113,6 +109,31 @@ namespace XBMCRemoteRT.Pages.Video
 
         #endregion
 
+        private void SearchMoviesTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                LoseFocus(sender);
+                SearchAndReload(SearchMoviesTextBox.Text);
+            }
+        }
+
+        private async void SearchAndReload(string query)
+        {
+            ConnectionManager.ManageSystemTray(true);
+            if (allMovies == null)
+                allMovies = await VideoLibrary.GetMovies();
+
+            filteredMovies = allMovies.Where(t => t.Title.ToLower().Contains(query.ToLower())).ToList();
+            SearchMoviesListView.ItemsSource = filteredMovies;
+            ConnectionManager.ManageSystemTray(false);
+        }
+
+        private void SearchMoviesTextBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            SearchMoviesTextBox.Focus(FocusState.Keyboard);
+        }
+
         private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Movie tappedMovie = (sender as Grid).DataContext as Movie;
@@ -120,63 +141,15 @@ namespace XBMCRemoteRT.Pages.Video
             Frame.Navigate(typeof(MovieDetailsHub));
         }
 
-        private async void LoadMovies()
+        private void LoseFocus(object sender)
         {
-            ProgressRing.IsActive = true;
-            ConnectionManager.ManageSystemTray(true);
-
-            allMovies = await VideoLibrary.GetMovies();
-            unwatchedMovies = allMovies.Where(movie => movie.PlayCount == 0).ToList<Movie>();
-            watchedMovies = allMovies.Where(movie => movie.PlayCount > 0).ToList<Movie>();
-
-            var groupedAllMovies = GroupingHelper.GroupList(allMovies, (Movie a) => a.Label, true);
-            AllCVS.Source = groupedAllMovies;
-            (AllSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = AllCVS.View.CollectionGroups;
-
-            var groupedUnwatchedMovies = GroupingHelper.GroupList(unwatchedMovies, (Movie a) => a.Label, true);
-            NewCVS.Source = groupedUnwatchedMovies;
-            (NewSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = NewCVS.View.CollectionGroups;
-
-            var groupedWatchedMovies = GroupingHelper.GroupList(watchedMovies, (Movie a) => a.Label, true);
-            WatchedCVS.Source = groupedWatchedMovies;
-            (WatchedSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = WatchedCVS.View.CollectionGroups;
-
-            ConnectionManager.ManageSystemTray(false);
-            ProgressRing.IsActive = false;
+            var control = sender as Control;
+            var isTabStop = control.IsTabStop;
+            control.IsTabStop = false;
+            control.IsEnabled = false;
+            control.IsEnabled = true;
+            control.IsTabStop = isTabStop;
         }
 
-        private void FilterComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var choice = (sender as ComboBox).SelectedValue.ToString();
-
-            switch (choice)
-            {
-                case "All":
-                    AllCVSGrid.Visibility = Visibility.Visible;
-                    NewCVSGrid.Visibility = Visibility.Collapsed;
-                    WatchedCVSGrid.Visibility = Visibility.Collapsed;
-                    break;
-                case "New":
-                    NewCVSGrid.Visibility = Visibility.Visible;
-                    AllCVSGrid.Visibility = Visibility.Collapsed;
-                    WatchedCVSGrid.Visibility = Visibility.Collapsed;
-                    break;
-                case "Watched":
-                    WatchedCVSGrid.Visibility = Visibility.Visible;
-                    AllCVSGrid.Visibility = Visibility.Collapsed;
-                    NewCVSGrid.Visibility = Visibility.Collapsed;
-                    break;
-            }
-        }
-
-        private void SeachMoviesAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(SearchMoviesPage));
-        }
-
-        private void RefreshMoviesAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            LoadMovies();
-        }
     }
 }

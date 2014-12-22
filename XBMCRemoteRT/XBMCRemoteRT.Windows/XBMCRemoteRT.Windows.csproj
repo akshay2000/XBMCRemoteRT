@@ -133,6 +133,9 @@
     <Compile Include="Pages\Video\MovieDetailsHub.xaml.cs">
       <DependentUpon>MovieDetailsHub.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Video\SearchMoviesPage.xaml.cs">
+      <DependentUpon>SearchMoviesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\ColumnGridView.xaml.cs">
       <DependentUpon>ColumnGridView.xaml</DependentUpon>
@@ -239,6 +242,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Video\MovieDetailsHub.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Video\SearchMoviesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

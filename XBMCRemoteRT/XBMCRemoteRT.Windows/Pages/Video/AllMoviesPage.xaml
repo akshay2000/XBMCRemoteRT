@@ -140,4 +140,14 @@
         </Grid>
         <ProgressRing x:Name="ProgressRing" IsActive="False" Height="50" Width="50" Grid.RowSpan="10" />
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="RefreshMoviesAppBarButton" Click="RefreshMoviesAppBarButton_Click" Label="refresh" Icon="Refresh"/>
+                <AppBarButton x:Name="SeachMoviesAppBarButton" Click="SeachMoviesAppBarButton_Click" Label="search" Icon="Find" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
 </Page>
