@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using Windows.UI.Popups;
-using XBMCRemoteRT.Common;
+﻿using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,21 +16,22 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using XBMCRemoteRT.Helpers;
-using XBMCRemoteRT.Models;
-using XBMCRemoteRT.Pages;
+using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.RPCWrappers;
 
-namespace XBMCRemoteRT
+namespace XBMCRemoteRT.Pages.Video
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class SearchMoviesPage : Page
     {
-        private enum PageStates { Ready, Connecting }
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+
+        private List<Movie> allMovies;
+        private List<Movie> filteredMovies;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -52,7 +51,7 @@ namespace XBMCRemoteRT
         }
 
 
-        public MainPage()
+        public SearchMoviesPage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -101,12 +100,6 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
-
-            bool showConnections = e.Parameter as bool? ?? false;
-
-            LoadConnections();
-            if (!showConnections)
-                ConnnectToRecentIp();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -116,102 +109,47 @@ namespace XBMCRemoteRT
 
         #endregion
 
-        private async void LoadConnections()
+        private void SearchMoviesTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            await App.ConnectionsVM.ReloadConnections();
-            DataContext = App.ConnectionsVM;
-        }
-
-        private async void ConnnectToRecentIp()
-        {
-            var ip = (string)SettingsHelper.GetValue("RecentServerIP");
-            if (ip != null)
+            if (e.Key == Windows.System.VirtualKey.Enter)
             {
-                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
-                if (connectionItem != null)
-                    await ConnectToServer(connectionItem);
+                LoseFocus(sender);
+                SearchAndReload(SearchMoviesTextBox.Text);
             }
         }
 
-        private async Task ConnectToServer(ConnectionItem connectionItem)
+        private async void SearchAndReload(string query)
         {
-            SetPageState(PageStates.Connecting);
-            bool isSuccessful = false;
-            try
-            {
-                isSuccessful = await JSONRPC.Ping(connectionItem);
-            }
-            catch
-            {
-                isSuccessful = false;
-            }
-            if (isSuccessful)
-            {
-                ConnectionManager.CurrentConnection = connectionItem;
-                SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
-                Frame.Navigate(typeof(CoverPage));
-            }
-            else
-            {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-                await message.ShowAsync();
-                SetPageState(PageStates.Ready);
-            }
+            ConnectionManager.ManageSystemTray(true);
+            if (allMovies == null)
+                allMovies = await VideoLibrary.GetMovies();
+
+            filteredMovies = allMovies.Where(t => t.Title.ToLower().Contains(query.ToLower())).ToList();
+            SearchMoviesListView.ItemsSource = filteredMovies;
+            ConnectionManager.ManageSystemTray(false);
         }
 
-        private void SetPageState(PageStates pageState)
+        private void SearchMoviesTextBox_Loaded(object sender, RoutedEventArgs e)
         {
-            if (pageState == PageStates.Connecting)
-            {
-                ConnectionsListView.IsEnabled = false;
-                BottomAppBar.Visibility = Visibility.Collapsed;
-                ProgressRing.IsActive = true;
-            }
-            else
-            {
-                ConnectionsListView.IsEnabled = true;
-                BottomAppBar.Visibility = Visibility.Visible;
-                ProgressRing.IsActive = false;
-            }
+            SearchMoviesTextBox.Focus(FocusState.Keyboard);
         }
 
-        private void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as StackPanel).DataContext;
-            ConnectToServer(selectedConnection);
+            Movie tappedMovie = (sender as Grid).DataContext as Movie;
+            GlobalVariables.CurrentMovie = tappedMovie;
+            Frame.Navigate(typeof(MovieDetailsHub));
         }
 
-        private void AddConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
+        private void LoseFocus(object sender)
         {
-            Frame.Navigate(typeof(AddConnectionPage));
+            var control = sender as Control;
+            var isTabStop = control.IsTabStop;
+            control.IsTabStop = false;
+            control.IsEnabled = false;
+            control.IsEnabled = true;
+            control.IsTabStop = isTabStop;
         }
 
-        private void DeleteConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            App.ConnectionsVM.RemoveConnectionItem(selectedConnection);
-        }
-
-        private void EditConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            Frame.Navigate(typeof(EditConnectionPage), selectedConnection);
-        }
-
-
-        private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ConnectionItemWrapper_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-        }
     }
 }

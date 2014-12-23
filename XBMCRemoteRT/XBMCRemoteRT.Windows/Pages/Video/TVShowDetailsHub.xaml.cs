@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Windows.UI.Popups;
+﻿using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
@@ -18,18 +17,16 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using XBMCRemoteRT.Helpers;
-using XBMCRemoteRT.Models;
-using XBMCRemoteRT.Pages;
+using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.RPCWrappers;
 
-namespace XBMCRemoteRT
+namespace XBMCRemoteRT.Pages.Video
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class TVShowDetailsHub : Page
     {
-        private enum PageStates { Ready, Connecting }
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -52,12 +49,16 @@ namespace XBMCRemoteRT
         }
 
 
-        public MainPage()
+        public TVShowDetailsHub()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+
+            DataContext = GlobalVariables.CurrentTVShow;
+
+            LoadEpisodes();
         }
 
         /// <summary>
@@ -101,12 +102,6 @@ namespace XBMCRemoteRT
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
-
-            bool showConnections = e.Parameter as bool? ?? false;
-
-            LoadConnections();
-            if (!showConnections)
-                ConnnectToRecentIp();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -116,102 +111,39 @@ namespace XBMCRemoteRT
 
         #endregion
 
-        private async void LoadConnections()
+        private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            await App.ConnectionsVM.ReloadConnections();
-            DataContext = App.ConnectionsVM;
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.UIInteraction, EventActions.Click, "TVShowDetailsHubEpisodeWrapper", 0);
+            var tappedEpisode = (sender as StackPanel).DataContext as Episode;
+            Player.PlayEpidose(tappedEpisode);
         }
 
-        private async void ConnnectToRecentIp()
+        private async void LoadEpisodes()
         {
-            var ip = (string)SettingsHelper.GetValue("RecentServerIP");
-            if (ip != null)
+            JObject filter = new JObject(new JProperty("tvshowid", GlobalVariables.CurrentTVShow.TvShowId));
+            List<Episode> episodes = await VideoLibrary.GetEpisodes(tvShowID: GlobalVariables.CurrentTVShow.TvShowId);
+
+            List<SeasonItem<Episode>> seasons = GroupEpisodes<Episode>(episodes, epi => epi.Season);
+            SeasonsCVS.Source = seasons;
+        }
+
+        private List<SeasonItem<T>> GroupEpisodes<T>(IEnumerable<T> items, Func<T, int> getKeyFunc)
+        {
+            IEnumerable<SeasonItem<T>> group = from item in items
+                                               group item by getKeyFunc(item) into g
+                                               orderby g.Key
+                                               select new SeasonItem<T>(g.Key, g);
+            return group.ToList();
+        }
+
+        private class SeasonItem<T> : List<T>
+        {
+            public SeasonItem(int key, IEnumerable<T> items)
+                : base(items)
             {
-                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
-                if (connectionItem != null)
-                    await ConnectToServer(connectionItem);
+                this.Key = key;
             }
-        }
-
-        private async Task ConnectToServer(ConnectionItem connectionItem)
-        {
-            SetPageState(PageStates.Connecting);
-            bool isSuccessful = false;
-            try
-            {
-                isSuccessful = await JSONRPC.Ping(connectionItem);
-            }
-            catch
-            {
-                isSuccessful = false;
-            }
-            if (isSuccessful)
-            {
-                ConnectionManager.CurrentConnection = connectionItem;
-                SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
-                Frame.Navigate(typeof(CoverPage));
-            }
-            else
-            {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-                await message.ShowAsync();
-                SetPageState(PageStates.Ready);
-            }
-        }
-
-        private void SetPageState(PageStates pageState)
-        {
-            if (pageState == PageStates.Connecting)
-            {
-                ConnectionsListView.IsEnabled = false;
-                BottomAppBar.Visibility = Visibility.Collapsed;
-                ProgressRing.IsActive = true;
-            }
-            else
-            {
-                ConnectionsListView.IsEnabled = true;
-                BottomAppBar.Visibility = Visibility.Visible;
-                ProgressRing.IsActive = false;
-            }
-        }
-
-        private void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as StackPanel).DataContext;
-            ConnectToServer(selectedConnection);
-        }
-
-        private void AddConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AddConnectionPage));
-        }
-
-        private void DeleteConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            App.ConnectionsVM.RemoveConnectionItem(selectedConnection);
-        }
-
-        private void EditConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            Frame.Navigate(typeof(EditConnectionPage), selectedConnection);
-        }
-
-
-        private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ConnectionItemWrapper_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            public int Key { get; private set; }
         }
     }
 }

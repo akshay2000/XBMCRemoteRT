@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using Windows.UI.Popups;
-using XBMCRemoteRT.Common;
+﻿using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,22 +16,21 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using XBMCRemoteRT.Helpers;
-using XBMCRemoteRT.Models;
-using XBMCRemoteRT.Pages;
+using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.RPCWrappers;
 
-namespace XBMCRemoteRT
+namespace XBMCRemoteRT.Pages.Video
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class AllTVShowsPage : Page
     {
-        private enum PageStates { Ready, Connecting }
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
+        private List<TVShow> allTVShows;
         /// <summary>
         /// This can be changed to a strongly typed view model.
         /// </summary>
@@ -52,7 +49,7 @@ namespace XBMCRemoteRT
         }
 
 
-        public MainPage()
+        public AllTVShowsPage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -102,11 +99,8 @@ namespace XBMCRemoteRT
         {
             navigationHelper.OnNavigatedTo(e);
 
-            bool showConnections = e.Parameter as bool? ?? false;
-
-            LoadConnections();
-            if (!showConnections)
-                ConnnectToRecentIp();
+            if (allTVShows == null)
+                LoadTVShows();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -116,102 +110,35 @@ namespace XBMCRemoteRT
 
         #endregion
 
-        private async void LoadConnections()
+        private void TVShowWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            await App.ConnectionsVM.ReloadConnections();
-            DataContext = App.ConnectionsVM;
+            TVShow tappedTVShow = (sender as Grid).DataContext as TVShow;
+            GlobalVariables.CurrentTVShow = tappedTVShow;
+            Frame.Navigate(typeof(TVShowDetailsHub));
         }
 
-        private async void ConnnectToRecentIp()
+        private async void LoadTVShows()
         {
-            var ip = (string)SettingsHelper.GetValue("RecentServerIP");
-            if (ip != null)
-            {
-                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
-                if (connectionItem != null)
-                    await ConnectToServer(connectionItem);
-            }
+            var loadStartTime = DateTime.Now;
+
+            ProgressRing.IsActive = true;
+            ConnectionManager.ManageSystemTray(true);
+            allTVShows = await VideoLibrary.GetTVShows();
+            AllTVShowsListView.ItemsSource = allTVShows;
+            ConnectionManager.ManageSystemTray(false);
+            ProgressRing.IsActive = false;
+
+            GlobalVariables.CurrentTracker.SendTiming(DateTime.Now.Subtract(loadStartTime), TimingCategories.LoadTime, "AllTVShows", "AllTVShows");
         }
 
-        private async Task ConnectToServer(ConnectionItem connectionItem)
+        private void RefreshTVShowsAppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            SetPageState(PageStates.Connecting);
-            bool isSuccessful = false;
-            try
-            {
-                isSuccessful = await JSONRPC.Ping(connectionItem);
-            }
-            catch
-            {
-                isSuccessful = false;
-            }
-            if (isSuccessful)
-            {
-                ConnectionManager.CurrentConnection = connectionItem;
-                SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
-                Frame.Navigate(typeof(CoverPage));
-            }
-            else
-            {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-                await message.ShowAsync();
-                SetPageState(PageStates.Ready);
-            }
+            LoadTVShows();
         }
 
-        private void SetPageState(PageStates pageState)
+        private void SearchTVShowsAppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (pageState == PageStates.Connecting)
-            {
-                ConnectionsListView.IsEnabled = false;
-                BottomAppBar.Visibility = Visibility.Collapsed;
-                ProgressRing.IsActive = true;
-            }
-            else
-            {
-                ConnectionsListView.IsEnabled = true;
-                BottomAppBar.Visibility = Visibility.Visible;
-                ProgressRing.IsActive = false;
-            }
-        }
-
-        private void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as StackPanel).DataContext;
-            ConnectToServer(selectedConnection);
-        }
-
-        private void AddConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AddConnectionPage));
-        }
-
-        private void DeleteConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            App.ConnectionsVM.RemoveConnectionItem(selectedConnection);
-        }
-
-        private void EditConnectionMFI_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            Frame.Navigate(typeof(EditConnectionPage), selectedConnection);
-        }
-
-
-        private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ConnectionItemWrapper_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            Frame.Navigate(typeof(SearchTVShowsPage));
         }
     }
 }
