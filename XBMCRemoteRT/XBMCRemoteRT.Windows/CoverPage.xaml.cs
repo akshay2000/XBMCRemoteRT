@@ -137,7 +137,7 @@ namespace XBMCRemoteRT
         {
             var tappedMovie = (sender as Grid).DataContext as Movie;
             GlobalVariables.CurrentMovie = tappedMovie;
-            //Frame.Navigate(typeof(MovieDetailsHub));
+            Frame.Navigate(typeof(MovieDetailsHub));
         }
 
 
@@ -174,7 +174,7 @@ namespace XBMCRemoteRT
 
         private void TVShowsHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            //Frame.Navigate(typeof(AllTVShowsPage));
+            Frame.Navigate(typeof(AllTVShowsPage));
         }
 
         private void MoviesHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)

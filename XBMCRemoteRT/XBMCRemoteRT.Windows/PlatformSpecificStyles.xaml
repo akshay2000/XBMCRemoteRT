@@ -2,5 +2,18 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:XBMCRemoteRT">
-    
+
+    <DataTemplate x:Name="SemanticZoomHeaderTemplate">
+        <Grid Background="LightGray" Margin="0">
+            <TextBlock Text='{Binding Key}' Foreground="Black" Margin="30" FontSize="20"/>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Name="SemanticZoomedOutTemplate">
+        <Grid Margin="0">
+            <Grid.Background>
+                <SolidColorBrush Color="LightGray" Opacity="{Binding Group.Count, Converter={StaticResource CountToOpacityConverter}}"></SolidColorBrush>
+            </Grid.Background>
+            <TextBlock Text='{Binding Group.Key}' Foreground="Black" Margin="30" FontSize="20"/>
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>
