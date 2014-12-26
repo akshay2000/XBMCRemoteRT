@@ -23,14 +23,16 @@
                         <ColumnDefinition Width="120"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="backButton" Margin="39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                    <Button x:Name="backButton" Margin="39,40,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
+                    <TextBlock Text="{StaticResource AppName}" Style="{StaticResource SubheaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,50"/>
                     <TextBlock x:Name="pageTitle" Text="{Binding Label}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,0"/>
                 </Grid>
             </Hub.Header>
             <HubSection Header="INFO">
@@ -96,7 +98,7 @@
                 </DataTemplate>
             </HubSection>
 
-            <HubSection Header="CAST">
+            <HubSection Header="CAST" Width="500">
                 <DataTemplate>
                     <ListView x:Name="CastLLS" ItemsSource="{Binding Cast, Converter={StaticResource ListTrimmer}}" SelectionMode="None">
                         <ListView.ItemTemplate>
