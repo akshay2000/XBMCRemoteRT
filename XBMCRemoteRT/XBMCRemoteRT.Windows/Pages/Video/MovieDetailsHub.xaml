@@ -35,29 +35,27 @@
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,0"/>
                 </Grid>
             </Hub.Header>
-            <HubSection Header="INFO">
+            <HubSection Header="INFO" Width="500">
                 <DataTemplate>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <Grid Margin="0,0,0,12">
+                        <Grid Margin="0,0,15,12">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="300"/>
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="204"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="220"/>
                             </Grid.ColumnDefinitions>
 
-                            <Image Stretch="UniformToFill">
-                                <Image.Source>
-                                    <BitmapImage DecodePixelType="Logical" DecodePixelHeight="300" UriSource="/Assets/DefaultArt.jpg"/>
-                                </Image.Source>
-                            </Image>
-                            <Image Stretch="UniformToFill">
-                                <Image.Source>
-                                    <BitmapImage DecodePixelType="Logical" DecodePixelHeight="300" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                </Image.Source>
-                            </Image>
+
+                            <Border BorderThickness="10" BorderBrush="DimGray" Background="DimGray">
+                                <Image Stretch="UniformToFill">
+                                    <Image.Source>
+                                        <BitmapImage DecodePixelType="Logical" DecodePixelHeight="300" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                    </Image.Source>
+                                </Image>
+                            </Border>
 
                             <StackPanel Grid.Row="0" Grid.Column="1">
                                 <TextBlock Text="DIRECTOR" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
@@ -88,7 +86,7 @@
                 </DataTemplate>
             </HubSection>
 
-            <HubSection Header="PLOT" Width="400">
+            <HubSection Header="PLOT" Width="500">
                 <DataTemplate>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <Grid>

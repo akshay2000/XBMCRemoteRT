@@ -54,17 +54,13 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!--Thumbnail Image-->
-                        <Image Width="253" Height="253" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill">
-                            <Image.Source>
-                                <BitmapImage DecodePixelType="Logical" DecodePixelWidth="253" UriSource="/Assets/DefaultArt.jpg"/>
-                            </Image.Source>
-                        </Image>
-                        <Image Width="253" Height="253" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill">
-                            <Image.Source>
-                                <BitmapImage DecodePixelType="Logical" DecodePixelWidth="253" UriSource="{Binding CurrentPlayerItem.Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                            </Image.Source>
-                        </Image>
+                        <Border BorderThickness="10" BorderBrush="DimGray" Background="DimGray" Width="253" Height="253" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Image Stretch="UniformToFill">
+                                <Image.Source>
+                                    <BitmapImage DecodePixelType="Logical" DecodePixelWidth="253" UriSource="{Binding CurrentPlayerItem.Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                </Image.Source>
+                            </Image>
+                        </Border>
 
                         <!--Shuffle Repeat-->
                         <Image Width="50" Height="48" Margin="12,-12,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill" Grid.Column="1">
@@ -113,22 +109,25 @@
                     <userControls:ColumnGridView ItemsSource="{Binding}" Columns="4" Width="600" SelectionMode="None">
                         <userControls:ColumnGridView.ItemTemplate>
                             <DataTemplate>
-                                <Grid x:Name="AlbumWrapper" Height="150" Width="150" Margin="0,0,12,12" Tapped="AlbumWrapper_Tapped">
+                                <Grid x:Name="AlbumWrapper" Height="205" Margin="0,0,12,12" Tapped="AlbumWrapper_Tapped">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="205"/>
+                                        <RowDefinition Height="160"/>
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
-                                    <Image Stretch="Uniform">
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="130" UriSource="/Assets/DefaultArt.jpg"/>
-                                        </Image.Source>
-                                    </Image>
-                                    <Image Stretch="Uniform" VerticalAlignment="Top" >
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="130" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                        </Image.Source>
-                                    </Image>
-                                    <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Left" Margin="0,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
+                                    <Border Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="10" BorderBrush="DimGray" Background="DimGray" VerticalAlignment="Stretch">
+                                        <Image Stretch="UniformToFill" >
+                                            <Image.Source>
+                                                <BitmapImage DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                            </Image.Source>
+                                        </Image>
+                                    </Border>
+                                    <Border Margin="10,140,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}" Grid.RowSpan="2" >
+                                        <Image Source="ms-appx:///Assets/Icons/album.png" Margin="10" />
+                                    </Border>
+                                    <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Right" Margin="0,5,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
+                                    <StackPanel Orientation="Horizontal" Background="{StaticResource ApplicationForegroundThemeBrush}" Margin="0,7,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" Margin="5" Foreground="White" FontWeight="Bold" MaxWidth="120" MaxHeight="40" TextTrimming="WordEllipsis"/>
+                                    </StackPanel>
                                 </Grid>
                             </DataTemplate>
                         </userControls:ColumnGridView.ItemTemplate>
@@ -158,16 +157,13 @@
                                         <ColumnDefinition Width="75"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Stretch="Uniform" Height="175" Grid.Row="0" Grid.ColumnSpan="2">
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="341" UriSource="/Assets/DefaultArt.jpg"/>
-                                        </Image.Source>
-                                    </Image>
-                                    <Image Stretch="Uniform" Height="175" Grid.Row="0" Grid.ColumnSpan="2">
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="405" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                        </Image.Source>
-                                    </Image>
+                                    <Border Grid.Row="0" BorderThickness="5" BorderBrush="DimGray" Background="DimGray" Grid.ColumnSpan="2" VerticalAlignment="Stretch">
+                                        <Image Stretch="UniformToFill">
+                                            <Image.Source>
+                                                <BitmapImage DecodePixelType="Logical" DecodePixelWidth="405" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                            </Image.Source>
+                                        </Image>
+                                    </Border>
                                     <Border Margin="10,145,0,0" Height="60" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}" Grid.RowSpan="2" >
                                         <Image Source="Assets/Icons/tv.png" Margin="17" />
                                     </Border>
@@ -198,16 +194,13 @@
                                         <RowDefinition Height="205"/>
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
-                                    <Image Stretch="Uniform">
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="155" UriSource="/Assets/DefaultArt.jpg"/>
-                                        </Image.Source>
-                                    </Image>
-                                    <Image Stretch="Uniform" VerticalAlignment="Top" >
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="130" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                        </Image.Source>
-                                    </Image>
+                                    <Border Grid.Row="0" BorderThickness="5" BorderBrush="DimGray" Background="DimGray" VerticalAlignment="Stretch">
+                                        <Image Stretch="UniformToFill">
+                                            <Image.Source>
+                                                <BitmapImage DecodePixelType="Logical" DecodePixelWidth="130" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                            </Image.Source>
+                                        </Image>
+                                    </Border>
                                     <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Left" Margin="0,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
                                 </Grid>
                             </DataTemplate>

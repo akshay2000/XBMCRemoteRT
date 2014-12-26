@@ -8,13 +8,40 @@
     xmlns:common="using:XBMCRemoteRT.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:XBMCRemoteRT.UserControls"
     mc:Ignorable="d">
 
-    <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="TvShowsCVS" IsSourceGrouped="True"/>
+        <DataTemplate x:Key="TvShowItemTemplate">
+            <Grid x:Name="TVShowWrapper" Height="210" Width="300" Tapped="TVShowWrapper_Tapped" Margin="0,0,0,24">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="160"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="10" BorderBrush="DimGray" Background="DimGray" VerticalAlignment="Stretch">
+                    <Image Stretch="Uniform">
+                        <Image.Source>
+                            <BitmapImage DecodePixelType="Logical" UriSource="{Binding Path=Art.Banner, Converter={StaticResource ImagePathConverter}}"/>
+                        </Image.Source>
+                    </Image>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Height="40" Width="40" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}">
+                    <Image Source="/Assets/Icons/tv.png" Margin="10" />
+                </Border>
+                <TextBlock Text="{Binding Label}" Grid.Row="1" Grid.Column="1" Margin="5,0,5,2" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16" FontWeight="Bold"/>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -44,38 +71,22 @@
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
 
-        <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
-            <ListView x:Name="AllTVShowsListView" SelectionMode="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid x:Name="TVShowWrapper" Tapped="TVShowWrapper_Tapped" Margin="0,0,0,24">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="67"/>
-                                <RowDefinition Height="35"/>
-                            </Grid.RowDefinitions>
-
-                            <Image Stretch="UniformToFill" Grid.Row="0">
-                                <Image.Source>
-                                    <BitmapImage DecodePixelType="Logical" DecodePixelWidth="456" UriSource="/Assets/DefaultArt.jpg"/>
-                                </Image.Source>
-                            </Image>
-                            <Image Stretch="UniformToFill" Grid.Row="0">
-                                <Image.Source>
-                                    <BitmapImage DecodePixelType="Logical"  DecodePixelWidth="370" UriSource="{Binding Path=Art.Banner, Converter={StaticResource ImagePathConverter}}"/>
-                                </Image.Source>
-                            </Image>
-
-                            <Border Margin="10,47,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}" Grid.RowSpan="2" >
-                                <Image Source="/Assets/Icons/tv.png" Margin="10" />
-                            </Border>
-                            <TextBlock Text="{Binding Label}" HorizontalAlignment="Right" TextAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Margin="5,0,5,2" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16" FontWeight="Bold"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <Grid Grid.Row="1" x:Name="TvShowsCVSGrid">
+            <SemanticZoom x:Name="TvShowsSemanticZoom">
+                <SemanticZoom.ZoomedInView>
+                    <GridView ItemsSource="{Binding Source={StaticResource TvShowsCVS}}" ItemTemplate="{StaticResource TvShowItemTemplate}" SelectionMode="None">
+                        <GridView.GroupStyle>
+                            <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
+                        </GridView.GroupStyle>
+                    </GridView>
+                </SemanticZoom.ZoomedInView>
+                <SemanticZoom.ZoomedOutView>
+                    <GridView ItemTemplate="{StaticResource SemanticZoomedOutTemplate}"/>
+                </SemanticZoom.ZoomedOutView>
+            </SemanticZoom>
         </Grid>
-        <ProgressRing x:Name="ProgressRing" IsActive="False" Height="50" Width="50" Grid.RowSpan="10" />
+        
+        <ProgressRing x:Name="ProgressRing" IsActive="False" Height="50" Width="50" Grid.RowSpan="2" />
     </Grid>
 
     <Page.BottomAppBar>
