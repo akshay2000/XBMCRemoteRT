@@ -228,6 +228,7 @@
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="RemoteAppBarButton" Label="remote" Click="RemoteAppBarButton_Click"/>
                 <AppBarButton x:Name="AboutAppBarButton" Label="about" Click="AboutAppBarButton_Click"/>
+                <AppBarButton x:Name="SettingsAppBarButton" Label="settings" Click="SettingsAppBarButton_Click" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

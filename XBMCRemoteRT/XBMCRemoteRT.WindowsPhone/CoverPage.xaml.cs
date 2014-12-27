@@ -233,5 +233,10 @@ namespace XBMCRemoteRT
         {
             Frame.Navigate(typeof(AboutPivot));
         }
+
+        private void SettingsAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SettingsPivot));
+        }
     }
 }
