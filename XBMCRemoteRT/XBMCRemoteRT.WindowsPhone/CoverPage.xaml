@@ -72,8 +72,8 @@
                             <TextBlock x:Name="NowPlayingItemNameTextBlock" FontSize="25" Text="{Binding CurrentPlayerItem.Title}"/>
                             <Grid>
                                 <TextBlock x:Name="NowPlayingByNameTextBlock" FontSize="18" Opacity="0.7" Text="{Binding CurrentPlayerItem.Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=false}"/>
-                                <TextBlock Text="{Binding CurrentPlayerItem.Tagline}"/>
-                                <TextBlock Text="{Binding CurrentPlayerItem.ShowTitle}"/>
+                                <TextBlock Text="{Binding CurrentPlayerItem.Tagline}" FontSize="18" Opacity="0.7"/>
+                                <TextBlock Text="{Binding CurrentPlayerItem.ShowTitle}" FontSize="18" Opacity="0.7"/>
                             </Grid>
                         </StackPanel>
                         <Grid Grid.Row="2" Margin="-10,0">
