@@ -21,5 +21,14 @@ namespace XBMCRemoteRT.Helpers
         {
             return AppSettings.Values[key];
         }
+
+        public static Object GetValue(string key, Object defaultValue)
+        {
+            if (AppSettings.Values[key] == null)
+            {
+                AppSettings.Values[key] = defaultValue;
+            }
+            return AppSettings.Values[key];
+        }
     }
 }
