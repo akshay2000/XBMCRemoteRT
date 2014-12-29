@@ -145,7 +145,7 @@
                         <TextBlock Text="BUTTONS" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
                         <TextBlock Text="Choose what buttons appear on remote" Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo" />
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,8,0,0">
-                            <CheckBox Style="{StaticResource RoundButtonCheckBoxStyle}">
+                            <CheckBox x:Name="GoBackCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
                                 <CheckBox.Content>
                                     <SymbolIcon Symbol="Undo"  RenderTransformOrigin="0.5,0.5">
                                         <SymbolIcon.RenderTransform>
@@ -154,22 +154,22 @@
                                     </SymbolIcon>
                                 </CheckBox.Content>
                             </CheckBox>
-                            <CheckBox Style="{StaticResource RoundButtonCheckBoxStyle}">
+                            <CheckBox x:Name="HomeCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
                                 <CheckBox.Content>
                                     <SymbolIcon Symbol="Home"/>
                                 </CheckBox.Content>
                             </CheckBox>
-                            <CheckBox Style="{StaticResource RoundButtonCheckBoxStyle}">
+                            <CheckBox x:Name="TextInputCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
                                 <CheckBox.Content>
                                     <SymbolIcon Symbol="Rename"/>
                                 </CheckBox.Content>
                             </CheckBox>
-                            <CheckBox Style="{StaticResource RoundButtonCheckBoxStyle}">
+                            <CheckBox x:Name="SubtitlesCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
                                 <CheckBox.Content>
                                     <SymbolIcon Symbol="ClosedCaption"/>
                                 </CheckBox.Content>
                             </CheckBox>
-                            <CheckBox Style="{StaticResource RoundButtonCheckBoxStyle}">
+                            <CheckBox x:Name="InfoCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
                                 <CheckBox.Content>
                                     <SymbolIcon Symbol="DockBottom"/>
                                 </CheckBox.Content>

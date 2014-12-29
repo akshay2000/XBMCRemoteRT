@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using XBMCRemoteRT.Helpers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -81,6 +82,33 @@ namespace XBMCRemoteRT.Pages
         {
         }
 
+        //Crudest but thinnest way to manage button states
+        private void LoadButtonCheckedStates()
+        {
+            string[] buttons = ((string)SettingsHelper.GetValue("ButtonsToShow", "GoBack, Home, TextInput")).Split(',');
+            foreach (string button in buttons)
+            {
+                CheckBox chk = this.FindName(button.Trim() + "CheckBox") as CheckBox;
+                chk.IsChecked = true;
+            }
+        }
+
+        private void SaveButtonCheckedStates()
+        {
+            string buttons = string.Empty;
+            if ((bool)GoBackCheckBox.IsChecked)
+                buttons = buttons + "GoBack";
+            if ((bool)HomeCheckBox.IsChecked)
+                buttons = buttons + "," + "Home";
+            if ((bool)TextInputCheckBox.IsChecked)
+                buttons = buttons + "," + "TextInput";
+            if ((bool)SubtitlesCheckBox.IsChecked)
+                buttons = buttons + "," + "Subtitles";
+            if ((bool)InfoCheckBox.IsChecked)
+                buttons = buttons + "," + "Info";
+            SettingsHelper.SetValue("ButtonsToShow", buttons);
+        }
+
         #region NavigationHelper registration
 
         /// <summary>
@@ -99,11 +127,13 @@ namespace XBMCRemoteRT.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
+            LoadButtonCheckedStates();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedFrom(e);
+            SaveButtonCheckedStates();
         }
 
         #endregion

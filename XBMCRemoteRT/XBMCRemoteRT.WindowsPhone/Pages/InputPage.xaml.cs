@@ -110,6 +110,17 @@ namespace XBMCRemoteRT.Pages
         {
             GlobalVariables.CurrentTracker.SendView("InputPage");
             this.navigationHelper.OnNavigatedTo(e);
+            ShowButtons();
+        }
+
+        private void ShowButtons()
+        {
+            string[] buttons = ((string)SettingsHelper.GetValue("ButtonsToShow", "GoBack, Home, TextInput")).Split(',');
+            foreach (string button in buttons)
+            {
+                Button btn = this.FindName(button.Trim() + "Button") as Button;
+                btn.Visibility = Visibility.Visible;
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
