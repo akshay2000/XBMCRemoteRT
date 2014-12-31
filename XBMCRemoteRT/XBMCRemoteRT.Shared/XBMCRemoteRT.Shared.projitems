@@ -64,4 +64,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\VideoLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ConnectionsViewModel.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
+  </ItemGroup>
 </Project>

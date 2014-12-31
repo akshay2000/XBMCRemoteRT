@@ -22,7 +22,9 @@ namespace XBMCRemoteRT.Helpers
             }
             else if (activePlayers.Count == 0)
             {
-                GlobalVariables.CurrentPlayerState.CurrentPlayerItem = new PlayerItem { Title = "nothing is playing" };
+                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                var nothingIsPlaying = loader.GetString("NothingIsPlaying");
+                GlobalVariables.CurrentPlayerState.CurrentPlayerItem = new PlayerItem { Title = nothingIsPlaying };
                 GlobalVariables.CurrentPlayerState.PlayerType = Players.None;
             }
         }

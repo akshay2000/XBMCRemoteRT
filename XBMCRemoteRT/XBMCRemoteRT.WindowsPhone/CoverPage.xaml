@@ -34,8 +34,8 @@
                     <StackPanel x:Name="NowPlayingHeaderWrapper" Orientation="Horizontal" Tapped="NowPlayingHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/nowplaying.png" Height="25" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
-                            <TextBlock Text="NOW PLAYING" Margin="5,0,0,0"/>
-                            <TextBlock Text="open remote" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
+                            <TextBlock x:Uid="NowPlayingHeader" Text="NOW PLAYING" Margin="5,0,0,0"/>
+                            <TextBlock x:Uid="NowPlayingSubHeader" Text="open remote" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
@@ -101,8 +101,8 @@
                     <StackPanel x:Name="MusicHeaderWrapper" Orientation="Horizontal" Tapped="MusicHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/musicnote.png" Height="25" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
-                            <TextBlock Text="MUSIC" Margin="5,0,0,0"/>
-                            <TextBlock Text="see all music" Style="{StaticResource HubSectionHeaderSubHeaderStyle}" FontFamily="Global User Interface" />
+                            <TextBlock x:Uid="MusicHubSectionHeader" Text="MUSIC" Margin="5,0,0,0"/>
+                            <TextBlock x:Uid="MusicHubSectionSubHeader" Text="see all music" Style="{StaticResource HubSectionHeaderSubHeaderStyle}" FontFamily="Global User Interface" />
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
@@ -141,8 +141,8 @@
                     <StackPanel x:Name="TVShowsHeaderWrapper" Orientation="Horizontal" Tapped="TVShowsHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/tv.png" Height="28" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
-                            <TextBlock Text="TV SHOWS" Margin="5,0,0,0" />
-                            <TextBlock Text="see all shows" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
+                            <TextBlock x:Uid="TVShowsHubSectionHeader" Text="TV SHOWS" Margin="5,0,0,0" />
+                            <TextBlock x:Uid="TVShowsHubSectionSubHeader" Text="see all shows" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
@@ -185,8 +185,8 @@
                     <StackPanel x:Name="MoviesHeaderWrapper" Orientation="Horizontal" Tapped="MoviesHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/movie.png" Height="28" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
-                            <TextBlock Text="MOVIES" Margin="5,0,0,0"/>
-                            <TextBlock Text="see all movies" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
+                            <TextBlock x:Uid="MoviesHubSectionHeader" Text="MOVIES" Margin="5,0,0,0"/>
+                            <TextBlock x:Uid="TVShowsHubSectionSubHeader" Text="see all movies" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
@@ -226,9 +226,9 @@
     <Page.BottomAppBar>
         <CommandBar ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="RemoteAppBarButton" Label="remote" Click="RemoteAppBarButton_Click"/>
-                <AppBarButton x:Name="AboutAppBarButton" Label="about" Click="AboutAppBarButton_Click"/>
-                <AppBarButton x:Name="SettingsAppBarButton" Label="settings" Click="SettingsAppBarButton_Click" />
+                <AppBarButton x:Name="RemoteAppBarButton" x:Uid="RemoteMenu" Label="remote" Click="RemoteAppBarButton_Click"/>
+                <AppBarButton x:Name="AboutAppBarButton" x:Uid="AboutMenu" Label="about" Click="AboutAppBarButton_Click"/>
+                <AppBarButton x:Name="SettingsAppBarButton" x:Uid="SettingsMenu" Label="settings" Click="SettingsAppBarButton_Click" />
                 <AppBarButton x:Name="SwitchServerAppBarButton" Label="switch server" Click="SwitchServerAppBarButton_Click" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
