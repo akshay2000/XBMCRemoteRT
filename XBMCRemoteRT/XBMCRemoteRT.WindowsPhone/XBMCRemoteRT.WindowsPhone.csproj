@@ -236,8 +236,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Package.StoreAssociation.xml" />
-    <Content Include="VCD.xml" />
+    <Content Include="VCD.xml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VCD.tt</DependentUpon>
+    </Content>
     <None Include="packages.config" />
+    <None Include="VCD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VCD.xml</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GoogleAnalytics">

@@ -1,7 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".xml" #>
+<# var langs = new string[]{"en-gb", "en-us"}; #>
+<?xml version="1.0" encoding="utf-8"?>
 
 <VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
-  <CommandSet xml:lang="en-gb">
+<#// Create this CommandSet for each English region
+  foreach (string lang in langs) { 
+#>
+  <CommandSet xml:lang="<#= lang #>">
     <CommandPrefix>Kodi</CommandPrefix>
     <Example> Play artist Linkin Park </Example>
 
@@ -62,67 +72,7 @@
     </PhraseTopic>
 	
   </CommandSet>
-  <CommandSet xml:lang="en-us">
-    <CommandPrefix>Kodi</CommandPrefix>
-    <Example> Play artist Linkin Park </Example>
-
-    <Command Name="PlayArtist">
-      <Example> play artist Linkin Park </Example>
-      <ListenFor> [and] play artist {musicTopic} </ListenFor>
-      <ListenFor> [and] play songs by {musicTopic} </ListenFor>
-      <Feedback> Playing artist {musicTopic}... </Feedback>
-      <Navigate />
-    </Command>
-    
-    <Command Name="PlayAlbum">
-      <Example> play album Meteora </Example>
-      <ListenFor> play album {musicTopic} </ListenFor>
-      <Feedback> Playing album {musicTopic}... </Feedback>
-      <Navigate/>
-    </Command>
-    
-    <Command Name="PlayMovie">
-      <Example> play movie Inception </Example>
-      <ListenFor> play movie {movieTopic} </ListenFor>
-      <Feedback> Playing movie {movieTopic}... </Feedback>
-      <Navigate/>
-    </Command>
-
-    <!--<Command Name="PlayLevel">
-      <Example> replay level two </Example>
-      <ListenFor> replay level {number} </ListenFor>
-      <Feedback> Going to level {number}... </Feedback>
-      <Navigate />
-    </Command>
-
-    <Command Name="PlayUnknownLevel">
-      <Example> replay level two </Example>
-      <ListenFor> [and] replay level {*} </ListenFor>
-      <Feedback> Unknown level; going to level selection... </Feedback>
-      <Navigate Target="LevelSelect.xaml" />
-    </Command>-->
-
-    <!--<PhraseList Label="album">
-      <Item> Meteora </Item>
-      <Item> Avril Lavigne </Item>
-      <Item> All Things Bright and Beautiful </Item>
-    </PhraseList>-->
-    
-    <!--<PhraseList Label="artist">
-      <Item> Linkin Park </Item>
-      <Item> Avril Lavigne </Item>
-      <Item> Owl City </Item>
-    </PhraseList>-->
-
-    <PhraseTopic Label="movieTopic" Scenario="Search"> 
-        <Subject>Movies</Subject>
-    </PhraseTopic>
-    
-    <PhraseTopic Label="musicTopic" Scenario="Search">
-      <Subject>Music</Subject>
-    </PhraseTopic>
-	
-  </CommandSet>
+<# } #>
 </VoiceCommands>
 
 <!-- Example -->
