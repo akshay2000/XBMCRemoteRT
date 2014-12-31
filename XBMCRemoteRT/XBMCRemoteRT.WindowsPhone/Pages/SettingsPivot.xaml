@@ -144,7 +144,7 @@
                     <StackPanel>
                         <TextBlock Text="BUTTONS" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
                         <TextBlock Text="Choose what buttons appear on remote" Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo" />
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,8,0,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,8,0,0" Pivot.SlideInAnimationGroup="GroupTwo">
                             <CheckBox x:Name="GoBackCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
                                 <CheckBox.Content>
                                     <SymbolIcon Symbol="Undo"  RenderTransformOrigin="0.5,0.5">
@@ -179,8 +179,29 @@
                                     <SymbolIcon Symbol="Home"/>
                                 </CheckBox.Content>
                             </CheckBox>-->
-                        </StackPanel>
+                        </StackPanel >
 
+                        <TextBlock Text="LIBRARIES" Style="{StaticResource ParagraphHeaderTextStyle}" Margin="0,24,0,0" Pivot.SlideInAnimationGroup="GroupOne" />
+                        <ListViewItem Pivot.SlideInAnimationGroup="GroupTwo" >
+                            <TextBlock Text="update audio library" FontSize="26" FontWeight="SemiLight"/>
+                        </ListViewItem>
+
+                        <ListViewItem Pivot.SlideInAnimationGroup="GroupTwo" >
+                            <TextBlock Text="update video library" FontSize="26" FontWeight="SemiLight"/>
+                        </ListViewItem>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+            
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="CONNECTIONS" Style="{StaticResource PageHeaderTextStyle}"/>
+                </PivotItem.Header>
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="AUTOCONNECT" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <ToggleSwitch Header="connect automatically on startup" IsOn="True" Margin="0,6,0,0" Pivot.SlideInAnimationGroup="GroupTwo" />
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
