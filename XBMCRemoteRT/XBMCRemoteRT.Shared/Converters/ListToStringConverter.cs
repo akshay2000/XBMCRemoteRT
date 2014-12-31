@@ -37,6 +37,12 @@ namespace XBMCRemoteRT.Converters
             //throw new NotImplementedException();
         }
 
+        private string getNotAvailableString()
+        {
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            return loader.GetString("NotAvailable");
+        }
+
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();
