@@ -24,7 +24,7 @@
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="12,0,12,10">
             <TextBlock Text="SEARCH TV SHOWS" Style="{StaticResource PageTitleTextStyle}"/>
-            <TextBox x:Name="SearchTVShowsTextBox" InputScope="Search" Margin="0,10,0,0" KeyUp="SearchTVShowsTextBox_KeyUp" Loaded="SearchTVShowsTextBox_Loaded" />
+            <TextBox x:Name="SearchTVShowsTextBox" InputScope="Search" Margin="0,10,0,0" KeyUp="SearchTVShowsTextBox_KeyUp" Loaded="SearchTVShowsTextBox_Loaded" TextChanged="SearchTVShowsTextBox_TextChanged" />
         </StackPanel>
 
         <!--Content should be placed within the following grid-->

@@ -33,6 +33,7 @@ namespace XBMCRemoteRT.Pages.Video
 
         private List<Movie> allMovies;
         private List<Movie> filteredMovies;
+        private List<Movie> emptyList = new List<Movie>();
 
         public SearchMoviesPage()
         {
@@ -155,6 +156,15 @@ namespace XBMCRemoteRT.Pages.Video
             control.IsEnabled = false;
             control.IsEnabled = true;
             control.IsTabStop = isTabStop;
+        }
+
+        private void SearchMoviesTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string query = SearchMoviesTextBox.Text;
+            if (query.Length > 2)
+                SearchAndReload(SearchMoviesTextBox.Text);
+            else
+                SearchMoviesListView.ItemsSource = emptyList;
         }
 
     }
