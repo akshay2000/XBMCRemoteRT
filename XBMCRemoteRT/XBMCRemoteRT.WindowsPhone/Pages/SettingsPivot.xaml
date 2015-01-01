@@ -201,7 +201,7 @@
                 <ScrollViewer>
                     <StackPanel>
                         <TextBlock Text="AUTOCONNECT" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <ToggleSwitch Header="connect automatically on startup" IsOn="True" Margin="0,6,0,0" Pivot.SlideInAnimationGroup="GroupTwo" />
+                        <ToggleSwitch x:Name="AutoconnectToggle" Header="connect automatically on startup" Margin="0,6,0,0" Pivot.SlideInAnimationGroup="GroupTwo" />
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>

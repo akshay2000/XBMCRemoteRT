@@ -110,6 +110,17 @@ namespace XBMCRemoteRT.Pages
             SettingsHelper.SetValue("ButtonsToShow", buttons);
         }
 
+        private void LoadAutoConnectState()
+        {
+            bool autoConnect = (bool)SettingsHelper.GetValue("AutoConnect", true);
+            AutoconnectToggle.IsOn = autoConnect;
+        }
+
+        private void SaveAutoConnectState()
+        {
+            SettingsHelper.SetValue("AutoConnect", AutoconnectToggle.IsOn);
+        }
+
         #region NavigationHelper registration
 
         /// <summary>
@@ -129,12 +140,14 @@ namespace XBMCRemoteRT.Pages
         {
             this.navigationHelper.OnNavigatedTo(e);
             LoadButtonCheckedStates();
+            LoadAutoConnectState();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedFrom(e);
             SaveButtonCheckedStates();
+            SaveAutoConnectState();
         }
 
         #endregion
