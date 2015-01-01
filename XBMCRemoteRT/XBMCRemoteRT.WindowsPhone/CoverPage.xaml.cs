@@ -238,5 +238,10 @@ namespace XBMCRemoteRT
         {
             Frame.Navigate(typeof(SettingsPivot));
         }
+
+        private void SwitchServerAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage), false);
+        }
     }
 }
