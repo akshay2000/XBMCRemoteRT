@@ -327,16 +327,6 @@ namespace XBMCRemoteRT.Pages
             ((this.Resources["HideSendTextBox"]) as Storyboard).Begin();
         }
 
-        private void AudioScanAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            AudioLibrary.Scan();
-        }
-
-        private void VideoScanAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            VideoLibrary.Scan();
-        }
-
         private void SubtitlesButton_Click(object sender, RoutedEventArgs e)
         {
             Input.ExecuteAction("nextsubtitle");

@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Helpers;
+using XBMCRemoteRT.RPCWrappers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -137,5 +138,15 @@ namespace XBMCRemoteRT.Pages
         }
 
         #endregion
+
+        private void AudioLibraryUpdateWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            AudioLibrary.Scan();
+        }
+
+        private void VideoLibraryUpdateWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            VideoLibrary.Scan();
+        }
     }
 }

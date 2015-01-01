@@ -534,13 +534,4 @@
             </AppBarButton>
         </Grid>
     </Grid>
-    
-    <Page.BottomAppBar>
-        <CommandBar ClosedDisplayMode="Minimal" >
-            <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="AudioScanAppBarButton" Label="scan audio library" Click="AudioScanAppBarButton_Click"/>
-                <AppBarButton x:Name="VideoScanAppBarButton" Label="scan video library" Click="VideoScanAppBarButton_Click"/>
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>
 </Page>

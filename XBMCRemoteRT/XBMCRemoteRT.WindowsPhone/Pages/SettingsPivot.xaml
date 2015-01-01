@@ -182,11 +182,11 @@
                         </StackPanel >
 
                         <TextBlock Text="LIBRARIES" Style="{StaticResource ParagraphHeaderTextStyle}" Margin="0,24,0,0" Pivot.SlideInAnimationGroup="GroupOne" />
-                        <ListViewItem Pivot.SlideInAnimationGroup="GroupTwo" >
+                        <ListViewItem x:Name="AudioLibraryUpdateWrapper" Tapped="AudioLibraryUpdateWrapper_Tapped" Pivot.SlideInAnimationGroup="GroupTwo" >
                             <TextBlock Text="update audio library" FontSize="26" FontWeight="SemiLight"/>
                         </ListViewItem>
 
-                        <ListViewItem Pivot.SlideInAnimationGroup="GroupTwo" >
+                        <ListViewItem x:Name="VideoLibraryUpdateWrapper" Tapped="VideoLibraryUpdateWrapper_Tapped" Pivot.SlideInAnimationGroup="GroupTwo" >
                             <TextBlock Text="update video library" FontSize="26" FontWeight="SemiLight"/>
                         </ListViewItem>
 
