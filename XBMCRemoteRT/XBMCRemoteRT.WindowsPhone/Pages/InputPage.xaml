@@ -527,7 +527,7 @@
                     <SymbolIcon Symbol="ClosedCaption"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Name="InfoButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Visibility="Collapsed">
+            <AppBarButton x:Name="InfoButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="InfoButton_Click" Visibility="Collapsed">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="DockBottom"/>
                 </AppBarButton.Icon>
