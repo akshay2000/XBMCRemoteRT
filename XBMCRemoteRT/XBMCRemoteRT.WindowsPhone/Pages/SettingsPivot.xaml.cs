@@ -112,6 +112,72 @@ namespace XBMCRemoteRT.Pages
             SettingsHelper.SetValue("ButtonsToShow", buttons);
         }
 
+        private void LoadSkipJumpState()
+        {
+            string forwardFunction = (string)SettingsHelper.GetValue("ForwardButtonCommand", "SmallForward");
+            switch (forwardFunction)
+            {
+                case "IncreaseSpeed":
+                    ForwardComboBox.SelectedIndex = 0;
+                    break;
+                case "SmallForward":
+                    ForwardComboBox.SelectedIndex = 1;
+                    break;
+                case "BigForward":
+                    ForwardComboBox.SelectedIndex = 2;
+                    break;                    
+            }
+
+            string backwardFunction = (string)SettingsHelper.GetValue("BackwardButtonCommand", "SmallBackward");
+            switch (backwardFunction)
+            {
+                case "DecreaseSpeed":
+                    BackwardComboBox.SelectedIndex = 0;
+                    break;
+                case "SmallBackward":
+                    BackwardComboBox.SelectedIndex = 1;
+                    break;
+                case "BigBackward":
+                    BackwardComboBox.SelectedIndex = 2;
+                    break;
+            }
+        }
+
+        private void SaveSkipJumpState()
+        {
+            string forwardValue = "SmallForward";
+            switch (ForwardComboBox.SelectedIndex)
+            {
+                case 0:
+                    forwardValue = "IncreaseSpeed";
+                    break;
+                case 1:
+                    forwardValue = "SmallForward";
+                    break;
+                case 2:
+                    forwardValue = "BigForward";
+                    break;
+            }
+
+            SettingsHelper.SetValue("ForwardButtonCommand", forwardValue);
+
+            string backwardValue = "SmallBackward";
+            switch (BackwardComboBox.SelectedIndex)
+            {
+                case 0:
+                    backwardValue = "DecreaseSpeed";
+                    break;
+                case 1:
+                    backwardValue = "SmallBackward";
+                    break;
+                case 2:
+                    backwardValue = "BigBackward";
+                    break;
+            }
+
+            SettingsHelper.SetValue("BackwardButtonCommand", backwardValue);
+        }
+
         private void LoadAutoConnectState()
         {
             bool autoConnect = (bool)SettingsHelper.GetValue("AutoConnect", true);
@@ -142,6 +208,7 @@ namespace XBMCRemoteRT.Pages
         {
             this.navigationHelper.OnNavigatedTo(e);
             LoadButtonCheckedStates();
+            LoadSkipJumpState();
             LoadAutoConnectState();
         }
 
@@ -149,19 +216,11 @@ namespace XBMCRemoteRT.Pages
         {
             this.navigationHelper.OnNavigatedFrom(e);
             SaveButtonCheckedStates();
+            SaveSkipJumpState();
             SaveAutoConnectState();
         }
 
         #endregion
 
-        private void AudioLibraryUpdateWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            AudioLibrary.Scan();
-        }
-
-        private void VideoLibraryUpdateWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            VideoLibrary.Scan();
-        }
     }
 }

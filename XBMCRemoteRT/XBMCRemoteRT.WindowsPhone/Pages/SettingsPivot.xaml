@@ -181,14 +181,18 @@
                             </CheckBox>
                         </StackPanel >
 
-                        <TextBlock Text="LIBRARIES" Style="{StaticResource ParagraphHeaderTextStyle}" Margin="0,24,0,0" Pivot.SlideInAnimationGroup="GroupOne" />
-                        <ListViewItem x:Name="AudioLibraryUpdateWrapper" Tapped="AudioLibraryUpdateWrapper_Tapped" Pivot.SlideInAnimationGroup="GroupTwo" >
-                            <TextBlock Text="update audio library" FontSize="26" FontWeight="SemiLight"/>
-                        </ListViewItem>
+                        <TextBlock Text="SKIP + JUMP" Style="{StaticResource ParagraphHeaderTextStyle}" Margin="0,24,0,0" Pivot.SlideInAnimationGroup="GroupOne" />
+                        <ComboBox x:Name="ForwardComboBox" Header="what does forward do" Margin="0,12,0,0">
+                            <ComboBoxItem Content="increase speed"/>
+                            <ComboBoxItem Content="small jump forward"/>
+                            <ComboBoxItem Content="big jump forward"/>
+                        </ComboBox>
 
-                        <ListViewItem x:Name="VideoLibraryUpdateWrapper" Tapped="VideoLibraryUpdateWrapper_Tapped" Pivot.SlideInAnimationGroup="GroupTwo" >
-                            <TextBlock Text="update video library" FontSize="26" FontWeight="SemiLight"/>
-                        </ListViewItem>
+                        <ComboBox x:Name="BackwardComboBox" Header="what does backward do" Margin="0,12,0,0">
+                            <ComboBoxItem Content="decrease speed"/>
+                            <ComboBoxItem Content="small jump backward"/>
+                            <ComboBoxItem Content="big jump backward"/>
+                        </ComboBox>
 
                     </StackPanel>
                 </ScrollViewer>
