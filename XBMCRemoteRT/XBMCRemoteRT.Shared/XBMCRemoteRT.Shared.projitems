@@ -57,6 +57,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Views\AlbumView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Applikation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\AudioLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\GUI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Input.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\JSONRPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Player.cs" />
