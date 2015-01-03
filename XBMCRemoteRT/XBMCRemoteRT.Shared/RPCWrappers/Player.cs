@@ -125,6 +125,16 @@ namespace XBMCRemoteRT.RPCWrappers
             await ConnectionManager.ExecuteRPCRequest("Player.Stop", parameters);
         }
 
+        public async static void Seek(Players player, string value)
+        {
+            if (player == Players.None)
+                return;
+            JObject parameters = new JObject(
+                new JProperty("playerid", getIdFromPlayers(player)),
+                new JProperty("value", value));
+            await ConnectionManager.ExecuteRPCRequest("Player.Seek", parameters);
+        }
+
         private static int getIdFromPlayers(Players player)
         {
             switch (player)

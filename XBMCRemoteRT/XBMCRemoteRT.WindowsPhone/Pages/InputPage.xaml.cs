@@ -192,14 +192,22 @@ namespace XBMCRemoteRT.Pages
 
         private async void SpeedDownButton_Click(object sender, RoutedEventArgs e)
         {
-            int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
-
-            if (speed != 0 && speed != -32)
+            string backwardCommand = (string)SettingsHelper.GetValue("BackwardButtonCommand", "SmallBackward");
+            if (backwardCommand == "DecreaseSpeed")
             {
-                int index = Array.IndexOf(Speeds, speed);
-                int newSpeed = Speeds[index - 1];
-                await Player.SetSpeed(GlobalVariables.CurrentPlayerState.PlayerType, newSpeed);
-                await PlayerHelper.RefreshPlayerState();
+                int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+
+                if (speed != 0 && speed != -32)
+                {
+                    int index = Array.IndexOf(Speeds, speed);
+                    int newSpeed = Speeds[index - 1];
+                    await Player.SetSpeed(GlobalVariables.CurrentPlayerState.PlayerType, newSpeed);
+                    await PlayerHelper.RefreshPlayerState();
+                }
+            }
+            else
+            {
+                Player.Seek(GlobalVariables.CurrentPlayerState.PlayerType, backwardCommand.ToLower());
             }
         }
 
@@ -217,14 +225,22 @@ namespace XBMCRemoteRT.Pages
 
         private async void SpeedUpButton_Click(object sender, RoutedEventArgs e)
         {
-            int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
-
-            if (speed != 0 && speed != 32)
+            string forwardCommand = (string)SettingsHelper.GetValue("ForwardButtonCommand", "SmallForward");
+            if (forwardCommand == "IncreaseSpeed")
             {
-                int index = Array.IndexOf(Speeds, speed);
-                int newSpeed = Speeds[index + 1];
-                await Player.SetSpeed(GlobalVariables.CurrentPlayerState.PlayerType, newSpeed);
-                await PlayerHelper.RefreshPlayerState();
+                int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+
+                if (speed != 0 && speed != 32)
+                {
+                    int index = Array.IndexOf(Speeds, speed);
+                    int newSpeed = Speeds[index + 1];
+                    await Player.SetSpeed(GlobalVariables.CurrentPlayerState.PlayerType, newSpeed);
+                    await PlayerHelper.RefreshPlayerState();
+                }
+            }
+            else
+            {
+                Player.Seek(GlobalVariables.CurrentPlayerState.PlayerType, forwardCommand.ToLower());
             }
         }
 
