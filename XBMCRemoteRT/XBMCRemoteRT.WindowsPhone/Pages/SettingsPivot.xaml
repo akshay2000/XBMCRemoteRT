@@ -169,16 +169,16 @@
                                     <SymbolIcon Symbol="ClosedCaption"/>
                                 </CheckBox.Content>
                             </CheckBox>
-                            <CheckBox x:Name="InfoCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
+                            <CheckBox x:Name="InfoCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}" >
                                 <CheckBox.Content>
                                     <SymbolIcon Symbol="DockBottom"/>
                                 </CheckBox.Content>
                             </CheckBox>
-                            <!--<CheckBox Style="{StaticResource RoundButtonCheckBoxStyle}">
+                            <CheckBox x:Name="AdvancedCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
                                 <CheckBox.Content>
-                                    <SymbolIcon Symbol="Home"/>
+                                    <SymbolIcon Symbol="List"/>
                                 </CheckBox.Content>
-                            </CheckBox>-->
+                            </CheckBox>
                         </StackPanel >
 
                         <TextBlock Text="LIBRARIES" Style="{StaticResource ParagraphHeaderTextStyle}" Margin="0,24,0,0" Pivot.SlideInAnimationGroup="GroupOne" />

@@ -355,6 +355,7 @@
             </NavigationThemeTransition>
         </TransitionCollection>
     </Page.Transitions>
+    
     <Grid x:Name="LayoutRoot">
 
         <!--<Grid.ChildrenTransitions>
@@ -531,6 +532,14 @@
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="DockBottom"/>
                 </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Name="AdvancedButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="AdvancedButton_Click" Visibility="Collapsed">
+                <AppBarButton.Icon>
+                    <SymbolIcon Symbol="List"/>
+                </AppBarButton.Icon>
+                <AppBarButton.Flyout>
+                    <ListPickerFlyout x:Name="AdvancedMenuFlyout" Placement="Full" ItemsPicked="AdvancedMenuFlyout_ItemsPicked" />                        
+                </AppBarButton.Flyout>
             </AppBarButton>
         </Grid>
     </Grid>

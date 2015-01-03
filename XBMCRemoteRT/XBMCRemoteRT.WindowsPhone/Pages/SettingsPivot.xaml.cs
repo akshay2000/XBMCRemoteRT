@@ -107,6 +107,8 @@ namespace XBMCRemoteRT.Pages
                 buttons = buttons + "," + "Subtitles";
             if ((bool)InfoCheckBox.IsChecked)
                 buttons = buttons + "," + "Info";
+            if ((bool)AdvancedCheckBox.IsChecked)
+                buttons = buttons + "," + "Advanced";
             SettingsHelper.SetValue("ButtonsToShow", buttons);
         }
 

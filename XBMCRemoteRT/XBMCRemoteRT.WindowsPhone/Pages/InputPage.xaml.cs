@@ -45,6 +45,12 @@ namespace XBMCRemoteRT.Pages
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
             DataContext = GlobalVariables.CurrentPlayerState;
+            PopulateFlyout();
+        }
+
+        private void PopulateFlyout()
+        {
+            AdvancedMenuFlyout.ItemsSource = new List<string> { "update audio library", "update video library", "clean audio library", "clean video library", "download subtitles" };
         }
 
         /// <summary>
@@ -330,6 +336,16 @@ namespace XBMCRemoteRT.Pages
         private void SubtitlesButton_Click(object sender, RoutedEventArgs e)
         {
             Input.ExecuteAction("nextsubtitle");
+        }
+
+        private void AdvancedButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdvancedMenuFlyout.SelectedItem = null;
+        }
+
+        private void AdvancedMenuFlyout_ItemsPicked(ListPickerFlyout sender, ItemsPickedEventArgs args)
+        {
+            string pickedCommand = (string)AdvancedMenuFlyout.SelectedItem;
         }      
     }
 }
