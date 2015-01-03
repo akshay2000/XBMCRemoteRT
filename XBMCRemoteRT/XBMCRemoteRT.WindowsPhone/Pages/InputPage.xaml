@@ -538,7 +538,7 @@
                     <SymbolIcon Symbol="List"/>
                 </AppBarButton.Icon>
                 <AppBarButton.Flyout>
-                    <ListPickerFlyout x:Name="AdvancedMenuFlyout" Placement="Full" ItemsPicked="AdvancedMenuFlyout_ItemsPicked" />                        
+                    <ListPickerFlyout x:Name="AdvancedMenuFlyout" Placement="Full" ItemsPicked="AdvancedMenuFlyout_ItemsPicked" />
                 </AppBarButton.Flyout>
             </AppBarButton>
         </Grid>

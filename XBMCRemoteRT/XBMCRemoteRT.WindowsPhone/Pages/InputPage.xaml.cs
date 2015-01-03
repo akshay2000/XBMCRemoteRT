@@ -46,12 +46,7 @@ namespace XBMCRemoteRT.Pages
 
             DataContext = GlobalVariables.CurrentPlayerState;
             PopulateFlyout();
-        }
-
-        private void PopulateFlyout()
-        {
-            AdvancedMenuFlyout.ItemsSource = new List<string> { "update audio library", "update video library", "clean audio library", "clean video library", "download subtitles" };
-        }
+        }        
 
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
@@ -343,9 +338,31 @@ namespace XBMCRemoteRT.Pages
             AdvancedMenuFlyout.SelectedItem = null;
         }
 
+        private string audioLibUpdate = "update audio library";
+        private string videoLibUpdate = "update video library";
+        private string audioLibClean = "clean audio library";
+        private string videoLibClean ="clean video library";
+        private string showSubtitleSerach = "download subtitles";
+
+        private void PopulateFlyout()
+        {
+            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach };
+        }
+
         private void AdvancedMenuFlyout_ItemsPicked(ListPickerFlyout sender, ItemsPickedEventArgs args)
         {
             string pickedCommand = (string)AdvancedMenuFlyout.SelectedItem;
-        }      
+            
+            if (pickedCommand == audioLibUpdate)
+                AudioLibrary.Scan();
+            else if (pickedCommand == videoLibUpdate)
+                VideoLibrary.Scan();
+            else if (pickedCommand == audioLibClean)
+                AudioLibrary.Clean();
+            else if (pickedCommand == videoLibClean)
+                VideoLibrary.Clean();
+            else if (pickedCommand == showSubtitleSerach)
+                GUI.ShowSubtitleSearch();
+        }
     }
 }
