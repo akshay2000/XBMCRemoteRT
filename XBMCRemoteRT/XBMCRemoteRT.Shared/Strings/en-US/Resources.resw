@@ -129,11 +129,20 @@
   <data name="CancelAppBarMenu.Label" xml:space="preserve">
     <value>cancel</value>
   </data>
+  <data name="CleanAudioLibrary" xml:space="preserve">
+    <value>clean audio library</value>
+  </data>
+  <data name="CleanVideoLibrary" xml:space="preserve">
+    <value>clean video library</value>
+  </data>
   <data name="ConnectionName.Header" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="ConnectionsPageTitle.Text" xml:space="preserve">
     <value>CONNECTIONS</value>
+  </data>
+  <data name="DownloadSubtitles" xml:space="preserve">
+    <value>download subtitles</value>
   </data>
   <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
     <value>MOVIES</value>
@@ -190,6 +199,12 @@
   </data>
   <data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
     <value>see all shows</value>
+  </data>
+  <data name="UpdateAudioLibrary" xml:space="preserve">
+    <value>update audio library</value>
+  </data>
+  <data name="UpdateVideoLibrary" xml:space="preserve">
+    <value>update video library</value>
   </data>
   <data name="Username.Header" xml:space="preserve">
     <value>Username</value>

@@ -354,14 +354,22 @@ namespace XBMCRemoteRT.Pages
             AdvancedMenuFlyout.SelectedItem = null;
         }
 
-        private string audioLibUpdate = "update audio library";
-        private string videoLibUpdate = "update video library";
-        private string audioLibClean = "clean audio library";
-        private string videoLibClean ="clean video library";
-        private string showSubtitleSerach = "download subtitles";
+        
+        private string audioLibUpdate;// = "update audio library";
+        private string videoLibUpdate;// = "update video library";
+        private string audioLibClean;// = "clean audio library";
+        private string videoLibClean;// ="clean video library";
+        private string showSubtitleSerach;// = "download subtitles";
 
         private void PopulateFlyout()
         {
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            audioLibUpdate = loader.GetString("UpdateAudioLibrary");
+            videoLibUpdate = loader.GetString("UpdateVideoLibrary");
+            audioLibClean = loader.GetString("CleanAudioLibrary");
+            videoLibClean = loader.GetString("CleanVideoLibrary");
+            showSubtitleSerach = loader.GetString("DownloadSubtitles");
+
             AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach };
         }
 
