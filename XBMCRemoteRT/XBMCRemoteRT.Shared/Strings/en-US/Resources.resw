@@ -126,6 +126,24 @@
   <data name="AddServer.Label" xml:space="preserve">
     <value>add server</value>
   </data>
+  <data name="AlbumPageTitle.Text" xml:space="preserve">
+    <value>SONGS</value>
+  </data>
+  <data name="Albums.Header" xml:space="preserve">
+    <value>ALBUMS</value>
+  </data>
+  <data name="AlbumsTitle.Text" xml:space="preserve">
+    <value>ALBUMS</value>
+  </data>
+  <data name="AllMusicPivotTitle.Text" xml:space="preserve">
+    <value>ALL MUSIC</value>
+  </data>
+  <data name="ArtistsTitle.Text" xml:space="preserve">
+    <value>ARTISTS</value>
+  </data>
+  <data name="Bio.Text" xml:space="preserve">
+    <value>BIO</value>
+  </data>
   <data name="CancelAppBarMenu.Label" xml:space="preserve">
     <value>cancel</value>
   </data>
@@ -143,6 +161,12 @@
   </data>
   <data name="DownloadSubtitles" xml:space="preserve">
     <value>download subtitles</value>
+  </data>
+  <data name="Info.Header" xml:space="preserve">
+    <value>INFO</value>
+  </data>
+  <data name="Mood.Text" xml:space="preserve">
+    <value>MOOD</value>
   </data>
   <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
     <value>MOVIES</value>
@@ -175,6 +199,12 @@
   <data name="Passowrd.Header" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
+    <value>play album</value>
+  </data>
+  <data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
+    <value>play artist</value>
+  </data>
   <data name="Port.Header" xml:space="preserve">
     <value>Port</value>
   </data>
@@ -191,8 +221,20 @@
   <data name="SettingsAppBarMenu.Label" xml:space="preserve">
     <value>settings</value>
   </data>
+  <data name="Songs.Header" xml:space="preserve">
+    <value>SONGS</value>
+  </data>
+  <data name="SongsTitle.Text" xml:space="preserve">
+    <value>SONGS</value>
+  </data>
   <data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
     <value>switch server</value>
+  </data>
+  <data name="Track" xml:space="preserve">
+    <value>track</value>
+  </data>
+  <data name="Tracks" xml:space="preserve">
+    <value>tracks</value>
   </data>
   <data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
     <value>TV SHOWS</value>

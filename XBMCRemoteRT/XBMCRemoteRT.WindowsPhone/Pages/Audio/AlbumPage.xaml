@@ -24,7 +24,7 @@
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="12,0,0,0">
             <TextBlock Text="KODI ASSIST" Margin="3,12,0,-8"  Style="{StaticResource PageTitleTextStyle}"/>
-            <TextBlock Text="SONGS" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock Text="SONGS" x:Uid="AlbumPageTitle" Style="{StaticResource PageHeaderTextStyle}"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
@@ -63,7 +63,7 @@
                                     <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                         <BitmapIcon Margin="12" UriSource="/Assets/Icons/musicnote.png" Foreground="{StaticResource PhoneForegroundBrush}" ></BitmapIcon>
                                     </Border>
-                                    <TextBlock Text="{Binding Label}" FontSize="25" Margin="10,-2,0,0" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Label}" FontSize="25" Margin="10,-2,0,0" FontWeight="SemiBold" VerticalAlignment="Center" FontFamily="Global User Interface"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -76,7 +76,7 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="PlayAlbumButton" Icon="Play" Label="play album" Click="PlayAlbumButton_Click"/>
+                <AppBarButton x:Name="PlayAlbumButton" x:Uid="PlayAlbum" Icon="Play" Label="play album" Click="PlayAlbumButton_Click"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
