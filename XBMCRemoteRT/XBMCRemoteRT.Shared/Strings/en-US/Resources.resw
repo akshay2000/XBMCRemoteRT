@@ -117,8 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+  <data name="AboutAppBarMenu.Label" xml:space="preserve">
     <value>about</value>
+  </data>
+  <data name="AddConnectionPageTitle.Text" xml:space="preserve">
+    <value>ADD CONNECTION</value>
+  </data>
+  <data name="AddServer.Label" xml:space="preserve">
+    <value>add server</value>
+  </data>
+  <data name="CancelAppBarMenu.Label" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="ConnectionName.Header" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ConnectionsPageTitle.Text" xml:space="preserve">
+    <value>CONNECTIONS</value>
   </data>
   <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
     <value>MOVIES</value>
@@ -148,17 +163,38 @@
     <value>open remote</value>
     <comment>Subheader of now playing on cover page</comment>
   </data>
-  <data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+  <data name="Passowrd.Header" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Port.Header" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="RemoteAppBarMenu.Label" xml:space="preserve">
     <value>remote</value>
     <comment>Appbar menu item</comment>
   </data>
-  <data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+  <data name="SaveAppBarMenu.Label" xml:space="preserve">
+    <value>save</value>
+  </data>
+  <data name="ServerAddress.Header" xml:space="preserve">
+    <value>Server Address</value>
+  </data>
+  <data name="SettingsAppBarMenu.Label" xml:space="preserve">
     <value>settings</value>
+  </data>
+  <data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
+    <value>switch server</value>
   </data>
   <data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
     <value>TV SHOWS</value>
   </data>
   <data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
     <value>see all shows</value>
+  </data>
+  <data name="Username.Header" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="WarningNote.Text" xml:space="preserve">
+    <value>Note: Usernames and passwords are stored and transmitted in plain text. Make sure you are not using the same password anywhere else.</value>
   </data>
 </root>
