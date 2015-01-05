@@ -305,8 +305,9 @@ namespace XBMCRemoteRT
                     // away from the page
                     return;
                 }
-                Frame.Navigate(typeof(CoverPage));
             }
+
+            Frame.Navigate(typeof(CoverPage));
         }
     }
 }
