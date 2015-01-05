@@ -281,26 +281,32 @@ namespace XBMCRemoteRT
 
         private void SearchedItem_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var tappedItem = (sender as Grid).DataContext;
-            if (tappedItem is Artist)
+            // For single results, play is started automatically and tapping
+            // would restart the media. We only want to play media for All and
+            // Multiple (and None) SearchHitStates.
+            if (searchHitState != SearchHitState.Single)
             {
-                Player.PlayArtist(tappedItem as Artist);
+                var tappedItem = (sender as Grid).DataContext;
+                if (tappedItem is Artist)
+                {
+                    Player.PlayArtist(tappedItem as Artist);
+                }
+                else if (tappedItem is Movie)
+                {
+                    Player.PlayMovie(tappedItem as Movie);
+                }
+                else if (tappedItem is Album)
+                {
+                    Player.PlayAlbum(tappedItem as Album);
+                }
+                else
+                {
+                    // Unrecognized media type. Early return so we don't navigate
+                    // away from the page
+                    return;
+                }
+                Frame.Navigate(typeof(CoverPage));
             }
-            else if (tappedItem is Movie)
-            {
-                Player.PlayMovie(tappedItem as Movie);
-            }
-            else if (tappedItem is Album)
-            {
-                Player.PlayAlbum(tappedItem as Album);
-            }
-            else
-            {
-                // Unrecognized media type. Early return so we don't navigate
-                // away from the page
-                return;
-            }
-            Frame.Navigate(typeof(CoverPage));
         }
     }
 }
