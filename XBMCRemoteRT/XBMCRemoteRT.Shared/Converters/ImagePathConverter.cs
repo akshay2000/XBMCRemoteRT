@@ -18,21 +18,17 @@ namespace XBMCRemoteRT.Converters
             if (imagePath.Length > 8)
             {
                 string uri = imagePath.Substring(8);
-                if (uri.StartsWith("http"))
-                {
-                    imageURL = WebUtility.UrlDecode(uri).TrimEnd('/');
-                }
-                else
-                {
-                    var encodedUri = WebUtility.UrlEncode(uri);
-                    string authHeader = string.Empty;
-                    if (ConnectionManager.CurrentConnection.Password != string.Empty)
-                    {
-                        authHeader = ConnectionManager.CurrentConnection.Username + ":" + ConnectionManager.CurrentConnection.Password + "@";
-                    }
-                    string baseUrlString = "http://" + authHeader + ConnectionManager.CurrentConnection.IpAddress + ":" + ConnectionManager.CurrentConnection.Port.ToString() + "/image/image://";
-                    imageURL = baseUrlString + encodedUri;
-                }
+
+                //if (uri.StartsWith("http"))
+                //{
+                //    imageURL = WebUtility.UrlDecode(uri).TrimEnd('/');
+                //}
+                //else
+                //{
+                var encodedUri = WebUtility.UrlEncode(uri);
+                string baseUrlString = "http://" + ConnectionManager.CurrentConnection.IpAddress + ":" + ConnectionManager.CurrentConnection.Port.ToString() + "/image/image://";
+                imageURL = baseUrlString + encodedUri;
+                //}
             }
             else
             {

@@ -61,8 +61,8 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="ALBUMS" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
-                </PivotItem.Header>
+                            <TextBlock Text="ALBUMS" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+                        </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
                         <GridView ItemsSource="{Binding Source={StaticResource AlbumsCVS}}" Margin="0,-20,0,0" ContinuumNavigationTransitionInfo.ExitElementContainer="True">
@@ -107,7 +107,7 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="SONGS" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+                            <TextBlock Text="SONGS" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
                 </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>

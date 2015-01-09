@@ -46,21 +46,21 @@
             </Pivot.Title>
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="ALL" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock Text="ALL" x:Uid="AllMoviesTitle" Style="{StaticResource PageHeaderTextStyle}" />
                 </PivotItem.Header>
                 <GridView x:Name="AllMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}"/>
             </PivotItem>
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="NEW" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock Text="NEW" x:Uid="UnwatchedMoviesTitle" Style="{StaticResource PageHeaderTextStyle}" />
                 </PivotItem.Header>
                 <GridView x:Name="UnwatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}"/>
             </PivotItem>
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="WATCHED" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock Text="WATCHED" x:Uid="WatchedMoviesTitle" Style="{StaticResource PageHeaderTextStyle}" />
                 </PivotItem.Header>
                 <GridView x:Name="WatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}"/>
             </PivotItem>
@@ -70,8 +70,8 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RefreshMoviesAppBarButton" Click="RefreshMoviesAppBarButton_Click" Label="refresh" Icon="Refresh"/>
-                <AppBarButton x:Name="SeachMoviesAppBarButton" Click="SeachMoviesAppBarButton_Click" Label="search" Icon="Find" />
+                <AppBarButton x:Name="RefreshMoviesAppBarButton" x:Uid="RefreshMenuItem" Click="RefreshMoviesAppBarButton_Click" Label="refresh" Icon="Refresh"/>
+                <AppBarButton x:Name="SeachMoviesAppBarButton" x:Uid="SearchMenuItem" Click="SeachMoviesAppBarButton_Click" Label="search" Icon="Find" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

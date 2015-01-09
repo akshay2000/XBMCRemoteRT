@@ -17,7 +17,7 @@
             <Hub.Header>
                 <TextBlock Text="{Binding Label}" FontFamily="Segoe UI" FontWeight="Bold" FontSize="75" />
             </Hub.Header>
-            <HubSection Header="INFO" x:Name="InfoHubSection">
+            <HubSection Header="INFO" x:Uid="Info" x:Name="InfoHubSection">
                 <DataTemplate>
                     <ScrollViewer>
                         <Grid Margin="0,0,0,12">
@@ -34,18 +34,18 @@
                             <Image Source="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}" Stretch="UniformToFill"/>
 
                             <StackPanel Grid.Row="0" Grid.Column="1">
-                                <TextBlock Text="GENRE" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
+                                <TextBlock Text="GENRE" x:Uid="Genre" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Genre, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" FontSize="15" FontWeight="Bold" Margin="5" TextWrapping="Wrap"/>
 
-                                <TextBlock Text="STUDIO" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
+                                <TextBlock Text="STUDIO" x:Uid="Studio" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Studio, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" FontSize="15" FontWeight="Bold" Margin="5" />
 
-                                <TextBlock Text="RATING" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
+                                <TextBlock Text="RATING" x:Uid="Rating" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Rating, Converter={StaticResource RatingConverter}}" FontSize="15" FontWeight="Bold" Margin="5"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-                                <TextBlock Text="PLOT" FontSize="14" Margin="0,15,0,0" Opacity="0.7" />
+                                <TextBlock Text="PLOT" x:Uid="PlotText" FontSize="14" Margin="0,15,0,0" Opacity="0.7" />
                                 <TextBlock Text="{Binding Plot}" Margin="0,5,0,0" TextWrapping="Wrap" FontSize="15" FontWeight="Medium"/>
                             </StackPanel>
                         </Grid>
@@ -53,7 +53,7 @@
                 </DataTemplate>
             </HubSection>
             
-            <HubSection Header="CAST" x:Name="CastHubSection">
+            <HubSection Header="CAST" x:Uid="Cast" x:Name="CastHubSection">
                 <DataTemplate>
                     <Grid>
                         <ListView x:Name="CastLLS" ItemsSource="{Binding Cast, Converter={StaticResource ListTrimmer}}">
@@ -89,7 +89,7 @@
                 </DataTemplate>
             </HubSection>
             
-            <HubSection Header="SEASONS" x:Name="SeasonsHubSection">
+            <HubSection Header="SEASONS" x:Uid="Seasons" x:Name="SeasonsHubSection">
                 <DataTemplate>
                     <SemanticZoom>
                         <SemanticZoom.ZoomedInView>

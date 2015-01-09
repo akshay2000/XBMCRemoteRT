@@ -12,9 +12,9 @@
         
         <Hub Background="{Binding Fanart, Converter={StaticResource StringToImageBrushConverter}}">
             <Hub.Header>
-                <TextBlock Text="{Binding Label}" FontFamily="Segoe UI" FontWeight="Bold" FontSize="75" />
+                <TextBlock Text="{Binding Label}" FontFamily="Global User Interface" FontWeight="Bold" FontSize="75" />
             </Hub.Header>
-            <HubSection Header="INFO">
+            <HubSection Header="INFO" x:Uid="Info">
                 <DataTemplate>
                     <ScrollViewer>
                         <Grid Margin="0,0,0,12">
@@ -39,27 +39,27 @@
                             </Image>
 
                             <StackPanel Grid.Row="0" Grid.Column="1">
-                                <TextBlock Text="DIRECTOR" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
+                                <TextBlock Text="DIRECTOR" x:Uid="Director" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Director, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" FontSize="15" FontWeight="Bold" Margin="5" TextWrapping="Wrap"/>
 
-                                <TextBlock Text="GENRE" FontSize="14" Margin="5,10,0,0" Opacity="0.7"/>
+                                <TextBlock Text="GENRE" x:Uid="Genre" FontSize="14" Margin="5,10,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Genre, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" FontSize="15" FontWeight="Bold" Margin="5" TextWrapping="Wrap"/>
 
-                                <TextBlock Text="RATING" FontSize="14" Margin="5,10,0,0" Opacity="0.7"/>
+                                <TextBlock Text="RATING" x:Uid="Rating" FontSize="14" Margin="5,10,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Rating, Converter={StaticResource RatingConverter}}" FontSize="15" FontWeight="Bold" Margin="5"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-                                <TextBlock Text="TAGLINE" FontSize="14" Margin="0,15,0,0" Opacity="0.7"/>
+                                <TextBlock Text="TAGLINE" x:Uid="Tagline" FontSize="14" Margin="0,15,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Tagline}" TextWrapping="Wrap" FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
 
-                                <TextBlock Text="WRITER" FontSize="14" Margin="0,5,0,0" Opacity="0.7"/>
+                                <TextBlock Text="WRITER" x:Uid="Writer" FontSize="14" Margin="0,5,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Writer, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
 
-                                <TextBlock Text="STUDIO" FontSize="14" Margin="0,5,0,0" Opacity="0.7"/>
+                                <TextBlock Text="STUDIO" x:Uid="Studio" FontSize="14" Margin="0,5,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Studio, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
 
-                                <TextBlock Text="RUNTIME" FontSize="14" Margin="0,5,0,0" Opacity="0.7"/>
+                                <TextBlock Text="RUNTIME" x:Uid="Runtime" FontSize="14" Margin="0,5,0,0" Opacity="0.7"/>
                                 <TextBlock Text="{Binding Runtime, Converter={StaticResource MinutesToStringConverter}}"  FontSize="15" FontWeight="Bold" Margin="0,5,5,5"/>
                             </StackPanel>
                         </Grid>
@@ -67,7 +67,7 @@
                 </DataTemplate>
             </HubSection>
             
-            <HubSection Header="PLOT">
+            <HubSection Header="PLOT" x:Uid="Plot">
                 <DataTemplate>
                     <ScrollViewer>
                         <Grid>
@@ -77,7 +77,7 @@
                 </DataTemplate>
             </HubSection>
             
-            <HubSection Header="CAST">
+            <HubSection Header="CAST" x:Uid="Cast">
                 <DataTemplate>
                         <ListView x:Name="CastLLS" ItemsSource="{Binding Cast, Converter={StaticResource ListTrimmer}}" >
                             <ListView.ItemTemplate>
@@ -116,7 +116,7 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="PlayMovieAppBarButton" Click="PlayMovieAppBarButton_Click" Icon="Play" Label="play"/>
+                <AppBarButton x:Name="PlayMovieAppBarButton" x:Uid="PlayMovieAppBarMenu" Click="PlayMovieAppBarButton_Click" Icon="Play" Label="play"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

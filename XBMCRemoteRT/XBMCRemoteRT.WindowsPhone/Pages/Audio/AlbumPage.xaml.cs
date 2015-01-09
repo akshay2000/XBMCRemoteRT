@@ -48,13 +48,17 @@ namespace XBMCRemoteRT.Pages.Audio
 
         async void AlbumPage_Loaded(object sender, RoutedEventArgs e)
         {
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            string track = loader.GetString("Track");
+            string tracks = loader.GetString("Tracks");
+
             ConnectionManager.ManageSystemTray(true);
             JObject filter = new JObject(new JProperty("albumid", GlobalVariables.CurrentAlbum.AlbumId));
             songsInAlbum = await AudioLibrary.GetSongs(filter);
             SongsListView.ItemsSource = songsInAlbum;
 
             TrackCountTextBlock.Text = songsInAlbum.Count.ToString();
-            TracksTextBlock.Text = songsInAlbum.Count > 1 ? "tracks" : "track";
+            TracksTextBlock.Text = songsInAlbum.Count > 1 ? tracks : track;
 
             currentAlbum = await AudioLibrary.GetAlbumDetails(GlobalVariables.CurrentAlbum.AlbumId);
             AlbumInfoGrid.DataContext = currentAlbum;
