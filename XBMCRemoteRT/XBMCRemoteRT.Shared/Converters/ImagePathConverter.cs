@@ -25,7 +25,12 @@ namespace XBMCRemoteRT.Converters
                 else
                 {
                     var encodedUri = WebUtility.UrlEncode(uri);
-                    string baseUrlString = "http://" + ConnectionManager.CurrentConnection.IpAddress + ":" + ConnectionManager.CurrentConnection.Port.ToString() + "/image/image://";
+                    string authHeader = string.Empty;
+                    if (ConnectionManager.CurrentConnection.Password != string.Empty)
+                    {
+                        authHeader = ConnectionManager.CurrentConnection.Username + ":" + ConnectionManager.CurrentConnection.Password + "@";
+                    }
+                    string baseUrlString = "http://" + authHeader + ConnectionManager.CurrentConnection.IpAddress + ":" + ConnectionManager.CurrentConnection.Port.ToString() + "/image/image://";
                     imageURL = baseUrlString + encodedUri;
                 }
             }

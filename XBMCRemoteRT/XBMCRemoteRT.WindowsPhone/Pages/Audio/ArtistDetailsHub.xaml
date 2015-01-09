@@ -7,12 +7,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Page.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition>
+                
+            </EntranceThemeTransition>
+            <NavigationThemeTransition>
+                <!--<NavigationThemeTransition.DefaultNavigationTransitionInfo>-->
+                    <ContinuumNavigationTransitionInfo/>
+                <!--</NavigationThemeTransition.DefaultNavigationTransitionInfo>-->
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
 
     <Grid x:Name="LayoutRoot">
 
         <Hub Background="{Binding Fanart, Converter={StaticResource StringToImageBrushConverter}}">
             <Hub.Header>
-                <TextBlock Text="{Binding Label}" FontFamily="Segoe UI" FontWeight="Bold" FontSize="75" />
+                <TextBlock Text="{Binding Label}" FontFamily="Segoe UI" FontWeight="Bold" FontSize="75" ContinuumNavigationTransitionInfo.IsEntranceElement="True"/>
             </Hub.Header>
             <HubSection Header="INFO">
                 <DataTemplate>
