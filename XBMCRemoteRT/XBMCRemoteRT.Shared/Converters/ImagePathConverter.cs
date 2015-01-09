@@ -106,7 +106,6 @@ namespace XBMCRemoteRT.Converters
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(imageUri.Scheme + "://" + imageUri.Authority);
             HttpRequestMessage req = new HttpRequestMessage(HttpMethod.Get, imageUri.AbsolutePath);
-            // TODO: Test for active connection? What are possible errors with ConnectionManager?
             if (ConnectionManager.CurrentConnection.Password != String.Empty)
             {
                 req.Headers.Authorization = new AuthenticationHeaderValue(
