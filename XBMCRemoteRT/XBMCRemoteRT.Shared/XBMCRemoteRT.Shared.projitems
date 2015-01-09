@@ -35,6 +35,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\FeedbackHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GlobalVariables.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GroupingHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MD5.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlayerHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SettingsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Album.cs" />
