@@ -20,18 +20,25 @@ namespace XBMCRemoteRT.Converters
             string imageURL = string.Empty;
             string proxyScheme = "image://";
             // TODO: are there other possible schemes for imagePath?
-            // TODO: Only apply cache logic if user is using authentication
             if (imagePath.StartsWith(proxyScheme))
             {
-                // Hash the image proxy path into local storage file name
-                string storageFileName = MD5Core.GetHashString(imagePath) + ".tmp";
-                imageURL = ApplicationData.Current.TemporaryFolder.Path + '\\' + storageFileName;
-
                 // Build Kodi proxy image address
                 var encodedUri = WebUtility.UrlEncode(imagePath);
                 string baseUrlString = "http://" + ConnectionManager.CurrentConnection.IpAddress + ":" + ConnectionManager.CurrentConnection.Port.ToString() + "/image/";
-                Uri imageUri = new Uri(baseUrlString + encodedUri);
-                CacheImage(imageUri, storageFileName);
+                imageURL = baseUrlString + encodedUri;
+
+                // Only apply cache logic if authentication is in use. If not,
+                // allow the image to be consumed from Kodi.
+                if (ConnectionManager.CurrentConnection.Password != String.Empty)
+                {
+                    Uri imageUri = new Uri(imageURL);
+
+                    // Hash the image proxy path into local storage file name
+                    string storageFileName = MD5Core.GetHashString(imagePath) + ".tmp";
+                    imageURL = ApplicationData.Current.TemporaryFolder.Path + '\\' + storageFileName;
+
+                    CacheImage(imageUri, storageFileName);
+                }
             }
             else
             {
@@ -61,7 +68,6 @@ namespace XBMCRemoteRT.Converters
             }
             if (!fileExists)
             {
-                System.Diagnostics.Debug.WriteLine("Creating " + filename);
                 Stream imageStream = await GetImage(imageUri);
 
                 if (imageStream != null)
