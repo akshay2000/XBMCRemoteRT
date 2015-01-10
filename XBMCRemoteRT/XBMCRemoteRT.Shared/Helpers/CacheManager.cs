@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -11,6 +12,7 @@ using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using XBMCRemoteRT.Models;
+using XBMCRemoteRT.RPCWrappers;
 
 namespace XBMCRemoteRT.Helpers
 {
@@ -21,10 +23,11 @@ namespace XBMCRemoteRT.Helpers
             IEnumerable<string> imagePaths = await GetAllImagesAsync();
             foreach (string imagePath in imagePaths)
             {
+                Debug.WriteLine(imagePath);
                 Stream imageStream = await GetImageStreamAsync(GetRemoteUri(imagePath));
                 if (imageStream != null)
                 {
-                    // TODO: Save image
+                    await WriteFileAsync(imageStream, MD5Core.GetHashString(imagePath) + ".tmp");
                 }
                 else
                 {
@@ -35,9 +38,37 @@ namespace XBMCRemoteRT.Helpers
 
         public static async Task<IEnumerable<string>> GetAllImagesAsync()
         {
-            List<string> imagePaths = new List<string>();
+            //Use hashset to avoid downloading same url twice
+            HashSet<string> imagePaths = new HashSet<string>();
 
-            // TODO: Compile a collection of potential images from movies, music, and TV.
+            var albums = await AudioLibrary.GetAlbums();
+            foreach (var album in albums)
+            {
+                imagePaths.Add(album.Thumbnail);
+                //imagePaths.Add(album.Fanart); //Not using anywhere
+            }
+
+            var artists = await AudioLibrary.GetArtists();
+            foreach (var artist in artists)
+            {
+                imagePaths.Add(artist.Thumbnail);
+                imagePaths.Add(artist.Fanart);
+            }
+
+            var movies = await VideoLibrary.GetMovies();
+            foreach (var movie in movies)
+            {
+                imagePaths.Add(movie.Thumbnail);
+                imagePaths.Add(movie.Fanart);
+            }
+
+            var tvShows = await VideoLibrary.GetTVShows();
+            foreach (var tvShow in tvShows)
+            {
+                imagePaths.Add(tvShow.Art.Banner);
+                imagePaths.Add(tvShow.Fanart);
+                imagePaths.Add(tvShow.Thumbnail);
+            }
 
             return imagePaths;
         }
