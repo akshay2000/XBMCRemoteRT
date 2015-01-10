@@ -220,7 +220,7 @@ namespace XBMCRemoteRT.Pages
             int errors = await initOperation;
             if (errors > 0)
             {
-                // TODO: Handle failed image downloads with friendly error message "X images encountered errors..."
+                // TODO: Consider a friendly error message "X images encountered errors..."
             }
 
             RefreshEnd.Begin();

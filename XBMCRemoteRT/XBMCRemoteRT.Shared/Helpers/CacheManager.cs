@@ -152,12 +152,14 @@ namespace XBMCRemoteRT.Helpers
         /// <param name="filename">Cached file name</param>
         private static async Task VerifyCacheAsync(Uri imageUri, string filename)
         {
+            // TODO: Consider expiring the cache somehow. As it stands, new 
+            // images will be added to the cache at connection select, but
+            // changed images are only reflected on manual update by user.
             if (!(await IsFileCachedAsync(filename)))
             {
                 // Cache miss, download and save the image
                 Stream imageStream = await GetImageStreamAsync(imageUri);
                 await WriteFileAsync(imageStream, filename);
-                // TODO: Check file age and refresh cached image. Age is a bad way to do it though.
             }
         }
 
