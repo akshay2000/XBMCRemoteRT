@@ -202,7 +202,12 @@ namespace XBMCRemoteRT.Pages
 
             // Immediately load the cache. We don't want the user to see empty
             // and partially loaded images from cache misses.
-            await CacheManager.InitCacheAsync();
+            IAsyncOperationWithProgress<int, int> initOperation = CacheManager.InitCacheAsync();
+            initOperation.Progress = (result, progress) =>
+            {
+                // Progress is int 0 to 100
+            };
+            await initOperation;
 
             CacheRefreshButton.IsEnabled = true;
         }

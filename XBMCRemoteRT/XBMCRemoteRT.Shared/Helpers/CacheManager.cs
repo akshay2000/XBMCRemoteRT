@@ -18,25 +18,31 @@ namespace XBMCRemoteRT.Helpers
 {
     public class CacheManager
     {
-        public static async Task InitCacheAsync()
+        public static IAsyncOperationWithProgress<int, int> InitCacheAsync()
         {
-            IEnumerable<string> imagePaths = await GetAllImagesAsync();
-            foreach (string imagePath in imagePaths)
-            {
-                Debug.WriteLine(imagePath);
-                Stream imageStream = await GetImageStreamAsync(GetRemoteUri(imagePath));
-                if (imageStream != null)
+            return AsyncInfo.Run<int, int>(async (cancelToken, progress) =>
                 {
-                    await WriteFileAsync(imageStream, MD5Core.GetHashString(imagePath) + ".tmp");
-                }
-                else
-                {
-                    // TODO: Handle failed image downloads with friendly error message
-                }
-            }
+                    ICollection<string> imagePaths = await GetAllImagesAsync();
+                    int imageCount = 0;
+                    foreach (string imagePath in imagePaths)
+                    {
+                        Stream imageStream = await GetImageStreamAsync(GetRemoteUri(imagePath));
+                        if (imageStream != null)
+                        {
+                            await WriteFileAsync(imageStream, MD5Core.GetHashString(imagePath) + ".tmp");
+                        }
+                        else
+                        {
+                            // TODO: Handle failed image downloads with friendly error message
+                        }
+                        progress.Report(++imageCount * 100 / imagePaths.Count);
+                    }
+
+                    return 0;
+                });
         }
 
-        public static async Task<IEnumerable<string>> GetAllImagesAsync()
+        public static async Task<ICollection<string>> GetAllImagesAsync()
         {
             //Use hashset to avoid downloading same url twice
             HashSet<string> imagePaths = new HashSet<string>();
