@@ -66,6 +66,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ConnectionsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\cs-CZ\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\da-DK\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de-DE\Resources.resw" />
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\es\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\he-IL\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\hu-HU\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\pt\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\sv-SE\Resources.resw" />
   </ItemGroup>
 </Project>
