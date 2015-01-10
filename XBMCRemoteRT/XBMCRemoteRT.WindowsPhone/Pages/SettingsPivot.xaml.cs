@@ -189,6 +189,16 @@ namespace XBMCRemoteRT.Pages
             SettingsHelper.SetValue("AutoConnect", AutoconnectToggle.IsOn);
         }
 
+        private async void CacheRefreshButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            // Clear the cache
+            await CacheManager.ClearCacheAsync();
+
+            // Immediately load the cache. We don't want the user to see empty
+            // and partially loaded images from cache misses.
+            await CacheManager.InitCacheAsync();
+        }
+
         #region NavigationHelper registration
 
         /// <summary>
