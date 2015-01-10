@@ -19,7 +19,7 @@ namespace XBMCRemoteRT.Helpers
     public class CacheManager
     {
         /// <summary>
-        /// Fetch images from the server and add the images to the cache. Existing images are overwritten.
+        /// Fetch images from the server and add the images to the cache. Existing images are not overwritten.
         /// </summary>
         /// <returns>Async operation that will return the number of images that encountered errors.</returns>
         public static IAsyncOperationWithProgress<int, int> UpdateCacheAsync()
@@ -38,11 +38,20 @@ namespace XBMCRemoteRT.Helpers
                         }
                         else
                         {
-                            Stream imageStream = await GetImageStreamAsync(GetRemoteUri(imagePath));
-                            if (imageStream != null)
+                            string filename = GetTempFileName(imagePath);
+                            if (await IsFileCachedAsync(filename))
                             {
-                                await WriteFileAsync(imageStream, GetTempFileName(imagePath));
+                                // File exists and will not be overwritten.
                                 imageCount++;
+                            }
+                            else
+                            {
+                                Stream imageStream = await GetImageStreamAsync(GetRemoteUri(imagePath));
+                                if (imageStream != null)
+                                {
+                                    await WriteFileAsync(imageStream, filename);
+                                    imageCount++;
+                                }
                             }
                         }
                         progress.Report(imageCount * 100 / imagePaths.Count);

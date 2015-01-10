@@ -179,6 +179,15 @@ namespace XBMCRemoteRT
             {
                 ConnectionManager.CurrentConnection = connectionItem;
                 SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
+
+                // Update cache
+                IAsyncOperationWithProgress<int, int> cacheOperation = CacheManager.UpdateCacheAsync();
+                cacheOperation.Progress = (result, progress) =>
+                {
+                    // TODO: Indicate progress to user
+                };
+                await cacheOperation;
+
                 Frame.Navigate(typeof(CoverPage));
             }
             else
