@@ -18,31 +18,41 @@ namespace XBMCRemoteRT.Helpers
 {
     public class CacheManager
     {
-        public static IAsyncOperationWithProgress<int, int> InitCacheAsync()
+        /// <summary>
+        /// Fetch images from the server and add the images to the cache. Existing images are overwritten.
+        /// </summary>
+        /// <returns>Async operation that will return the number of images that encountered errors.</returns>
+        public static IAsyncOperationWithProgress<int, int> UpdateCacheAsync()
         {
             return AsyncInfo.Run<int, int>(async (cancelToken, progress) =>
                 {
-                    ICollection<string> imagePaths = await GetAllImagesAsync();
+                    ICollection<string> imagePaths = await GetAllImagePathsAsync();
                     int imageCount = 0;
                     foreach (string imagePath in imagePaths)
                     {
-                        Stream imageStream = await GetImageStreamAsync(GetRemoteUri(imagePath));
-                        if (imageStream != null)
+                        if (imagePath == string.Empty)
                         {
-                            await WriteFileAsync(imageStream, MD5Core.GetHashString(imagePath) + ".tmp");
+                            // Empty string will only occur once in the 
+                            // HashSet, but we don't want to indicate an error for it.
+                            imageCount++;
                         }
                         else
                         {
-                            // TODO: Handle failed image downloads with friendly error message
+                            Stream imageStream = await GetImageStreamAsync(GetRemoteUri(imagePath));
+                            if (imageStream != null)
+                            {
+                                await WriteFileAsync(imageStream, GetTempFileName(imagePath));
+                                imageCount++;
+                            }
                         }
-                        progress.Report(++imageCount * 100 / imagePaths.Count);
+                        progress.Report(imageCount * 100 / imagePaths.Count);
                     }
 
-                    return 0;
+                    return imagePaths.Count - imageCount;
                 });
         }
 
-        public static async Task<ICollection<string>> GetAllImagesAsync()
+        public static async Task<ICollection<string>> GetAllImagePathsAsync()
         {
             //Use hashset to avoid downloading same url twice
             HashSet<string> imagePaths = new HashSet<string>();
@@ -112,13 +122,18 @@ namespace XBMCRemoteRT.Helpers
         {
             Uri imageUri = null;
 
-            string storageFileName = MD5Core.GetHashString(imagePath) + ".tmp";
+            string storageFileName = GetTempFileName(imagePath);
             string storagePath = Path.Combine(GetCacheFolder().Path, storageFileName);
             imageUri = new Uri(storagePath, UriKind.Absolute);
 
             VerifyCacheAsync(GetRemoteUri(imagePath), storageFileName);
 
             return imageUri;
+        }
+
+        private static string GetTempFileName(string imagePath)
+        {
+            return MD5Core.GetHashString(imagePath) + ".tmp";
         }
 
         /// <summary>

@@ -207,13 +207,17 @@ namespace XBMCRemoteRT.Pages
 
             // Immediately load the cache. We don't want the user to see empty
             // and partially loaded images from cache misses.
-            IAsyncOperationWithProgress<int, int> initOperation = CacheManager.InitCacheAsync();
+            IAsyncOperationWithProgress<int, int> initOperation = CacheManager.UpdateCacheAsync();
             initOperation.Progress = (result, progress) =>
             {
                 // Cache write operation is slower. Weighted 70%
                 CacheRefreshProgressBar.Value = 30 + progress * 0.7;
             };
-            await initOperation;
+            int errors = await initOperation;
+            if (errors > 0)
+            {
+                // TODO: Handle failed image downloads with friendly error message "X images encountered errors..."
+            }
 
             RefreshEnd.Begin();
             CacheRefreshButton.IsEnabled = true;
