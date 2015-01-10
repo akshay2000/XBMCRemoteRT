@@ -73,9 +73,8 @@ namespace XBMCRemoteRT.Helpers
         {
             Uri imageUri = null;
 
-            // TODO: Should each connection have its own cache? Two connections could have different images at the same path, but unlikely.
             string storageFileName = MD5Core.GetHashString(imagePath) + ".tmp";
-            string storagePath = Path.Combine(ApplicationData.Current.TemporaryFolder.Path, storageFileName);
+            string storagePath = Path.Combine(GetCacheFolder().Path, storageFileName);
             imageUri = new Uri(storagePath, UriKind.Absolute);
 
             // TODO: Ideally, we've predicted all the possible images and cached them, but cache misses can be handled by simply downloading the image to the cache. Only a mild inconvenience for the user.
@@ -110,7 +109,7 @@ namespace XBMCRemoteRT.Helpers
         {
 
             // Attempt to open file in app temp folder
-            StorageFolder parent = ApplicationData.Current.TemporaryFolder;
+            StorageFolder parent = GetCacheFolder();
             bool fileExists = false;
             try
             {
@@ -172,10 +171,11 @@ namespace XBMCRemoteRT.Helpers
             DataReader reader = new DataReader(inStream);
 
             // Prepare output file stream
-            StorageFolder parent = ApplicationData.Current.TemporaryFolder;
+            StorageFolder parent = GetCacheFolder();
             StorageFile file = null;
             try
             {
+                // TODO: Test overwriting of existing files
                 file = await parent.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
             }
             catch (Exception) {
@@ -196,6 +196,13 @@ namespace XBMCRemoteRT.Helpers
                 inStream.Dispose();
                 // TODO: Handle write task canceled exceptions, or prepare for corrupted images
             }
+        }
+
+        private static StorageFolder GetCacheFolder()
+        {
+            // Return folder to store cache files.
+            // One day this may return a different folder for each connection.
+            return ApplicationData.Current.TemporaryFolder;
         }
 
         public static async void ClearCacheAsync()
