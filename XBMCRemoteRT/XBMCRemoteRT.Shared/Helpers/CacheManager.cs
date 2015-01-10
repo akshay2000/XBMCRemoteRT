@@ -236,7 +236,6 @@ namespace XBMCRemoteRT.Helpers
             StorageFile file = null;
             try
             {
-                // TODO: Test overwriting of existing files
                 file = await parent.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
             }
             catch (Exception)
@@ -245,18 +244,31 @@ namespace XBMCRemoteRT.Helpers
 
             if (file != null)
             {
-                IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.ReadWrite);
-                // Buffered write to file
-                await reader.LoadAsync(1024);
-                while (reader.UnconsumedBufferLength > 0)
+                IRandomAccessStream fileStream = null;
+                try
                 {
-                    await fileStream.WriteAsync(reader.ReadBuffer(reader.UnconsumedBufferLength));
+                    fileStream = await file.OpenAsync(FileAccessMode.ReadWrite);
+                    // Buffered write to file
                     await reader.LoadAsync(1024);
+                    while (reader.UnconsumedBufferLength > 0)
+                    {
+                        await fileStream.WriteAsync(reader.ReadBuffer(reader.UnconsumedBufferLength));
+                        await reader.LoadAsync(1024);
+                    }
                 }
-
-                await fileStream.FlushAsync();
-                inStream.Dispose();
+                catch (Exception)
+                {
+                }
+                finally
+                {
+                    if (fileStream != null)
+                    {
+                        fileStream.FlushAsync();
+                    }
+                }
             }
+
+            inStream.Dispose();
         }
 
         private static StorageFolder GetCacheFolder()
