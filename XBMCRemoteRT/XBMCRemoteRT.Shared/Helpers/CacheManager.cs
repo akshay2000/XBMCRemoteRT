@@ -185,7 +185,7 @@ namespace XBMCRemoteRT.Helpers
         }
 
         /// <summary>
-        /// Downloads image content from a remote location. TODO: Requests are cached.
+        /// Downloads image content from a remote location, ignoring the cache.
         /// </summary>
         /// <param name="imageUri">Image location</param>
         /// <returns>Stream content of the HTTP response. null if not connected, imageUri is invalid, or HTTP response is not OK</returns>
@@ -195,12 +195,12 @@ namespace XBMCRemoteRT.Helpers
 
             // Download the image with HTTP Basic auth
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(imageUri.Scheme + "://" + imageUri.Authority);
-            HttpRequestMessage req = new HttpRequestMessage(HttpMethod.Get, imageUri.AbsolutePath);
+            // Ignore the HttpClient cache
+            client.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue() { NoCache = true };
             ConnectionItem con = ConnectionManager.CurrentConnection;
             if (con != null && con.HasCredentials())
             {
-                req.Headers.Authorization = new AuthenticationHeaderValue(
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
                     "Basic",
                     System.Convert.ToBase64String(Encoding.UTF8.GetBytes(
                         String.Format("{0}:{1}",
@@ -209,6 +209,8 @@ namespace XBMCRemoteRT.Helpers
                     ))
                 );
             }
+            client.BaseAddress = new Uri(imageUri.Scheme + "://" + imageUri.Authority);
+            HttpRequestMessage req = new HttpRequestMessage(HttpMethod.Get, imageUri.AbsolutePath);
 
             HttpResponseMessage res = await client.SendAsync(req);
             if (res.IsSuccessStatusCode)
