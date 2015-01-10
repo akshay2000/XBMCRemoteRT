@@ -7,14 +7,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
 
     <Grid x:Name="LayoutRoot">
 
-        <Grid.ChildrenTransitions>
+        <!--<Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
             </TransitionCollection>
-        </Grid.ChildrenTransitions>
+        </Grid.ChildrenTransitions>-->
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -45,7 +55,7 @@
                             <StackPanel Orientation="Horizontal" Background="{StaticResource PhoneAccentBrush}" Margin="0,7,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
                                 <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" Margin="5" Foreground="White" MaxWidth="140" MaxHeight="60" TextTrimming="WordEllipsis" FontSize="20"/>
                             </StackPanel>
-                            <TextBlock Text="{Binding Label}" FontSize="32" TextWrapping="Wrap" FontFamily="Segoe WP SemiLight" Margin="6,0,0,2" VerticalAlignment="Bottom" TextTrimming="WordEllipsis" MaxHeight="100"/>
+                            <TextBlock Text="{Binding Label}" FontSize="32" TextWrapping="Wrap" FontFamily="Segoe WP SemiLight" Margin="6,0,0,2" VerticalAlignment="Bottom" TextTrimming="WordEllipsis" MaxHeight="100" ContinuumNavigationTransitionInfo.IsEntranceElement="True"/>
                         </Grid>
                     </Grid>
                     
@@ -78,6 +88,9 @@
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="PlayAlbumButton" x:Uid="PlayAlbum" Icon="Play" Label="play album" Click="PlayAlbumButton_Click"/>
             </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="QueueAlbumAppBarButton" x:Uid="QueueAlbumMenu" Label="queue album" Click="QueueAlbumAppBarButton_Click"/>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

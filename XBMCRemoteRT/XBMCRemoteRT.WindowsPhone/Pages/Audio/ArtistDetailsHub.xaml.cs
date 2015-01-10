@@ -144,5 +144,10 @@ namespace XBMCRemoteRT.Pages.Audio
         {
             Player.PlayArtist(GlobalVariables.CurrentArtist);
         }
+
+        private void QueueArtistAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Playlist.AddArtist(GlobalVariables.CurrentArtist);
+        }
     }
 }

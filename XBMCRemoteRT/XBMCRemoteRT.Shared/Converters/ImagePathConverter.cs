@@ -24,7 +24,6 @@ namespace XBMCRemoteRT.Converters
                 {
                     // Get Kodi proxy image address
                     imageURI = CacheManager.GetRemoteUri(imagePath);
-                }
             }
             else
             {

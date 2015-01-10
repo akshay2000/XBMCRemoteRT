@@ -25,215 +25,213 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 <data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>o aplikaci</value>
-	<comment>&quot;about&quot; is literraly just a preposition translated to Czech like &quot;o&quot;. Despite the fact it&apos;s being used in software development solitary, it would have no real meaning if just translated &quot;o&quot; - so as this menu should display some info about the applciation itself, for Czech language it&apos;s better to add the word &quot;application&quot; to the translation as well</comment>
+	<value>névjegy</value>
 </data>
 <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
-	<value>FILMY</value>
+	<value>FILMEK</value>
 </data>
 <data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
-	<value>zobrazit všechny filmy</value>
+	<value>az összes film</value>
 </data>
 <data name="MusicHubSectionHeader.Text" xml:space="preserve">
-	<value>HUDBA</value>
+	<value>ZENE</value>
 	<comment>Header of music section on cover page</comment>
 </data>
 <data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
-	<value>zobrazit všechnu hudbu</value>
+	<value>az összes zene</value>
 </data>
 <data name="NotAvailable" xml:space="preserve">
-	<value>není k dispozici</value>
+	<value>nem elérhető</value>
 	<comment>When artists aren&apos;t available</comment>
 </data>
 <data name="NothingIsPlaying" xml:space="preserve">
-	<value>Nic se nepřehrává</value>
+	<value>Nincs lejátszás folyamatban</value>
 </data>
 <data name="NowPlayingHeader.Text" xml:space="preserve">
-	<value>NYNÍ HRAJE</value>
+	<value>MOST JÁTSZOTT</value>
 	<comment>Header of now playing on cover page</comment>
 </data>
 <data name="NowPlayingSubHeader.Text" xml:space="preserve">
-	<value>otevřít ovladač</value>
+	<value>távirányító</value>
 	<comment>Subheader of now playing on cover page</comment>
 </data>
 <data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>ovladač</value>
+	<value>távirányító</value>
 	<comment>Appbar menu item</comment>
 </data>
 <data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>nastavení</value>
+	<value>beállítások</value>
 </data>
 <data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
-	<value>TV SERIÁLY</value>
+	<value>SOROZATOK</value>
 </data>
 <data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
-	<value>zobrazit všechny seriály</value>
+	<value>az összes sorozat</value>
 </data>
 <data name="AboutAppBarMenu.Label" xml:space="preserve">
-	<value>o aplikaci</value>
+	<value>névjegy</value>
 </data>
 <data name="AddConnectionPageTitle.Text" xml:space="preserve">
-	<value>PŘIDAT SPOJENÍ</value>
+	<value>KAPCSOLAT HOZZÁADÁSA</value>
 </data>
 <data name="AddServer.Label" xml:space="preserve">
-	<value>přidat server</value>
+	<value>szerver hozzáadása</value>
 </data>
 <data name="AlbumPageTitle.Text" xml:space="preserve">
-	<value>PÍSNĚ</value>
+	<value>SZÁMOK</value>
 </data>
 <data name="Albums.Header" xml:space="preserve">
-	<value>ALBA</value>
+	<value>ALBUMOK</value>
 </data>
 <data name="AlbumsTitle.Text" xml:space="preserve">
-	<value>ALBA</value>
+	<value>ALBUMOK</value>
 </data>
 <data name="AllMoviesTitle.Text" xml:space="preserve">
-	<value>VŠE</value>
+	<value>MINDEN</value>
 </data>
 <data name="AllMusicPivotTitle.Text" xml:space="preserve">
-	<value>VŠECHNA HUDBA</value>
+	<value>MINDEN ZENE</value>
 </data>
 <data name="ArtistsTitle.Text" xml:space="preserve">
-	<value>UMĚLCI</value>
+	<value>ELŐADÓK</value>
 </data>
 <data name="Bio.Text" xml:space="preserve">
-	<value>BIO</value>
-	<comment>What info would be displayed here? Is it biography of an author? E.g in case of director all the movies he/she directed are displayed, or is it more complete biography like date of birth, early years, schools etc? Is it used also for bands and artists?</comment>
+	<value>LEÍRÁS</value>
 </data>
 <data name="CancelAppBarMenu.Label" xml:space="preserve">
-	<value>zrušit</value>
+	<value>mégsem</value>
 </data>
 <data name="Cast.Header" xml:space="preserve">
-	<value>OBSAZENÍ</value>
+	<value>SZEREPLŐK</value>
 </data>
 <data name="CleanAudioLibrary" xml:space="preserve">
-	<value>vyčistit audio knihovnu</value>
+	<value>audio könyvtár törlése</value>
 </data>
 <data name="CleanVideoLibrary" xml:space="preserve">
-	<value>vyčistit video knihovnu</value>
+	<value>video könyvtár törlése</value>
 </data>
 <data name="ConnectionName.Header" xml:space="preserve">
-	<value>Název</value>
+	<value>Név</value>
 </data>
 <data name="ConnectionsPageTitle.Text" xml:space="preserve">
-	<value>SPOJENÍ</value>
+	<value>KAPCSOLATOK</value>
 </data>
 <data name="Director.Text" xml:space="preserve">
-	<value>REŽIE</value>
+	<value>RENDEZŐ</value>
 </data>
 <data name="DownloadSubtitles" xml:space="preserve">
-	<value>stáhnout titulky</value>
+	<value>feliratok letöltése</value>
 </data>
 <data name="Genre.Text" xml:space="preserve">
-	<value>ŽÁNR</value>
+	<value>MŰFAJ</value>
 </data>
 <data name="Info.Header" xml:space="preserve">
-	<value>INFO</value>
+	<value>INFÓ</value>
 </data>
 <data name="Mood.Text" xml:space="preserve">
-	<value>NÁLADA</value>
+	<value>HANGULAT</value>
 </data>
 <data name="Passowrd.Header" xml:space="preserve">
-	<value>Heslo</value>
+	<value>Jelszó</value>
 </data>
 <data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
-	<value>přehrát album</value>
+	<value>album lejátszása</value>
 </data>
 <data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
-	<value>přehrát umělce</value>
+	<value>előadó lejátszása</value>
 </data>
 <data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
-	<value>přehrát film</value>
+	<value>film lejátszása</value>
 </data>
 <data name="Plot.Header" xml:space="preserve">
-	<value>DĚJ</value>
+	<value>TÖRTÉNET</value>
 </data>
 <data name="PlotText.Text" xml:space="preserve">
-	<value>DĚJ</value>
+	<value>TÖRTÉNET</value>
 </data>
 <data name="Port.Header" xml:space="preserve">
 	<value>Port</value>
 </data>
 <data name="Rating.Text" xml:space="preserve">
-	<value>HODNOCENÍ</value>
+	<value>ÉRTÉKELÉS</value>
 </data>
 <data name="RefreshAppBarMenu.Label" xml:space="preserve">
-	<value>obnovit</value>
+	<value>frissítés</value>
 </data>
 <data name="RemoteAppBarMenu.Label" xml:space="preserve">
-	<value>ovladač</value>
+	<value>távirányító</value>
 	<comment>Appbar menu item</comment>
 </data>
 <data name="Runtime.Text" xml:space="preserve">
-	<value>DÉLKA</value>
+	<value>HOSSZ</value>
 </data>
 <data name="SaveAppBarMenu.Label" xml:space="preserve">
-	<value>uložit</value>
+	<value>mentés</value>
 </data>
 <data name="SearchAppBarMenu.Lable" xml:space="preserve">
-	<value>hledat</value>
+	<value>keresés</value>
 </data>
 <data name="SearchMoviesTitle.Text" xml:space="preserve">
-	<value>VYHLEDAT FILMY</value>
+	<value>FILMEK KERESÉSE</value>
 </data>
 <data name="SearchTVShowsTitle.Text" xml:space="preserve">
-	<value>VYHLEDAT TV SERIÁLY</value>
+	<value>SOROZATOK KERESÉSE</value>
 </data>
 <data name="Seasons.Header" xml:space="preserve">
-	<value>SEZÓNA</value>
+	<value>ÉVADOK</value>
 </data>
 <data name="ServerAddress.Header" xml:space="preserve">
-	<value>Adresa Serveru</value>
+	<value>Szerver címe</value>
+	<comment>Shouldn&apos;t this be in Title Case? Szerver Cime instead of cime?</comment>
 </data>
 <data name="SettingsAppBarMenu.Label" xml:space="preserve">
-	<value>nastavení</value>
+	<value>beállítások</value>
 </data>
 <data name="Songs.Header" xml:space="preserve">
-	<value>PÍSNĚ</value>
+	<value>SZÁMOK</value>
 </data>
 <data name="SongsTitle.Text" xml:space="preserve">
-	<value>PÍSNĚ</value>
+	<value>SZÁMOK</value>
 </data>
 <data name="Studio.Text" xml:space="preserve">
-	<value>STUDIO</value>
+	<value>STÚDIÓ</value>
 </data>
 <data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
-	<value>přepnout server</value>
+	<value>szerverváltás</value>
 </data>
 <data name="Tagline.Text" xml:space="preserve">
-	<value>SLOGAN</value>
+	<value>ALCÍM</value>
 </data>
 <data name="Track" xml:space="preserve">
-	<value>stopa</value>
-	<comment>Fuzzy</comment>
+	<value>szám</value>
 </data>
 <data name="Tracks" xml:space="preserve">
-	<value>stopy</value>
-	<comment>All lowercase, please!</comment>
+	<value>szám</value>
 </data>
 <data name="TVShowsPageTitle.Text" xml:space="preserve">
-	<value>TV SERIÁLY</value>
+	<value>SOROZATOK</value>
 </data>
 <data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
-	<value>NOVÉ</value>
+	<value>ÚJ</value>
 </data>
 <data name="UpdateAudioLibrary" xml:space="preserve">
-	<value>aktualizovat audio knihovnu</value>
+	<value>audio könyvtár frissítése</value>
 </data>
 <data name="UpdateVideoLibrary" xml:space="preserve">
-	<value>aktualizovat video knihovnu</value>
+	<value>video könyvtár frissítése</value>
 </data>
 <data name="Username.Header" xml:space="preserve">
-	<value>Uživatelské jméno</value>
+	<value>Felhasználónév</value>
 </data>
 <data name="WarningNote.Text" xml:space="preserve">
-	<value>Poznámka: Uživatelská jména a hesla jsou ukládána a přenášena jako prostý text. Ujistěte se prosím, že stejné heslo nepoužíváte nikde jinde.</value>
+	<value>Megjegyzés: A felhasználónevet és a jelszót egyszerű szövegként továbbítjuk. Ne használd ugyanazt a jelszót több helyen is.</value>
+	<comment>Not sure about rules of the language here. Should sentence start with &apos;a&apos; or &apos;A&apos;?</comment>
 </data>
 <data name="WatchedMovies.Text" xml:space="preserve">
-	<value>ZHLÉDNUTÉ</value>
+	<value>MEGNÉZVE</value>
 </data>
 <data name="Writer.Text" xml:space="preserve">
-	<value>SCÉNÁŘ</value>
+	<value>ÍRÓ</value>
 </data>
 
 </root>

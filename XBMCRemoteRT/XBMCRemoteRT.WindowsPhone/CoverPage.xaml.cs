@@ -130,6 +130,7 @@ namespace XBMCRemoteRT
             this.navigationHelper.OnNavigatedTo(e);
             GlobalVariables.CurrentTracker.SendView("CoverPage");
             RefreshListsIfNull();
+            ServerNameTextBlock.Text = ConnectionManager.CurrentConnection.ConnectionName;
             Frame.BackStack.Clear();
         }
 

@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using XBMCRemoteRT.Helpers;
+using XBMCRemoteRT.Models.Audio;
 
 namespace XBMCRemoteRT.RPCWrappers
 {
@@ -47,6 +48,25 @@ namespace XBMCRemoteRT.RPCWrappers
                     break;
             }
             return playlistId;
+        }
+
+        //Extra queue methods
+        public static async void AddAlbum(Album album)
+        {
+            JObject albumItem = new JObject(new JProperty("albumid", album.AlbumId));
+            await Playlist.Add(PlayelistType.Audio, albumItem);
+        }
+
+        public static async void AddArtist(Artist artist)
+        {
+            JObject artistItem = new JObject(new JProperty("artistid", artist.ArtistId));
+            await Playlist.Add(PlayelistType.Audio, artistItem);
+        }
+
+        public static async void AddSong(Song song)
+        {
+            JObject songItem = new JObject(new JProperty("songid", song.SongId));
+            await Playlist.Add(PlayelistType.Audio, songItem);
         }
     }
 }
