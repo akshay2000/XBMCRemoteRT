@@ -15,7 +15,6 @@ namespace XBMCRemoteRT.Converters
             {
                 // Only apply cache logic if authentication is in use. If not,
                 // allow the image to be consumed from Kodi.
-                // TODO: Apply same logic to StringToImageBrushConverter
                 if (ConnectionManager.CurrentConnection.Password != String.Empty)
                 {
                     // Get path to locally cached image
