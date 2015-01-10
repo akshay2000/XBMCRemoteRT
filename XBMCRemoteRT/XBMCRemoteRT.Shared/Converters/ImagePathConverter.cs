@@ -15,7 +15,7 @@ namespace XBMCRemoteRT.Converters
             {
                 // Only apply cache logic if authentication is in use. If not,
                 // allow the image to be consumed from Kodi.
-                if (ConnectionManager.CurrentConnection.Password != String.Empty)
+                if (ConnectionManager.CurrentConnection.HasCredentials())
                 {
                     // Get path to locally cached image
                     imageURI = CacheManager.GetCacheUri(imagePath);

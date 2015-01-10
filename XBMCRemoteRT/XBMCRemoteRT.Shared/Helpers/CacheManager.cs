@@ -198,7 +198,7 @@ namespace XBMCRemoteRT.Helpers
             client.BaseAddress = new Uri(imageUri.Scheme + "://" + imageUri.Authority);
             HttpRequestMessage req = new HttpRequestMessage(HttpMethod.Get, imageUri.AbsolutePath);
             ConnectionItem con = ConnectionManager.CurrentConnection;
-            if (con != null && con.Password != String.Empty)
+            if (con != null && con.HasCredentials())
             {
                 req.Headers.Authorization = new AuthenticationHeaderValue(
                     "Basic",
