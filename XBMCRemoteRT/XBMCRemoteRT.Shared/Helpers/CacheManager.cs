@@ -14,12 +14,12 @@ namespace XBMCRemoteRT.Helpers
 {
     public class CacheManager
     {
-        public static async void InitCacheAsync()
+        public static async Task InitCacheAsync()
         {
             IEnumerable<string> imagePaths = await GetAllImagesAsync();
             foreach (string imagePath in imagePaths)
             {
-                Stream imageStream = await GetImageStream(GetRemoteUri(imagePath));
+                Stream imageStream = await GetImageStreamAsync(GetRemoteUri(imagePath));
                 if (imageStream != null)
                 {
                     // TODO: Save image
@@ -78,7 +78,7 @@ namespace XBMCRemoteRT.Helpers
             imageUri = new Uri(storagePath, UriKind.Absolute);
 
             // TODO: Ideally, we've predicted all the possible images and cached them, but cache misses can be handled by simply downloading the image to the cache. Only a mild inconvenience for the user.
-            VerifyCache(GetRemoteUri(imagePath), storageFileName);
+            VerifyCacheAsync(GetRemoteUri(imagePath), storageFileName);
 
             return imageUri;
         }
@@ -88,14 +88,14 @@ namespace XBMCRemoteRT.Helpers
         /// </summary>
         /// <param name="imageUri">Remote location of the resource</param>
         /// <param name="filename">Cached file name</param>
-        private static async void VerifyCache(Uri imageUri, string filename)
+        private static async Task VerifyCacheAsync(Uri imageUri, string filename)
         {
-            if (!(await IsFileCached(filename)))
+            if (!(await IsFileCachedAsync(filename)))
             {
 
                 // TODO: cache miss. download and save.
-                Stream imageStream = await GetImageStream(imageUri);
-                WriteFile(imageStream, filename);
+                Stream imageStream = await GetImageStreamAsync(imageUri);
+                await WriteFileAsync(imageStream, filename);
                 // TODO: Check file age and refresh cached image. Age is a bad way to do it though.
             }
         }
@@ -105,7 +105,7 @@ namespace XBMCRemoteRT.Helpers
         /// </summary>
         /// <param name="filename">File name</param>
         /// <returns>Whether filename exists in the cache location</returns>
-        private static async Task<bool> IsFileCached(string filename)
+        private static async Task<bool> IsFileCachedAsync(string filename)
         {
 
             // Attempt to open file in app temp folder
@@ -128,7 +128,7 @@ namespace XBMCRemoteRT.Helpers
         /// </summary>
         /// <param name="imageUri">Image location</param>
         /// <returns>Stream content of the HTTP response. null if not connected, imageUri is invalid, or HTTP response is not OK</returns>
-        private static async Task<Stream> GetImageStream(Uri imageUri)
+        private static async Task<Stream> GetImageStreamAsync(Uri imageUri)
         {
             Stream imageStream = null;
 
@@ -163,7 +163,7 @@ namespace XBMCRemoteRT.Helpers
         /// </summary>
         /// <param name="stream">Content to be written to file</param>
         /// <param name="filename">Name of the file to be written in cache location</param>
-        private static async void WriteFile(Stream stream, string filename)
+        private static async Task WriteFileAsync(Stream stream, string filename)
         {
 
             // Prepare input image stream
@@ -205,9 +205,16 @@ namespace XBMCRemoteRT.Helpers
             return ApplicationData.Current.TemporaryFolder;
         }
 
-        public static async void ClearCacheAsync()
+        public static async Task ClearCacheAsync()
         {
-            // TODO: Empty the temp folder for the current connection
+            // Empty the temp folder
+            StorageFolder parent = GetCacheFolder();
+            IEnumerable<StorageFile> cachedFiles = await parent.GetFilesAsync();
+            // TODO: Any issues with deleting while I iterate this list?
+            foreach (StorageFile file in cachedFiles)
+            {
+                await file.DeleteAsync();
+            }
         }
     }
 }
