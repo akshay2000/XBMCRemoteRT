@@ -65,7 +65,7 @@ namespace XBMCRemoteRT.Helpers
         }
 
         /// <summary>
-        /// Returns path to a locally cached copy of the image. If the imagePath has not yet been cached, download is initiated but the Uri remains the same.
+        /// Returns path to a locally cached copy of the image. If the imagePath has not yet been cached, download is initiated but the URI remains the same.
         /// </summary>
         /// <param name="imagePath">Path on remote server to the resource. Usually begins with "image://"</param>
         /// <returns>Path to locally cached copy of the resource</returns>
@@ -79,20 +79,33 @@ namespace XBMCRemoteRT.Helpers
             imageUri = new Uri(storagePath, UriKind.Absolute);
 
             // TODO: Ideally, we've predicted all the possible images and cached them, but cache misses can be handled by simply downloading the image to the cache. Only a mild inconvenience for the user.
-            VerifyCache(storageFileName);
+            VerifyCache(GetRemoteUri(imagePath), storageFileName);
 
             return imageUri;
         }
 
-        private static async void VerifyCache(string filename)
+        /// <summary>
+        /// Ensure filename is cached. If not, download and save it to the cache location.
+        /// </summary>
+        /// <param name="imageUri">Remote location of the resource</param>
+        /// <param name="filename">Cached file name</param>
+        private static async void VerifyCache(Uri imageUri, string filename)
         {
             if (!(await IsFileCached(filename)))
             {
+
                 // TODO: cache miss. download and save.
+                Stream imageStream = await GetImageStream(imageUri);
+                WriteFile(imageStream, filename);
                 // TODO: Check file age and refresh cached image. Age is a bad way to do it though.
             }
         }
 
+        /// <summary>
+        /// Determine whether filename is cached.
+        /// </summary>
+        /// <param name="filename">File name</param>
+        /// <returns>Whether filename exists in the cache location</returns>
         private static async Task<bool> IsFileCached(string filename)
         {
 
@@ -146,6 +159,11 @@ namespace XBMCRemoteRT.Helpers
             return imageStream;
         }
 
+        /// <summary>
+        /// Write the contents of stream to filename in the cache location.
+        /// </summary>
+        /// <param name="stream">Content to be written to file</param>
+        /// <param name="filename">Name of the file to be written in cache location</param>
         private static async void WriteFile(Stream stream, string filename)
         {
 
