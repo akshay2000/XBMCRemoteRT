@@ -4,8 +4,10 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using XBMCRemoteRT.Models;
@@ -176,7 +178,8 @@ namespace XBMCRemoteRT.Helpers
                 // TODO: Test overwriting of existing files
                 file = await parent.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
             }
 
             if (file != null)
@@ -192,7 +195,6 @@ namespace XBMCRemoteRT.Helpers
 
                 await fileStream.FlushAsync();
                 inStream.Dispose();
-                // TODO: Handle write task canceled exceptions, or prepare for corrupted images
             }
         }
 
@@ -203,15 +205,24 @@ namespace XBMCRemoteRT.Helpers
             return ApplicationData.Current.TemporaryFolder;
         }
 
-        public static async Task ClearCacheAsync()
+        public static IAsyncOperationWithProgress<int, int> ClearCacheAsync()
         {
-            // Empty the temp folder
-            StorageFolder parent = GetCacheFolder();
-            IEnumerable<StorageFile> cachedFiles = await parent.GetFilesAsync();
-            foreach (StorageFile file in cachedFiles)
-            {
-                await file.DeleteAsync();
-            }
+            return AsyncInfo.Run<int, int>(async (cancelToken, progress) =>
+                {
+                    // Empty the temp folder
+                    StorageFolder parent = GetCacheFolder();
+                    IReadOnlyList<StorageFile> cachedFiles = await parent.GetFilesAsync();
+
+                    int fileCount = 0;
+                    foreach (StorageFile file in cachedFiles)
+                    {
+                        await file.DeleteAsync();
+                        // Report progress to caller
+                        progress.Report(++fileCount * 100 /cachedFiles.Count);
+                    }
+
+                    return 0;
+                });
         }
     }
 }
