@@ -204,13 +204,12 @@
 	<value>SLOGAN</value>
 </data>
 <data name="Track" xml:space="preserve">
-	<value>Stopa</value>
+	<value>stopa</value>
 	<comment>Fuzzy</comment>
 </data>
 <data name="Tracks" xml:space="preserve">
 	<value>stopy</value>
-	<comment>All lowercase, please!
-Fuzzy</comment>
+	<comment>All lowercase, please!</comment>
 </data>
 <data name="TVShowsPageTitle.Text" xml:space="preserve">
 	<value>TV SERIÁLY</value>
