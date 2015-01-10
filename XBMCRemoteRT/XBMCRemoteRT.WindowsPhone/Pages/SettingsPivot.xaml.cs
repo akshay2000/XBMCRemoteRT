@@ -191,6 +191,8 @@ namespace XBMCRemoteRT.Pages
 
         private async void CacheRefreshButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            CacheRefreshButton.IsEnabled = false;
+
             // Clear the cache
             IAsyncOperationWithProgress<int, int> clearOperation = CacheManager.ClearCacheAsync();
             clearOperation.Progress = (result, progress) => {
@@ -201,6 +203,8 @@ namespace XBMCRemoteRT.Pages
             // Immediately load the cache. We don't want the user to see empty
             // and partially loaded images from cache misses.
             await CacheManager.InitCacheAsync();
+
+            CacheRefreshButton.IsEnabled = true;
         }
 
         #region NavigationHelper registration

@@ -209,7 +209,8 @@
                         <TextBlock Text="TEMPORARY FILES" 
                                    Style="{StaticResource ParagraphHeaderTextStyle}" 
                                    Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <Button Content="refresh" 
+                        <Button x:Name="CacheRefreshButton" 
+                                Content="refresh" 
                                 Tapped="CacheRefreshButton_Tapped"
                                 HorizontalAlignment="Stretch" 
                                 Margin="0,6,0,0" 
