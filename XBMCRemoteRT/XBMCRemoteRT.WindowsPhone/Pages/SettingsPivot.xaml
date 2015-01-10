@@ -244,13 +244,13 @@
                         </StackPanel >
 
                         <TextBlock Text="SKIP + JUMP" Style="{StaticResource ParagraphHeaderTextStyle}" Margin="0,24,0,0" Pivot.SlideInAnimationGroup="GroupOne" />
-                        <ComboBox x:Name="ForwardComboBox" Header="what does forward do" Margin="0,12,0,0">
+                        <ComboBox x:Name="ForwardComboBox" Header="what does forward do" Margin="0,12,0,0" Pivot.SlideInAnimationGroup="GroupTwo">
                             <ComboBoxItem Content="increase speed"/>
                             <ComboBoxItem Content="small jump forward"/>
                             <ComboBoxItem Content="big jump forward"/>
                         </ComboBox>
 
-                        <ComboBox x:Name="BackwardComboBox" Header="what does backward do" Margin="0,12,0,0">
+                        <ComboBox x:Name="BackwardComboBox" Header="what does backward do" Margin="0,12,0,0" Pivot.SlideInAnimationGroup="GroupTwo">
                             <ComboBoxItem Content="decrease speed"/>
                             <ComboBoxItem Content="small jump backward"/>
                             <ComboBoxItem Content="big jump backward"/>
@@ -282,7 +282,7 @@
                                    TextWrapping="Wrap"
                                    FontSize="16"
                                    Opacity=".6"
-                                   Pivot.SlideInAnimationGroup="GroupTwo" RenderTransformOrigin="0.5,0.5">
+                                   Pivot.SlideInAnimationGroup="GroupThree" RenderTransformOrigin="0.5,0.5">
                             	<TextBlock.RenderTransform>
                             		<CompositeTransform/>
                             	</TextBlock.RenderTransform>
@@ -290,6 +290,7 @@
                             <StackPanel x:Name="stackPanel" VerticalAlignment="Top"
                                         Margin="0,2,0,0" 
                                         Opacity="0" 
+                                        Pivot.SlideInAnimationGroup="GroupThree"
                                         RenderTransformOrigin="0.5,0.5">
                             	<StackPanel.RenderTransform>
                             		<CompositeTransform/>
