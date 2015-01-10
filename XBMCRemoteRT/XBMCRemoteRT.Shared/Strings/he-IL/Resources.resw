@@ -1,42 +1,235 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<root>	
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>1.3</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="data">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="value" type="xsd:string" minOccurs="0"                     msdata:Ordinal="2" />
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string" />
+        <xsd:attribute name="type" type="xsd:string" />
+        <xsd:attribute name="mimetype" type="xsd:string" />
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+<data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+	<value>אודות</value>
+</data>
+<data name="MoviesHubSectionHeader.Text" xml:space="preserve">
+	<value>סרטים</value>
+</data>
+<data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
+	<value>כל הסרטים</value>
+</data>
+<data name="MusicHubSectionHeader.Text" xml:space="preserve">
+	<value>מוסיקה</value>
+	<comment>Header of music section on cover page</comment>
+</data>
+<data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
+	<value>כל המוסיקה</value>
+</data>
+<data name="NotAvailable" xml:space="preserve">
+	<value>לא זמין</value>
+	<comment>When artists aren&apos;t available</comment>
+</data>
+<data name="NothingIsPlaying" xml:space="preserve">
+	<value>כלום לא מתנגן</value>
+</data>
+<data name="NowPlayingHeader.Text" xml:space="preserve">
+	<value>פועל עכשיו</value>
+	<comment>Header of now playing on cover page</comment>
+</data>
+<data name="NowPlayingSubHeader.Text" xml:space="preserve">
+	<value>פתח שלט</value>
+	<comment>Subheader of now playing on cover page</comment>
+</data>
+<data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+	<value>שלט</value>
+	<comment>Appbar menu item</comment>
+</data>
+<data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+	<value>הגדרות</value>
+</data>
+<data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
+	<value>סדרות</value>
+</data>
+<data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
+	<value>כל הסדרות</value>
+</data>
+<data name="AboutAppBarMenu.Label" xml:space="preserve">
+	<value>אודות</value>
+</data>
+<data name="AddConnectionPageTitle.Text" xml:space="preserve">
+	<value>הוסיף קשר</value>
+</data>
+<data name="AddServer.Label" xml:space="preserve">
+	<value>הוסיף שרת</value>
+</data>
+<data name="AlbumPageTitle.Text" xml:space="preserve">
+	<value>שירים</value>
+</data>
+<data name="Albums.Header" xml:space="preserve">
+	<value>אלבומים</value>
+</data>
+<data name="AlbumsTitle.Text" xml:space="preserve">
+	<value>אלבומים</value>
+</data>
+<data name="AllMoviesTitle.Text" xml:space="preserve">
+	<value>הכל</value>
+</data>
+<data name="AllMusicPivotTitle.Text" xml:space="preserve">
+	<value>כל המוסיקה</value>
+</data>
+<data name="ArtistsTitle.Text" xml:space="preserve">
+	<value>אמנים</value>
+</data>
+<data name="Bio.Text" xml:space="preserve">
+	<value>מידע</value>
+</data>
+<data name="CancelAppBarMenu.Label" xml:space="preserve">
+	<value>בטל</value>
+</data>
+<data name="Cast.Header" xml:space="preserve">
+	<value>שחקנים</value>
+</data>
+<data name="CleanAudioLibrary" xml:space="preserve">
+	<value>נקה ספריית מוסיקה</value>
+</data>
+<data name="CleanVideoLibrary" xml:space="preserve">
+	<value>נקה ספריית וידאו</value>
+</data>
+<data name="ConnectionName.Header" xml:space="preserve">
+	<value>שם</value>
+</data>
+<data name="ConnectionsPageTitle.Text" xml:space="preserve">
+	<value>חיבורים</value>
+</data>
+<data name="Director.Text" xml:space="preserve">
+	<value>במאי</value>
+</data>
+<data name="DownloadSubtitles" xml:space="preserve">
+	<value>הורדת כתוביות</value>
+</data>
+<data name="Genre.Text" xml:space="preserve">
+	<value>ז&apos;אנר</value>
+</data>
+<data name="Info.Header" xml:space="preserve">
+	<value>מידע</value>
+</data>
+<data name="Mood.Text" xml:space="preserve">
+	<value>אווירה</value>
+</data>
+<data name="Passowrd.Header" xml:space="preserve">
+	<value>סיסמה</value>
+</data>
+<data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
+	<value>נגן אלבום</value>
+</data>
+<data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
+	<value>נגן אמן</value>
+</data>
+<data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
+	<value>נגן סרט</value>
+</data>
+<data name="Plot.Header" xml:space="preserve">
+	<value>עלילה</value>
+</data>
+<data name="PlotText.Text" xml:space="preserve">
+	<value>עלילה</value>
+</data>
+<data name="Port.Header" xml:space="preserve">
+	<value>פורט</value>
+</data>
+<data name="Rating.Text" xml:space="preserve">
+	<value>דירוג</value>
+</data>
+<data name="RefreshAppBarMenu.Label" xml:space="preserve">
+	<value>רענן</value>
+</data>
+<data name="RemoteAppBarMenu.Label" xml:space="preserve">
+	<value>שלט</value>
+	<comment>Appbar menu item</comment>
+</data>
+<data name="Runtime.Text" xml:space="preserve">
+	<value>זמן צפיה</value>
+</data>
+<data name="SaveAppBarMenu.Label" xml:space="preserve">
+	<value>שמירה</value>
+</data>
+<data name="SearchAppBarMenu.Lable" xml:space="preserve">
+	<value>חיפוש</value>
+</data>
+<data name="SearchMoviesTitle.Text" xml:space="preserve">
+	<value>חפש סרט</value>
+</data>
+<data name="SearchTVShowsTitle.Text" xml:space="preserve">
+	<value>חפש סדרה</value>
+</data>
+<data name="Seasons.Header" xml:space="preserve">
+	<value>עונות</value>
+</data>
+<data name="ServerAddress.Header" xml:space="preserve">
+	<value>כתובת שרת</value>
+</data>
+<data name="SettingsAppBarMenu.Label" xml:space="preserve">
+	<value>הגדרות</value>
+</data>
+<data name="Songs.Header" xml:space="preserve">
+	<value>שירים</value>
+</data>
+<data name="SongsTitle.Text" xml:space="preserve">
+	<value>שירים</value>
+</data>
+<data name="Studio.Text" xml:space="preserve">
+	<value>סטודיו</value>
+</data>
+<data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
+	<value>החלף שרת</value>
+</data>
+<data name="Tagline.Text" xml:space="preserve">
+	<value>תגית</value>
+</data>
+<data name="Track" xml:space="preserve">
+	<value>רצועה</value>
+</data>
+<data name="Tracks" xml:space="preserve">
+	<value>רצועות</value>
+</data>
+<data name="TVShowsPageTitle.Text" xml:space="preserve">
+	<value>סדרות</value>
+</data>
+<data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
+	<value>חדש</value>
+</data>
+<data name="UpdateAudioLibrary" xml:space="preserve">
+	<value>עדכן ספריית מוסיקה</value>
+</data>
+<data name="UpdateVideoLibrary" xml:space="preserve">
+	<value>עדכן ספריית וידאו</value>
+</data>
+<data name="Username.Header" xml:space="preserve">
+	<value>שם משתמש</value>
+</data>
+<data name="WarningNote.Text" xml:space="preserve">
+	<value>שים לב: שם משתמש וסיסמה מאוחסנים ונשלחים בצורה לא מאובטחת. ודא כי אינך משתמש בסיסמה זו במקום אחר.</value>
+</data>
+<data name="WatchedMovies.Text" xml:space="preserve">
+	<value>נצפה</value>
+</data>
+<data name="Writer.Text" xml:space="preserve">
+	<value>תסריטאי</value>
+</data>
+
 </root>
