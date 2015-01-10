@@ -314,4 +314,10 @@
   <data name="Writer.Text" xml:space="preserve">
     <value>WRITER</value>
   </data>
+  <data name="QueueAlbumMenu.Label" xml:space="preserve">
+    <value>queue album</value>
+  </data>
+  <data name="QueueArtistMenu.Label" xml:space="preserve">
+    <value>queue artist</value>
+  </data>
 </root>

@@ -147,5 +147,10 @@ namespace XBMCRemoteRT.Pages.Audio
         {
             Player.PlayAlbum(GlobalVariables.CurrentAlbum);
         }
+
+        private void QueueAlbumAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Playlist.AddAlbum(GlobalVariables.CurrentAlbum);
+        }
     }
 }

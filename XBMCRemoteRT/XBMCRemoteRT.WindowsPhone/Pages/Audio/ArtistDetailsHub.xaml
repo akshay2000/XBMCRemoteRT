@@ -118,6 +118,9 @@
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="PlayArtistAppBarButton" x:Uid="PlayArtistAppBarMenu" Click="PlayArtistAppBarButton_Click" Icon="Play" Label="play"/>
             </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="QueueArtistAppBarButton" x:Uid="QueueArtistMenu" Click="QueueArtistAppBarButton_Click" Label="queue artist"/>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
     

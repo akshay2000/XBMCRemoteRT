@@ -88,6 +88,9 @@
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="PlayAlbumButton" x:Uid="PlayAlbum" Icon="Play" Label="play album" Click="PlayAlbumButton_Click"/>
             </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="QueueAlbumAppBarButton" x:Uid="QueueAlbumMenu" Label="queue album" Click="QueueAlbumAppBarButton_Click"/>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
 </Page>
