@@ -37,6 +37,11 @@ namespace XBMCRemoteRT.Pages
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            // The cache refresh task continues after navigating away from
+            // this page and is naturally pretty error tolerant, but for the
+            // progress bar to be maintained this page is cached.
+            this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         /// <summary>
@@ -191,7 +196,6 @@ namespace XBMCRemoteRT.Pages
 
         private async void CacheRefreshButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            // TODO: What to do if the user navigates away from this page?
             CacheRefreshButton.IsEnabled = false;
             CacheRefreshProgressBar.Value = 0;
             RefreshStart.Begin();
