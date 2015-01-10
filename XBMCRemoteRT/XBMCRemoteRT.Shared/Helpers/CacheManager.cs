@@ -77,7 +77,6 @@ namespace XBMCRemoteRT.Helpers
             string storagePath = Path.Combine(GetCacheFolder().Path, storageFileName);
             imageUri = new Uri(storagePath, UriKind.Absolute);
 
-            // TODO: Ideally, we've predicted all the possible images and cached them, but cache misses can be handled by simply downloading the image to the cache. Only a mild inconvenience for the user.
             VerifyCacheAsync(GetRemoteUri(imagePath), storageFileName);
 
             return imageUri;
@@ -92,8 +91,7 @@ namespace XBMCRemoteRT.Helpers
         {
             if (!(await IsFileCachedAsync(filename)))
             {
-
-                // TODO: cache miss. download and save.
+                // Cache miss, download and save the image
                 Stream imageStream = await GetImageStreamAsync(imageUri);
                 await WriteFileAsync(imageStream, filename);
                 // TODO: Check file age and refresh cached image. Age is a bad way to do it though.
@@ -210,7 +208,6 @@ namespace XBMCRemoteRT.Helpers
             // Empty the temp folder
             StorageFolder parent = GetCacheFolder();
             IEnumerable<StorageFile> cachedFiles = await parent.GetFilesAsync();
-            // TODO: Any issues with deleting while I iterate this list?
             foreach (StorageFile file in cachedFiles)
             {
                 await file.DeleteAsync();
