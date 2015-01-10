@@ -191,12 +191,17 @@ namespace XBMCRemoteRT.Pages
 
         private async void CacheRefreshButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            // TODO: What to do if the user navigates away from this page?
             CacheRefreshButton.IsEnabled = false;
+            CacheRefreshProgressBar.Value = 0;
+            RefreshStart.Begin();
 
             // Clear the cache
             IAsyncOperationWithProgress<int, int> clearOperation = CacheManager.ClearCacheAsync();
             clearOperation.Progress = (result, progress) => {
-                // Progress is int 0 to 100
+                // The delete operation is much faster. Weighted 30% but no 
+                // real data to back up that estimate.
+                CacheRefreshProgressBar.Value = progress * 0.3;
             };
             await clearOperation;
 
@@ -205,10 +210,12 @@ namespace XBMCRemoteRT.Pages
             IAsyncOperationWithProgress<int, int> initOperation = CacheManager.InitCacheAsync();
             initOperation.Progress = (result, progress) =>
             {
-                // Progress is int 0 to 100
+                // Cache write operation is slower. Weighted 70%
+                CacheRefreshProgressBar.Value = 30 + progress * 0.7;
             };
             await initOperation;
 
+            RefreshEnd.Begin();
             CacheRefreshButton.IsEnabled = true;
         }
 
