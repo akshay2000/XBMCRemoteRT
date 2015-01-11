@@ -268,41 +268,43 @@
                     <StackPanel>
                         <TextBlock Text="AUTOCONNECT" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
                         <ToggleSwitch x:Name="AutoconnectToggle" Header="connect automatically on startup" Margin="0,6,0,0" Pivot.SlideInAnimationGroup="GroupTwo" />
-                        <TextBlock Text="TEMPORARY FILES" 
-                                   Style="{StaticResource ParagraphHeaderTextStyle}" 
-                                   Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <Button x:Name="CacheRefreshButton" 
-                                Content="refresh" 
-                                Tapped="CacheRefreshButton_Tapped"
-                                HorizontalAlignment="Stretch" 
-                                Margin="0,6,0,0"
-                                Pivot.SlideInAnimationGroup="GroupTwo"/>
-                        <Grid>
-                            <TextBlock x:Name="textBlock" Text="Kodi Assist saves some images on your phone so you can access your library more quickly. If things like album art and movie posters have changed, you can refresh to see them right away."
-                                   TextWrapping="Wrap"
-                                   FontSize="16"
-                                   Opacity=".6"
-                                   Pivot.SlideInAnimationGroup="GroupThree" RenderTransformOrigin="0.5,0.5">
-                            	<TextBlock.RenderTransform>
-                            		<CompositeTransform/>
-                            	</TextBlock.RenderTransform>
-                            </TextBlock>
-                            <StackPanel x:Name="stackPanel" VerticalAlignment="Top"
-                                        Margin="0,2,0,0" 
-                                        Opacity="0" 
-                                        Pivot.SlideInAnimationGroup="GroupThree"
-                                        RenderTransformOrigin="0.5,0.5">
-                            	<StackPanel.RenderTransform>
-                            		<CompositeTransform/>
-                            	</StackPanel.RenderTransform>
-                                <ProgressBar x:Name="CacheRefreshProgressBar"
-                                             Value="0"/>
-                                <TextBlock Text="Just a moment..."
-                                           Margin="0,6,0,0"
-                                           FontSize="16"
-                                           Opacity=".6"/>
-                            </StackPanel>
-                        </Grid>
+                        <StackPanel x:Name="CacheRefreshPanel">
+                            <TextBlock Text="TEMPORARY FILES"
+                                       Style="{StaticResource ParagraphHeaderTextStyle}" 
+                                       Pivot.SlideInAnimationGroup="GroupOne"/>
+                            <Button x:Name="CacheRefreshButton"
+                                    Content="refresh"
+                                    Tapped="CacheRefreshButton_Tapped"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="0,6,0,0"
+                                    Pivot.SlideInAnimationGroup="GroupTwo"/>
+                            <Grid>
+                                <TextBlock x:Name="textBlock" Text="Kodi Assist saves some images on your phone so you can access your library more quickly. If things like album art and movie posters have changed, you can refresh to see them right away."
+                                       TextWrapping="Wrap"
+                                       FontSize="16"
+                                       Opacity=".6"
+                                       Pivot.SlideInAnimationGroup="GroupThree" RenderTransformOrigin="0.5,0.5">
+                                    <TextBlock.RenderTransform>
+                                        <CompositeTransform/>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                                <StackPanel x:Name="stackPanel" VerticalAlignment="Top"
+                                            Margin="0,2,0,0"
+                                            Opacity="0"
+                                            Pivot.SlideInAnimationGroup="GroupThree"
+                                            RenderTransformOrigin="0.5,0.5">
+                                    <StackPanel.RenderTransform>
+                                        <CompositeTransform/>
+                                    </StackPanel.RenderTransform>
+                                    <ProgressBar x:Name="CacheRefreshProgressBar"
+                                                 Value="0"/>
+                                    <TextBlock Text="Just a moment..."
+                                               Margin="0,6,0,0"
+                                               FontSize="16"
+                                               Opacity=".6"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>

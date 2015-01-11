@@ -248,6 +248,11 @@ namespace XBMCRemoteRT.Pages
             LoadButtonCheckedStates();
             LoadSkipJumpState();
             LoadAutoConnectState();
+
+            // Show cache controls only if authentication is in use
+            CacheRefreshPanel.Visibility =
+                ConnectionManager.CurrentConnection.HasCredentials() ?
+                Visibility.Visible : Visibility.Collapsed;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
