@@ -17,6 +17,7 @@
     <SynthesizeLinkMetadata>true</SynthesizeLinkMetadata>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -236,6 +237,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="StoreManifest.xml" />
     <Content Include="VCD.xml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

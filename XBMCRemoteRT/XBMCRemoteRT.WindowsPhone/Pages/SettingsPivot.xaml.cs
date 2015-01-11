@@ -222,5 +222,15 @@ namespace XBMCRemoteRT.Pages
 
         #endregion
 
+        private void AudioLibraryUpdateWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            
+        }
+
+        private void VideoLibraryUpdateWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            
+        }
+
     }
 }
