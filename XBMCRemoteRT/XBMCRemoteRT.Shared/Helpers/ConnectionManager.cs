@@ -52,7 +52,7 @@ namespace XBMCRemoteRT.Helpers
             request.Content = new StringContent(requestData);
             request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json"); //Required to be recognized as valid JSON request.
 
-            if (CurrentConnection.Password != String.Empty)
+            if (CurrentConnection.HasCredentials())
                 request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes(String.Format("{0}:{1}", CurrentConnection.Username, CurrentConnection.Password))));
             
             HttpResponseMessage response = await httpClient.SendAsync(request);

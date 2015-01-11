@@ -31,7 +31,7 @@ namespace XBMCRemoteRT.RPCWrappers
             request.Content = new StringContent(requestData);
             request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json"); //Required to be recognized as valid JSON request.
 
-            if (connectionItem.Password != String.Empty)
+            if (connectionItem.HasCredentials())
                 request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes(String.Format("{0}:{1}", connectionItem.Username, connectionItem.Password))));
 
             HttpResponseMessage response = await httpClient.SendAsync(request);
