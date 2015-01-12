@@ -48,9 +48,17 @@ namespace XBMCRemoteRT.Helpers
                                 Stream imageStream = await GetImageStreamAsync(GetRemoteUri(imagePath));
                                 if (imageStream != null)
                                 {
-                                    await WriteFileAsync(imageStream, filename);
                                     imageCount++;
                                 }
+                                else
+                                {
+                                    System.Diagnostics.Debug.WriteLine(GetRemoteUri(imagePath));
+                                }
+                                // A null imagestream means an error encountered in
+                                // GetImageStreamAsync will likely continue. (e.g. HTTP
+                                // 404, HTTP 500) Write an the file even with a null
+                                // imageStream so download is not attempted repeatedly.
+                                await WriteFileAsync(imageStream, filename);
                             }
                         }
                         progress.Report(imageCount * 100 / imagePaths.Count);
@@ -223,17 +231,12 @@ namespace XBMCRemoteRT.Helpers
         }
 
         /// <summary>
-        /// Write the contents of stream to filename in the cache location.
+        /// Write the contents of stream to filename in the cache location. If a null stream is provided, the file is created with no contents.
         /// </summary>
         /// <param name="stream">Content to be written to file</param>
         /// <param name="filename">Name of the file to be written in cache location</param>
         private static async Task WriteFileAsync(Stream stream, string filename)
         {
-
-            // Prepare input image stream
-            IInputStream inStream = stream.AsInputStream();
-            DataReader reader = new DataReader(inStream);
-
             // Prepare output file stream
             StorageFolder parent = GetCacheFolder();
             StorageFile file = null;
@@ -245,8 +248,11 @@ namespace XBMCRemoteRT.Helpers
             {
             }
 
-            if (file != null)
+            if (file != null && stream != null)
             {
+                // Prepare input image stream
+                IInputStream inStream = stream.AsInputStream();
+                DataReader reader = new DataReader(inStream);
                 IRandomAccessStream fileStream = null;
                 try
                 {
@@ -269,9 +275,8 @@ namespace XBMCRemoteRT.Helpers
                         fileStream.FlushAsync();
                     }
                 }
+                inStream.Dispose();
             }
-
-            inStream.Dispose();
         }
 
         private static StorageFolder GetCacheFolder()
