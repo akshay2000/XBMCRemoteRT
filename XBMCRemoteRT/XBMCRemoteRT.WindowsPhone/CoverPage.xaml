@@ -189,7 +189,7 @@
                         <BitmapIcon UriSource="/Assets/Icons/movie.png" Height="28" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
                             <TextBlock x:Uid="MoviesHubSectionHeader" Text="MOVIES" Margin="5,0,0,0"/>
-                            <TextBlock x:Uid="TVShowsHubSectionSubHeader" Text="see all movies" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
+                            <TextBlock x:Uid="MoviesHubSectionSubHeader" Text="see all movies" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
