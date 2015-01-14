@@ -31,12 +31,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SpeedToSymbolIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToImageBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\CacheManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\BitmapImageExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ConnectionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\FeedbackHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GlobalVariables.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GroupingHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MD5.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlayerHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SettingsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Album.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ConnectionsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ar-SA\Resources.resw" />
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\cs-CZ\Resources.resw" />
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\da-DK\Resources.resw" />
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de-DE\Resources.resw" />

@@ -184,11 +184,12 @@
     <Language Code="vi-vn" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>51231akshay2000.XBMCAssist</MainPackageIdentityName>
+    <MainPackageIdentityName>51231akshay2000.XBMCAssistRemote</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>XBMC Assist</ReservedName>
-      <ReservedName>XBMC Assist Beta</ReservedName>
-      <ReservedName>Kodi Assist Beta</ReservedName>
+      <ReservedName>XBMC Assist (Remote)</ReservedName>
+      <ReservedName>X .assist</ReservedName>
+      <ReservedName>Kodi Assist</ReservedName>
+      <ReservedName>Kodi Control</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
@@ -197,13 +198,13 @@
     <MainPackageIdentityName>51231akshay2000.ColorsToDo</MainPackageIdentityName>
     <MainPackageIdentityName>51231akshay2000.LinuxCheatsheet</MainPackageIdentityName>
     <MainPackageIdentityName>51231akshay2000.Remembrall</MainPackageIdentityName>
-    <MainPackageIdentityName>51231akshay2000.XBMCAssistRemote</MainPackageIdentityName>
+    <MainPackageIdentityName>51231akshay2000.XBMCAssist</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=3d080e90-d38d-4600-b2c9-7e2df605dd3c">
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=bd0243a6-f60c-4f47-82df-ea6ad7033e6d">
     <PackageInfo>
       <OsMinVersion>6.3.0.0</OsMinVersion>
       <PackageArchitecture>neutral</PackageArchitecture>
-      <PackageMaxArchitectureVersion>1.2.0.5</PackageMaxArchitectureVersion>
+      <PackageMaxArchitectureVersion>2.0.0.1</PackageMaxArchitectureVersion>
     </PackageInfo>
   </PackageInfoList>
 </StoreAssociation>

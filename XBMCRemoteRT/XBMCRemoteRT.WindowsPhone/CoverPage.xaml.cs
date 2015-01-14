@@ -26,6 +26,7 @@ using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models;
 using GoogleAnalytics.Core;
 using GoogleAnalytics;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -149,7 +150,8 @@ namespace XBMCRemoteRT
         {
             var tappedAlbum = (sender as Grid).DataContext as Album;
             GlobalVariables.CurrentAlbum = tappedAlbum;
-            Frame.Navigate(typeof(AlbumPage));
+            CommonNavigationTransitionInfo infoOverride = new CommonNavigationTransitionInfo();
+            Frame.Navigate(typeof(AlbumPage), null, infoOverride);
         }
 
         private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)

@@ -15,34 +15,30 @@ namespace XBMCRemoteRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            string imagePath = (string)value;
-            string imageURL = string.Empty;
-            if (imagePath == null)
-                imagePath = String.Empty;
-            if (imagePath.Length > 8)
+            string imagePath = (value == null) ? string.Empty : (string)value;
+            Uri imageURI = null;
+            string proxyScheme = "image://";
+            if (imagePath.StartsWith(proxyScheme))
             {
-                string uri = imagePath.Substring(8);
-                if (uri.StartsWith("http"))
+                // Only apply cache logic if authentication is in use. If not,
+                // allow the image to be consumed from Kodi.
+                if (ConnectionManager.CurrentConnection.HasCredentials())
                 {
-                    imageURL = WebUtility.UrlDecode(uri).TrimEnd('/');
+                    // Get path to locally cached image
+                    imageURI = CacheManager.GetCacheUri(imagePath);
                 }
                 else
                 {
-                    var encodedUri = WebUtility.UrlEncode(uri);
-                    string baseUrlString = "http://" + ConnectionManager.CurrentConnection.IpAddress + ":" + ConnectionManager.CurrentConnection.Port.ToString() + "/image/image://";
-                    imageURL = baseUrlString + encodedUri;
+                    // Get Kodi proxy image address
+                    imageURI = CacheManager.GetRemoteUri(imagePath);
                 }
-            }
-            else
-            {
-                imageURL = "";
             }
 
             ImageBrush imageBrush = new ImageBrush();
             imageBrush.Stretch = Stretch.UniformToFill;
             imageBrush.Opacity = 0.6;
-            if(!string.IsNullOrEmpty(imageURL))
-                imageBrush.ImageSource = new BitmapImage(new Uri(imageURL, UriKind.RelativeOrAbsolute));
+            if(imageURI != null)
+                imageBrush.ImageSource = new BitmapImage(imageURI);
             return imageBrush;
         }
 

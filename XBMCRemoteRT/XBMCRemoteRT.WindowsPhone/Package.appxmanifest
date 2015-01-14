@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="51231akshay2000.XBMCAssist" Publisher="CN=7852A096-2C96-409A-ADB9-A5DB5C0144D3" Version="1.2.0.6" />
-  <mp:PhoneIdentity PhoneProductId="c1158846-4974-470b-9c18-b5e4e927d3ec" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="51231akshay2000.XBMCAssistRemote" Publisher="CN=7852A096-2C96-409A-ADB9-A5DB5C0144D3" Version="2.0.0.5" />
+  <mp:PhoneIdentity PhoneProductId="99fff63e-cc43-45eb-a76c-0b111bc9268a" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>XBMC Assist</DisplayName>
+    <DisplayName>XBMC Assist (Remote)</DisplayName>
     <PublisherDisplayName>akshay2000</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -16,7 +16,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="XBMCRemoteRT.WindowsPhone.App">
-      <m3:VisualElements DisplayName="Kodi Assist Beta" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="The one and only remote for Kodi" ForegroundText="light" BackgroundColor="transparent" ToastCapable="false">
+      <m3:VisualElements DisplayName="Kodi Assist" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="The one and only remote for Kodi" ForegroundText="light" BackgroundColor="transparent" ToastCapable="false">
         <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png">
         </m3:DefaultTile>
         <m3:SplashScreen Image="Assets\SplashScreen.png" />

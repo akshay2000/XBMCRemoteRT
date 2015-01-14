@@ -53,6 +53,24 @@
             </ListView>
         </Grid>
         <ProgressRing x:Name="ProgressRing" IsActive="False" Grid.RowSpan="10" />
+        <Grid x:Name="CacheProgressGrid"
+              DataContext="{Binding ConnectionItems}"
+              Visibility="Collapsed"
+              Grid.RowSpan="10">
+            <Grid.Background>
+                <SolidColorBrush Color="{StaticResource PhoneBackgroundColor}" Opacity="0.8"/>
+            </Grid.Background>
+            <StackPanel Margin="12,0" VerticalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center"
+                           Margin="0,0,0,6"
+                           FontSize="18"
+                           Opacity="0.6">
+                    <Run Text="preparing library... "/>
+                </TextBlock>
+                <ProgressBar x:Name="CacheProgressBar"
+                             Value="0"/>
+            </StackPanel>
+        </Grid>
     </Grid>
     
     <Page.BottomAppBar>
