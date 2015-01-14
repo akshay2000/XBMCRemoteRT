@@ -25,6 +25,7 @@
         <StackPanel Grid.Row="0" Margin="12,0,0,0">
             <TextBlock Text="{StaticResource AppName}" Margin="3,12,0,-8"  Style="{StaticResource PageTitleTextStyle}"/>
             <TextBlock x:Uid="ConnectionsPageTitle" Text="CONNECTIONS" Style="{StaticResource PageHeaderTextStyle}" />
+            <Image x:Name="TempImage" Source="{Binding ImageUri, Converter={StaticResource AuthBitmapConverter}}"/>
         </StackPanel>
 
         <!--Content should be placed within the following grid-->

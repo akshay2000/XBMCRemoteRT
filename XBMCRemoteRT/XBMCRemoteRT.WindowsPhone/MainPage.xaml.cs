@@ -48,7 +48,7 @@ namespace XBMCRemoteRT
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
-
+            this.TempImage.DataContext = new { ImageUri = "http://www.httpwatch.com/httpgallery/authentication/authenticatedimage/default.aspx?0.10196295308417402" };
             DataContext = App.ConnectionsVM;
         }
 
