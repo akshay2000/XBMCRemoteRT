@@ -54,7 +54,8 @@ namespace XBMCRemoteRT.Pages.Audio
 
             ConnectionManager.ManageSystemTray(true);
             JObject filter = new JObject(new JProperty("albumid", GlobalVariables.CurrentAlbum.AlbumId));
-            songsInAlbum = await AudioLibrary.GetSongs(filter);
+            JObject sort = new JObject(new JProperty("method", "track"));
+            songsInAlbum = await AudioLibrary.GetSongs(filter, null, sort);
             SongsListView.ItemsSource = songsInAlbum;
 
             TrackCountTextBlock.Text = songsInAlbum.Count.ToString();
