@@ -48,6 +48,40 @@ namespace XBMCRemoteRT.Helpers
             return false;
         }
 
+        //public static async Task<bool> SetCustomSourceAsync(this BitmapImage image, Uri uri)
+        //{
+        //    var stream = await CacheManager.GetStream(uri);
+        //    if (stream != null)
+        //    {
+        //        MemoryStream ms = new MemoryStream();
+        //        stream.CopyTo(ms);
+        //        var randomAccessStream = await ConvertToRandomAccessStream(ms);
+        //        await image.SetSourceAsync(randomAccessStream);
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        public static async Task<bool> SetCustomSourceAsync(this BitmapImage image, string imagePath)
+        {
+            var stream = await CacheManager.GetStream(imagePath);
+            if (stream != null)
+            {
+                MemoryStream ms = new MemoryStream();
+                stream.CopyTo(ms);
+                var randomAccessStream = await ConvertToRandomAccessStream(ms);
+                await image.SetSourceAsync(randomAccessStream);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private static async Task<IRandomAccessStream> ConvertToRandomAccessStream(MemoryStream memoryStream)
         {
 

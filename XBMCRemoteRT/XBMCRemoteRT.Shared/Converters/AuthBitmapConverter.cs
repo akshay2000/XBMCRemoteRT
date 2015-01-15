@@ -12,10 +12,24 @@ namespace XBMCRemoteRT.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             string uriString = (string)value;
+            string converterParam = (string)parameter;
+
             BitmapImage image = new BitmapImage();
             image.DecodePixelType = DecodePixelType.Logical;
-            image.DecodePixelWidth = 100;
-            image.SetSourceAsync(uriString, "httpwatch", "myPass");
+
+            if (converterParam.StartsWith("w"))
+            {
+                image.DecodePixelWidth = Int32.Parse(converterParam.Remove(0, 1));
+            }
+            else if (converterParam.StartsWith("h"))
+            {
+                image.DecodePixelHeight = Int32.Parse(converterParam.Remove(0, 1));
+            }
+            //Uri uri = new Uri(uriString);
+            
+            //image.SetSourceAsync(uriString, "httpwatch", "myPass");
+
+            image.SetCustomSourceAsync(uriString);
             return image;
         }
 
