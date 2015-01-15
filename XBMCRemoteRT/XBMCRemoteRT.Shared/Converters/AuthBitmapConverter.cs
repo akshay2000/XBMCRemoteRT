@@ -25,10 +25,7 @@ namespace XBMCRemoteRT.Converters
             {
                 image.DecodePixelHeight = Int32.Parse(converterParam.Remove(0, 1));
             }
-            //Uri uri = new Uri(uriString);
-            
-            //image.SetSourceAsync(uriString, "httpwatch", "myPass");
-
+        
             image.SetCustomSourceAsync(uriString);
             return image;
         }

@@ -11,42 +11,42 @@ namespace XBMCRemoteRT.Helpers
 {
     public static class BitmapImageExtension
     {
-        public static async Task<bool> SetSourceAsync(this BitmapImage image,
-               string url, string username, string password)
-        {
-            return await image.SetSourceAsync(new Uri(url), username, password);
-        }
+        //public static async Task<bool> SetSourceAsync(this BitmapImage image,
+        //       string url, string username, string password)
+        //{
+        //    return await image.SetSourceAsync(new Uri(url), username, password);
+        //}
 
-        public static async Task<bool> SetSourceAsync(this BitmapImage image,
-               Uri uri, string username, string password)
-        {
-            var request = (HttpWebRequest)WebRequest.Create(uri);
+        //public static async Task<bool> SetSourceAsync(this BitmapImage image,
+        //       Uri uri, string username, string password)
+        //{
+        //    var request = (HttpWebRequest)WebRequest.Create(uri);
 
-            request.Credentials = new NetworkCredential(username, password);
-            request.Method = "GET";
-            request.Accept = "image/gif;q=0.3, image/x-xbitmap;q=0.3, " +
-              "image/jpeg;q=0.3, image/pjpe;q=0.3g, image/png;q=0.3";
+        //    request.Credentials = new NetworkCredential(username, password);
+        //    request.Method = "GET";
+        //    request.Accept = "image/gif;q=0.3, image/x-xbitmap;q=0.3, " +
+        //      "image/jpeg;q=0.3, image/pjpe;q=0.3g, image/png;q=0.3";
 
-            try
-            {
-                var response = await request.GetResponseAsync();
+        //    try
+        //    {
+        //        var response = await request.GetResponseAsync();
 
-                if (response != null)
-                {
-                    Stream stream = response.GetResponseStream();
-                    MemoryStream ms = new MemoryStream();
-                    stream.CopyTo(ms);
-                    var randomAccessStream = await ConvertToRandomAccessStream(ms);
-                    await image.SetSourceAsync(randomAccessStream);
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-            return false;
-        }
+        //        if (response != null)
+        //        {
+        //            Stream stream = response.GetResponseStream();
+        //            MemoryStream ms = new MemoryStream();
+        //            stream.CopyTo(ms);
+        //            var randomAccessStream = await ConvertToRandomAccessStream(ms);
+        //            await image.SetSourceAsync(randomAccessStream);
+        //            return true;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //    return false;
+        //}
 
         //public static async Task<bool> SetCustomSourceAsync(this BitmapImage image, Uri uri)
         //{
