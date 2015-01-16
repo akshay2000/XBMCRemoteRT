@@ -17,16 +17,20 @@ namespace XBMCRemoteRT.Converters
             BitmapImage image = new BitmapImage();
             image.DecodePixelType = DecodePixelType.Logical;
 
-            if (converterParam.StartsWith("w"))
+            if (converterParam != null)
             {
-                image.DecodePixelWidth = Int32.Parse(converterParam.Remove(0, 1));
+                if (converterParam.StartsWith("w"))
+                {
+                    image.DecodePixelWidth = Int32.Parse(converterParam.Remove(0, 1));
+                }
+                else if (converterParam.StartsWith("h"))
+                {
+                    image.DecodePixelHeight = Int32.Parse(converterParam.Remove(0, 1));
+                }
             }
-            else if (converterParam.StartsWith("h"))
-            {
-                image.DecodePixelHeight = Int32.Parse(converterParam.Remove(0, 1));
-            }
-        
-            image.SetCustomSourceAsync(uriString);
+
+            if (uriString != null && uriString != string.Empty)
+                image.SetCustomSourceAsync(uriString);
             return image;
         }
 

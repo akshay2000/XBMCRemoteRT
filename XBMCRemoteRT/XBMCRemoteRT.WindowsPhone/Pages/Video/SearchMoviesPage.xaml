@@ -38,11 +38,12 @@
                                     <BitmapImage DecodePixelHeight="144" DecodePixelType="Logical" UriSource="/Assets/DefaultArt.jpg"/>
                                 </Image.Source>
                             </Image>
-                            <Image VerticalAlignment="Top" Stretch="UniformToFill" >
+                            <!--<Image VerticalAlignment="Top" Stretch="UniformToFill" >
                                 <Image.Source>
                                     <BitmapImage DecodePixelWidth="380" DecodePixelType="Logical" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                                 </Image.Source>
-                            </Image>
+                            </Image>-->
+                            <Image VerticalAlignment="Top" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w380}"/>
                             <Rectangle Fill="#FF1F1F1F" Opacity="0.7" />
                             <Grid HorizontalAlignment="Left" VerticalAlignment="Center" >
                                 <Grid.ColumnDefinitions>

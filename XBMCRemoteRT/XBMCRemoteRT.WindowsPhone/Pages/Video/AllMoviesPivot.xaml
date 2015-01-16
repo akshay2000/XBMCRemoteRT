@@ -20,11 +20,12 @@
                         <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
                     </Image.Source>
                 </Image>
-                <Image Stretch="UniformToFill" VerticalAlignment="Top" >
+                <!--<Image Stretch="UniformToFill" VerticalAlignment="Top" >
                     <Image.Source>
                         <BitmapImage DecodePixelType="Logical" DecodePixelWidth="150" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                     </Image.Source>
-                </Image>
+                </Image>-->
+                <Image Stretch="UniformToFill" VerticalAlignment="Top" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w150}"/>
                 <Border Margin="10,205,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
                     <Image Source="/Assets/Icons/movie.png" Margin="10" />
                 </Border>

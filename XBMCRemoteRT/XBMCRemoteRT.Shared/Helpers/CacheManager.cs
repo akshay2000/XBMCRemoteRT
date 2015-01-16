@@ -157,22 +157,22 @@ namespace XBMCRemoteRT.Helpers
         public static async Task<Stream> GetStream(string imagePath)
         {
             string filename = GetTempFileName(imagePath);
-            //if (await IsFileCachedAsync(filename))
-            //{
-            //    StorageFolder parent = GetCacheFolder();
-            //    var file = await parent.GetFileAsync(filename);
-            //    return await file.OpenStreamForReadAsync();
-            //}
-            //else
-            //{
+            if (await IsFileCachedAsync(filename))
+            {
+                StorageFolder parent = GetCacheFolder();
+                var file = await parent.GetFileAsync(filename);
+                Stream stream = await file.OpenStreamForReadAsync();
+                return stream;
+            }
+            else
+            {
                 Stream remoteStream = await GetImageStreamAsync(GetRemoteUri(imagePath));
                 //This disk IO is what kills the performance. Way to work around that?
-                //Stream newStream = new MemoryStream();
-                //await remoteStream.CopyToAsync(newStream);
-                //WriteFileAsync(newStream, filename);
-                //remoteStream.Position = 0;
+
+                await WriteFileAsync(remoteStream, filename);
+                remoteStream.Position = 0;
                 return remoteStream;
-            //}
+            }
         }
 
         private static string GetTempFileName(string imagePath)
