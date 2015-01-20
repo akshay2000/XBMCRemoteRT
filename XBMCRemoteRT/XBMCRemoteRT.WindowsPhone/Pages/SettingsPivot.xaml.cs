@@ -211,17 +211,17 @@ namespace XBMCRemoteRT.Pages
 
             // Immediately load the cache. We don't want the user to see empty
             // and partially loaded images from cache misses.
-            //IAsyncOperationWithProgress<int, int> initOperation = CacheManager.UpdateCacheAsync();
-            //initOperation.Progress = (result, progress) =>
-            //{
-            //    // Cache write operation is slower. Weighted 70%
-            //    CacheRefreshProgressBar.Value = 30 + progress * 0.7;
-            //};
-            //int errors = await initOperation;
-            //if (errors > 0)
-            //{
-            //    // TODO: Consider a friendly error message "X images encountered errors..."
-            //}
+            IAsyncOperationWithProgress<int, int> initOperation = CacheManager.UpdateCacheAsync();
+            initOperation.Progress = (result, progress) =>
+            {
+                // Cache write operation is slower. Weighted 70%
+                CacheRefreshProgressBar.Value = 30 + progress * 0.7;
+            };
+            int errors = await initOperation;
+            if (errors > 0)
+            {
+                //Not a real need to bother user with error messages
+            }
 
             RefreshEnd.Begin();
             CacheRefreshButton.IsEnabled = true;
@@ -247,12 +247,7 @@ namespace XBMCRemoteRT.Pages
             this.navigationHelper.OnNavigatedTo(e);
             LoadButtonCheckedStates();
             LoadSkipJumpState();
-            LoadAutoConnectState();
-
-            // Show cache controls only if authentication is in use
-            CacheRefreshPanel.Visibility =
-                ConnectionManager.CurrentConnection.HasCredentials() ?
-                Visibility.Visible : Visibility.Collapsed;
+            LoadAutoConnectState();          
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

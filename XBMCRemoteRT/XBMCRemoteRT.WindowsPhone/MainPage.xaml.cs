@@ -180,25 +180,21 @@ namespace XBMCRemoteRT
                 ConnectionManager.CurrentConnection = connectionItem;
                 SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
 
-                if (connectionItem.HasCredentials())
+                // Update cache
+                SetPageState(PageStates.Caching);
+                CacheProgressBar.Value = 0;
+                IAsyncOperationWithProgress<int, int> cacheOperation = CacheManager.UpdateCacheAsync();
+                cacheOperation.Progress = (result, progress) =>
                 {
-                    // Update cache
-                    SetPageState(PageStates.Caching);
-                    CacheProgressBar.Value = 0;
-                    IAsyncOperationWithProgress<int, int> cacheOperation = CacheManager.UpdateCacheAsync();
-                    cacheOperation.Progress = (result, progress) =>
-                    {
-                        // Indicate progress to user
-                        CacheProgressBar.Value = progress;
-                    };
-                    await cacheOperation;
-                }
+                    // Indicate progress to user
+                    CacheProgressBar.Value = progress;
+                };
+                await cacheOperation;
 
                 Frame.Navigate(typeof(CoverPage));
             }
             else
             {
-                //GlobalVariables.CurrentTracker.SendException("Ping failed", false);
                 MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
                 await message.ShowAsync();
                 SetPageState(PageStates.Ready);
