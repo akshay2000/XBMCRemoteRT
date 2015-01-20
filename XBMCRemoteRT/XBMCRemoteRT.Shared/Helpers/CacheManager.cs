@@ -11,6 +11,7 @@ using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using XBMCRemoteRT.Models;
+using XBMCRemoteRT.Models.Common;
 using XBMCRemoteRT.RPCWrappers;
 
 namespace XBMCRemoteRT.Helpers
@@ -80,26 +81,32 @@ namespace XBMCRemoteRT.Helpers
                 //imagePaths.Add(album.Fanart); //Not using anywhere
             }
 
-            var artists = await AudioLibrary.GetArtists();
-            foreach (var artist in artists)
-            {
-                imagePaths.Add(artist.Thumbnail);
-                imagePaths.Add(artist.Fanart);
-            }
+            //var artists = await AudioLibrary.GetArtists();
+            //foreach (var artist in artists)
+            //{
+            //    //imagePaths.Add(artist.Thumbnail);
+            //    //imagePaths.Add(artist.Fanart);
+            //}
 
             var movies = await VideoLibrary.GetMovies();
             foreach (var movie in movies)
             {
                 imagePaths.Add(movie.Thumbnail);
-                imagePaths.Add(movie.Fanart);
+                //imagePaths.Add(movie.Fanart);
             }
 
             var tvShows = await VideoLibrary.GetTVShows();
             foreach (var tvShow in tvShows)
             {
                 imagePaths.Add(tvShow.Art.Banner);
-                imagePaths.Add(tvShow.Fanart);
-                imagePaths.Add(tvShow.Thumbnail);
+                //imagePaths.Add(tvShow.Fanart);
+                //imagePaths.Add(tvShow.Thumbnail);
+            }
+
+            var recentEpisodes = await VideoLibrary.GetRecentlyAddedEpisodes(new Limits { Start = 0, End = 10 });
+            foreach (var episode in recentEpisodes)
+            {
+                imagePaths.Add(episode.Thumbnail);
             }
 
             return imagePaths;
@@ -147,6 +154,27 @@ namespace XBMCRemoteRT.Helpers
             return imageUri;
         }
 
+        public static async Task<Stream> GetStream(string imagePath)
+        {
+            string filename = GetTempFileName(imagePath);
+            if (await IsFileCachedAsync(filename))
+            {
+                StorageFolder parent = GetCacheFolder();
+                var file = await parent.GetFileAsync(filename);
+                Stream stream = await file.OpenStreamForReadAsync();
+                return stream;
+            }
+            else
+            {
+                Stream remoteStream = await GetImageStreamAsync(GetRemoteUri(imagePath));
+                //This disk IO is what kills the performance. Way to work around that?
+
+                await WriteFileAsync(remoteStream, filename);
+                remoteStream.Position = 0;
+                return remoteStream;
+            }
+        }
+
         private static string GetTempFileName(string imagePath)
         {
             return MD5Core.GetHashString(imagePath) + ".tmp";
@@ -177,7 +205,6 @@ namespace XBMCRemoteRT.Helpers
         /// <returns>Whether filename exists in the cache location</returns>
         private static async Task<bool> IsFileCachedAsync(string filename)
         {
-
             // Attempt to open file in app temp folder
             StorageFolder parent = GetCacheFolder();
             bool fileExists = false;
@@ -275,7 +302,7 @@ namespace XBMCRemoteRT.Helpers
                         fileStream.FlushAsync();
                     }
                 }
-                inStream.Dispose();
+                //inStream.Dispose();
             }
         }
 

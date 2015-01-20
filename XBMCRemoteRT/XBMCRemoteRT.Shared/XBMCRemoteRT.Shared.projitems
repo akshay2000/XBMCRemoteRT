@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\AuthBitmapConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToOpacityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToOpacityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ImagePathConverter.cs" />
@@ -31,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToImageBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\CacheManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\BitmapImageExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ConnectionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\FeedbackHelper.cs" />

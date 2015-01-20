@@ -48,7 +48,7 @@ namespace XBMCRemoteRT
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
-
+            //this.TempImage.DataContext = new { ImageUri = "http://10.0.0.2:8080/image/image://http%253a%252f%252fthetvdb.com%252fbanners%252fposters%252f121361-27.jpg" };
             DataContext = App.ConnectionsVM;
         }
 
@@ -180,25 +180,21 @@ namespace XBMCRemoteRT
                 ConnectionManager.CurrentConnection = connectionItem;
                 SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
 
-                if (connectionItem.HasCredentials())
+                // Update cache
+                SetPageState(PageStates.Caching);
+                CacheProgressBar.Value = 0;
+                IAsyncOperationWithProgress<int, int> cacheOperation = CacheManager.UpdateCacheAsync();
+                cacheOperation.Progress = (result, progress) =>
                 {
-                    // Update cache
-                    SetPageState(PageStates.Caching);
-                    CacheProgressBar.Value = 0;
-                    IAsyncOperationWithProgress<int, int> cacheOperation = CacheManager.UpdateCacheAsync();
-                    cacheOperation.Progress = (result, progress) =>
-                    {
-                        // Indicate progress to user
-                        CacheProgressBar.Value = progress;
-                    };
-                    await cacheOperation;
-                }
+                    // Indicate progress to user
+                    CacheProgressBar.Value = progress;
+                };
+                await cacheOperation;
 
                 Frame.Navigate(typeof(CoverPage));
             }
             else
             {
-                //GlobalVariables.CurrentTracker.SendException("Ping failed", false);
                 MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
                 await message.ShowAsync();
                 SetPageState(PageStates.Ready);

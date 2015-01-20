@@ -24,6 +24,7 @@
                     <converters:StringToImageBrushConverter x:Key="StringToImageBrushConverter"/>
                     <converters:ToUpperConverter x:Key="ToUpperConverter"/>
                     <converters:CountToOpacityConverter x:Key="CountToOpacityConverter"/>
+                    <converters:AuthBitmapConverter x:Key="AuthBitmapConverter"/>
 
                 </ResourceDictionary>
 

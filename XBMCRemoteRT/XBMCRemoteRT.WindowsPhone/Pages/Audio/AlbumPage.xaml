@@ -46,11 +46,12 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Width="173" Height="173" Stretch="UniformToFill">
+                        <!--<Image Width="173" Height="173" Stretch="UniformToFill">
                             <Image.Source>
                                 <BitmapImage DecodePixelType="Logical" DecodePixelHeight="173" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                             </Image.Source>
-                        </Image>
+                        </Image>-->
+                        <Image Width="173" Height="173" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h173}"/>
                         <Grid Grid.Column="1">
                             <StackPanel Orientation="Horizontal" Background="{StaticResource PhoneAccentBrush}" Margin="0,7,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
                                 <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" Margin="5" Foreground="White" MaxWidth="140" MaxHeight="60" TextTrimming="WordEllipsis" FontSize="20"/>

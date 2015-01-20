@@ -32,11 +32,12 @@
                                     <BitmapImage DecodePixelType="Logical" DecodePixelHeight="300" UriSource="/Assets/DefaultArt.jpg"/>
                                 </Image.Source>
                             </Image>
-                            <Image Stretch="UniformToFill">
+                            <!--<Image Stretch="UniformToFill">
                                 <Image.Source>
                                     <BitmapImage DecodePixelType="Logical" DecodePixelHeight="300" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
                                 </Image.Source>
-                            </Image>
+                            </Image>-->
+                            <Image Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h300}"/>
 
                             <StackPanel Grid.Row="0" Grid.Column="1">
                                 <TextBlock Text="DIRECTOR" x:Uid="Director" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
@@ -82,30 +83,31 @@
                         <ListView x:Name="CastLLS" ItemsSource="{Binding Cast, Converter={StaticResource ListTrimmer}}" >
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Height="144" Margin="0,0,0,12">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="98"/>
-                                            <ColumnDefinition Width="auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="auto"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
+                                <Grid Height="144" Margin="0,0,0,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="98"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
-                                        <Image Grid.RowSpan="2" Stretch="UniformToFill" >
-                                            <Image.Source>
-                                                <BitmapImage DecodePixelType="Logical" DecodePixelHeight="144" UriSource="/Assets/DefaultArt.jpg"/>
-                                            </Image.Source>
-                                        </Image>
-                                        <Image Grid.RowSpan="2" Stretch="UniformToFill" >
-                                            <Image.Source>
-                                                <BitmapImage DecodePixelType="Logical" DecodePixelHeight="144" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                            </Image.Source>
-                                        </Image>
-                                        <TextBlock Text="{Binding Name, Converter={StaticResource ToUpperConverter}}" FontSize="20" TextWrapping="Wrap" FontWeight="Bold" Margin="10,-5,10,0" Grid.Row="0" Grid.Column="1"/>
-                                        <TextBlock Text="{Binding Role}" FontSize="15" Margin="10,5,10,0" Opacity="0.5" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" />
-                                    </Grid>
-                                </DataTemplate>
+                                    <Image Grid.RowSpan="2" Stretch="UniformToFill" >
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="144" UriSource="/Assets/DefaultArt.jpg"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <!--<Image Grid.RowSpan="2" Stretch="UniformToFill" >
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="144" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                        </Image.Source>
+                                    </Image>-->
+                                    <Image Grid.RowSpan="2" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h144}" />
+                                    <TextBlock Text="{Binding Name, Converter={StaticResource ToUpperConverter}}" FontSize="20" TextWrapping="Wrap" FontWeight="Bold" Margin="10,-5,10,0" Grid.Row="0" Grid.Column="1"/>
+                                    <TextBlock Text="{Binding Role}" FontSize="15" Margin="10,5,10,0" Opacity="0.5" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" />
+                                </Grid>
+                            </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                 </DataTemplate>

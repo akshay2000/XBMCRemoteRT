@@ -220,7 +220,7 @@ namespace XBMCRemoteRT.Pages
             int errors = await initOperation;
             if (errors > 0)
             {
-                // TODO: Consider a friendly error message "X images encountered errors..."
+                //Not a real need to bother user with error messages
             }
 
             RefreshEnd.Begin();
@@ -247,12 +247,7 @@ namespace XBMCRemoteRT.Pages
             this.navigationHelper.OnNavigatedTo(e);
             LoadButtonCheckedStates();
             LoadSkipJumpState();
-            LoadAutoConnectState();
-
-            // Show cache controls only if authentication is in use
-            CacheRefreshPanel.Visibility =
-                ConnectionManager.CurrentConnection.HasCredentials() ?
-                Visibility.Visible : Visibility.Collapsed;
+            LoadAutoConnectState();          
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
