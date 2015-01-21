@@ -234,7 +234,7 @@
     </Grid>
     
     <Page.BottomAppBar>
-        <CommandBar x:Name="BottomBar" ClosedDisplayMode="Minimal">
+        <CommandBar x:Name="BottomBar" ClosedDisplayMode="Minimal" Opacity="0.5">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="SettingsAppBarButton" x:Uid="SettingsAppBarMenu" Label="settings" Click="SettingsAppBarButton_Click" />
                 <AppBarButton x:Name="SwitchServerAppBarButton" x:Uid="SwitchServerAppBarMenu" Label="switch server" Click="SwitchServerAppBarButton_Click" />

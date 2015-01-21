@@ -116,7 +116,7 @@
     </Grid>
     
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Opacity="0.5">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="PlayArtistAppBarButton" x:Uid="PlayArtistAppBarMenu" Click="PlayArtistAppBarButton_Click" Icon="Play" Label="play"/>
             </CommandBar.PrimaryCommands>

@@ -246,7 +246,8 @@ namespace XBMCRemoteRT
 
         private void SwitchServerAppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage), false);
+            NavigationTransitionInfo transitionInfo = new SlideNavigationTransitionInfo();
+            Frame.Navigate(typeof(MainPage), false, transitionInfo);
         }
     }
 }
