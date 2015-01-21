@@ -7,15 +7,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
     
-    <Grid x:Name="LayoutRoot">
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
 
+    <Grid x:Name="LayoutRoot">
+       
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -23,8 +27,8 @@
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="12,0,0,0">
-            <TextBlock Text="{StaticResource AppName}" Margin="3,12,0,-8"  Style="{StaticResource PageTitleTextStyle}"/>
-            <TextBlock x:Uid="ConnectionsPageTitle" Text="CONNECTIONS" Style="{StaticResource PageHeaderTextStyle}" />
+            <TextBlock Text="{StaticResource AppName}" Margin="3,12,0,-8"  Style="{StaticResource PageTitleTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+            <TextBlock x:Uid="ConnectionsPageTitle" Text="CONNECTIONS" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
             <!--<Image x:Name="TempImage" Source="{Binding ImageUri, Converter={StaticResource AuthBitmapConverter}}"/>-->
         </StackPanel>
 
@@ -38,7 +42,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel x:Name="ConnectionItemWrapper" Tapped="ConnectionItemWrapper_Tapped" Holding="ConnectionItemWrapper_Holding">
+                        <StackPanel x:Name="ConnectionItemWrapper" Tapped="ConnectionItemWrapper_Tapped" Holding="ConnectionItemWrapper_Holding" CommonNavigationTransitionInfo.IsStaggerElement="True">
                             <FlyoutBase.AttachedFlyout>
                                 <MenuFlyout>
                                     <MenuFlyoutItem x:Name="EditConnectionMFI" Text="edit connection" Click="EditConnectionMFI_Click" DataContext="{Binding}"/>

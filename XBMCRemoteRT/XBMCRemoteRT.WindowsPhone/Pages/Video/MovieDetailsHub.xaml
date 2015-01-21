@@ -72,7 +72,7 @@
                 <DataTemplate>
                     <ScrollViewer>
                         <Grid>
-                            <TextBlock Text="{Binding Plot}" FontSize="15" FontWeight="Medium" Margin="0,5,5,5" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Plot}" Style="{StaticResource ParagraphTextStyle}" Margin="0,5,5,5" TextWrapping="Wrap"/>
                         </Grid>
                     </ScrollViewer>
                 </DataTemplate>
@@ -116,7 +116,7 @@
     </Grid>
 
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Opacity="0.5">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="PlayMovieAppBarButton" x:Uid="PlayMovieAppBarMenu" Click="PlayMovieAppBarButton_Click" Icon="Play" Label="play"/>
             </CommandBar.PrimaryCommands>
