@@ -320,4 +320,46 @@
   <data name="QueueArtistMenu.Label" xml:space="preserve">
     <value>queue artist</value>
   </data>
+  <data name="BackwardComboBox.Header" xml:space="preserve">
+    <value>what does backward do</value>
+  </data>
+  <data name="ForwardComboBox.Header" xml:space="preserve">
+    <value>what does forward do</value>
+  </data>
+  <data name="SettingsButtons.Text" xml:space="preserve">
+    <value>BUTTONS</value>
+  </data>
+  <data name="SettingsButtonsSub.Text" xml:space="preserve">
+    <value>choose what buttons appear on remote</value>
+  </data>
+  <data name="SettingsSkipJump.Text" xml:space="preserve">
+    <value>SKIP + JUMP</value>
+  </data>
+  <data name="CacheNote.Text" xml:space="preserve">
+    <value>Kodi Assist saves some images on your phone so you can access your library more quickly. If things like album art and movie posters have changed, you can refresh to see them right away.</value>
+  </data>
+  <data name="JustAMoment.Text" xml:space="preserve">
+    <value>Just a moment...</value>
+  </data>
+  <data name="SettingsAutoconnect.Text" xml:space="preserve">
+    <value>AUTOCONNECT</value>
+  </data>
+  <data name="SettingsAutoconnectToggle.Header" xml:space="preserve">
+    <value>connect automatically on startup</value>
+  </data>
+  <data name="SettingsConnectionsPivotHeader.Text" xml:space="preserve">
+    <value>CONNECTIONS</value>
+  </data>
+  <data name="SettingsPageHeader.Text" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
+  <data name="SettingsRefreshCacheButton.Content" xml:space="preserve">
+    <value>refresh</value>
+  </data>
+  <data name="SettingsRemotePivotHeader.Text" xml:space="preserve">
+    <value>REMOTE</value>
+  </data>
+  <data name="SettingsTempFiles.Text" xml:space="preserve">
+    <value>TEMPORARY FILES</value>
+  </data>
 </root>
