@@ -203,7 +203,7 @@
                     <TextBlock x:Uid="SettingsRemotePivotHeader" Text="REMOTE" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
-                    <StackPanel>
+                    <StackPanel Margin="0,0,0,36">
                         <TextBlock x:Uid="SettingsButtons" Text="BUTTONS" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
                         <TextBlock x:Uid="SettingsButtonsSub" Text="choose what buttons appear on remote" Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo" Opacity="0.6"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,8,0,0" Pivot.SlideInAnimationGroup="GroupTwo">
@@ -265,7 +265,7 @@
                     <TextBlock x:Uid="SettingsConnectionsPivotHeader" Text="CONNECTIONS" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
-                    <StackPanel>
+                    <StackPanel Margin="0,0,0,36">
                         <TextBlock x:Uid="SettingsAutoconnect" Text="AUTOCONNECT" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
                         <ToggleSwitch x:Uid="SettingsAutoconnectToggle" x:Name="AutoconnectToggle" Header="connect automatically on startup" Margin="0,6,0,0" Pivot.SlideInAnimationGroup="GroupTwo" />
                         <StackPanel x:Name="CacheRefreshPanel">

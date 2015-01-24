@@ -26,7 +26,7 @@
                     <TextBlock x:Uid="AboutAboutPivotHeader" Text="ABOUT" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
-                    <StackPanel>
+                    <StackPanel Margin="0,0,0,36">
                         <TextBlock x:Uid="AboutAppHeader" Text="APP" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
                         <TextBlock x:Uid="AboutAppText" Text="The app aims to be the ultimate remote control client for XBMC. The app is made open source in spirit of XBMC and all the source code is available at GitHub." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo" />
                         <TextBlock x:Uid="AboutProjectHeader" Text="PROJECT" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
@@ -83,7 +83,7 @@
                     <TextBlock Text="FEEDBACK" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
-                    <StackPanel>
+                    <StackPanel Margin="0,0,0,36">
                         <TextBox x:Uid="AboutFeedbackTextBox" x:Name="FeedbackTextBox" Height="200" TextWrapping="Wrap" PlaceholderText="Enter your message here."/>
                         <Button x:Uid="SendFeedbackButton" x:Name="SendFeedbackButton" Click="SendFeedbackButton_Click" Content="send feedback" BorderThickness="1.5" Height="70" HorizontalAlignment="Stretch"/>
                     </StackPanel>
@@ -95,7 +95,7 @@
                     <TextBlock x:Uid="AboutContributePivotHeader" Text="CONTRIBUTE" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
-                    <StackPanel>
+                    <StackPanel Margin="0,0,0,36">
                         <TextBlock x:Uid="AboutContributeNote" Text="This app is part of open source project on GitHub. There are a number of ways you can contribute to it." Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
                         <TextBlock x:Uid="AboutReportIssues" Text="REPORT ISSUES" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
                         <TextBlock x:Uid="ReportIssuesNote" Text="Find something not working to perfection in app? Discovered a bug? Think something could be better? Just create issue at the URl below. One of the developers will get back to you as soon as possible." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>

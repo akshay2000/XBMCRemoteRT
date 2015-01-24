@@ -27,7 +27,7 @@
             <HubSection x:Uid="Info" Header="INFO">
                 <DataTemplate>
                     <ScrollViewer>
-                        <Grid Margin="0,0,0,12">
+                        <Grid Margin="0,0,0,36">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="212"/>
                                 <ColumnDefinition Width="*"/>
@@ -62,8 +62,8 @@
             
             <HubSection x:Name="SongsHubSection" x:Uid="Songs" Header="SONGS">
                 <DataTemplate>
-                    <Grid>
-                        <ListView x:Name="SongsListView" ItemsSource="{Binding}">
+                    <ScrollViewer>
+                        <ListView x:Name="SongsListView" ItemsSource="{Binding}"  Margin="0,0,0,36">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel x:Name="SongItemWrapper" Orientation="Horizontal" Margin="0,10" Tapped="SongItemWrapper_Tapped">
@@ -75,14 +75,14 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                    </Grid>
+                    </ScrollViewer>
                 </DataTemplate>
             </HubSection>
             
             <HubSection x:Name="AlbumsHubSection" x:Uid="Albums" Header="ALBUMS">
                 <DataTemplate>
-                    <Grid>
-                        <GridView x:Name="AlbumsGridView" Margin="0,0,0,0" ItemsSource="{Binding}">
+                    <ScrollViewer>
+                        <GridView x:Name="AlbumsGridView" ItemsSource="{Binding}" Margin="0,0,0,36">
                             <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid x:Name="AlbumWrapper" Tapped="AlbumWrapper_Tapped" Height="195" Background="{StaticResource PhoneChromeBrush}" Width="150" Margin="0,0,12,12" >
@@ -109,7 +109,7 @@
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
-                    </Grid>
+                    </ScrollViewer>
                 </DataTemplate>
             </HubSection>
         </Hub>
