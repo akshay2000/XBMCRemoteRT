@@ -362,4 +362,97 @@
   <data name="SettingsTempFiles.Text" xml:space="preserve">
     <value>TEMPORARY FILES</value>
   </data>
+  <data name="AboutAboutPivotHeader.Text" xml:space="preserve">
+    <value>ABOUT</value>
+  </data>
+  <data name="AboutAnagh.Text" xml:space="preserve">
+    <value>Excellent designs by</value>
+  </data>
+  <data name="AboutAppHeader.Text" xml:space="preserve">
+    <value>APP</value>
+  </data>
+  <data name="AboutAppText.Text" xml:space="preserve">
+    <value>The app aims to be the ultimate remote control client for Kodi. The app is made open source in spirit of Kodi and all the source code is available at GitHub.</value>
+  </data>
+  <data name="AboutCodeIn.Text" xml:space="preserve">
+    <value>CODE IN</value>
+  </data>
+  <data name="AboutCodeInNote.Text" xml:space="preserve">
+    <value>Found something that you can fix or make better? Awesome. Create a fork of repository here and start coding. If we like your code, we will definitely accept it. You also get a thank you note!</value>
+  </data>
+  <data name="AboutContributeNote.Text" xml:space="preserve">
+    <value>This app is part of open source project on GitHub. There are a number of ways you can contribute to it.</value>
+  </data>
+  <data name="AboutContributePivotHeader.Text" xml:space="preserve">
+    <value>CONTRIBUTE</value>
+  </data>
+  <data name="AboutCreditsHeader.Text" xml:space="preserve">
+    <value>CREDITS</value>
+  </data>
+  <data name="AboutDeveloperHeader.Text" xml:space="preserve">
+    <value>DEVELOPER</value>
+  </data>
+  <data name="AboutFeedbackPivotHeader.Text" xml:space="preserve">
+    <value>FEEDBACK</value>
+  </data>
+  <data name="AboutFeedbackTextBox.PlaceholderText" xml:space="preserve">
+    <value>Enter your message here.</value>
+  </data>
+  <data name="AboutIconsAndFonts.Text" xml:space="preserve">
+    <value>Icons and font symbols from</value>
+  </data>
+  <data name="AboutProjectHeader.Text" xml:space="preserve">
+    <value>PROJECT</value>
+  </data>
+  <data name="AboutProjectLink.Text" xml:space="preserve">
+    <value>view on GitHub</value>
+  </data>
+  <data name="AboutProjectText.Text" xml:space="preserve">
+    <value>This app is a part of an open source project. If you wish to contribute, feel free to do so at the URL below. Be sure to check out the project wiki.</value>
+  </data>
+  <data name="AboutReddit.Text" xml:space="preserve">
+    <value>Very useful feedback by reddit community at</value>
+  </data>
+  <data name="AboutReportIssues.Text" xml:space="preserve">
+    <value>REPORT ISSUES</value>
+  </data>
+  <data name="AboutSendGreetings.Text" xml:space="preserve">
+    <value>SEND GREETINGS</value>
+  </data>
+  <data name="AboutSendGreetingsNote.Text" xml:space="preserve">
+    <value>A simple gesture of gratitude can work wonders in open source community. You can contribute simply by sending a thank you note via a tweet, an email, a rating on Store or any other way you prefer. It means a lot to developers.</value>
+  </data>
+  <data name="AboutTranslate.Text" xml:space="preserve">
+    <value>TRANSLATE</value>
+  </data>
+  <data name="AboutTranslateLink.Text" xml:space="preserve">
+    <value>translations on POEditor</value>
+  </data>
+  <data name="AboutTranslateNote.Text" xml:space="preserve">
+    <value>Know multiple languages? Want app in your own language? See something that could be worded better? Translations are open source too.</value>
+  </data>
+  <data name="AboutTranslators.Text" xml:space="preserve">
+    <value>All the translators working constantly to make this app possible.</value>
+  </data>
+  <data name="AboutViewApp.Text" xml:space="preserve">
+    <value>Yup, that's the same guy behind our beloved</value>
+  </data>
+  <data name="AppsFromDev.Content" xml:space="preserve">
+    <value>apps from the developer</value>
+  </data>
+  <data name="AppSupport.Content" xml:space="preserve">
+    <value>app support</value>
+  </data>
+  <data name="ReportIssuesLink.Text" xml:space="preserve">
+    <value>issues on GitHub</value>
+  </data>
+  <data name="ReportIssuesNote.Text" xml:space="preserve">
+    <value>Find something not working to perfection in app? Discovered a bug? Think something could be better? Just create issue at the URl below. One of the developers will get back to you as soon as possible.</value>
+  </data>
+  <data name="SendFeedbackButton.Content" xml:space="preserve">
+    <value>send feedback</value>
+  </data>
+  <data name="AboutRateApp.Content" xml:space="preserve">
+    <value>rate app</value>
+  </data>
 </root>

@@ -23,43 +23,56 @@
             
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="ABOUT" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock x:Uid="AboutAboutPivotHeader" Text="ABOUT" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
                     <StackPanel>
-                        <TextBlock Text="APP" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <TextBlock Text="The app aims to be the ultimate remote control client for XBMC. The app is made open source in spirit of XBMC and all the source code is available at GitHub." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo" />
-                        <TextBlock Text="PROJECT" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <TextBlock Text="This app is a part of an open source project. If you wish to contribute, feel free to do so at the URL below. Be sure to check out the project wiki before submitting pull requests." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        <TextBlock x:Uid="AboutAppHeader" Text="APP" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock x:Uid="AboutAppText" Text="The app aims to be the ultimate remote control client for XBMC. The app is made open source in spirit of XBMC and all the source code is available at GitHub." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo" />
+                        <TextBlock x:Uid="AboutProjectHeader" Text="PROJECT" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock x:Uid="AboutProjectText" Text="This app is a part of an open source project. If you wish to contribute, feel free to do so at the URL below. Be sure to check out the project wiki before submitting pull requests." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
                         <HyperlinkButton Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Pivot.SlideInAnimationGroup="GroupThree" NavigateUri="http://git.io/vp16eg">
                             <HyperlinkButton.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Glyph="&#57544;" Margin="0,1,3,0"/>
-                                    <TextBlock Text="view on GitHub"/>
+                                    <TextBlock x:Uid="AboutProjectLink" Text="view on GitHub"/>
                                 </StackPanel>
                             </HyperlinkButton.Content>
                         </HyperlinkButton>
-                        <TextBlock Text="DEVELOPER" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <HyperlinkButton x:Name="DevProfile" Content="apps from the developer" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Click="DevProfile_Click" Pivot.SlideInAnimationGroup="GroupThree"/>
-                        <HyperlinkButton x:Name="AppSupportButton" Content="app Support" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Pivot.SlideInAnimationGroup="GroupThree" Click="AppSupportButton_Click"/>
-                        <TextBlock Text="CREDITS" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock x:Uid="AboutDeveloperHeader" Text="DEVELOPER" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <HyperlinkButton x:Uid="AppsFromDev" x:Name="DevProfile" Content="apps from the developer" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Click="DevProfile_Click" Pivot.SlideInAnimationGroup="GroupThree"/>
+                        <HyperlinkButton x:Uid="AppSupport" x:Name="AppSupportButton" Content="app Support" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Pivot.SlideInAnimationGroup="GroupThree" Click="AppSupportButton_Click"/>
+                        <TextBlock x:Uid="AboutCreditsHeader" Text="CREDITS" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
                         <RichTextBlock Style="{StaticResource RichParagraphTextStyle}" Margin="0,5,0,0"  Pivot.SlideInAnimationGroup="GroupTwo">
-                            <Paragraph>Excellent designs by
+                            <Paragraph>
+                                <Run x:Uid="AboutAnagh" Text="Excellent designs by"/>
+                                <Run Text=" "/>
                                 <Hyperlink NavigateUri="http://www.twitter.com/AnaghSharma" Foreground="{StaticResource PhoneAccentBrush}">@AnaghSharma</Hyperlink>.
+                                <Run Text="Yup, that's the same guy behind our beloved"/>
+                                <Run Text=" "/>
+                                <Hyperlink NavigateUri="www.windowsphone.com/s?appid=4eff5c6e-67a9-45fd-b7ab-344edc8a10c3" Foreground="{StaticResource PhoneAccentBrush}">View for Behance</Hyperlink>.
                             </Paragraph>
                         </RichTextBlock>
                         
                         <RichTextBlock Style="{StaticResource RichParagraphTextStyle}" Margin="0,5,0,0"  Pivot.SlideInAnimationGroup="GroupTwo">
-                            <Paragraph>Very useful feedback by reddit community at
+                            <Paragraph>
+                                <Run x:Uid="AboutReddit" Text="Very useful feedback by reddit community at"/>
                                 <Hyperlink NavigateUri="http://reddit.com/r/WindowsPhone" Foreground="{StaticResource PhoneAccentBrush}">/r/WindowsPhone</Hyperlink>.</Paragraph>
                         </RichTextBlock>
 
                         <RichTextBlock Style="{StaticResource RichParagraphTextStyle}" Margin="0,5,0,0"  Pivot.SlideInAnimationGroup="GroupTwo">
-                            <Paragraph>Icons and font symbols from
+                            <Paragraph>
+                                <Run x:Uid="AboutIconsAndFonts" Text="Icons and font symbols from"/>
                                 <Hyperlink NavigateUri="http://metroui.org.ua/" Foreground="{StaticResource PhoneAccentBrush}">Metro UI CSS</Hyperlink>.
                             </Paragraph>
                         </RichTextBlock>
-                        <Button BorderThickness="1.5" Height="70" Content="rate app" HorizontalAlignment="Stretch" x:Name="RateApp" Click="RateApp_Click" />
+
+                        <RichTextBlock Style="{StaticResource RichParagraphTextStyle}" Margin="0,5,0,0"  Pivot.SlideInAnimationGroup="GroupTwo">
+                            <Paragraph>
+                                <Run x:Uid="AboutTranslators" Text="All the translators working constantly to make this app possible."/>
+                            </Paragraph>
+                        </RichTextBlock>
+                        <Button x:Uid="AboutRateApp" BorderThickness="1.5" Height="70" Content="rate app" HorizontalAlignment="Stretch" x:Name="RateApp" Click="RateApp_Click" />
                         
                     </StackPanel>
                 </ScrollViewer>
@@ -71,31 +84,43 @@
                 </PivotItem.Header>
                 <ScrollViewer>
                     <StackPanel>
-                        <TextBox x:Name="FeedbackTextBox" Height="200" TextWrapping="Wrap" PlaceholderText="Enter your message here."/>
-                        <Button x:Name="SendFeedbackButton" Click="SendFeedbackButton_Click" Content="send feedback" BorderThickness="1.5" Height="70" HorizontalAlignment="Stretch"/>
+                        <TextBox x:Uid="AboutFeedbackTextBox" x:Name="FeedbackTextBox" Height="200" TextWrapping="Wrap" PlaceholderText="Enter your message here."/>
+                        <Button x:Uid="SendFeedbackButton" x:Name="SendFeedbackButton" Click="SendFeedbackButton_Click" Content="send feedback" BorderThickness="1.5" Height="70" HorizontalAlignment="Stretch"/>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="CONTRIBUTE" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock x:Uid="AboutContributePivotHeader" Text="CONTRIBUTE" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
-            <ScrollViewer>
+                <ScrollViewer>
                     <StackPanel>
-                        <TextBlock Text="This app is part of open source project on GitHub. There are a number of ways you can contribute to it." Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
-                        <TextBlock Text="REPORT ISSUES" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <TextBlock Text="Find something not working to perfection in app? Discovered a bug? Think something could be better? Just create issue at the URl below. One of the developers will get back to you as soon as possible." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        <TextBlock x:Uid="AboutContributeNote" Text="This app is part of open source project on GitHub. There are a number of ways you can contribute to it." Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        <TextBlock x:Uid="AboutReportIssues" Text="REPORT ISSUES" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock x:Uid="ReportIssuesNote" Text="Find something not working to perfection in app? Discovered a bug? Think something could be better? Just create issue at the URl below. One of the developers will get back to you as soon as possible." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
                         <HyperlinkButton NavigateUri="http://github.com/akshay2000/XBMCRemoteRT/issues" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Pivot.SlideInAnimationGroup="GroupThree">
                             <HyperlinkButton.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Glyph="&#57669;" Margin="0,1,3,0"/>
-                                    <TextBlock Text="issues on GitHub"/>
+                                    <TextBlock x:Uid="ReportIssuesLink" Text="issues on GitHub"/>
                                 </StackPanel>
                             </HyperlinkButton.Content>
                         </HyperlinkButton>
-                        <TextBlock Text="CODE IN" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <TextBlock Text="Found something that you can fix or make better? Awesome. Create a fork of repository here and start coding. If we like your code, we will definitely accept it. You also get a thank you note!" Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
+
+                        <TextBlock x:Uid="AboutTranslate" Text="TRANSLATE" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock x:Uid="AboutTranslateNote" Text="Know multiple languages? Want app in your own language? See something that could be worded better? Translations are open source too." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        <HyperlinkButton NavigateUri="http://github.com/akshay2000/XBMCRemoteRT/issues" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Pivot.SlideInAnimationGroup="GroupThree">
+                            <HyperlinkButton.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <SymbolIcon Symbol="Globe" Margin="0,2,2,0"/>
+                                    <TextBlock x:Uid="AboutTranslateLink" Text="translations on POEditor"/>
+                                </StackPanel>
+                            </HyperlinkButton.Content>
+                        </HyperlinkButton>
+
+                        <TextBlock x:Uid="AboutCodeIn" Text="CODE IN" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock x:Uid="AboutCodeInNote" Text="Found something that you can fix or make better? Awesome. Create a fork of repository here and start coding. If we like your code, we will definitely accept it. You also get a thank you note!" Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
                         <HyperlinkButton Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" Pivot.SlideInAnimationGroup="GroupThree" NavigateUri="http://git.io/vp16eg">
                             <HyperlinkButton.Content>
                                 <StackPanel Orientation="Horizontal">
@@ -104,8 +129,9 @@
                                 </StackPanel>
                             </HyperlinkButton.Content>
                         </HyperlinkButton>
-                        <TextBlock Text="SEND GREETINGS" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <TextBlock Text="A simple gesture of gratitude can work wonders in open source community. You can contribute simply by sending a thank you note via a tweet, an email, a rating on Store or any other way you prefer. It means a lot to developers." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
+                        
+                        <TextBlock x:Uid="AboutSendGreetings" Text="SEND GREETINGS" Margin="0,15,0,0" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock x:Uid="AboutSendGreetingsNote" Text="A simple gesture of gratitude can work wonders in open source community. You can contribute simply by sending a thank you note via a tweet, an email, a rating on Store or any other way you prefer. It means a lot to developers." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo"/>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
