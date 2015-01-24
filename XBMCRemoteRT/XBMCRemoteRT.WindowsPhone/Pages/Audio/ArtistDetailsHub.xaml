@@ -12,7 +12,7 @@
         <TransitionCollection>
             <NavigationThemeTransition>
                 <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <ContinuumNavigationTransitionInfo/>
+                    <CommonNavigationTransitionInfo/>
                 </NavigationThemeTransition.DefaultNavigationTransitionInfo>
             </NavigationThemeTransition>
         </TransitionCollection>
@@ -33,7 +33,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="200"/>
+                                <RowDefinition Height="212"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Image Grid.Column="0" Grid.Row="0" Stretch="UniformToFill">
