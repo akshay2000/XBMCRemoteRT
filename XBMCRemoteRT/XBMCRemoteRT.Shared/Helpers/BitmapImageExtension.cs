@@ -16,7 +16,10 @@ namespace XBMCRemoteRT.Helpers
             var stream = await ProxyManager.GetStream(imagePath);
             if (stream != null)
             {
-                IRandomAccessStream randomAccessStream = stream.AsRandomAccessStream();
+                MemoryStream ms = new MemoryStream();
+                stream.CopyTo(ms);
+                //This convulated way of dealing with streams gives a lot better performance
+                var randomAccessStream = await ConvertToRandomAccessStream(ms);
                 await image.SetSourceAsync(randomAccessStream);
                 return true;
             }
@@ -24,6 +27,21 @@ namespace XBMCRemoteRT.Helpers
             {
                 return false;
             }
+        }
+
+        private static async Task<IRandomAccessStream> ConvertToRandomAccessStream(MemoryStream memoryStream)
+        {
+            var randomAccessStream = new InMemoryRandomAccessStream();
+            var outputStream = randomAccessStream.GetOutputStreamAt(0);
+            var dw = new DataWriter(outputStream);
+            
+            var task = Task.Factory.StartNew(() => dw.WriteBytes(memoryStream.ToArray()));
+            await task;
+
+            await dw.StoreAsync();
+            await outputStream.FlushAsync();
+
+            return randomAccessStream;
         }
     }
 }
