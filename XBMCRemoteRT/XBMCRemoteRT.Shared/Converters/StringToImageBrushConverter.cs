@@ -22,7 +22,7 @@ namespace XBMCRemoteRT.Converters
             imageBrush.Opacity = 0.6;
             BitmapImage image = new BitmapImage();
             if (imagePath != string.Empty)
-                image.SetCustomSourceAsync(imagePath);
+                image.SetProxySourceAsync(imagePath);
             imageBrush.ImageSource = image;
             return imageBrush;
         }

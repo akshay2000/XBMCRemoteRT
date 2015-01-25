@@ -30,7 +30,7 @@ namespace XBMCRemoteRT.Converters
             }
 
             if (uriString != null && uriString != string.Empty)
-                image.SetCustomSourceAsync(uriString);
+                image.SetProxySourceAsync(uriString);
             return image;
         }
 

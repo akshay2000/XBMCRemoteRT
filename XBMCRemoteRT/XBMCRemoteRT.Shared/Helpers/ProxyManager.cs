@@ -16,7 +16,7 @@ using XBMCRemoteRT.RPCWrappers;
 
 namespace XBMCRemoteRT.Helpers
 {
-    public class CacheManager
+    public class ProxyManager
     {
         /// <summary>
         /// Returns remote location of the image on the currently connected Kodi server.
@@ -59,8 +59,6 @@ namespace XBMCRemoteRT.Helpers
 
             // Download the image with HTTP Basic auth
             HttpClient client = new HttpClient();
-            // Ignore the HttpClient cache
-            client.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue() { NoCache = true };
             ConnectionItem con = ConnectionManager.CurrentConnection;
             if (con != null && con.HasCredentials())
             {
