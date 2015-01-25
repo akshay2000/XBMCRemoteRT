@@ -65,7 +65,12 @@
                     <ListView x:Name="SongsListView">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel x:Name="SongItemWrapper" Orientation="Horizontal" Margin="0,10" Tapped="SongItemWrapper_Tapped">
+                                <StackPanel x:Name="SongItemWrapper" Orientation="Horizontal" Margin="0,10" Tapped="SongItemWrapper_Tapped" Holding="SongItemWrapper_Holding">
+                                    <FlyoutBase.AttachedFlyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem x:Name="QueueSongMFI" Text="queue song" Click="QueueSongMFI_Click" FontFamily="Global User Interface" DataContext="{Binding}" />
+                                        </MenuFlyout>
+                                    </FlyoutBase.AttachedFlyout>
                                     <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                         <BitmapIcon Margin="12" UriSource="/Assets/Icons/musicnote.png" Foreground="{StaticResource PhoneForegroundBrush}" ></BitmapIcon>
                                     </Border>
