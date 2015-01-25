@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Storage;
-using Windows.Storage.Streams;
 using XBMCRemoteRT.Models;
-using XBMCRemoteRT.Models.Common;
-using XBMCRemoteRT.RPCWrappers;
 
 namespace XBMCRemoteRT.Helpers
 {
