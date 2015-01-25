@@ -122,68 +122,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Storyboard x:Name="RefreshStart">
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="textBlock">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="96">
-        			<EasingDoubleKeyFrame.EasingFunction>
-        				<QuarticEase EasingMode="EaseIn"/>
-        			</EasingDoubleKeyFrame.EasingFunction>
-        		</EasingDoubleKeyFrame>
-        	</DoubleAnimationUsingKeyFrames>
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="stackPanel">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="96"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="96"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="31.0952"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
-        			<EasingDoubleKeyFrame.EasingFunction>
-        				<BackEase EasingMode="EaseOut" Amplitude="0.5"/>
-        			</EasingDoubleKeyFrame.EasingFunction>
-        		</EasingDoubleKeyFrame>
-        	</DoubleAnimationUsingKeyFrames>
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0.6"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.6"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-        	</DoubleAnimationUsingKeyFrames>
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="stackPanel">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
-        	</DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Name="RefreshEnd">
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="stackPanel">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="96">
-        			<EasingDoubleKeyFrame.EasingFunction>
-        				<QuarticEase EasingMode="EaseIn"/>
-        			</EasingDoubleKeyFrame.EasingFunction>
-        		</EasingDoubleKeyFrame>
-        	</DoubleAnimationUsingKeyFrames>
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="stackPanel">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-        	</DoubleAnimationUsingKeyFrames>
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="textBlock">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="96"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="96"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="31.0952"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
-        			<EasingDoubleKeyFrame.EasingFunction>
-        				<BackEase EasingMode="EaseOut" Amplitude="0.5"/>
-        			</EasingDoubleKeyFrame.EasingFunction>
-        		</EasingDoubleKeyFrame>
-        	</DoubleAnimationUsingKeyFrames>
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.6"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.6"/>
-        	</DoubleAnimationUsingKeyFrames>
-        </Storyboard>
     </Page.Resources>
 
     <Grid x:Name="LayoutRoot">
@@ -268,43 +206,6 @@
                     <StackPanel>
                         <TextBlock Text="AUTOCONNECT" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
                         <ToggleSwitch x:Name="AutoconnectToggle" Header="connect automatically on startup" Margin="0,6,0,0" Pivot.SlideInAnimationGroup="GroupTwo" />
-                        <StackPanel x:Name="CacheRefreshPanel">
-                            <TextBlock Text="TEMPORARY FILES"
-                                       Style="{StaticResource ParagraphHeaderTextStyle}" 
-                                       Pivot.SlideInAnimationGroup="GroupOne"/>
-                            <Button x:Name="CacheRefreshButton"
-                                    Content="refresh"
-                                    Tapped="CacheRefreshButton_Tapped"
-                                    HorizontalAlignment="Stretch"
-                                    Margin="0,6,0,0"
-                                    Pivot.SlideInAnimationGroup="GroupTwo"/>
-                            <Grid>
-                                <TextBlock x:Name="textBlock" Text="Kodi Assist saves some images on your phone so you can access your library more quickly. If things like album art and movie posters have changed, you can refresh to see them right away."
-                                       TextWrapping="Wrap"
-                                       FontSize="16"
-                                       Opacity=".6"
-                                       Pivot.SlideInAnimationGroup="GroupThree" RenderTransformOrigin="0.5,0.5">
-                                    <TextBlock.RenderTransform>
-                                        <CompositeTransform/>
-                                    </TextBlock.RenderTransform>
-                                </TextBlock>
-                                <StackPanel x:Name="stackPanel" VerticalAlignment="Top"
-                                            Margin="0,2,0,0"
-                                            Opacity="0"
-                                            Pivot.SlideInAnimationGroup="GroupThree"
-                                            RenderTransformOrigin="0.5,0.5">
-                                    <StackPanel.RenderTransform>
-                                        <CompositeTransform/>
-                                    </StackPanel.RenderTransform>
-                                    <ProgressBar x:Name="CacheRefreshProgressBar"
-                                                 Value="0"/>
-                                    <TextBlock Text="Just a moment..."
-                                               Margin="0,6,0,0"
-                                               FontSize="16"
-                                               Opacity=".6"/>
-                                </StackPanel>
-                            </Grid>
-                        </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>

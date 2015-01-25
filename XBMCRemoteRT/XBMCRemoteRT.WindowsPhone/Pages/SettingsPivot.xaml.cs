@@ -37,11 +37,6 @@ namespace XBMCRemoteRT.Pages
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-
-            // The cache refresh task continues after navigating away from
-            // this page and is naturally pretty error tolerant, but for the
-            // progress bar to be maintained this page is cached.
-            this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         /// <summary>
@@ -192,39 +187,6 @@ namespace XBMCRemoteRT.Pages
         private void SaveAutoConnectState()
         {
             SettingsHelper.SetValue("AutoConnect", AutoconnectToggle.IsOn);
-        }
-
-        private async void CacheRefreshButton_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            CacheRefreshButton.IsEnabled = false;
-            CacheRefreshProgressBar.Value = 0;
-            RefreshStart.Begin();
-
-            // Clear the cache
-            IAsyncOperationWithProgress<int, int> clearOperation = CacheManager.ClearCacheAsync();
-            clearOperation.Progress = (result, progress) => {
-                // The delete operation is much faster. Weighted 30% but no 
-                // real data to back up that estimate.
-                CacheRefreshProgressBar.Value = progress * 0.3;
-            };
-            await clearOperation;
-
-            // Immediately load the cache. We don't want the user to see empty
-            // and partially loaded images from cache misses.
-            IAsyncOperationWithProgress<int, int> initOperation = CacheManager.UpdateCacheAsync();
-            initOperation.Progress = (result, progress) =>
-            {
-                // Cache write operation is slower. Weighted 70%
-                CacheRefreshProgressBar.Value = 30 + progress * 0.7;
-            };
-            int errors = await initOperation;
-            if (errors > 0)
-            {
-                //Not a real need to bother user with error messages
-            }
-
-            RefreshEnd.Begin();
-            CacheRefreshButton.IsEnabled = true;
         }
 
         #region NavigationHelper registration
