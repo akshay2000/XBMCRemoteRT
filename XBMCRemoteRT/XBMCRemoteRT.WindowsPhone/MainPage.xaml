@@ -48,6 +48,7 @@
                                     <MenuFlyout>
                                         <MenuFlyoutItem x:Name="EditConnectionMFI" Text="edit connection" Click="EditConnectionMFI_Click" DataContext="{Binding}"/>
                                         <MenuFlyoutItem x:Name="DeleteConnectionMFI" Text="delete connection" Click="DeleteConnectionMFI_Click" DataContext="{Binding}"/>
+                                        <MenuFlyoutItem x:Name="WakeUpServerMFI" Text="wake up" Click="WakeUpServerMFI_Click" DataContext="{Binding}"/>
                                     </MenuFlyout>
                                 </FlyoutBase.AttachedFlyout>
                                 <TextBlock Text="{Binding ConnectionName}" Style="{StaticResource ListViewItemTextBlockStyle}" />

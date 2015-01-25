@@ -237,9 +237,15 @@ namespace XBMCRemoteRT
             Frame.Navigate(typeof(EditConnectionPage), selectedConnection);
         }
 
+        private void WakeUpServerMFI_Click(object sender, RoutedEventArgs e)
+        {
+            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
+            WOLHelper.WakeUp(selectedConnection);
+        }
+
         private void ConnectionItemWrapper_Holding(object sender, HoldingRoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-        }      
+        }             
     }
 }
