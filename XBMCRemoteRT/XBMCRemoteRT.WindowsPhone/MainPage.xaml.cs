@@ -180,16 +180,16 @@ namespace XBMCRemoteRT
                 ConnectionManager.CurrentConnection = connectionItem;
                 SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
 
-                // Update cache
-                SetPageState(PageStates.Caching);
-                CacheProgressBar.Value = 0;
-                IAsyncOperationWithProgress<int, int> cacheOperation = CacheManager.UpdateCacheAsync();
-                cacheOperation.Progress = (result, progress) =>
-                {
-                    // Indicate progress to user
-                    CacheProgressBar.Value = progress;
-                };
-                await cacheOperation;
+                //// Update cache
+                //SetPageState(PageStates.Caching);
+                //CacheProgressBar.Value = 0;
+                //IAsyncOperationWithProgress<int, int> cacheOperation = CacheManager.UpdateCacheAsync();
+                //cacheOperation.Progress = (result, progress) =>
+                //{
+                //    // Indicate progress to user
+                //    CacheProgressBar.Value = progress;
+                //};
+                //await cacheOperation;
 
                 Frame.Navigate(typeof(CoverPage));
             }

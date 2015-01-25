@@ -35,17 +35,17 @@
                 </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
-                        <ListView ItemsSource="{Binding Source={StaticResource ArtistsCVS}}" Margin="0,-20,0,0" ContinuumNavigationTransitionInfo.ExitElementContainer="True">
+                        <ListView ItemsSource="{Binding Source={StaticResource ArtistsCVS}}" Margin="0,-20,0,0" >
                             <ListView.GroupStyle>
                                 <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource PhoneGroupHeaderTemplate}"/>
                             </ListView.GroupStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel x:Name="ArtistItemWrapper" Orientation="Horizontal" Margin="0,10" CommonNavigationTransitionInfo.IsStaggerElement="True">
-                                        <Border x:Name="PlayArtistBorder" Tapped="PlayArtistBorder_Tapped" BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
+                                    <StackPanel x:Name="ArtistItemWrapper" Orientation="Horizontal" Margin="0,10" CommonNavigationTransitionInfo.IsStaggerElement="True" Tapped="ArtistItemWrapper_Tapped">
+                                        <Border x:Name="PlayArtistBorder" BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                             <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/singer.png" Foreground="{StaticResource PhoneForegroundBrush}" />
                                         </Border>
-                                        <TextBlock x:Name="ArtistNameTextBlock" Tapped="ArtistNameTextBlock_Tapped" Text="{Binding Label}" FontSize="28" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold" Pivot.SlideInAnimationGroup="GroupOne" ContinuumNavigationTransitionInfo.IsExitElement="True"/>
+                                        <TextBlock x:Name="ArtistNameTextBlock" Text="{Binding Label}" FontSize="28" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold" Pivot.SlideInAnimationGroup="GroupOne" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -124,7 +124,7 @@
                                                 <MenuFlyoutItem x:Name="QueueSongMFI" Text="queue song" Click="QueueSongMFI_Click" FontFamily="Global User Interface" DataContext="{Binding}"/>
                                             </MenuFlyout>
                                         </FlyoutBase.AttachedFlyout>
-                                        <Border x:Name="PlayArtistBorder" Tapped="PlayArtistBorder_Tapped" BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
+                                        <Border x:Name="PlayArtistBorder" BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                             <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/musicnote.png" Foreground="{StaticResource PhoneForegroundBrush}" />
                                         </Border>
                                         <StackPanel Margin="10,0,0,0" >

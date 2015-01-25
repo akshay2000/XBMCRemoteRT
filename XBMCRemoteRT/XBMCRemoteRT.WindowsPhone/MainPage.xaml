@@ -34,27 +34,29 @@
 
         <!--Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
-            <ListView x:Name="ConnectionsListView" ItemsSource="{Binding ConnectionItems}" Margin="5,0,0,0">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel x:Name="ConnectionItemWrapper" Tapped="ConnectionItemWrapper_Tapped" Holding="ConnectionItemWrapper_Holding" CommonNavigationTransitionInfo.IsStaggerElement="True">
-                            <FlyoutBase.AttachedFlyout>
-                                <MenuFlyout>
-                                    <MenuFlyoutItem x:Name="EditConnectionMFI" Text="edit connection" Click="EditConnectionMFI_Click" DataContext="{Binding}"/>
-                                    <MenuFlyoutItem x:Name="DeleteConnectionMFI" Text="delete connection" Click="DeleteConnectionMFI_Click" DataContext="{Binding}"/>
-                                </MenuFlyout>
-                            </FlyoutBase.AttachedFlyout>
-                            <TextBlock Text="{Binding ConnectionName}" Style="{StaticResource ListViewItemTextBlockStyle}" />
-                            <TextBlock Text="{Binding IpAddress}" Style="{StaticResource ListViewItemSubheaderTextBlockStyle}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <ScrollViewer>
+                <ListView x:Name="ConnectionsListView" ItemsSource="{Binding ConnectionItems}" Margin="5,0,0,36">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel x:Name="ConnectionItemWrapper" Tapped="ConnectionItemWrapper_Tapped" Holding="ConnectionItemWrapper_Holding" CommonNavigationTransitionInfo.IsStaggerElement="True">
+                                <FlyoutBase.AttachedFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem x:Name="EditConnectionMFI" Text="edit connection" Click="EditConnectionMFI_Click" DataContext="{Binding}"/>
+                                        <MenuFlyoutItem x:Name="DeleteConnectionMFI" Text="delete connection" Click="DeleteConnectionMFI_Click" DataContext="{Binding}"/>
+                                    </MenuFlyout>
+                                </FlyoutBase.AttachedFlyout>
+                                <TextBlock Text="{Binding ConnectionName}" Style="{StaticResource ListViewItemTextBlockStyle}" />
+                                <TextBlock Text="{Binding IpAddress}" Style="{StaticResource ListViewItemSubheaderTextBlockStyle}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
         </Grid>
         <ProgressRing x:Name="ProgressRing" IsActive="False" Grid.RowSpan="10" />
         <Grid x:Name="CacheProgressGrid"

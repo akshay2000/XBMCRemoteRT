@@ -196,16 +196,16 @@
 
         <Pivot>
             <Pivot.Title>
-                <TextBlock Text="SETTINGS" Style="{StaticResource PageTitleTextStyle}"/>
+                <TextBlock x:Uid="SettingsPageHeader" Text="SETTINGS" Style="{StaticResource PageTitleTextStyle}"/>
             </Pivot.Title>
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="REMOTE" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock x:Uid="SettingsRemotePivotHeader" Text="REMOTE" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
-                    <StackPanel>
-                        <TextBlock Text="BUTTONS" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <TextBlock Text="choose what buttons appear on remote" Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo" Opacity="0.6"/>
+                    <StackPanel Margin="0,0,0,36">
+                        <TextBlock x:Uid="SettingsButtons" Text="BUTTONS" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <TextBlock x:Uid="SettingsButtonsSub" Text="choose what buttons appear on remote" Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo" Opacity="0.6"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,8,0,0" Pivot.SlideInAnimationGroup="GroupTwo">
                             <CheckBox x:Name="GoBackCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
                                 <CheckBox.Content>
@@ -243,14 +243,14 @@
                             </CheckBox>
                         </StackPanel >
 
-                        <TextBlock Text="SKIP + JUMP" Style="{StaticResource ParagraphHeaderTextStyle}" Margin="0,24,0,0" Pivot.SlideInAnimationGroup="GroupOne" />
-                        <ComboBox x:Name="ForwardComboBox" Header="what does forward do" Margin="0,12,0,0" Pivot.SlideInAnimationGroup="GroupTwo">
+                        <TextBlock x:Uid="SettingsSkipJump" Text="SKIP + JUMP" Style="{StaticResource ParagraphHeaderTextStyle}" Margin="0,24,0,0" Pivot.SlideInAnimationGroup="GroupOne" />
+                        <ComboBox x:Uid="ForwardComboBox" x:Name="ForwardComboBox" Header="what does forward do" Margin="0,12,0,0" Pivot.SlideInAnimationGroup="GroupTwo">
                             <ComboBoxItem Content="increase speed"/>
                             <ComboBoxItem Content="small jump forward"/>
                             <ComboBoxItem Content="big jump forward"/>
                         </ComboBox>
 
-                        <ComboBox x:Name="BackwardComboBox" Header="what does backward do" Margin="0,12,0,0" Pivot.SlideInAnimationGroup="GroupTwo">
+                        <ComboBox x:Uid="BackwardComboBox" x:Name="BackwardComboBox" Header="what does backward do" Margin="0,12,0,0" Pivot.SlideInAnimationGroup="GroupTwo">
                             <ComboBoxItem Content="decrease speed"/>
                             <ComboBoxItem Content="small jump backward"/>
                             <ComboBoxItem Content="big jump backward"/>
@@ -262,24 +262,24 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="CONNECTIONS" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock x:Uid="SettingsConnectionsPivotHeader" Text="CONNECTIONS" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
-                    <StackPanel>
-                        <TextBlock Text="AUTOCONNECT" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <ToggleSwitch x:Name="AutoconnectToggle" Header="connect automatically on startup" Margin="0,6,0,0" Pivot.SlideInAnimationGroup="GroupTwo" />
+                    <StackPanel Margin="0,0,0,36">
+                        <TextBlock x:Uid="SettingsAutoconnect" Text="AUTOCONNECT" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <ToggleSwitch x:Uid="SettingsAutoconnectToggle" x:Name="AutoconnectToggle" Header="connect automatically on startup" Margin="0,6,0,0" Pivot.SlideInAnimationGroup="GroupTwo" />
                         <StackPanel x:Name="CacheRefreshPanel">
-                            <TextBlock Text="TEMPORARY FILES"
+                            <TextBlock x:Uid="SettingsTempFiles" Text="TEMPORARY FILES"
                                        Style="{StaticResource ParagraphHeaderTextStyle}" 
                                        Pivot.SlideInAnimationGroup="GroupOne"/>
-                            <Button x:Name="CacheRefreshButton"
+                            <Button x:Uid="SettingsRefreshCacheButton" x:Name="CacheRefreshButton"
                                     Content="refresh"
                                     Tapped="CacheRefreshButton_Tapped"
                                     HorizontalAlignment="Stretch"
                                     Margin="0,6,0,0"
                                     Pivot.SlideInAnimationGroup="GroupTwo"/>
                             <Grid>
-                                <TextBlock x:Name="textBlock" Text="Kodi Assist saves some images on your phone so you can access your library more quickly. If things like album art and movie posters have changed, you can refresh to see them right away."
+                                <TextBlock x:Uid="CacheNote" x:Name="textBlock" Text="Kodi Assist saves some images on your phone so you can access your library more quickly. If things like album art and movie posters have changed, you can refresh to see them right away."
                                        TextWrapping="Wrap"
                                        FontSize="16"
                                        Opacity=".6"
@@ -298,7 +298,7 @@
                                     </StackPanel.RenderTransform>
                                     <ProgressBar x:Name="CacheRefreshProgressBar"
                                                  Value="0"/>
-                                    <TextBlock Text="Just a moment..."
+                                    <TextBlock x:Uid="JustAMoment" Text="Just a moment..."
                                                Margin="0,6,0,0"
                                                FontSize="16"
                                                Opacity=".6"/>

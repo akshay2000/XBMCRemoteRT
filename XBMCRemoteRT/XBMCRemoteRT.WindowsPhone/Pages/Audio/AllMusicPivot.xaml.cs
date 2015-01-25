@@ -144,18 +144,6 @@ namespace XBMCRemoteRT.Pages.Audio
             GlobalVariables.CurrentTracker.SendTiming((DateTime.Now.Subtract(loadSartTime)), TimingCategories.LoadTime, "AllMusic", "AllMusic");
         }
 
-        private void PlayArtistBorder_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-
-        }
-
-        private void ArtistNameTextBlock_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Artist tappedArtist = (sender as TextBlock).DataContext as Artist;
-            GlobalVariables.CurrentArtist = tappedArtist;
-            Frame.Navigate(typeof(ArtistDetailsHub));
-        }
-
         private void AlbumArtWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Album tappedAlbum = (sender as Grid).DataContext as Album;
@@ -177,6 +165,13 @@ namespace XBMCRemoteRT.Pages.Audio
         private void SongItemWrapper_Holding(object sender, HoldingRoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        }
+
+        private void ArtistItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Artist tappedArtist = (sender as StackPanel).DataContext as Artist;
+            GlobalVariables.CurrentArtist = tappedArtist;
+            Frame.Navigate(typeof(ArtistDetailsHub));
         }
     }
 }
