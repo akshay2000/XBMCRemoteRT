@@ -34,7 +34,7 @@ namespace XBMCRemoteRT
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private enum PageStates { Ready, Connecting, Caching }
+        private enum PageStates { Ready, Connecting }
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -179,18 +179,6 @@ namespace XBMCRemoteRT
             {
                 ConnectionManager.CurrentConnection = connectionItem;
                 SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
-
-                // Update cache
-                SetPageState(PageStates.Caching);
-                CacheProgressBar.Value = 0;
-                IAsyncOperationWithProgress<int, int> cacheOperation = CacheManager.UpdateCacheAsync();
-                cacheOperation.Progress = (result, progress) =>
-                {
-                    // Indicate progress to user
-                    CacheProgressBar.Value = progress;
-                };
-                await cacheOperation;
-
                 Frame.Navigate(typeof(CoverPage));
             }
             else
@@ -207,21 +195,12 @@ namespace XBMCRemoteRT
                 ConnectionsListView.IsEnabled = false;
                 BottomAppBar.Visibility = Visibility.Collapsed;
                 ProgressRing.IsActive = true;
-                CacheProgressGrid.Visibility = Visibility.Collapsed;
-            }
-            else if (pageState == PageStates.Caching)
-            {
-                ConnectionsListView.IsEnabled = false;
-                BottomAppBar.Visibility = Visibility.Collapsed;
-                ProgressRing.IsActive = false;
-                CacheProgressGrid.Visibility = Visibility.Visible;
             }
             else
             {
                 ConnectionsListView.IsEnabled = true;
                 BottomAppBar.Visibility = Visibility.Visible;
                 ProgressRing.IsActive = false;
-                CacheProgressGrid.Visibility = Visibility.Collapsed;
             }
         }
 

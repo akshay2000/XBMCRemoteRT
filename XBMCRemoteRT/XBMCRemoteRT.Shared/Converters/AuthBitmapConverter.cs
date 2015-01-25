@@ -11,7 +11,8 @@ namespace XBMCRemoteRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            string uriString = (string)value;
+            string uriString = (value == null) ? string.Empty : (string)value;
+
             string converterParam = (string)parameter;
 
             BitmapImage image = new BitmapImage();
@@ -29,8 +30,17 @@ namespace XBMCRemoteRT.Converters
                 }
             }
 
-            if (uriString != null && uriString != string.Empty)
-                image.SetCustomSourceAsync(uriString);
+            string proxyScheme = "image://";
+            if (uriString.StartsWith(proxyScheme))
+            {
+                image.SetProxySourceAsync(uriString);
+            }
+            else
+            {
+                Uri defaultUri = new Uri("ms-appx:///Assets/DefaultArt.jpg", UriKind.Absolute);
+                image.UriSource = defaultUri;
+            }
+
             return image;
         }
 

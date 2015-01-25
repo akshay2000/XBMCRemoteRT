@@ -48,11 +48,7 @@
             <GridView.Header>
                 <StackPanel Width="480" Margin="0,4,14,0" x:Name="AlbumInfoStackPanel">
                     <TextBlock Text="{Binding Label}" FontSize="36" TextWrapping="Wrap" LineHeight="40" FontFamily="Segoe WP SemiLight" Margin="14,-10,0,0" LineStackingStrategy="BaselineToBaseline"/>
-                    <Image Width="400" Height="400" Stretch="UniformToFill">
-                        <Image.Source>
-                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="400" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                        </Image.Source>
-                    </Image>
+                    <Image Width="400" Height="400" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h400}"/>
                     <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" Margin="16,-5,0,0" TextWrapping="Wrap" />
                 </StackPanel>
             </GridView.Header>

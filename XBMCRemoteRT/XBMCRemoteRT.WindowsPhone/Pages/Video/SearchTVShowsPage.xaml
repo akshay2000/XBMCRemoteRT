@@ -43,11 +43,6 @@
                                     <BitmapImage DecodePixelType="Logical" DecodePixelWidth="456" UriSource="/Assets/DefaultArt.jpg"/>
                                 </Image.Source>
                             </Image>
-                            <!--<Image Stretch="UniformToFill" Grid.Row="0">
-                                <Image.Source>
-                                    <BitmapImage DecodePixelType="Logical"  DecodePixelWidth="370" UriSource="{Binding Path=Art.Banner, Converter={StaticResource ImagePathConverter}}"/>
-                                </Image.Source>
-                            </Image>-->
                             <Image Stretch="UniformToFill" Grid.Row="0" Source="{Binding Path=Art.Banner, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w370}"/>
 
                             <Border Margin="10,47,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
