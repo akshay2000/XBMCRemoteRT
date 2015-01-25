@@ -60,11 +60,7 @@
                                 <BitmapImage DecodePixelType="Logical" DecodePixelWidth="253" UriSource="/Assets/DefaultArt.jpg"/>
                             </Image.Source>
                         </Image>
-                        <Image Width="253" Height="253" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill">
-                            <Image.Source>
-                                <BitmapImage DecodePixelType="Logical" DecodePixelWidth="253" UriSource="{Binding CurrentPlayerItem.Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                            </Image.Source>
-                        </Image>
+                        <Image Width="253" Height="253" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill" Source="{Binding CurrentPlayerItem.Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w253}"/>
 
                         <!--Shuffle Repeat-->
                         <Image Width="50" Height="48" Margin="12,-12,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill" Grid.Column="1">
@@ -123,11 +119,7 @@
                                             <BitmapImage DecodePixelType="Logical" DecodePixelHeight="130" UriSource="/Assets/DefaultArt.jpg"/>
                                         </Image.Source>
                                     </Image>
-                                    <Image Stretch="Uniform" VerticalAlignment="Top" >
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="130" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                        </Image.Source>
-                                    </Image>
+                                    <Image Stretch="Uniform" VerticalAlignment="Top" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w130}" />
                                     <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Left" Margin="0,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
                                 </Grid>
                             </DataTemplate>
@@ -163,11 +155,7 @@
                                             <BitmapImage DecodePixelType="Logical" DecodePixelWidth="341" UriSource="/Assets/DefaultArt.jpg"/>
                                         </Image.Source>
                                     </Image>
-                                    <Image Stretch="Uniform" Height="175" Grid.Row="0" Grid.ColumnSpan="2">
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="405" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                        </Image.Source>
-                                    </Image>
+                                    <Image Stretch="Uniform" Height="175" Grid.Row="0" Grid.ColumnSpan="2" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w405}"/>
                                     <Border Margin="10,145,0,0" Height="60" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}" Grid.RowSpan="2" >
                                         <Image Source="Assets/Icons/tv.png" Margin="17" />
                                     </Border>
@@ -203,11 +191,7 @@
                                             <BitmapImage DecodePixelType="Logical" DecodePixelHeight="155" UriSource="/Assets/DefaultArt.jpg"/>
                                         </Image.Source>
                                     </Image>
-                                    <Image Stretch="Uniform" VerticalAlignment="Top" >
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="130" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                        </Image.Source>
-                                    </Image>
+                                    <Image Stretch="Uniform" VerticalAlignment="Top" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w130}"/>
                                     <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Left" Margin="0,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
                                 </Grid>
                             </DataTemplate>

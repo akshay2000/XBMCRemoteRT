@@ -31,33 +31,28 @@
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
             <ScrollViewer>
                 <ListView x:Name="SearchMoviesListView" Margin="0,0,0,36">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid x:Name="MovieWrapper" Height="144" Margin="0,0,0,12" Tapped="MovieWrapper_Tapped" >
-                                <Image VerticalAlignment="Top" Stretch="UniformToFill" >
-                                    <Image.Source>
-                                        <BitmapImage DecodePixelHeight="144" DecodePixelType="Logical" UriSource="/Assets/DefaultArt.jpg"/>
-                                    </Image.Source>
-                                </Image>
-                                <!--<Image VerticalAlignment="Top" Stretch="UniformToFill" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="MovieWrapper" Height="144" Margin="0,0,0,12" Tapped="MovieWrapper_Tapped" >
+                            <Image VerticalAlignment="Top" Stretch="UniformToFill" >
                                 <Image.Source>
-                                    <BitmapImage DecodePixelWidth="380" DecodePixelType="Logical" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                    <BitmapImage DecodePixelHeight="144" DecodePixelType="Logical" UriSource="/Assets/DefaultArt.jpg"/>
                                 </Image.Source>
-                            </Image>-->
-                                <Image VerticalAlignment="Top" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w380}"/>
-                                <Rectangle Fill="#FF1F1F1F" Opacity="0.7" />
-                                <Grid HorizontalAlignment="Left" VerticalAlignment="Center" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <BitmapIcon Margin="10,0" Foreground="White" UriSource="ms-appx:///Assets/Icons/movie.png" Height="25" />
-                                    <TextBlock Text="{Binding Label, Converter={StaticResource ToUpperConverter}}" FontSize="22" FontWeight="ExtraBlack" TextWrapping="Wrap" Foreground="White" Grid.Column="1" VerticalAlignment="Center"/>
-                                </Grid>
+                            </Image>
+                            <Image VerticalAlignment="Top" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w380}"/>
+                            <Rectangle Fill="#FF1F1F1F" Opacity="0.7" />
+                            <Grid HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <BitmapIcon Margin="10,0" Foreground="White" UriSource="ms-appx:///Assets/Icons/movie.png" Height="25" />
+                                <TextBlock Text="{Binding Label, Converter={StaticResource ToUpperConverter}}" FontSize="22" FontWeight="ExtraBlack" TextWrapping="Wrap" Foreground="White" Grid.Column="1" VerticalAlignment="Center"/>
                             </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             </ScrollViewer>
         </Grid>
     </Grid>
