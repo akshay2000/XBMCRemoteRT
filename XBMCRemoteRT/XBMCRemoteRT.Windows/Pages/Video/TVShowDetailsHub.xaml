@@ -58,7 +58,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Image Source="/Assets/DefaultArt.jpg" Stretch="UniformToFill"/>
-                            <Image Source="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}" Stretch="UniformToFill"/>
+                            <Image Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}}" Stretch="UniformToFill"/>
 
                             <StackPanel Grid.Row="0" Grid.Column="1">
                                 <TextBlock Text="GENRE" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
@@ -101,11 +101,7 @@
                                                 <BitmapImage DecodePixelType="Logical" DecodePixelHeight="144" UriSource="/Assets/DefaultArt.jpg"/>
                                             </Image.Source>
                                         </Image>
-                                        <Image Grid.RowSpan="2" Stretch="UniformToFill" >
-                                            <Image.Source>
-                                                <BitmapImage DecodePixelType="Logical" DecodePixelHeight="144" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                            </Image.Source>
-                                        </Image>
+                                        <Image Grid.RowSpan="2" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h144}"/>
                                         <TextBlock Text="{Binding Name}" FontSize="20" TextWrapping="Wrap" FontWeight="Bold" Margin="10,-5,10,0" Grid.Row="0" Grid.Column="1"/>
                                         <TextBlock Text="{Binding Role}" FontSize="15" Margin="10,5,10,0" Opacity="0.5" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
                                     </Grid>

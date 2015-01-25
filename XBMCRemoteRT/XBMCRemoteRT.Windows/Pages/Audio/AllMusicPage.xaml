@@ -130,11 +130,7 @@
                                             <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
                                         </Image.Source>
                                     </Image>
-                                    <Image Width="160" Stretch="UniformToFill" VerticalAlignment="Top" >
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                        </Image.Source>
-                                    </Image>
+                                    <Image Width="160" Stretch="UniformToFill" VerticalAlignment="Top" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h175}" />
                                     <Border Margin="10,140,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}" Grid.RowSpan="2" >
                                         <Image Source="ms-appx:///Assets/Icons/album.png" Margin="10" />
                                     </Border>

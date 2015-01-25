@@ -22,7 +22,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AuthBitmapConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToOpacityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToOpacityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\ImagePathConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListTrimmer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MinutesToStringConverter.cs" />

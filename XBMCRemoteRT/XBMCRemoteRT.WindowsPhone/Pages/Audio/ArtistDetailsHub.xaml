@@ -41,11 +41,6 @@
                                     <BitmapImage DecodePixelType="Logical" DecodePixelHeight="200" UriSource="/Assets/DefaultArt.jpg" />
                                 </Image.Source>
                             </Image>
-                            <!--<Image Grid.Column="0" Grid.Row="0" Stretch="UniformToFill">
-                                <Image.Source>
-                                    <BitmapImage DecodePixelType="Logical" DecodePixelHeight="200" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}" />
-                                </Image.Source>
-                            </Image>-->
                             <Image Grid.Column="0" Grid.Row="0" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h200}" />
                             <StackPanel Grid.Column="1" Grid.Row="0">
                                 <TextBlock Text="MOOD" x:Uid="Mood" FontSize="14" Margin="5,0,0,0" Opacity="0.7"/>
@@ -95,11 +90,6 @@
                                                 <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
                                             </Image.Source>
                                         </Image>
-                                        <!--<Image Width="150" Height="150" Stretch="UniformToFill" VerticalAlignment="Top" >
-                                            <Image.Source>
-                                                <BitmapImage DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                            </Image.Source>
-                                        </Image>-->
                                         <Image Width="150" Height="150" Stretch="UniformToFill" VerticalAlignment="Top" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h175}"/>
                                         <Border Margin="10,130,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
                                             <Image Source="/Assets/Icons/musicnote.png" Margin="10" />

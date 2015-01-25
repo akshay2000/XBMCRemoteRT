@@ -74,11 +74,6 @@
                                                 <BitmapImage DecodePixelType="Logical" DecodePixelHeight="144" UriSource="/Assets/DefaultArt.jpg"/>
                                             </Image.Source>
                                         </Image>
-                                        <!--<Image Grid.RowSpan="2" Stretch="UniformToFill" >
-                                            <Image.Source>
-                                                <BitmapImage DecodePixelType="Logical" DecodePixelHeight="144" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                            </Image.Source>
-                                        </Image>-->
                                         <Image Grid.RowSpan="2" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h144}"/>
                                         
                                         <TextBlock Text="{Binding Name}" FontSize="20" TextWrapping="Wrap" FontWeight="Bold" Margin="10,-5,10,0" Grid.Row="0" Grid.Column="1"/>
