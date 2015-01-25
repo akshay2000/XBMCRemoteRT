@@ -41,6 +41,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MD5.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlayerHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SettingsHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\WOLHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Album.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Artist.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Song.cs" />
