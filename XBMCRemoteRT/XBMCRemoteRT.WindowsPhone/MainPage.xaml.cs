@@ -216,12 +216,32 @@ namespace XBMCRemoteRT
             Frame.Navigate(typeof(EditConnectionPage), selectedConnection);
         }
 
-        private void WakeUpServerMFI_Click(object sender, RoutedEventArgs e)
+        private async void WakeUpServerMFI_Click(object sender, RoutedEventArgs e)
         {
             ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            WOLHelper.WakeUp(selectedConnection);
+            if (selectedConnection.SubnetMask == null || selectedConnection.MACAddress == null)
+            {
+                MessageDialog message = new MessageDialog("Please specify MAC address and subnet mask to use this feature.", "More information needed");
+                await message.ShowAsync();
+                return;
+            }
+            uint result = await WOLHelper.WakeUp(selectedConnection);
+            if (result != 102)
+            {
+                string messageText;
+                switch (result)
+                {
+                    case 10:
+                        messageText = "Please specify an IP address rather than a hostname to use the wake feature.";
+                        break;
+                    default:
+                        messageText = "Could not send wake request: broadcast IP not available. Errorcode " + result;
+                        break;
+                }
+                MessageDialog message = new MessageDialog(messageText, "Wake up failed");
+                await message.ShowAsync();
+            }
         }
-
         private void ConnectionItemWrapper_Holding(object sender, HoldingRoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);

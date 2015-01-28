@@ -93,6 +93,34 @@ namespace XBMCRemoteRT.Models
             }
         }
 
+        private MACAddress macAddress;
+        public MACAddress MACAddress
+        {
+            get { return macAddress; }
+            set
+            {
+                if (macAddress != value)
+                {
+                    macAddress = value;
+                    NotifyPropertyChanged("MACAddress");
+                }
+            }
+        }
+
+        private IPAddress subnetMask;
+        public IPAddress SubnetMask
+        {
+            get { return subnetMask; }
+            set
+            {
+                if (subnetMask != value)
+                {
+                    subnetMask = value;
+                    NotifyPropertyChanged("SubnetMask");
+                }
+            }
+        }
+
         public bool HasCredentials()
         {
             return password != null

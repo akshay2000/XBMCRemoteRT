@@ -118,6 +118,8 @@ namespace XBMCRemoteRT.Pages
         private async void SaveConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             int port;
+            MACAddress mac = null;
+            IPAddress subnetMask = null;
 
             if (!int.TryParse(PortTextBox.Text, out port))
             {
@@ -133,11 +135,27 @@ namespace XBMCRemoteRT.Pages
                 return;
             }
 
+            if (!MACAddressTextBox.Text.Equals(string.Empty) && !MACAddress.TryParse(MACAddressTextBox.Text, out mac))
+            {
+                MessageDialog msg = new MessageDialog("Please enter a valid MAC address in format 00:11:22:33:44:55.", "Invalid MAC address");
+                await msg.ShowAsync();
+                return;
+            }
+
+            if (!SubnetMaskTextBox.Text.Equals(string.Empty) && !IPAddress.TryParse(SubnetMaskTextBox.Text, out subnetMask))
+            {
+                MessageDialog msg = new MessageDialog("Please enter a valid subnet mask in format 255.255.255.255.", "Invalid subnet mask");
+                await msg.ShowAsync();
+                return;
+            }
+
             currentConnection.ConnectionName = NameTextBox.Text;
             currentConnection.IpAddress = IPTextBox.Text;
             currentConnection.Port = port;
             currentConnection.Username = UsernameTextBox.Text;
             currentConnection.Password = PasswordTextBox.Text;
+            currentConnection.MACAddress = mac;
+            currentConnection.SubnetMask = subnetMask;
 
             App.ConnectionsVM.UpdateConnectionItem();
             Frame.GoBack();
