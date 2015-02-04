@@ -1,29 +1,17 @@
-﻿using XBMCRemoteRT.Common;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Graphics.Display;
-using Windows.UI.ViewManagement;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using XBMCRemoteRT.Models.Network;
-using System.Threading.Tasks;
-using XBMCRemoteRT.RPCWrappers;
+using XBMCRemoteRT.Common;
 using XBMCRemoteRT.Helpers;
-using Windows.UI.Popups;
-using System.Diagnostics;
+using XBMCRemoteRT.Models.Network;
 using XBMCRemoteRT.Pages;
-using GoogleAnalytics;
-using GoogleAnalytics.Core;
+using XBMCRemoteRT.RPCWrappers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -34,7 +22,7 @@ namespace XBMCRemoteRT
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private enum PageStates { Ready, Connecting, SendingWakeUp }
+        private enum PageStates { Ready, Busy }
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -172,7 +160,7 @@ namespace XBMCRemoteRT
 
         private async Task ConnectToServer(ConnectionItem connectionItem)
         {
-            SetPageState(PageStates.Connecting);
+            SetPageState(PageStates.Busy, "Connecting...");
 
             bool isSuccessful = await JSONRPC.Ping(connectionItem);
             if (isSuccessful)
@@ -183,25 +171,65 @@ namespace XBMCRemoteRT
             }
             else
             {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-                await message.ShowAsync();
+                if (connectionItem.AutoWake)
+                {
+                    if (connectionItem.SubnetMask == null || connectionItem.MACAddress == null)
+                    {
+                        MessageDialog message = new MessageDialog("Please specify MAC address and subnet mask to use this feature.", "More information needed");
+                        await message.ShowAsync();
+                        return;
+                    }
+
+                    int wakeUpTime = connectionItem.WakeUpTime == 0 ? 5 : connectionItem.WakeUpTime;
+                    SetPageState(PageStates.Busy, string.Format("Trying to wake up Kodi server. This usually takes {0} seconds.", wakeUpTime));
+                    uint result = await WOLHelper.WakeUp(connectionItem);
+                    
+                    if (result == 102)
+                    {
+                        var startTime = DateTime.Now;
+                        await Task.Delay(new TimeSpan(0, 0, wakeUpTime));
+                        MessageDialog tryMessage = new MessageDialog("Seems like Kodi is taking more time to wake up. What would you like to do?", "Server still not up");
+                        tryMessage.Commands.Add(new UICommand("keep trying"));
+                        tryMessage.Commands.Add(new UICommand("stop"));
+                        int noOfTries = 0;
+                        SetPageState(PageStates.Busy, "Trying to connect...");
+                        while (!isSuccessful)
+                        {
+                            isSuccessful = await JSONRPC.Ping(connectionItem);
+                            noOfTries++;
+                            if (noOfTries % 2 == 0)
+                            {
+                               var selectedCommand = await tryMessage.ShowAsync();
+                               if (selectedCommand.Label == "stop")
+                               {
+                                   break;
+                               }
+                            }
+                        }
+                        if (isSuccessful)
+                        {
+                            connectionItem.WakeUpTime = (int)(DateTime.Now - startTime).TotalSeconds;
+                            ConnectionManager.CurrentConnection = connectionItem;
+                            SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
+                            App.ConnectionsVM.UpdateConnectionItem();
+                            Frame.Navigate(typeof(CoverPage));
+                            return;
+                        }
+                    }
+                }
+                MessageDialog cantReachMessage = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
+                await cantReachMessage.ShowAsync();
                 SetPageState(PageStates.Ready);
             }            
         }
-        private void SetPageState(PageStates pageState)
+        private void SetPageState(PageStates pageState, string busyMessage = "Connecting...")
         {
-            if (pageState == PageStates.Connecting)
+            if (pageState == PageStates.Busy)
             {
-                PageStateTextBlock.Text = "Connecting...";
+                PageStateTextBlock.Text = busyMessage;
                 PageStateGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 BottomAppBar.Visibility = Visibility.Collapsed;
-            }
-            else if (pageState == PageStates.SendingWakeUp)
-            {
-                PageStateTextBlock.Text = "Waking up...";
-                PageStateGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                BottomAppBar.Visibility = Visibility.Collapsed;
-            }
+            }         
             else
             {
                 PageStateGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -230,7 +258,7 @@ namespace XBMCRemoteRT
                 await message.ShowAsync();
                 return;
             }
-            SetPageState(PageStates.SendingWakeUp);
+            SetPageState(PageStates.Busy, "Waking up...");
             uint result = await WOLHelper.WakeUp(selectedConnection);
             await Task.Delay(3500);
             SetPageState(PageStates.Ready);
@@ -250,6 +278,7 @@ namespace XBMCRemoteRT
                 await message.ShowAsync();
             }
         }
+
         private void ConnectionItemWrapper_Holding(object sender, HoldingRoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);

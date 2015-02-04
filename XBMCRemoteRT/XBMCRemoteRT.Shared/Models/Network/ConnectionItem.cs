@@ -121,6 +121,39 @@ namespace XBMCRemoteRT.Models.Network
             }
         }
 
+        private bool autoWake;
+
+        public bool AutoWake
+        {
+            get { return autoWake; }
+            set
+            {
+                if (autoWake != value)
+                {
+                    autoWake = value;
+                    NotifyPropertyChanged("AutoWake");
+                }
+            }
+        }
+
+        private bool isWakable;
+
+        public bool IsWakable
+        {
+            get { return isWakable; }
+            set
+            {
+                if (isWakable != value)
+                {
+                    isWakable = value;
+                    NotifyPropertyChanged("IsWakable");
+                }
+            }
+        }
+        
+
+        public int WakeUpTime { get; set; }
+
         public bool HasCredentials()
         {
             return password != null

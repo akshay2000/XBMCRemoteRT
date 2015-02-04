@@ -1,23 +1,11 @@
-﻿using XBMCRemoteRT.Common;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Graphics.Display;
-using Windows.UI.ViewManagement;
+﻿using System;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.Popups;
-using XBMCRemoteRT.Models.Network;
+using XBMCRemoteRT.Common;
 using XBMCRemoteRT.Helpers;
+using XBMCRemoteRT.Models.Network;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -135,18 +123,21 @@ namespace XBMCRemoteRT.Pages
                 return;
             }
 
-            if (!MACAddressTextBox.Text.Equals(string.Empty) && !MacAddress.TryParse(MACAddressTextBox.Text, out mac))
+            if (WOLEnabledToggle.IsOn)
             {
-                MessageDialog msg = new MessageDialog("Please enter a valid MAC address in format 00:11:22:33:44:55.", "Invalid MAC address");
-                await msg.ShowAsync();
-                return;
-            }
+                if (!MacAddress.TryParse(MACAddressTextBox.Text, out mac))
+                {
+                    MessageDialog msg = new MessageDialog("Please enter a valid MAC address in format 00:11:22:33:44:55.", "Invalid MAC address");
+                    await msg.ShowAsync();
+                    return;
+                }
 
-            if (!SubnetMaskTextBox.Text.Equals(string.Empty) && !IPAddress.TryParse(SubnetMaskTextBox.Text, out subnetMask))
-            {
-                MessageDialog msg = new MessageDialog("Please enter a valid subnet mask in format 255.255.255.255.", "Invalid subnet mask");
-                await msg.ShowAsync();
-                return;
+                if (!IPAddress.TryParse(SubnetMaskTextBox.Text, out subnetMask))
+                {
+                    MessageDialog msg = new MessageDialog("Please enter a valid subnet mask in format 255.255.255.255.", "Invalid subnet mask");
+                    await msg.ShowAsync();
+                    return;
+                }
             }
 
             currentConnection.ConnectionName = NameTextBox.Text;
@@ -154,8 +145,11 @@ namespace XBMCRemoteRT.Pages
             currentConnection.Port = port;
             currentConnection.Username = UsernameTextBox.Text;
             currentConnection.Password = PasswordTextBox.Text;
+            currentConnection.IsWakable = WOLEnabledToggle.IsOn;
             currentConnection.MACAddress = mac;
             currentConnection.SubnetMask = subnetMask;
+            currentConnection.AutoWake = AutoWakeToggle.IsOn;
+           
 
             App.ConnectionsVM.UpdateConnectionItem();
             Frame.GoBack();

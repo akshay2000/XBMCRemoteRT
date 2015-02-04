@@ -41,7 +41,7 @@ namespace XBMCRemoteRT.Models.Network
             return parsedSuccessfully;
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return String.Join(".", Bytes);
         }

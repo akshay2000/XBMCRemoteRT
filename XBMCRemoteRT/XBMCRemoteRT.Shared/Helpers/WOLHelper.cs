@@ -9,6 +9,7 @@ using Windows.Networking.Sockets;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using XBMCRemoteRT.Models.Network;
+
 namespace XBMCRemoteRT.Helpers
 {
     public class WOLHelper
