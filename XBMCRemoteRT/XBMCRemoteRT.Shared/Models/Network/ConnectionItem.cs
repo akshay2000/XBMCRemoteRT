@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XBMCRemoteRT.Models
+namespace XBMCRemoteRT.Models.Network
 {
     public class ConnectionItem : NotifyBase
     {

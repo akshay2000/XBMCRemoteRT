@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Models;
 using Windows.UI.Popups;
 using XBMCRemoteRT.Helpers;
+using XBMCRemoteRT.Models.Network;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 

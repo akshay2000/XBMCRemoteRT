@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace XBMCRemoteRT.Models
+namespace XBMCRemoteRT.Models.Network
 {
     public class MacAddress
     {

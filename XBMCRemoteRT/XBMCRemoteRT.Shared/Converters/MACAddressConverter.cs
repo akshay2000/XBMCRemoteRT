@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Windows.UI.Xaml.Data;
-using XBMCRemoteRT.Models;
+using XBMCRemoteRT.Models.Network;
 
 namespace XBMCRemoteRT.Converters
 {
-    class MACAddressConverter : IValueConverter
+    class MacAddressConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

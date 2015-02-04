@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
-using XBMCRemoteRT.Models;
+using XBMCRemoteRT.Models.Network;
 
 namespace XBMCRemoteRT.Helpers
 {

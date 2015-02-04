@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using XBMCRemoteRT.Models;
+using XBMCRemoteRT.Models.Network;
 
 namespace XBMCRemoteRT.RPCWrappers
 {

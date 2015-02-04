@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace XBMCRemoteRT.Models
+namespace XBMCRemoteRT.Models.Network
 {
     public class IPAddress
     {

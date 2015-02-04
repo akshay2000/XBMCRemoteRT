@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Windows.UI.Xaml.Data;
-using XBMCRemoteRT.Models;
+using XBMCRemoteRT.Models.Network;
 
 namespace XBMCRemoteRT.Converters
 {
