@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="51231akshay2000.XBMCAssistRemote" Publisher="CN=7852A096-2C96-409A-ADB9-A5DB5C0144D3" Version="2.0.0.5" />
-  <mp:PhoneIdentity PhoneProductId="99fff63e-cc43-45eb-a76c-0b111bc9268a" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="51231akshay2000.XBMCAssist" Publisher="CN=7852A096-2C96-409A-ADB9-A5DB5C0144D3" Version="1.2.6.0" />
+  <mp:PhoneIdentity PhoneProductId="ce983fee-7741-4f33-84c4-e4ef2fde9e7f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>XBMC Assist (Remote)</DisplayName>
+    <DisplayName>XBMC Assist</DisplayName>
     <PublisherDisplayName>akshay2000</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>

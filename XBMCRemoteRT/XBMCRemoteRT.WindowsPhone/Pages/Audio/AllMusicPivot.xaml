@@ -45,7 +45,7 @@
                                         <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                             <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/singer.png" Foreground="{StaticResource PhoneForegroundBrush}" />
                                         </Border>
-                                        <TextBlock x:Name="ArtistNameTextBlock" Text="{Binding Label}" FontSize="28" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold" Pivot.SlideInAnimationGroup="GroupOne" />
+                                        <TextBlock Text="{Binding Label}" FontSize="28" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold" Pivot.SlideInAnimationGroup="GroupOne" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -119,7 +119,7 @@
                                                 <MenuFlyoutItem x:Name="QueueSongMFI" Text="queue song" Click="QueueSongMFI_Click" FontFamily="Global User Interface" DataContext="{Binding}"/>
                                             </MenuFlyout>
                                         </FlyoutBase.AttachedFlyout>
-                                        <Border x:Name="PlayArtistBorder" BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
+                                        <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                             <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/musicnote.png" Foreground="{StaticResource PhoneForegroundBrush}" />
                                         </Border>
                                         <StackPanel Margin="10,0,0,0" >

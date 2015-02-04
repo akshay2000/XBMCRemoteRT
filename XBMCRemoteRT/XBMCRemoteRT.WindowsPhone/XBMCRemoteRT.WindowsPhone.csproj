@@ -17,7 +17,7 @@
     <SynthesizeLinkMetadata>true</SynthesizeLinkMetadata>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
-    <AppxBundle>Never</AppxBundle>
+    <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

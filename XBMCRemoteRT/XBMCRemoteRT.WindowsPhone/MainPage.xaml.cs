@@ -34,7 +34,7 @@ namespace XBMCRemoteRT
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private enum PageStates { Ready, Connecting }
+        private enum PageStates { Ready, Connecting, SendingWakeUp }
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -192,15 +192,20 @@ namespace XBMCRemoteRT
         {
             if (pageState == PageStates.Connecting)
             {
-                ConnectionsListView.IsEnabled = false;
+                PageStateTextBlock.Text = "Connecting...";
+                PageStateGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 BottomAppBar.Visibility = Visibility.Collapsed;
-                ProgressRing.IsActive = true;
+            }
+            else if (pageState == PageStates.SendingWakeUp)
+            {
+                PageStateTextBlock.Text = "Waking up...";
+                PageStateGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                BottomAppBar.Visibility = Visibility.Collapsed;
             }
             else
             {
-                ConnectionsListView.IsEnabled = true;
+                PageStateGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 BottomAppBar.Visibility = Visibility.Visible;
-                ProgressRing.IsActive = false;
             }
         }
 
@@ -225,7 +230,10 @@ namespace XBMCRemoteRT
                 await message.ShowAsync();
                 return;
             }
+            SetPageState(PageStates.SendingWakeUp);
             uint result = await WOLHelper.WakeUp(selectedConnection);
+            await Task.Delay(3500);
+            SetPageState(PageStates.Ready);
             if (result != 102)
             {
                 string messageText;
