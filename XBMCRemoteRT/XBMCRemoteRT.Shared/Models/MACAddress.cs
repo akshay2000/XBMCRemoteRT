@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace XBMCRemoteRT.Models
 {
-    public class MACAddress
+    public class MacAddress
     {
         private const string PATTERN = "([\\da-fA-F]{2}:){5}[\\da-fA-F]{2}";
         private static Regex REGEX = new Regex(PATTERN);
@@ -17,7 +17,7 @@ namespace XBMCRemoteRT.Models
         /// </summary>
         /// <param name="input">The input string.</param>
         /// <returns></returns>
-        public static bool TryParse(string input, out MACAddress mac)
+        public static bool TryParse(string input, out MacAddress mac)
         {
             mac = null;
             if (!REGEX.IsMatch(input))
@@ -37,7 +37,7 @@ namespace XBMCRemoteRT.Models
             bool parsedSuccessfully = parseResults.All((b) => { return b; });
             if (parsedSuccessfully)
             {
-                mac = new MACAddress();
+                mac = new MacAddress();
                 mac.Bytes = macBytes;
             }
 

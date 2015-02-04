@@ -23,13 +23,13 @@ namespace XBMCRemoteRT.Helpers
         /// <returns></returns>
         public static async Task<uint> WakeUp(ConnectionItem server)
         {
-            byte[] magicPackage = createMagicPackage(server.MACAddress);
+            byte[] magicPackage = CreateMagicPackage(server.MACAddress);
 
             IPAddress serverIP;
             if (!IPAddress.TryParse(server.IpAddress, out serverIP))
                 return 10;
 
-            IPAddress broadcastIP = getBroadcastIP(serverIP, server.SubnetMask);
+            IPAddress broadcastIP = GetBroadcastIP(serverIP, server.SubnetMask);
             HostName target = new HostName(broadcastIP.ToString());
             using (var socket = new DatagramSocket())
             {
@@ -51,7 +51,7 @@ namespace XBMCRemoteRT.Helpers
         /// <param name="ip">The client IP</param>
         /// <param name="mask">The client IP's subnet mask</param>
         /// <returns>The broadcast IP</returns>
-        private static IPAddress getBroadcastIP(IPAddress ip, IPAddress mask)
+        private static IPAddress GetBroadcastIP(IPAddress ip, IPAddress mask)
         {
             if (ip == null || ip.Bytes == null)
                 throw new ArgumentNullException("ip");
@@ -70,7 +70,7 @@ namespace XBMCRemoteRT.Helpers
         /// </summary>
         /// <param name="macAddress">MAC address of the computer to wake up</param>
         /// <returns>The magic package for waking the computer up.</returns>
-        private static byte[] createMagicPackage(MACAddress macAddress)
+        private static byte[] CreateMagicPackage(MacAddress macAddress)
         {
             if (macAddress == null || macAddress.Bytes == null)
                 throw new ArgumentNullException("macAddress");

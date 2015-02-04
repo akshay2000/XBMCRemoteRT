@@ -14,7 +14,7 @@ namespace XBMCRemoteRT.Converters
             if (value == null)
                 return null;
 
-            MACAddress mac = (MACAddress)value;
+            MacAddress mac = (MacAddress)value;
             var hexStrs = mac.Bytes.Select((b) => { return b.ToString("X"); });
             return String.Join(":", hexStrs);
         }

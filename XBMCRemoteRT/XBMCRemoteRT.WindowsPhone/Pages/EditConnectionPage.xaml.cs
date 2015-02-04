@@ -118,7 +118,7 @@ namespace XBMCRemoteRT.Pages
         private async void SaveConnectionAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             int port;
-            MACAddress mac = null;
+            MacAddress mac = null;
             IPAddress subnetMask = null;
 
             if (!int.TryParse(PortTextBox.Text, out port))
@@ -135,7 +135,7 @@ namespace XBMCRemoteRT.Pages
                 return;
             }
 
-            if (!MACAddressTextBox.Text.Equals(string.Empty) && !MACAddress.TryParse(MACAddressTextBox.Text, out mac))
+            if (!MACAddressTextBox.Text.Equals(string.Empty) && !MacAddress.TryParse(MACAddressTextBox.Text, out mac))
             {
                 MessageDialog msg = new MessageDialog("Please enter a valid MAC address in format 00:11:22:33:44:55.", "Invalid MAC address");
                 await msg.ShowAsync();

@@ -93,8 +93,8 @@ namespace XBMCRemoteRT.Models
             }
         }
 
-        private MACAddress macAddress;
-        public MACAddress MACAddress
+        private MacAddress macAddress;
+        public MacAddress MACAddress
         {
             get { return macAddress; }
             set
