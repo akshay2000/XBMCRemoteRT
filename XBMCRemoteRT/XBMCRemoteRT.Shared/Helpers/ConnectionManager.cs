@@ -86,8 +86,6 @@ namespace XBMCRemoteRT.Helpers
             }
             else
             {
-                MessageDialog msg = new MessageDialog("Make sure Kodi is running and you're connected.", "Server not found");
-                await msg.ShowAsync();
                 return new JObject();
             }
         }
