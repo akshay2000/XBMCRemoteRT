@@ -465,4 +465,19 @@
     <value>wake up</value>
     <comment>Context menu used to wake up sleeping computer using wake-on-lan</comment>
   </data>
+  <data name="StoreDescription" xml:space="preserve">
+    <value>One and only open source Kodi (formerly XBMC) Remote for Windows Phone.
+
+Winner of //publish/ for Windows on global level.
+
+This is your one stop XBMC remote solution on Windows Phone. The features include
+- A beautiful library browser
+- Provides information about artists, albums
+- Detailed and pleasant views for movies and TV shows
+- An easy to use remote control
+- Much more
+
+And to top it all, the app is fully open source. You can view, edit and modify everything about app right here: https://github.com/akshay2000/XBMCRemoteRT</value>
+    <comment>Description for Windows Store</comment>
+  </data>
 </root>
