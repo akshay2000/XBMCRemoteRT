@@ -13,7 +13,6 @@
                     <x:String x:Key="AppName">KODI ASSIST</x:String>
 
                     <!--Converters-->
-                    <converters:ImagePathConverter x:Key="ImagePathConverter"/>
                     <converters:ListToStringConverter x:Key="ListToStringConverter"/>
                     <converters:MinutesToStringConverter x:Key="MinutesToStringConverter"/>
                     <converters:ListTrimmer x:Key="ListTrimmer"/>
@@ -24,6 +23,7 @@
                     <converters:StringToImageBrushConverter x:Key="StringToImageBrushConverter"/>
                     <converters:ToUpperConverter x:Key="ToUpperConverter"/>
                     <converters:CountToOpacityConverter x:Key="CountToOpacityConverter"/>
+                    <converters:AuthBitmapConverter x:Key="AuthBitmapConverter"/>
 
                 </ResourceDictionary>
 

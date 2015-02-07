@@ -45,7 +45,8 @@ namespace XBMCRemoteRT.Pages
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
             DataContext = GlobalVariables.CurrentPlayerState;
-        }
+            PopulateFlyout();
+        }        
 
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
@@ -110,6 +111,17 @@ namespace XBMCRemoteRT.Pages
         {
             GlobalVariables.CurrentTracker.SendView("InputPage");
             this.navigationHelper.OnNavigatedTo(e);
+            ShowButtons();
+        }
+
+        private void ShowButtons()
+        {
+            string[] buttons = ((string)SettingsHelper.GetValue("ButtonsToShow", "GoBack, Home, TextInput")).Split(',');
+            foreach (string button in buttons)
+            {
+                Button btn = this.FindName(button.Trim() + "Button") as Button;
+                btn.Visibility = Visibility.Visible;
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -180,14 +192,22 @@ namespace XBMCRemoteRT.Pages
 
         private async void SpeedDownButton_Click(object sender, RoutedEventArgs e)
         {
-            int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
-
-            if (speed != 0 && speed != -32)
+            string backwardCommand = (string)SettingsHelper.GetValue("BackwardButtonCommand", "SmallBackward");
+            if (backwardCommand == "DecreaseSpeed")
             {
-                int index = Array.IndexOf(Speeds, speed);
-                int newSpeed = Speeds[index - 1];
-                await Player.SetSpeed(GlobalVariables.CurrentPlayerState.PlayerType, newSpeed);
-                await PlayerHelper.RefreshPlayerState();
+                int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+
+                if (speed != 0 && speed != -32)
+                {
+                    int index = Array.IndexOf(Speeds, speed);
+                    int newSpeed = Speeds[index - 1];
+                    await Player.SetSpeed(GlobalVariables.CurrentPlayerState.PlayerType, newSpeed);
+                    await PlayerHelper.RefreshPlayerState();
+                }
+            }
+            else
+            {
+                Player.Seek(GlobalVariables.CurrentPlayerState.PlayerType, backwardCommand.ToLower());
             }
         }
 
@@ -205,14 +225,22 @@ namespace XBMCRemoteRT.Pages
 
         private async void SpeedUpButton_Click(object sender, RoutedEventArgs e)
         {
-            int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
-
-            if (speed != 0 && speed != 32)
+            string forwardCommand = (string)SettingsHelper.GetValue("ForwardButtonCommand", "SmallForward");
+            if (forwardCommand == "IncreaseSpeed")
             {
-                int index = Array.IndexOf(Speeds, speed);
-                int newSpeed = Speeds[index + 1];
-                await Player.SetSpeed(GlobalVariables.CurrentPlayerState.PlayerType, newSpeed);
-                await PlayerHelper.RefreshPlayerState();
+                int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+
+                if (speed != 0 && speed != 32)
+                {
+                    int index = Array.IndexOf(Speeds, speed);
+                    int newSpeed = Speeds[index + 1];
+                    await Player.SetSpeed(GlobalVariables.CurrentPlayerState.PlayerType, newSpeed);
+                    await PlayerHelper.RefreshPlayerState();
+                }
+            }
+            else
+            {
+                Player.Seek(GlobalVariables.CurrentPlayerState.PlayerType, forwardCommand.ToLower());
             }
         }
 
@@ -316,19 +344,49 @@ namespace XBMCRemoteRT.Pages
             ((this.Resources["HideSendTextBox"]) as Storyboard).Begin();
         }
 
-        private void AudioScanAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            AudioLibrary.Scan();
-        }
-
-        private void VideoScanAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            VideoLibrary.Scan();
-        }
-
         private void SubtitlesButton_Click(object sender, RoutedEventArgs e)
         {
             Input.ExecuteAction("nextsubtitle");
+        }
+
+        private void AdvancedButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdvancedMenuFlyout.SelectedItem = null;
+        }
+
+        
+        private string audioLibUpdate;// = "update audio library";
+        private string videoLibUpdate;// = "update video library";
+        private string audioLibClean;// = "clean audio library";
+        private string videoLibClean;// ="clean video library";
+        private string showSubtitleSerach;// = "download subtitles";
+
+        private void PopulateFlyout()
+        {
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            audioLibUpdate = loader.GetString("UpdateAudioLibrary");
+            videoLibUpdate = loader.GetString("UpdateVideoLibrary");
+            audioLibClean = loader.GetString("CleanAudioLibrary");
+            videoLibClean = loader.GetString("CleanVideoLibrary");
+            showSubtitleSerach = loader.GetString("DownloadSubtitles");
+
+            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach };
+        }
+
+        private void AdvancedMenuFlyout_ItemsPicked(ListPickerFlyout sender, ItemsPickedEventArgs args)
+        {
+            string pickedCommand = (string)AdvancedMenuFlyout.SelectedItem;
+            
+            if (pickedCommand == audioLibUpdate)
+                AudioLibrary.Scan();
+            else if (pickedCommand == videoLibUpdate)
+                VideoLibrary.Scan();
+            else if (pickedCommand == audioLibClean)
+                AudioLibrary.Clean();
+            else if (pickedCommand == videoLibClean)
+                VideoLibrary.Clean();
+            else if (pickedCommand == showSubtitleSerach)
+                GUI.ShowSubtitleSearch();
         }
     }
 }

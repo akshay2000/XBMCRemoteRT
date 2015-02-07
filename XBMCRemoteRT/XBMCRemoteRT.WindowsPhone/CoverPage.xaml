@@ -26,7 +26,10 @@
 
         <Hub x:Name="CoverHub" Background="{Binding CurrentPlayerItem.Fanart, Converter={StaticResource StringToImageBrushConverter}}">
             <Hub.Header>
-                <TextBlock Text="kodi assist" FontWeight="Bold" FontSize="75" />
+                <StackPanel>
+                    <TextBlock Text="kodi assist" FontWeight="Bold" FontSize="75" />
+                    <TextBlock x:Name="ServerNameTextBlock" Text="KalEl Livingroom" FontSize="15" Margin="5,-10,0,0" FontWeight="Bold" Foreground="{StaticResource PhoneAccentBrush}"/>
+                </StackPanel>
             </Hub.Header>
             
             <HubSection x:Name="NowPlayingHubSection">
@@ -34,8 +37,8 @@
                     <StackPanel x:Name="NowPlayingHeaderWrapper" Orientation="Horizontal" Tapped="NowPlayingHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/nowplaying.png" Height="25" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
-                            <TextBlock Text="NOW PLAYING" Margin="5,0,0,0"/>
-                            <TextBlock Text="open remote" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
+                            <TextBlock x:Uid="NowPlayingHeader" Text="NOW PLAYING" Margin="5,0,0,0"/>
+                            <TextBlock x:Uid="NowPlayingSubHeader" Text="open remote" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
@@ -56,11 +59,8 @@
                                 <BitmapImage DecodePixelType="Logical" DecodePixelWidth="253" UriSource="/Assets/DefaultArt.jpg"/>
                             </Image.Source>
                         </Image>
-                        <Image Width="253" Height="253" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill">
-                            <Image.Source>
-                                <BitmapImage DecodePixelType="Logical" DecodePixelWidth="253" UriSource="{Binding CurrentPlayerItem.Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                            </Image.Source>
-                        </Image>
+                        <Image Width="253" Height="253" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill" Source="{Binding CurrentPlayerItem.Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w253}"/>
+                            
                         <!--Shuffle Repeat-->
                         <!--<Rectangle Fill="{StaticResource PhoneForegroundBrush}" Grid.Column="1" Width="50" Height="48" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="12,-12,0,0" Opacity="{Binding CurrentPlayerProperties.Shuffled, Converter={StaticResource BoolToOpacityConverter}}">
                             <Rectangle.OpacityMask>
@@ -72,8 +72,8 @@
                             <TextBlock x:Name="NowPlayingItemNameTextBlock" FontSize="25" Text="{Binding CurrentPlayerItem.Title}"/>
                             <Grid>
                                 <TextBlock x:Name="NowPlayingByNameTextBlock" FontSize="18" Opacity="0.7" Text="{Binding CurrentPlayerItem.Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=false}"/>
-                                <TextBlock Text="{Binding CurrentPlayerItem.Tagline}"/>
-                                <TextBlock Text="{Binding CurrentPlayerItem.ShowTitle}"/>
+                                <TextBlock Text="{Binding CurrentPlayerItem.Tagline}" FontSize="18" Opacity="0.7"/>
+                                <TextBlock Text="{Binding CurrentPlayerItem.ShowTitle}" FontSize="18" Opacity="0.7"/>
                             </Grid>
                         </StackPanel>
                         <Grid Grid.Row="2" Margin="-10,0">
@@ -101,13 +101,14 @@
                     <StackPanel x:Name="MusicHeaderWrapper" Orientation="Horizontal" Tapped="MusicHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/musicnote.png" Height="25" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
-                            <TextBlock Text="MUSIC" Margin="5,0,0,0"/>
-                            <TextBlock Text="see all music" Style="{StaticResource HubSectionHeaderSubHeaderStyle}" FontFamily="Global User Interface" />
+                            <TextBlock x:Uid="MusicHubSectionHeader" Text="MUSIC" Margin="5,0,0,0"/>
+                            <TextBlock x:Uid="MusicHubSectionSubHeader" Text="see all music" Style="{StaticResource HubSectionHeaderSubHeaderStyle}" FontFamily="Global User Interface" />
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
                 <DataTemplate>
-                    <GridView ItemsSource="{Binding}">
+                    <ScrollViewer>
+                        <GridView ItemsSource="{Binding}" Margin="0,0,0,36">
                         <GridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid x:Name="AlbumWrapper" Tapped="AlbumWrapper_Tapped" Height="195" Background="{StaticResource PhoneChromeBrush}" Width="150" Margin="0,0,12,12" >
@@ -120,11 +121,7 @@
                                             <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
                                         </Image.Source>
                                     </Image>
-                                    <Image Width="150" Height="150" Stretch="UniformToFill" VerticalAlignment="Top" >
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                        </Image.Source>
-                                    </Image>
+                                    <Image Width="150" Height="150" Stretch="UniformToFill" VerticalAlignment="Top" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w150}" />
                                     <Border Margin="10,130,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
                                         <Image Source="Assets/Icons/musicnote.png" Margin="10" />
                                     </Border>
@@ -133,6 +130,7 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
+                    </ScrollViewer>
                 </DataTemplate>
             </HubSection>
 
@@ -141,13 +139,14 @@
                     <StackPanel x:Name="TVShowsHeaderWrapper" Orientation="Horizontal" Tapped="TVShowsHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/tv.png" Height="28" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
-                            <TextBlock Text="TV SHOWS" Margin="5,0,0,0" />
-                            <TextBlock Text="see all shows" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
+                            <TextBlock x:Uid="TVShowsHubSectionHeader" Text="TV SHOWS" Margin="5,0,0,0" />
+                            <TextBlock x:Uid="TVShowsHubSectionSubHeader" Text="see all shows" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
                 <DataTemplate>
-                    <ListView ItemsSource="{Binding}">
+                    <ScrollViewer>
+                        <ListView ItemsSource="{Binding}" Margin="0,0,0,36">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid x:Name="EpisodeWrapper" Background="{StaticResource PhoneChromeBrush}" Height="220" Tapped="EpisodeWrapper_Tapped" Margin="0,0,0,24">
@@ -164,11 +163,8 @@
                                             <BitmapImage DecodePixelType="Logical" DecodePixelWidth="341" UriSource="/Assets/DefaultArt.jpg"/>
                                         </Image.Source>
                                     </Image>
-                                    <Image Stretch="UniformToFill" Height="175" Grid.Row="0" Grid.ColumnSpan="2">
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="405" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                        </Image.Source>
-                                    </Image>
+                                    
+                                    <Image Stretch="UniformToFill" Height="175" Grid.Row="0" Grid.ColumnSpan="2" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h175}" />
                                     <Border Margin="10,145,0,0" Height="60" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
                                         <Image Source="Assets/Icons/tv.png" Margin="17,20,17,17" />
                                     </Border>
@@ -177,6 +173,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    </ScrollViewer>
                 </DataTemplate>
             </HubSection>
 
@@ -185,13 +182,14 @@
                     <StackPanel x:Name="MoviesHeaderWrapper" Orientation="Horizontal" Tapped="MoviesHeaderWrapper_Tapped">
                         <BitmapIcon UriSource="/Assets/Icons/movie.png" Height="28" Foreground="{StaticResource PhoneForegroundBrush}" />
                         <StackPanel>
-                            <TextBlock Text="MOVIES" Margin="5,0,0,0"/>
-                            <TextBlock Text="see all movies" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
+                            <TextBlock x:Uid="MoviesHubSectionHeader" Text="MOVIES" Margin="5,0,0,0"/>
+                            <TextBlock x:Uid="MoviesHubSectionSubHeader" Text="see all movies" Style="{StaticResource HubSectionHeaderSubHeaderStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </HubSection.Header>
                 <DataTemplate>
-                    <GridView ItemsSource="{Binding}">
+                    <ScrollViewer>
+                        <GridView ItemsSource="{Binding}" Margin="0,0,0,36">
                         <GridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid x:Name="MovieWrapper" Height="270" Background="{StaticResource PhoneChromeBrush}" Width="150" Margin="0,0,12,12" Tapped="MovieWrapper_Tapped">
@@ -204,11 +202,7 @@
                                             <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
                                         </Image.Source>
                                     </Image>
-                                    <Image Stretch="UniformToFill" VerticalAlignment="Top" >
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="150" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                        </Image.Source>
-                                    </Image>
+                                    <Image Stretch="UniformToFill" VerticalAlignment="Top" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w150}" />
                                     <Border Margin="10,205,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
                                         <Image Source="Assets/Icons/movie.png" Margin="10" />
                                     </Border>
@@ -217,17 +211,22 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
+                    </ScrollViewer>
                 </DataTemplate>
 
             </HubSection>
         </Hub>
+
+        <!--<Image x:Name="TempImage" Source="{Binding ImageUri, Converter={StaticResource AuthBitmapConverter}}"/>-->
     </Grid>
     
     <Page.BottomAppBar>
-        <CommandBar ClosedDisplayMode="Minimal">
+        <CommandBar x:Name="BottomBar" ClosedDisplayMode="Minimal" Opacity="0.5">
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="RemoteAppBarButton" Label="remote" Click="RemoteAppBarButton_Click"/>
-                <AppBarButton x:Name="AboutAppBarButton" Label="about" Click="AboutAppBarButton_Click"/>
+                <AppBarButton x:Name="SettingsAppBarButton" x:Uid="SettingsAppBarMenu" Label="settings" Click="SettingsAppBarButton_Click" />
+                <AppBarButton x:Name="SwitchServerAppBarButton" x:Uid="SwitchServerAppBarMenu" Label="switch server" Click="SwitchServerAppBarButton_Click" />
+                <AppBarButton x:Name="RemoteAppBarButton" x:Uid="RemoteAppBarMenu" Label="remote" Click="RemoteAppBarButton_Click" />
+                <AppBarButton x:Name="AboutAppBarButton" x:Uid="AboutAppBarMenu" Label="about" Click="AboutAppBarButton_Click" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

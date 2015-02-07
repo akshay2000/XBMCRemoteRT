@@ -144,5 +144,20 @@ namespace XBMCRemoteRT.Pages.Audio
         {
             Player.PlayArtist(GlobalVariables.CurrentArtist);
         }
+
+        private void QueueArtistAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Playlist.AddArtist(GlobalVariables.CurrentArtist);
+        }
+
+        private void QueueSongMFI_Click(object sender, RoutedEventArgs e)
+        {
+            Playlist.AddSong((Song)(sender as MenuFlyoutItem).DataContext);
+        }
+
+        private void SongItemWrapper_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        }
     }
 }

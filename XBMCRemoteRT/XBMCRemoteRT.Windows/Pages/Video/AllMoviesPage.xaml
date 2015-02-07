@@ -26,8 +26,8 @@
                 </Grid.ColumnDefinitions>
                 <Border Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="10" BorderBrush="DimGray" Background="DimGray" VerticalAlignment="Stretch">
                     <Image Stretch="Uniform">
-                        <Image.Source>
-                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="150" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                    <Image.Source>
+                            <BitmapImage DecodePixelType="Logical" DecodePixelWidth="150" UriSource="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}}"/>
                         </Image.Source>
                     </Image>
                 </Border>

@@ -91,7 +91,13 @@ namespace XBMCRemoteRT.Models
                     NotifyPropertyChanged("Password");
                 }
             }
-        }      
+        }
+
+        public bool HasCredentials()
+        {
+            return password != null
+                && password != string.Empty;
+        }
     }
 }
 

@@ -50,30 +50,26 @@
             <ScrollViewer VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
                 <userControls:ColumnGridView x:Name="SearchTVShowsListView" ItemsSource="{Binding}" Columns="3" SelectionMode="None">
                     <userControls:ColumnGridView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid x:Name="TVShowWrapper" Tapped="TVShowWrapper_Tapped" Margin="0,0,0,24">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="67"/>
-                                    <RowDefinition Height="35"/>
-                                </Grid.RowDefinitions>
+                    <DataTemplate>
+                        <Grid x:Name="TVShowWrapper" Tapped="TVShowWrapper_Tapped" Margin="0,0,0,24">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="67"/>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
 
-                                <Image Stretch="UniformToFill" Grid.Row="0">
-                                    <Image.Source>
-                                        <BitmapImage DecodePixelType="Logical" DecodePixelWidth="456" UriSource="/Assets/DefaultArt.jpg"/>
-                                    </Image.Source>
-                                </Image>
-                                <Image Stretch="UniformToFill" Grid.Row="0">
-                                    <Image.Source>
-                                        <BitmapImage DecodePixelType="Logical"  DecodePixelWidth="370" UriSource="{Binding Path=Art.Banner, Converter={StaticResource ImagePathConverter}}"/>
-                                    </Image.Source>
-                                </Image>
+                            <Image Stretch="UniformToFill" Grid.Row="0">
+                                <Image.Source>
+                                    <BitmapImage DecodePixelType="Logical" DecodePixelWidth="456" UriSource="/Assets/DefaultArt.jpg"/>
+                                </Image.Source>
+                            </Image>
+                            <Image Stretch="UniformToFill" Grid.Row="0" Source="{Binding Path=Art.Banner, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w370}"/>
 
-                                <Border Margin="10,47,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}" Grid.RowSpan="2" >
-                                    <Image Source="/Assets/Icons/tv.png" Margin="10" />
-                                </Border>
-                                <TextBlock Text="{Binding Label}" HorizontalAlignment="Right" TextAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5,0,5,2" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16" FontWeight="Bold"/>
-                            </Grid>
-                        </DataTemplate>
+                            <Border Margin="10,47,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}" Grid.RowSpan="2" >
+                                <Image Source="/Assets/Icons/tv.png" Margin="10" />
+                            </Border>
+                            <TextBlock Text="{Binding Label}" HorizontalAlignment="Right" TextAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5,0,5,2" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16" FontWeight="Bold"/>
+                        </Grid>
+                    </DataTemplate>
                     </userControls:ColumnGridView.ItemTemplate>
                 </userControls:ColumnGridView>
             </ScrollViewer>

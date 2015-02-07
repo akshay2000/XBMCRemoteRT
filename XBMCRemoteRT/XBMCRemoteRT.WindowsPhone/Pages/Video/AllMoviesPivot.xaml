@@ -20,11 +20,7 @@
                         <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
                     </Image.Source>
                 </Image>
-                <Image Stretch="UniformToFill" VerticalAlignment="Top" >
-                    <Image.Source>
-                        <BitmapImage DecodePixelType="Logical" DecodePixelWidth="150" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                    </Image.Source>
-                </Image>
+                <Image Stretch="UniformToFill" VerticalAlignment="Top" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w150}"/>
                 <Border Margin="10,205,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
                     <Image Source="/Assets/Icons/movie.png" Margin="10" />
                 </Border>
@@ -46,23 +42,29 @@
             </Pivot.Title>
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="ALL" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock Text="ALL" x:Uid="AllMoviesTitle" Style="{StaticResource PageHeaderTextStyle}" />
                 </PivotItem.Header>
-                <GridView x:Name="AllMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}"/>
+                <ScrollViewer>
+                    <GridView x:Name="AllMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}" Margin="0,0,0,36"/>
+                </ScrollViewer>
             </PivotItem>
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="NEW" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock Text="NEW" x:Uid="UnwatchedMoviesTitle" Style="{StaticResource PageHeaderTextStyle}" />
                 </PivotItem.Header>
-                <GridView x:Name="UnwatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}"/>
+                <ScrollViewer>
+                    <GridView x:Name="UnwatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}" Margin="0,0,0,36"/>
+                </ScrollViewer>
             </PivotItem>
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="WATCHED" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock Text="WATCHED" x:Uid="WatchedMoviesTitle" Style="{StaticResource PageHeaderTextStyle}" />
                 </PivotItem.Header>
-                <GridView x:Name="WatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}"/>
+                <ScrollViewer>
+                    <GridView x:Name="WatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}" Margin="0,0,0,36"/>
+                </ScrollViewer>
             </PivotItem>
         </Pivot>
     </Grid>
@@ -70,8 +72,8 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RefreshMoviesAppBarButton" Click="RefreshMoviesAppBarButton_Click" Label="refresh" Icon="Refresh"/>
-                <AppBarButton x:Name="SeachMoviesAppBarButton" Click="SeachMoviesAppBarButton_Click" Label="search" Icon="Find" />
+                <AppBarButton x:Name="RefreshMoviesAppBarButton" x:Uid="RefreshMenuItem" Click="RefreshMoviesAppBarButton_Click" Label="refresh" Icon="Refresh"/>
+                <AppBarButton x:Name="SeachMoviesAppBarButton" x:Uid="SearchMenuItem" Click="SeachMoviesAppBarButton_Click" Label="search" Icon="Find" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

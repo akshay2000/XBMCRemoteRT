@@ -23,13 +23,14 @@
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="12,0,12,10">
-            <TextBlock Text="SEARCH TV SHOWS" Style="{StaticResource PageTitleTextStyle}"/>
-            <TextBox x:Name="SearchTVShowsTextBox" InputScope="Search" Margin="0,10,0,0" KeyUp="SearchTVShowsTextBox_KeyUp" Loaded="SearchTVShowsTextBox_Loaded" />
+            <TextBlock Text="SEARCH TV SHOWS" x:Uid="SearchTVShowsTitle" Style="{StaticResource PageTitleTextStyle}"/>
+            <TextBox x:Name="SearchTVShowsTextBox" InputScope="Search" Margin="0,10,0,0" KeyUp="SearchTVShowsTextBox_KeyUp" Loaded="SearchTVShowsTextBox_Loaded" TextChanged="SearchTVShowsTextBox_TextChanged" />
         </StackPanel>
 
         <!--Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
-            <ListView x:Name="SearchTVShowsListView">
+            <ScrollViewer>
+                <ListView x:Name="SearchTVShowsListView" Margin="0,0,0,36">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid x:Name="TVShowWrapper" Tapped="TVShowWrapper_Tapped" Margin="0,0,0,24" Background="{StaticResource PhoneChromeBrush}" >
@@ -43,11 +44,7 @@
                                     <BitmapImage DecodePixelType="Logical" DecodePixelWidth="456" UriSource="/Assets/DefaultArt.jpg"/>
                                 </Image.Source>
                             </Image>
-                            <Image Stretch="UniformToFill" Grid.Row="0">
-                                <Image.Source>
-                                    <BitmapImage DecodePixelType="Logical"  DecodePixelWidth="370" UriSource="{Binding Path=Art.Banner, Converter={StaticResource ImagePathConverter}}"/>
-                                </Image.Source>
-                            </Image>
+                            <Image Stretch="UniformToFill" Grid.Row="0" Source="{Binding Path=Art.Banner, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w370}"/>
 
                             <Border Margin="10,47,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
                                 <Image Source="/Assets/Icons/tv.png" Margin="10" />
@@ -57,6 +54,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Page>

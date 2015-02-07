@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="data">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="value" type="xsd:string" minOccurs="0"                     msdata:Ordinal="2" />
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string" />
+        <xsd:attribute name="type" type="xsd:string" />
+        <xsd:attribute name="mimetype" type="xsd:string" />
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+<data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+	<value>acerca</value>
+</data>
+<data name="MoviesHubSectionHeader.Text" xml:space="preserve">
+	<value>PELICULAS</value>
+</data>
+<data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
+	<value>ver todas las peliculas</value>
+</data>
+<data name="MusicHubSectionHeader.Text" xml:space="preserve">
+	<value>MUSICA</value>
+	<comment>Header of music section on cover page</comment>
+</data>
+<data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
+	<value>ver toda la musica</value>
+</data>
+<data name="NotAvailable" xml:space="preserve">
+	<value>no disponible</value>
+	<comment>When artists aren&apos;t available</comment>
+</data>
+<data name="NothingIsPlaying" xml:space="preserve">
+	<value>nada esta tocando</value>
+	<comment>Fuzzy</comment>
+</data>
+<data name="NowPlayingHeader.Text" xml:space="preserve">
+	<value>Reproduciendo</value>
+	<comment>Header of now playing on cover page</comment>
+</data>
+<data name="NowPlayingSubHeader.Text" xml:space="preserve">
+	<value>abrir remoto</value>
+	<comment>Subheader of now playing on cover page</comment>
+</data>
+<data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+	<value>remoto</value>
+	<comment>Appbar menu item</comment>
+</data>
+<data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+	<value>configuracion</value>
+</data>
+<data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
+	<value>SERIES DE TV</value>
+</data>
+<data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
+	<value>ver todas las series</value>
+</data>
+<data name="AboutAppBarMenu.Label" xml:space="preserve">
+	<value>acerca</value>
+</data>
+<data name="AddConnectionPageTitle.Text" xml:space="preserve">
+	<value>AGREGAR CONEXIÓN</value>
+</data>
+<data name="AddServer.Label" xml:space="preserve">
+	<value>agregar servidor</value>
+</data>
+<data name="AlbumPageTitle.Text" xml:space="preserve">
+	<value>CANCIONES</value>
+</data>
+<data name="Albums.Header" xml:space="preserve">
+	<value>ALBUMS</value>
+</data>
+<data name="AlbumsTitle.Text" xml:space="preserve">
+	<value>ALBUMS</value>
+</data>
+<data name="AllMoviesTitle.Text" xml:space="preserve">
+	<value>TODO</value>
+</data>
+<data name="AllMusicPivotTitle.Text" xml:space="preserve">
+	<value>TODA LA MUSICA</value>
+</data>
+<data name="ArtistsTitle.Text" xml:space="preserve">
+	<value>ARTISTAS</value>
+</data>
+<data name="Bio.Text" xml:space="preserve">
+	<value>BIOGRAFÍA</value>
+</data>
+<data name="CancelAppBarMenu.Label" xml:space="preserve">
+	<value>cancelar</value>
+</data>
+<data name="Cast.Header" xml:space="preserve">
+	<value></value>
+</data>
+<data name="CleanAudioLibrary" xml:space="preserve">
+	<value>limpiar biblioteca de audio</value>
+</data>
+<data name="CleanVideoLibrary" xml:space="preserve">
+	<value>limpiar biblioteca de video</value>
+</data>
+<data name="ConnectionName.Header" xml:space="preserve">
+	<value>Nombre</value>
+</data>
+<data name="ConnectionsPageTitle.Text" xml:space="preserve">
+	<value>CONEXIONES</value>
+</data>
+<data name="Director.Text" xml:space="preserve">
+	<value>DIRECTOR</value>
+</data>
+<data name="DownloadSubtitles" xml:space="preserve">
+	<value>descargar subtitulos</value>
+</data>
+<data name="Genre.Text" xml:space="preserve">
+	<value>GENERO</value>
+</data>
+<data name="Info.Header" xml:space="preserve">
+	<value>INFORMACION</value>
+</data>
+<data name="Mood.Text" xml:space="preserve">
+	<value></value>
+</data>
+<data name="Passowrd.Header" xml:space="preserve">
+	<value>Contraseña</value>
+</data>
+<data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
+	<value>reproducir album</value>
+</data>
+<data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
+	<value>reproducir artista</value>
+</data>
+<data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
+	<value>reproducir película</value>
+</data>
+<data name="Plot.Header" xml:space="preserve">
+	<value></value>
+</data>
+<data name="PlotText.Text" xml:space="preserve">
+	<value></value>
+</data>
+<data name="Port.Header" xml:space="preserve">
+	<value>Puerto</value>
+</data>
+<data name="Rating.Text" xml:space="preserve">
+	<value>CALIFICACIÓN</value>
+</data>
+<data name="RefreshAppBarMenu.Label" xml:space="preserve">
+	<value>refrescar</value>
+</data>
+<data name="RemoteAppBarMenu.Label" xml:space="preserve">
+	<value>remoto</value>
+	<comment>Appbar menu item</comment>
+</data>
+<data name="Runtime.Text" xml:space="preserve">
+	<value></value>
+</data>
+<data name="SaveAppBarMenu.Label" xml:space="preserve">
+	<value>guardar</value>
+</data>
+<data name="SearchAppBarMenu.Lable" xml:space="preserve">
+	<value>buscar</value>
+</data>
+<data name="SearchMoviesTitle.Text" xml:space="preserve">
+	<value>BUSCAR PELICULAS</value>
+</data>
+<data name="SearchTVShowsTitle.Text" xml:space="preserve">
+	<value>BUSCAR SERIES DE TV</value>
+</data>
+<data name="Seasons.Header" xml:space="preserve">
+	<value>TEMPORADAS</value>
+</data>
+<data name="ServerAddress.Header" xml:space="preserve">
+	<value>Direccion del servidor</value>
+</data>
+<data name="SettingsAppBarMenu.Label" xml:space="preserve">
+	<value>configuracion</value>
+</data>
+<data name="Songs.Header" xml:space="preserve">
+	<value>CANCIONES</value>
+</data>
+<data name="SongsTitle.Text" xml:space="preserve">
+	<value>CANCIONES</value>
+</data>
+<data name="Studio.Text" xml:space="preserve">
+	<value></value>
+</data>
+<data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
+	<value>cambiar servidor</value>
+</data>
+<data name="Tagline.Text" xml:space="preserve">
+	<value></value>
+</data>
+<data name="Track" xml:space="preserve">
+	<value>pista</value>
+</data>
+<data name="Tracks" xml:space="preserve">
+	<value>pistas</value>
+</data>
+<data name="TVShowsPageTitle.Text" xml:space="preserve">
+	<value>SERIES DE TV</value>
+</data>
+<data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
+	<value>NUEVO</value>
+</data>
+<data name="UpdateAudioLibrary" xml:space="preserve">
+	<value>actualizar biblioteca de audio</value>
+</data>
+<data name="UpdateVideoLibrary" xml:space="preserve">
+	<value>actualizar biblioteca de video</value>
+</data>
+<data name="Username.Header" xml:space="preserve">
+	<value>Usuario</value>
+</data>
+<data name="WarningNote.Text" xml:space="preserve">
+	<value>Nota: El usuario y contraseña son guardados y enviados en texto plano. Asegúrese de no usar la misma contraseña en otros lugares.</value>
+</data>
+<data name="WatchedMovies.Text" xml:space="preserve">
+	<value></value>
+</data>
+<data name="Writer.Text" xml:space="preserve">
+	<value>ESCRITOR</value>
+</data>
+
+</root>

@@ -155,5 +155,10 @@ namespace XBMCRemoteRT.RPCWrappers
         {
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("AudioLibrary.Scan");
         }
+
+        public static async void Clean()
+        {
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("AudioLibrary.Clean");
+        }
     }
 }

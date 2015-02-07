@@ -28,7 +28,7 @@
                 <Border Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="10" BorderBrush="DimGray" Background="DimGray" VerticalAlignment="Stretch">
                     <Image Stretch="Uniform">
                         <Image.Source>
-                            <BitmapImage DecodePixelType="Logical" UriSource="{Binding Path=Art.Banner, Converter={StaticResource ImagePathConverter}}"/>
+                            <BitmapImage DecodePixelType="Logical" UriSource="{Binding Path=Art.Banner, Converter={StaticResource AuthBitmapConverter}}"/>
                         </Image.Source>
                     </Image>
                 </Border>
@@ -40,7 +40,7 @@
             </Grid>
         </DataTemplate>
     </Page.Resources>
-    
+
     
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ChildrenTransitions>
@@ -85,7 +85,7 @@
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
         </Grid>
-        
+
         <ProgressRing x:Name="ProgressRing" IsActive="False" Height="50" Width="50" Grid.RowSpan="2" />
     </Grid>
 

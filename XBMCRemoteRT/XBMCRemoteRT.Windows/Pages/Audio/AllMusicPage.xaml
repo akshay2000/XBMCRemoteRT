@@ -103,7 +103,7 @@
                                     <Border Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="10" BorderBrush="DimGray" Background="DimGray" VerticalAlignment="Stretch">
                                         <Image Stretch="UniformToFill" >
                                             <Image.Source>
-                                                <BitmapImage DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                                <BitmapImage DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}}"/>
                                             </Image.Source>
                                         </Image>
                                     </Border>

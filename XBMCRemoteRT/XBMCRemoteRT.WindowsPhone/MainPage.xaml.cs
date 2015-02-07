@@ -48,6 +48,8 @@ namespace XBMCRemoteRT
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+            //this.TempImage.DataContext = new { ImageUri = "http://10.0.0.2:8080/image/image://http%253a%252f%252fthetvdb.com%252fbanners%252fposters%252f121361-27.jpg" };
+            DataContext = App.ConnectionsVM;
         }
 
         /// <summary>
@@ -109,11 +111,15 @@ namespace XBMCRemoteRT
         /// </summary>
         /// <param name="e">Provides data for navigation methods and event
         /// handlers that cannot cancel the navigation request.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
 
             GlobalVariables.CurrentTracker.SendView("MainPage");
+
+            await App.ConnectionsVM.ReloadConnections();
+
+            bool isAutoConnectEnabled = (bool)SettingsHelper.GetValue("AutoConnect", true);
 
             SetPageState(PageStates.Ready);
             Frame.BackStack.Clear();
@@ -121,17 +127,17 @@ namespace XBMCRemoteRT
             if (e.Parameter.ToString() != string.Empty)
                 tryAutoLoad = (bool)e.Parameter;
 
-            if (e.NavigationMode != NavigationMode.Back && tryAutoLoad)
+            if (e.NavigationMode != NavigationMode.Back && isAutoConnectEnabled && tryAutoLoad)
             {
-                LoadAndConnnect();
+                ConnnectRecent();
             }
 
         }
 
-        private async void LoadAndConnnect()
+        private void ConnnectRecent()
         {
-            await App.ConnectionsVM.ReloadConnections();
-            DataContext = App.ConnectionsVM;
+            //await App.ConnectionsVM.ReloadConnections();
+            //DataContext = App.ConnectionsVM;
             string ip = (string)SettingsHelper.GetValue("RecentServerIP");
             if (ip != null)
             {
@@ -159,11 +165,6 @@ namespace XBMCRemoteRT
             Frame.Navigate(typeof(AddConnectionPage));
         }
 
-        private void FeedbackAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            //Frame.Navigate(typeof(AddConnectionPage));
-        }
-
         private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(AboutPivot));
@@ -182,7 +183,6 @@ namespace XBMCRemoteRT
             }
             else
             {
-                GlobalVariables.CurrentTracker.SendException("Ping failed", false);
                 MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
                 await message.ShowAsync();
                 SetPageState(PageStates.Ready);
@@ -214,6 +214,12 @@ namespace XBMCRemoteRT
         {
             ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
             Frame.Navigate(typeof(EditConnectionPage), selectedConnection);
+        }
+
+        private void WakeUpServerMFI_Click(object sender, RoutedEventArgs e)
+        {
+            ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
+            WOLHelper.WakeUp(selectedConnection);
         }
 
         private void ConnectionItemWrapper_Holding(object sender, HoldingRoutedEventArgs e)

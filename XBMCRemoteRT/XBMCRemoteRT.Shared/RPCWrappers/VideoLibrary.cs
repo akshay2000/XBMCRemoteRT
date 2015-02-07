@@ -167,5 +167,10 @@ namespace XBMCRemoteRT.RPCWrappers
         {
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.Scan");
         }
+
+        public static async void Clean()
+        {
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.Clean");
+        }
     }
 }

@@ -49,7 +49,7 @@
                                 <Border BorderThickness="10" BorderBrush="DimGray" Background="DimGray" VerticalAlignment="Top">
                                     <Image Stretch="UniformToFill">
                                         <Image.Source>
-                                            <BitmapImage DecodePixelWidth="380" DecodePixelType="Logical" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
+                                            <BitmapImage DecodePixelWidth="380" DecodePixelType="Logical" UriSource="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}}"/>
                                         </Image.Source>
                                     </Image>
                                 </Border>

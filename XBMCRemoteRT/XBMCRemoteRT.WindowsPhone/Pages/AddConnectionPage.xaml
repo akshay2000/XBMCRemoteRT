@@ -23,18 +23,18 @@
 
         <StackPanel Grid.Row="0" Margin="12,0,0,0">
             <TextBlock Text="{StaticResource AppName}" Margin="3,12,0,-8"  Style="{StaticResource PageTitleTextStyle}"/>
-            <TextBlock Text="ADD CONNECTION" Style="{StaticResource PageHeaderTextStyle}" />
+            <TextBlock x:Uid="AddConnectionPageTitle" Text="ADD CONNECTION" Style="{StaticResource PageHeaderTextStyle}" />
         </StackPanel>
 
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,0">
             <ScrollViewer>
-                <StackPanel>
-                    <TextBox x:Name="NameTextBox" InputScope="NameOrPhoneNumber" Header="Name"/>
-                    <TextBox x:Name="IPTextBox" Header="Server address"/>
-                    <TextBox x:Name="PortTextBox" InputScope="Number" Text="80" Header="Port"/>
-                    <TextBox x:Name="UsernameTextBox" Text="xbmc" Header="Username"/>
-                    <TextBox x:Name="PasswordTextBox" Header="Password"/>
-                    <TextBlock Text="Note: Usernames and passwords are stored and transmitted in plain text. Make sure you are not using the same password anywhere else" Style="{StaticResource ParagraphTextStyle}" />
+                <StackPanel Margin="0,0,0,36">
+                    <TextBox x:Name="NameTextBox" x:Uid="ConnectionName" InputScope="NameOrPhoneNumber" Header="Name"/>
+                    <TextBox x:Name="IPTextBox" x:Uid="ServerAddress" Header="Server address"/>
+                    <TextBox x:Name="PortTextBox" x:Uid="Port" InputScope="Number" Text="80" Header="Port"/>
+                    <TextBox x:Name="UsernameTextBox" x:Uid="Username" Text="xbmc" Header="Username"/>
+                    <TextBox x:Name="PasswordTextBox" x:Uid="Password" Header="Password"/>
+                    <TextBlock x:Uid="WarningNote" Style="{StaticResource ParagraphTextStyle}" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>
@@ -43,8 +43,8 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="SaveConnectionAppBarButton" Click="SaveConnectionAppBarButton_Click" Label="save" Icon="Save"/>
-                <AppBarButton x:Name="CancelAppBarButton" Click="CancelAppBarButton_Click" Label="cancel" Icon="Cancel"/>
+                <AppBarButton x:Name="SaveConnectionAppBarButton" x:Uid="SaveAppBarMenu" Click="SaveConnectionAppBarButton_Click" Label="save" Icon="Save"/>
+                <AppBarButton x:Name="CancelAppBarButton" x:Uid="CancelAppBarMenu" Click="CancelAppBarButton_Click" Label="cancel" Icon="Cancel"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

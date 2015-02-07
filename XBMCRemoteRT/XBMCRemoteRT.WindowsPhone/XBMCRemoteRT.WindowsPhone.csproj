@@ -17,6 +17,7 @@
     <SynthesizeLinkMetadata>true</SynthesizeLinkMetadata>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -119,6 +120,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\SettingsPivot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Video\AllMoviesPivot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -181,6 +186,9 @@
     <Compile Include="Pages\InputPage.xaml.cs">
       <DependentUpon>InputPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SettingsPivot.xaml.cs">
+      <DependentUpon>SettingsPivot.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Video\AllMoviesPivot.xaml.cs">
       <DependentUpon>AllMoviesPivot.xaml</DependentUpon>
     </Compile>
@@ -229,8 +237,17 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Package.StoreAssociation.xml" />
-    <Content Include="VCD.xml" />
+    <Content Include="StoreManifest.xml" />
+    <Content Include="VCD.xml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VCD.tt</DependentUpon>
+    </Content>
     <None Include="packages.config" />
+    <None Include="VCD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VCD.xml</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GoogleAnalytics">

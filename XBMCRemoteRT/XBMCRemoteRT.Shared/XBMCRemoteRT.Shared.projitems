@@ -19,9 +19,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\AuthBitmapConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToOpacityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToOpacityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\ImagePathConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListTrimmer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MinutesToStringConverter.cs" />
@@ -30,6 +30,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SpeedToSymbolIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToImageBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProxyManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\BitmapImageExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ConnectionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\FeedbackHelper.cs" />
@@ -37,6 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GroupingHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlayerHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SettingsHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\WOLHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Album.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Artist.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Song.cs" />
@@ -57,11 +60,25 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Views\AlbumView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Applikation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\AudioLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\GUI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Input.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\JSONRPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Playlist.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\VideoLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ConnectionsViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ar-SA\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\cs-CZ\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\da-DK\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de-DE\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\es\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\he-IL\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\hu-HU\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\pt\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ru-RU\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\sv-SE\Resources.resw" />
   </ItemGroup>
 </Project>

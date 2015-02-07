@@ -355,6 +355,7 @@
             </NavigationThemeTransition>
         </TransitionCollection>
     </Page.Transitions>
+    
     <Grid x:Name="LayoutRoot">
 
         <!--<Grid.ChildrenTransitions>
@@ -503,7 +504,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <AppBarButton x:Name="GoBackButton" Click="GoBackButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0">
+            <AppBarButton x:Name="GoBackButton" Click="GoBackButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Visibility="Collapsed">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="Undo"  RenderTransformOrigin="0.5,0.5">
                         <SymbolIcon.RenderTransform>
@@ -512,30 +513,34 @@
                     </SymbolIcon>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Name="HomeButton" Click="HomeButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="1">
+            <AppBarButton x:Name="HomeButton" Click="HomeButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="1" Visibility="Collapsed">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="Home"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Name="TextInputButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="2" Click="TextInputButton_Click">
+            <AppBarButton x:Name="TextInputButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="2" Click="TextInputButton_Click" Visibility="Collapsed">
                 <AppBarButton.Icon>
-                    <SymbolIcon Symbol="Keyboard"/>
+                    <SymbolIcon Symbol="Rename"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Name="SubtitlesButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="SubtitlesButton_Click">
+            <AppBarButton x:Name="SubtitlesButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="SubtitlesButton_Click" Visibility="Collapsed">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="ClosedCaption"/>
                 </AppBarButton.Icon>
             </AppBarButton>
+            <AppBarButton x:Name="InfoButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="InfoButton_Click" Visibility="Collapsed">
+                <AppBarButton.Icon>
+                    <SymbolIcon Symbol="DockBottom"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Name="AdvancedButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="AdvancedButton_Click" Visibility="Collapsed">
+                <AppBarButton.Icon>
+                    <SymbolIcon Symbol="List"/>
+                </AppBarButton.Icon>
+                <AppBarButton.Flyout>
+                    <ListPickerFlyout x:Name="AdvancedMenuFlyout" Placement="Full" ItemsPicked="AdvancedMenuFlyout_ItemsPicked" />
+                </AppBarButton.Flyout>
+            </AppBarButton>
         </Grid>
     </Grid>
-    
-    <Page.BottomAppBar>
-        <CommandBar ClosedDisplayMode="Minimal" >
-            <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="AudioScanAppBarButton" Label="scan audio library" Click="AudioScanAppBarButton_Click"/>
-                <AppBarButton x:Name="VideoScanAppBarButton" Label="scan video library" Click="VideoScanAppBarButton_Click"/>
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>
 </Page>

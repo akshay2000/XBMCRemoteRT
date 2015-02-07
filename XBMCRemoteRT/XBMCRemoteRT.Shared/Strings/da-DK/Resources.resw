@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="data">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="value" type="xsd:string" minOccurs="0"                     msdata:Ordinal="2" />
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string" />
+        <xsd:attribute name="type" type="xsd:string" />
+        <xsd:attribute name="mimetype" type="xsd:string" />
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+<data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+	<value>om</value>
+</data>
+<data name="MoviesHubSectionHeader.Text" xml:space="preserve">
+	<value>FILM</value>
+</data>
+<data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
+	<value>se alle film</value>
+</data>
+<data name="MusicHubSectionHeader.Text" xml:space="preserve">
+	<value>MUSIK</value>
+	<comment>Header of music section on cover page</comment>
+</data>
+<data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
+	<value>se alt musik</value>
+</data>
+<data name="NotAvailable" xml:space="preserve">
+	<value>ikke tilgængeligt</value>
+	<comment>When artists aren&apos;t available</comment>
+</data>
+<data name="NothingIsPlaying" xml:space="preserve">
+	<value>Ingen afspilning</value>
+</data>
+<data name="NowPlayingHeader.Text" xml:space="preserve">
+	<value>SPILLER NU</value>
+	<comment>Header of now playing on cover page</comment>
+</data>
+<data name="NowPlayingSubHeader.Text" xml:space="preserve">
+	<value>åben fjernbetjening</value>
+	<comment>Subheader of now playing on cover page</comment>
+</data>
+<data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+	<value>fjernbetjening</value>
+	<comment>Appbar menu item</comment>
+</data>
+<data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+	<value>indstillinger</value>
+</data>
+<data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
+	<value>TV SHOWS</value>
+</data>
+<data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
+	<value>se alle tv shows</value>
+	<comment>All lower case please!</comment>
+</data>
+<data name="AboutAppBarMenu.Label" xml:space="preserve">
+	<value>om</value>
+</data>
+<data name="AddConnectionPageTitle.Text" xml:space="preserve">
+	<value>TILFØJ FORBINDELSE</value>
+</data>
+<data name="AddServer.Label" xml:space="preserve">
+	<value>tilføj server</value>
+</data>
+<data name="AlbumPageTitle.Text" xml:space="preserve">
+	<value>SANGE</value>
+</data>
+<data name="Albums.Header" xml:space="preserve">
+	<value>ALBUMS</value>
+</data>
+<data name="AlbumsTitle.Text" xml:space="preserve">
+	<value>ALBUMS</value>
+</data>
+<data name="AllMoviesTitle.Text" xml:space="preserve">
+	<value>ALT</value>
+</data>
+<data name="AllMusicPivotTitle.Text" xml:space="preserve">
+	<value>ALT MUSIK</value>
+</data>
+<data name="ArtistsTitle.Text" xml:space="preserve">
+	<value>KUNSTNERE</value>
+</data>
+<data name="Bio.Text" xml:space="preserve">
+	<value>BIO</value>
+</data>
+<data name="CancelAppBarMenu.Label" xml:space="preserve">
+	<value>fortryd</value>
+</data>
+<data name="Cast.Header" xml:space="preserve">
+	<value>ROLLELISTE</value>
+	<comment>Fuzzy</comment>
+</data>
+<data name="CleanAudioLibrary" xml:space="preserve">
+	<value>rens musik bibliotek</value>
+	<comment>could the use of this be explained ?</comment>
+</data>
+<data name="CleanVideoLibrary" xml:space="preserve">
+	<value>rens video bibliotek</value>
+</data>
+<data name="ConnectionName.Header" xml:space="preserve">
+	<value>Navn</value>
+</data>
+<data name="ConnectionsPageTitle.Text" xml:space="preserve">
+	<value>FORBINDELSER</value>
+</data>
+<data name="Director.Text" xml:space="preserve">
+	<value>INSTRUKTØR</value>
+</data>
+<data name="DownloadSubtitles" xml:space="preserve">
+	<value>download undertekster</value>
+</data>
+<data name="Genre.Text" xml:space="preserve">
+	<value>GENRE</value>
+</data>
+<data name="Info.Header" xml:space="preserve">
+	<value>INFO</value>
+</data>
+<data name="Mood.Text" xml:space="preserve">
+	<value>STEMNING</value>
+	<comment>please explain how this will be used ?</comment>
+</data>
+<data name="Passowrd.Header" xml:space="preserve">
+	<value>Password</value>
+</data>
+<data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
+	<value>afspil album</value>
+</data>
+<data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
+	<value>afspil kunstner</value>
+</data>
+<data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
+	<value>afspil film</value>
+</data>
+<data name="Plot.Header" xml:space="preserve">
+	<value>PLOT</value>
+</data>
+<data name="PlotText.Text" xml:space="preserve">
+	<value>PLOT</value>
+</data>
+<data name="Port.Header" xml:space="preserve">
+	<value>Port</value>
+	<comment>Please explaing the use of the term ?</comment>
+</data>
+<data name="Rating.Text" xml:space="preserve">
+	<value>RATING</value>
+</data>
+<data name="RefreshAppBarMenu.Label" xml:space="preserve">
+	<value>opdater</value>
+</data>
+<data name="RemoteAppBarMenu.Label" xml:space="preserve">
+	<value>fjernbetjening</value>
+	<comment>Appbar menu item</comment>
+</data>
+<data name="Runtime.Text" xml:space="preserve">
+	<value>LÆNGDE</value>
+	<comment>please explain the use of the term?</comment>
+</data>
+<data name="SaveAppBarMenu.Label" xml:space="preserve">
+	<value>gem</value>
+</data>
+<data name="SearchAppBarMenu.Lable" xml:space="preserve">
+	<value>søg</value>
+</data>
+<data name="SearchMoviesTitle.Text" xml:space="preserve">
+	<value>SØG I FILM</value>
+	<comment>Fuzzy</comment>
+</data>
+<data name="SearchTVShowsTitle.Text" xml:space="preserve">
+	<value>SØG EFTER TV SHOWS</value>
+</data>
+<data name="Seasons.Header" xml:space="preserve">
+	<value>SÆSONNER</value>
+</data>
+<data name="ServerAddress.Header" xml:space="preserve">
+	<value>Server adresse</value>
+</data>
+<data name="SettingsAppBarMenu.Label" xml:space="preserve">
+	<value>indstillinger</value>
+</data>
+<data name="Songs.Header" xml:space="preserve">
+	<value>SANGE</value>
+</data>
+<data name="SongsTitle.Text" xml:space="preserve">
+	<value>SANGE</value>
+</data>
+<data name="Studio.Text" xml:space="preserve">
+	<value>STUDIE</value>
+</data>
+<data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
+	<value>skift server</value>
+</data>
+<data name="Tagline.Text" xml:space="preserve">
+	<value>TAGLINE</value>
+	<comment>could you explain the use of the term?</comment>
+</data>
+<data name="Track" xml:space="preserve">
+	<value>track</value>
+</data>
+<data name="Tracks" xml:space="preserve">
+	<value>tracks</value>
+</data>
+<data name="TVShowsPageTitle.Text" xml:space="preserve">
+	<value>TV SHOWS</value>
+</data>
+<data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
+	<value>NYT</value>
+</data>
+<data name="UpdateAudioLibrary" xml:space="preserve">
+	<value>opdater musik bibliotek</value>
+	<comment>Would the audio be music ? could it be a translation of &apos;update music library&apos;?</comment>
+</data>
+<data name="UpdateVideoLibrary" xml:space="preserve">
+	<value>opdater video bibliotek</value>
+</data>
+<data name="Username.Header" xml:space="preserve">
+	<value>Brugernavn</value>
+</data>
+<data name="WarningNote.Text" xml:space="preserve">
+	<value>Bemærk: Brugernavne og passwords gemmes og sendes som almindelig tekst. Vær sikker på at du ikke bruger det samme password andre steder.</value>
+</data>
+<data name="WatchedMovies.Text" xml:space="preserve">
+	<value>SET</value>
+</data>
+<data name="Writer.Text" xml:space="preserve">
+	<value>Forfatter</value>
+	<comment>what do you mean by writer ? Is it the author?</comment>
+</data>
+
+</root>

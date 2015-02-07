@@ -28,12 +28,12 @@
 
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,0">
             <ScrollViewer>
-                <StackPanel>
-                    <TextBox x:Name="NameTextBox" InputScope="NameOrPhoneNumber" Header="Name" Text="{Binding ConnectionName}"/>
-                    <TextBox x:Name="IPTextBox" Header="Server address" Text="{Binding IpAddress}"/>
-                    <TextBox x:Name="PortTextBox" InputScope="Number" Header="Port" Text="{Binding Port}"/>
-                    <TextBox x:Name="UsernameTextBox" Header="Username" Text="{Binding Username}"/>
-                    <TextBox x:Name="PasswordTextBox" Header="Password" Text="{Binding Password}"/>
+                <StackPanel Margin="0,0,0,36">
+                    <TextBox x:Name="NameTextBox" x:Uid="ConnectionName" InputScope="NameOrPhoneNumber" Header="Name" Text="{Binding ConnectionName}"/>
+                    <TextBox x:Name="IPTextBox" x:Uid="ServerAddress" Header="Server address" Text="{Binding IpAddress}"/>
+                    <TextBox x:Name="PortTextBox" x:Uid="Port" InputScope="Number" Header="Port" Text="{Binding Port}"/>
+                    <TextBox x:Name="UsernameTextBox" x:Uid="Username" Header="Username" Text="{Binding Username}"/>
+                    <TextBox x:Name="PasswordTextBox" x:Uid="Password" Header="Password" Text="{Binding Password}"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
@@ -42,8 +42,8 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="SaveConnectionAppBarButton" Click="SaveConnectionAppBarButton_Click" Label="save" Icon="Save"/>
-                <AppBarButton x:Name="CancelAppBarButton" Click="CancelAppBarButton_Click" Label="cancel" Icon="Cancel"/>
+                <AppBarButton x:Name="SaveConnectionAppBarButton" x:Uid="SaveAppBarMenu" Click="SaveConnectionAppBarButton_Click" Label="save" Icon="Save"/>
+                <AppBarButton x:Name="CancelAppBarButton" x:Uid="CancelAppBarMenu" Click="CancelAppBarButton_Click" Label="cancel" Icon="Cancel"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

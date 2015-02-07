@@ -14,28 +14,38 @@
         <CollectionViewSource x:Name="SongsCVS" IsSourceGrouped="True"/>
     </Page.Resources>
     
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    
     <Grid x:Name="LayoutRoot">
         <Pivot>
             <Pivot.Title>
-                <TextBlock Text="ALL MUSIC" Style="{StaticResource PageTitleTextStyle}"/>
+                <TextBlock Text="ALL MUSIC" Style="{StaticResource PageTitleTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
             </Pivot.Title>
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="ARTISTS" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock Text="ARTISTS" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
                 </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
-                        <ListView ItemsSource="{Binding Source={StaticResource ArtistsCVS}}" Margin="0,-20,0,0">
+                        <ListView ItemsSource="{Binding Source={StaticResource ArtistsCVS}}" Margin="0,-20,0,0" >
                             <ListView.GroupStyle>
                                 <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource PhoneGroupHeaderTemplate}"/>
                             </ListView.GroupStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel x:Name="ArtistItemWrapper" Orientation="Horizontal" Margin="0,10" >
-                                        <Border x:Name="PlayArtistBorder" Tapped="PlayArtistBorder_Tapped" BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
+                                    <StackPanel x:Name="ArtistItemWrapper" Orientation="Horizontal" Margin="0,10" CommonNavigationTransitionInfo.IsStaggerElement="True" Tapped="ArtistItemWrapper_Tapped">
+                                        <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                             <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/singer.png" Foreground="{StaticResource PhoneForegroundBrush}" />
                                         </Border>
-                                        <TextBlock x:Name="ArtistNameTextBlock" Tapped="ArtistNameTextBlock_Tapped" Text="{Binding Label}" FontSize="28" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold" Pivot.SlideInAnimationGroup="GroupOne"/>
+                                        <TextBlock x:Name="ArtistNameTextBlock" Text="{Binding Label}" FontSize="28" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold" Pivot.SlideInAnimationGroup="GroupOne" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -51,17 +61,17 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="ALBUMS" Style="{StaticResource PageHeaderTextStyle}"/>
-                </PivotItem.Header>
+                            <TextBlock Text="ALBUMS" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+                        </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
-                        <GridView ItemsSource="{Binding Source={StaticResource AlbumsCVS}}" Margin="0,-20,0,0">
+                        <GridView ItemsSource="{Binding Source={StaticResource AlbumsCVS}}" Margin="0,-20,0,0" ContinuumNavigationTransitionInfo.ExitElementContainer="True">
                             <GridView.GroupStyle>
                                 <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource PhoneGroupHeaderTemplate}"/>
                             </GridView.GroupStyle>
                             <GridView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid x:Name="AlbumArtWrapper" Tapped="AlbumArtWrapper_Tapped" Height="205" Background="{StaticResource PhoneChromeBrush}" Width="160" Margin="0,0,12,12" Pivot.SlideInAnimationGroup="GroupOne" >
+                                    <Grid x:Name="AlbumArtWrapper" Tapped="AlbumArtWrapper_Tapped" Height="205" Background="{StaticResource PhoneChromeBrush}" Width="160" Margin="0,0,12,12" Pivot.SlideInAnimationGroup="GroupOne" CommonNavigationTransitionInfo.IsStaggerElement="True" >
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="160"/>
                                             <RowDefinition Height="auto"/>
@@ -71,17 +81,13 @@
                                                 <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
                                             </Image.Source>
                                         </Image>
-                                        <Image Width="160" Stretch="UniformToFill" VerticalAlignment="Top" >
-                                            <Image.Source>
-                                                <BitmapImage DecodePixelHeight="175" UriSource="{Binding Thumbnail, Converter={StaticResource ImagePathConverter}}"/>
-                                            </Image.Source>
-                                        </Image>
+                                        <Image Width="160" Stretch="UniformToFill" VerticalAlignment="Top" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h175}"/>
                                         <Border Margin="10,140,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource PhoneAccentBrush}" Grid.RowSpan="2" >
                                             <Image Source="ms-appx:///Assets/Icons/album.png" Margin="10" />
                                         </Border>
-                                        <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Right" Margin="0,5,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
+                                        <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Right" Margin="0,5,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold" ContinuumNavigationTransitionInfo.IsExitElement="True"/>
                                         <StackPanel Orientation="Horizontal" Background="{StaticResource PhoneAccentBrush}" Margin="0,7,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-                                            <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" Margin="5" Foreground="White" FontWeight="Bold" MaxWidth="120" MaxHeight="40" TextTrimming="WordEllipsis"/>
+                                            <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" Margin="5" Foreground="White" FontWeight="Bold" MaxWidth="120" MaxHeight="40" TextTrimming="WordEllipsis" />
                                         </StackPanel>
                                     </Grid>
                                 </DataTemplate>
@@ -97,7 +103,7 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="SONGS" Style="{StaticResource PageHeaderTextStyle}"/>
+                            <TextBlock Text="SONGS" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
                 </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
@@ -107,8 +113,13 @@
                             </ListView.GroupStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel x:Name="SongItemWrapper" Orientation="Horizontal" Margin="0,10" Tapped="SongItemWrapper_Tapped">
-                                        <Border x:Name="PlayArtistBorder" Tapped="PlayArtistBorder_Tapped" BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
+                                    <StackPanel x:Name="SongItemWrapper" Orientation="Horizontal" Margin="0,10" Tapped="SongItemWrapper_Tapped" Holding="SongItemWrapper_Holding" CommonNavigationTransitionInfo.IsStaggerElement="True">
+                                        <FlyoutBase.AttachedFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem x:Name="QueueSongMFI" Text="queue song" Click="QueueSongMFI_Click" FontFamily="Global User Interface" DataContext="{Binding}"/>
+                                            </MenuFlyout>
+                                        </FlyoutBase.AttachedFlyout>
+                                        <Border x:Name="PlayArtistBorder" BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                             <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/musicnote.png" Foreground="{StaticResource PhoneForegroundBrush}" />
                                         </Border>
                                         <StackPanel Margin="10,0,0,0" >
