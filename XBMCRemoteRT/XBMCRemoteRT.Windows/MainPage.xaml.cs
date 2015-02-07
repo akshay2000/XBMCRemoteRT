@@ -213,5 +213,10 @@ namespace XBMCRemoteRT
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
         }
+
+        private void ConnectionsListView_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            ConnectionsListView.SelectedItem = null;
+        }
     }
 }
