@@ -32,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SpeedToSymbolIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToImageBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MathExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProxyManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\BitmapImageExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ConnectionManager.cs" />

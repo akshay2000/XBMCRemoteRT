@@ -303,6 +303,18 @@
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'dffffffff|AnyCPU'">
+    <OutputPath>bin\dffffffff\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'dffffffff|ARM'">
+    <OutputPath>bin\ARM\dffffffff\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'dffffffff|x64'">
+    <OutputPath>bin\x64\dffffffff\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'dffffffff|x86'">
+    <OutputPath>bin\x86\dffffffff\</OutputPath>
+  </PropertyGroup>
   <Import Project="..\XBMCRemoteRT.Shared\XBMCRemoteRT.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

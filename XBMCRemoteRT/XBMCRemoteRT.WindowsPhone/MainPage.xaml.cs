@@ -160,68 +160,75 @@ namespace XBMCRemoteRT
 
         private async Task ConnectToServer(ConnectionItem connectionItem)
         {
-            SetPageState(PageStates.Busy, "Connecting...");
+            SetPageState(PageStates.Busy, string.Format("Connecting to {0}", connectionItem.ConnectionName));
 
-            bool isSuccessful = await JSONRPC.Ping(connectionItem);
+            string bePatientText = "It seems to be taking a while...";
+            int wakeupTime = connectionItem.WakeUpTime < 5 ? 5 : connectionItem.WakeUpTime;
+            int stepSize = 5;
+
+            DateTime wakeUpStart = DateTime.Now;
+            bool isSuccessful = false;
+            if (connectionItem.AutoWake)
+            {
+                uint result = await WOLHelper.WakeUp(connectionItem);
+                if (result != 102)
+                {
+                    string messageText;
+                    switch (result)
+                    {
+                        case 10:
+                            messageText = "Please specify an IP address rather than a hostname to use the wake feature.";
+                            break;
+                        default:
+                            messageText = "Could not send wake request: broadcast IP not available. Errorcode " + result;
+                            break;
+                    }
+                    MessageDialog message = new MessageDialog(messageText, "Wake up failed");
+                    await message.ShowAsync();
+                    SetPageState(PageStates.Ready);
+                    return;
+                }
+                bePatientText = String.Format("Wake up usually takes {0} to {1} seconds. We're still trying...", MathExtension.CurrentStep(wakeupTime, stepSize), MathExtension.UpperStep(wakeupTime, stepSize));
+            }
+
+            MessageDialog tryMessage = new MessageDialog("Seems like Kodi is not ready to respond yet. What would you like to do?", "Server still not up");
+            tryMessage.Commands.Add(new UICommand("keep trying"));
+            tryMessage.Commands.Add(new UICommand("stop"));
+
+            DateTime lastPopupTime = DateTime.Now;
+            while (!isSuccessful)
+            {
+                var timeSinceWakeUp = ( DateTime.Now - wakeUpStart).TotalSeconds;
+                var timeSincePopup = (DateTime.Now - lastPopupTime).TotalSeconds;
+                if (timeSinceWakeUp > 5)
+                {
+                    SetPageState(PageStates.Busy, bePatientText);
+                }
+                if (timeSincePopup > 10)
+                {
+                    var selectedCommand = await tryMessage.ShowAsync();
+                    lastPopupTime = DateTime.Now;
+                    if (selectedCommand.Label == "stop")
+                    {
+                        break;
+                    }
+                }
+                isSuccessful = await JSONRPC.Ping(connectionItem);
+            }
+
             if (isSuccessful)
             {
                 ConnectionManager.CurrentConnection = connectionItem;
                 SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
-                Frame.Navigate(typeof(CoverPage));
-            }
-            else
-            {
-                if (connectionItem.AutoWake)
-                {
-                    if (connectionItem.SubnetMask == null || connectionItem.MACAddress == null)
-                    {
-                        MessageDialog message = new MessageDialog("Please specify MAC address and subnet mask to use this feature.", "More information needed");
-                        await message.ShowAsync();
-                        return;
-                    }
 
-                    int wakeUpTime = connectionItem.WakeUpTime == 0 ? 5 : connectionItem.WakeUpTime;
-                    SetPageState(PageStates.Busy, string.Format("Trying to wake up Kodi server. This usually takes {0} seconds.", wakeUpTime));
-                    uint result = await WOLHelper.WakeUp(connectionItem);
-                    
-                    if (result == 102)
-                    {
-                        var startTime = DateTime.Now;
-                        await Task.Delay(new TimeSpan(0, 0, wakeUpTime));
-                        MessageDialog tryMessage = new MessageDialog("Seems like Kodi is taking more time to wake up. What would you like to do?", "Server still not up");
-                        tryMessage.Commands.Add(new UICommand("keep trying"));
-                        tryMessage.Commands.Add(new UICommand("stop"));
-                        int noOfTries = 0;
-                        SetPageState(PageStates.Busy, "Trying to connect...");
-                        while (!isSuccessful)
-                        {
-                            isSuccessful = await JSONRPC.Ping(connectionItem);
-                            noOfTries++;
-                            if (noOfTries % 2 == 0)
-                            {
-                               var selectedCommand = await tryMessage.ShowAsync();
-                               if (selectedCommand.Label == "stop")
-                               {
-                                   break;
-                               }
-                            }
-                        }
-                        if (isSuccessful)
-                        {
-                            connectionItem.WakeUpTime = (int)(DateTime.Now - startTime).TotalSeconds;
-                            ConnectionManager.CurrentConnection = connectionItem;
-                            SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
-                            App.ConnectionsVM.UpdateConnectionItem();
-                            Frame.Navigate(typeof(CoverPage));
-                            return;
-                        }
-                    }
-                }
-                MessageDialog cantReachMessage = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-                await cantReachMessage.ShowAsync();
-                SetPageState(PageStates.Ready);
-            }            
+                int newWakeupTime = (int)(DateTime.Now - wakeUpStart).TotalSeconds;
+                connectionItem.WakeUpTime = newWakeupTime < 5 ? connectionItem.WakeUpTime : newWakeupTime;
+                App.ConnectionsVM.UpdateConnectionItem();
+                Frame.Navigate(typeof(CoverPage));
+            }         
+            SetPageState(PageStates.Ready);
         }
+        
         private void SetPageState(PageStates pageState, string busyMessage = "Connecting...")
         {
             if (pageState == PageStates.Busy)

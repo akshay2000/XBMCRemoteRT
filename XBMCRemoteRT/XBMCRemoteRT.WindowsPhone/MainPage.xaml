@@ -63,7 +63,7 @@
         <Grid x:Name="PageStateGrid" Grid.RowSpan="10" Visibility="Collapsed">
             <Rectangle Fill="Black" Opacity="0.7" />
             <StackPanel VerticalAlignment="Center">
-                <TextBlock x:Name="PageStateTextBlock" Text="Connecting..." HorizontalAlignment="Center" Style="{ThemeResource ControlContextualInfoTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,3"/>
+                <TextBlock x:Name="PageStateTextBlock" Text="Connecting..." HorizontalAlignment="Center" Style="{ThemeResource ControlContextualInfoTextBlockStyle}" TextAlignment="Center" Margin="12,0,12,3"/>
                 <ProgressBar x:Name="ProgressBar" IsIndeterminate="True" />
             </StackPanel>
         </Grid>

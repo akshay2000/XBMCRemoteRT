@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Networking;
+using Windows.Networking.Sockets;
 using XBMCRemoteRT.Models.Network;
 
 namespace XBMCRemoteRT.RPCWrappers
@@ -23,6 +25,8 @@ namespace XBMCRemoteRT.RPCWrappers
 
             HttpClientHandler handler = new HttpClientHandler();
             HttpClient httpClient = new HttpClient(handler);
+
+           // httpClient.Timeout = new TimeSpan(0, 0, 2);
 
             string uriString = "http://" + connectionItem.IpAddress + ":" + connectionItem.Port.ToString() + "/jsonrpc?request=";
             httpClient.BaseAddress = new Uri(uriString);
