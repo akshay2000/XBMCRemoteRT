@@ -455,4 +455,14 @@
   <data name="AboutRateApp.Content" xml:space="preserve">
     <value>rate app</value>
   </data>
+  <data name="DeleteConnectionMenu.Text" xml:space="preserve">
+    <value>delete connection</value>
+  </data>
+  <data name="EditConnectionMenu.Text" xml:space="preserve">
+    <value>edit connection</value>
+  </data>
+  <data name="WakeUpMenu.Text" xml:space="preserve">
+    <value>wake up</value>
+    <comment>Context menu used to wake up sleeping computer using wake-on-lan</comment>
+  </data>
 </root>

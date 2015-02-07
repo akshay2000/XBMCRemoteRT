@@ -502,6 +502,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <AppBarButton x:Name="GoBackButton" Click="GoBackButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Visibility="Collapsed">
@@ -528,12 +530,12 @@
                     <SymbolIcon Symbol="ClosedCaption"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Name="InfoButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="InfoButton_Click" Visibility="Collapsed">
+            <AppBarButton x:Name="InfoButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="4" Click="InfoButton_Click" Visibility="Collapsed">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="DockBottom"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Name="AdvancedButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="AdvancedButton_Click" Visibility="Collapsed">
+            <AppBarButton x:Name="AdvancedButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="5" Click="AdvancedButton_Click" Visibility="Collapsed">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="List"/>
                 </AppBarButton.Icon>

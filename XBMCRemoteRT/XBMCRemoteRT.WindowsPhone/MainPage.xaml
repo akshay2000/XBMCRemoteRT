@@ -46,9 +46,9 @@
                             <StackPanel x:Name="ConnectionItemWrapper" Tapped="ConnectionItemWrapper_Tapped" Holding="ConnectionItemWrapper_Holding" CommonNavigationTransitionInfo.IsStaggerElement="True">
                                 <FlyoutBase.AttachedFlyout>
                                     <MenuFlyout>
-                                        <MenuFlyoutItem x:Name="EditConnectionMFI" Text="edit connection" Click="EditConnectionMFI_Click" DataContext="{Binding}"/>
-                                        <MenuFlyoutItem x:Name="DeleteConnectionMFI" Text="delete connection" Click="DeleteConnectionMFI_Click" DataContext="{Binding}"/>
-                                        <MenuFlyoutItem x:Name="WakeUpServerMFI" Text="wake up" Click="WakeUpServerMFI_Click" DataContext="{Binding}"/>
+                                        <MenuFlyoutItem x:Name="EditConnectionMFI" x:Uid="EditConnectionMenu" Text="edit connection" Click="EditConnectionMFI_Click" DataContext="{Binding}"/>
+                                        <MenuFlyoutItem x:Name="DeleteConnectionMFI" x:Uid="DeleteConnectionMenu" Text="delete connection" Click="DeleteConnectionMFI_Click" DataContext="{Binding}"/>
+                                        <MenuFlyoutItem x:Name="WakeUpServerMFI" x:Uid="WakeUpMenu" Text="wake up" Click="WakeUpServerMFI_Click" DataContext="{Binding}"/>
                                     </MenuFlyout>
                                 </FlyoutBase.AttachedFlyout>
                                 <TextBlock Text="{Binding ConnectionName}" Style="{StaticResource ListViewItemTextBlockStyle}" />
