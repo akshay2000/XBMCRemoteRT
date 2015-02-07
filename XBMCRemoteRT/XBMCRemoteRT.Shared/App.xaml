@@ -24,6 +24,8 @@
                     <converters:ToUpperConverter x:Key="ToUpperConverter"/>
                     <converters:CountToOpacityConverter x:Key="CountToOpacityConverter"/>
                     <converters:AuthBitmapConverter x:Key="AuthBitmapConverter"/>
+                    <converters:MacAddressConverter x:Key="MACAddressConverter"/>
+                    <converters:IPAddressConverter x:Key="IPAddressConverter"/>
 
                 </ResourceDictionary>
 

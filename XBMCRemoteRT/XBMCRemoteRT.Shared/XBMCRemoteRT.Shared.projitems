@@ -24,12 +24,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToOpacityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListTrimmer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\IPAddressConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\MacAddressConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MinutesToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RatingConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RepeatStateConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SpeedToSymbolIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToImageBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MathExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProxyManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\BitmapImageExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ConnectionManager.cs" />
@@ -45,7 +48,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Song.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\GroupedList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\Limits.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\ConnectionItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Network\ConnectionItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Network\IPAddress.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Network\MacAddress.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\NotifyBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerProperties.cs" />
@@ -57,7 +62,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Resume.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\StreamDetails.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\TVShow.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Views\AlbumView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Applikation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\AudioLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\GUI.cs" />

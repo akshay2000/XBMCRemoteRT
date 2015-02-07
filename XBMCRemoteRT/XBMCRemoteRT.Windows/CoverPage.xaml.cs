@@ -145,7 +145,7 @@ namespace XBMCRemoteRT
         {
             if (Albums == null)
             {
-                Albums = await AudioLibrary.GetRecentlyAddedAlbums(new Limits { Start = 0, End = 12 });
+                Albums = await AudioLibrary.GetRecentlyAddedAlbums(new Limits { Start = 0, End = 8 });
                 MusicHubSection.DataContext = Albums;
             }
 

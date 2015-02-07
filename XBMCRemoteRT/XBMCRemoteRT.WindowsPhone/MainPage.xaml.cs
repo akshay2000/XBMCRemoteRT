@@ -1,29 +1,17 @@
-﻿using XBMCRemoteRT.Common;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Graphics.Display;
-using Windows.UI.ViewManagement;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using XBMCRemoteRT.Models;
-using System.Threading.Tasks;
-using XBMCRemoteRT.RPCWrappers;
+using XBMCRemoteRT.Common;
 using XBMCRemoteRT.Helpers;
-using Windows.UI.Popups;
-using System.Diagnostics;
+using XBMCRemoteRT.Models.Network;
 using XBMCRemoteRT.Pages;
-using GoogleAnalytics;
-using GoogleAnalytics.Core;
+using XBMCRemoteRT.RPCWrappers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -34,7 +22,7 @@ namespace XBMCRemoteRT
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private enum PageStates { Ready, Connecting }
+        private enum PageStates { Ready, Busy }
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -172,35 +160,87 @@ namespace XBMCRemoteRT
 
         private async Task ConnectToServer(ConnectionItem connectionItem)
         {
-            SetPageState(PageStates.Connecting);
+            SetPageState(PageStates.Busy, string.Format("Connecting to {0}", connectionItem.ConnectionName));
 
-            bool isSuccessful = await JSONRPC.Ping(connectionItem);
+            string bePatientText = "It seems to be taking a while...";
+            int wakeupTime = connectionItem.WakeUpTime < 5 ? 5 : connectionItem.WakeUpTime;
+            int stepSize = 5;
+
+            DateTime wakeUpStart = DateTime.Now;
+            bool isSuccessful = false;
+            if (connectionItem.AutoWake)
+            {
+                uint result = await WOLHelper.WakeUp(connectionItem);
+                if (result != 102)
+                {
+                    string messageText;
+                    switch (result)
+                    {
+                        case 10:
+                            messageText = "Please specify an IP address rather than a hostname to use the wake feature.";
+                            break;
+                        default:
+                            messageText = "Could not send wake request: broadcast IP not available. Errorcode " + result;
+                            break;
+                    }
+                    MessageDialog message = new MessageDialog(messageText, "Wake up failed");
+                    await message.ShowAsync();
+                    SetPageState(PageStates.Ready);
+                    return;
+                }
+                bePatientText = String.Format("Wake up usually takes {0} to {1} seconds. We're still trying...", MathExtension.CurrentStep(wakeupTime, stepSize), MathExtension.UpperStep(wakeupTime, stepSize));
+            }
+
+            MessageDialog tryMessage = new MessageDialog("Seems like Kodi is not ready to respond yet. What would you like to do?", "Server still not up");
+            tryMessage.Commands.Add(new UICommand("keep trying"));
+            tryMessage.Commands.Add(new UICommand("stop"));
+
+            DateTime lastPopupTime = DateTime.Now;
+            while (!isSuccessful)
+            {
+                var timeSinceWakeUp = ( DateTime.Now - wakeUpStart).TotalSeconds;
+                var timeSincePopup = (DateTime.Now - lastPopupTime).TotalSeconds;
+                if (timeSinceWakeUp > 5)
+                {
+                    SetPageState(PageStates.Busy, bePatientText);
+                }
+                if (timeSincePopup > 10)
+                {
+                    var selectedCommand = await tryMessage.ShowAsync();
+                    lastPopupTime = DateTime.Now;
+                    if (selectedCommand.Label == "stop")
+                    {
+                        break;
+                    }
+                }
+                isSuccessful = await JSONRPC.Ping(connectionItem);
+            }
+
             if (isSuccessful)
             {
                 ConnectionManager.CurrentConnection = connectionItem;
                 SettingsHelper.SetValue("RecentServerIP", connectionItem.IpAddress);
+
+                int newWakeupTime = (int)(DateTime.Now - wakeUpStart).TotalSeconds;
+                connectionItem.WakeUpTime = newWakeupTime < 5 ? connectionItem.WakeUpTime : newWakeupTime;
+                App.ConnectionsVM.UpdateConnectionItem();
                 Frame.Navigate(typeof(CoverPage));
-            }
-            else
-            {
-                MessageDialog message = new MessageDialog("Could not reach the server.", "Connection Unsuccessful");
-                await message.ShowAsync();
-                SetPageState(PageStates.Ready);
-            }            
+            }         
+            SetPageState(PageStates.Ready);
         }
-        private void SetPageState(PageStates pageState)
+        
+        private void SetPageState(PageStates pageState, string busyMessage = "Connecting...")
         {
-            if (pageState == PageStates.Connecting)
+            if (pageState == PageStates.Busy)
             {
-                ConnectionsListView.IsEnabled = false;
+                PageStateTextBlock.Text = busyMessage;
+                PageStateGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 BottomAppBar.Visibility = Visibility.Collapsed;
-                ProgressRing.IsActive = true;
-            }
+            }         
             else
             {
-                ConnectionsListView.IsEnabled = true;
+                PageStateGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 BottomAppBar.Visibility = Visibility.Visible;
-                ProgressRing.IsActive = false;
             }
         }
 
@@ -216,10 +256,34 @@ namespace XBMCRemoteRT
             Frame.Navigate(typeof(EditConnectionPage), selectedConnection);
         }
 
-        private void WakeUpServerMFI_Click(object sender, RoutedEventArgs e)
+        private async void WakeUpServerMFI_Click(object sender, RoutedEventArgs e)
         {
             ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
-            WOLHelper.WakeUp(selectedConnection);
+            if (selectedConnection.SubnetMask == null || selectedConnection.MACAddress == null)
+            {
+                MessageDialog message = new MessageDialog("Please specify MAC address and subnet mask to use this feature.", "More information needed");
+                await message.ShowAsync();
+                return;
+            }
+            SetPageState(PageStates.Busy, "Waking up...");
+            uint result = await WOLHelper.WakeUp(selectedConnection);
+            await Task.Delay(3500);
+            SetPageState(PageStates.Ready);
+            if (result != 102)
+            {
+                string messageText;
+                switch (result)
+                {
+                    case 10:
+                        messageText = "Please specify an IP address rather than a hostname to use the wake feature.";
+                        break;
+                    default:
+                        messageText = "Could not send wake request: broadcast IP not available. Errorcode " + result;
+                        break;
+                }
+                MessageDialog message = new MessageDialog(messageText, "Wake up failed");
+                await message.ShowAsync();
+            }
         }
 
         private void ConnectionItemWrapper_Holding(object sender, HoldingRoutedEventArgs e)

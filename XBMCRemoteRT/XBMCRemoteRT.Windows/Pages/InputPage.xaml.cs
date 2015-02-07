@@ -1,4 +1,5 @@
-﻿using XBMCRemoteRT.Common;
+﻿using Windows.UI.Xaml.Media.Animation;
+using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using XBMCRemoteRT.Helpers;
+using XBMCRemoteRT.RPCWrappers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -26,6 +29,9 @@ namespace XBMCRemoteRT.Pages
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+
+        private bool isVolumeSetProgrammatically;
+        int[] Speeds = { -32, -16, -8, -4, -2, -1, 1, 2, 4, 8, 16, 32 };
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -51,6 +57,8 @@ namespace XBMCRemoteRT.Pages
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+
+            DataContext = GlobalVariables.CurrentPlayerState;
         }
 
         /// <summary>
@@ -103,94 +111,202 @@ namespace XBMCRemoteRT.Pages
 
         #endregion
 
-        private void PreviousButton_Click(object sender, RoutedEventArgs e)
+        #region Remote Keys
+        private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
-        }
-
-        private void SpeedDownButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void PlayPauseButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void StopButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void SpeedUpButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void NextButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void VolumeSlider_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void VolumeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void EnterButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void GoBackButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OSDButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void MenuButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void HomeButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
+            Input.ExecuteAction(InputCommands.Left);
         }
 
         private void UpButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Input.ExecuteAction(InputCommands.Up);
         }
 
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Input.ExecuteAction(InputCommands.Right);
         }
 
         private void DownButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Input.ExecuteAction(InputCommands.Down);
         }
 
-        private void LeftButton_Click(object sender, RoutedEventArgs e)
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Input.ExecuteAction(InputCommands.Home);
+        }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            Input.ExecuteAction(InputCommands.ContextMenu);
+        }
+
+        private void OSDButton_Click(object sender, RoutedEventArgs e)
+        {
+            Input.ExecuteAction(InputCommands.ShowOSD);
+        }
+
+        private void InfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            Input.ExecuteAction(InputCommands.Info);
+        }
+
+        private void EnterButton_Click(object sender, RoutedEventArgs e)
+        {
+            Input.ExecuteAction(InputCommands.Select);
+        }
+
+        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Input.ExecuteAction(InputCommands.Back);
+        }
+
+        #endregion
+
+        private async void PreviousButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Player.GoTo(GlobalVariables.CurrentPlayerState.PlayerType, GoTo.Next);
+            await PlayerHelper.RefreshPlayerState();
+        }
+
+        private async void SpeedDownButton_Click(object sender, RoutedEventArgs e)
+        {
+            int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+
+            if (speed != 0 && speed != -32)
+            {
+                int index = Array.IndexOf(Speeds, speed);
+                int newSpeed = Speeds[index - 1];
+                await Player.SetSpeed(GlobalVariables.CurrentPlayerState.PlayerType, newSpeed);
+                await PlayerHelper.RefreshPlayerState();
+            }
+        }
+
+        private async void PlayPauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Player.PlayPause(GlobalVariables.CurrentPlayerState.PlayerType);
+            await PlayerHelper.RefreshPlayerState();
+        }
+
+        private async void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Player.Stop(GlobalVariables.CurrentPlayerState.PlayerType);
+            await PlayerHelper.RefreshPlayerState();
+        }
+
+        private async void SpeedUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+
+            if (speed != 0 && speed != 32)
+            {
+                int index = Array.IndexOf(Speeds, speed);
+                int newSpeed = Speeds[index + 1];
+                await Player.SetSpeed(GlobalVariables.CurrentPlayerState.PlayerType, newSpeed);
+                await PlayerHelper.RefreshPlayerState();
+            }
+        }
+
+        private async void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Player.GoTo(GlobalVariables.CurrentPlayerState.PlayerType, GoTo.Next);
+            await PlayerHelper.RefreshPlayerState();
+        }
+
+        private async void VolumeSlider_Loaded(object sender, RoutedEventArgs e)
+        {
+            int volume = await Applikation.GetVolume();
+            SetVolumeSliderValue(volume);
+        }
+
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Applikation.Quit();
+        }
+
+        private DispatcherTimer timer;
+        private void VolumeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            if (isVolumeSetProgrammatically)
+            {
+                isVolumeSetProgrammatically = false;
+                return;
+            }
+            else
+            {
+                if (timer != null)
+                    timer.Stop();
+
+                timer = new DispatcherTimer();
+
+                timer.Interval = new TimeSpan(0, 0, 1);
+                timer.Tick += timer_Tick;
+
+                timer.Start();
+            }
+        }
+
+        void timer_Tick(object sender, object e)
+        {
+            int value = (int)Math.Round(VolumeSlider.Value);
+            Applikation.SetVolume(value);
+
+            timer.Stop();
+            timer.Tick -= timer_Tick;
+        }
+
+        private async void VolumeDownWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            int currentVolume = await Applikation.GetVolume();
+            Applikation.SetVolume(--currentVolume);
+            SetVolumeSliderValue(currentVolume);
+        }
+
+        private async void VolumeUpWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            int currentVolume = await Applikation.GetVolume();
+            Applikation.SetVolume(++currentVolume);
+            SetVolumeSliderValue(currentVolume);
+        }
+
+        private void SetVolumeSliderValue(int value)
+        {
+            isVolumeSetProgrammatically = true;
+            VolumeSlider.Value = value;
         }
 
         private void SendTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                Input.SendText(SendTextBox.Text, true);
+                SendTextBox.Text = string.Empty;
+                LoseFocus(sender);
+            }
         }
+
+        private void LoseFocus(object sender)
+        {
+            var control = sender as Control;
+            var isTabStop = control.IsTabStop;
+            control.IsTabStop = false;
+            control.IsEnabled = false;
+            control.IsEnabled = true;
+            control.IsTabStop = isTabStop;
+        }
+
+        private void TextInputButton_Click(object sender, RoutedEventArgs e)
+        {
+            SendTextBox.Visibility = Visibility.Visible;
+            (this.Resources["ShowSendTextBox"] as Storyboard).Begin();
+            SendTextBox.Focus(FocusState.Keyboard);
+        }
+
+        private void SendTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ((this.Resources["HideSendTextBox"]) as Storyboard).Begin();
+        }
+
     }
 }

@@ -45,6 +45,8 @@
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
+            <TextBlock Text="{StaticResource AppName}" Style="{StaticResource SubheaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,90"/>
             <TextBlock x:Name="pageTitle" Text="music" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
@@ -63,60 +65,33 @@
         <Grid Grid.Row="2" x:Name="ArtistsCVSGrid">
             <SemanticZoom x:Name="ArtistsSemanticZoom">
                 <SemanticZoom.ZoomedInView>
-                    <GridView ItemsSource="{Binding Source={StaticResource ArtistsCVS}}" Margin="0,-20,0,0" SelectionMode="None">
+                    <GridView ItemsSource="{Binding Source={StaticResource ArtistsCVS}}" SelectionMode="None">
                         <GridView.GroupStyle>
-                            <GroupStyle HidesIfEmpty="True">
-                                <GroupStyle.HeaderTemplate>
-                                    <DataTemplate>
-                                        <Grid Background="LightGray" Margin="0">
-                                            <TextBlock Text='{Binding Key}' Foreground="Black" Margin="30" FontSize="20"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </GroupStyle.HeaderTemplate>
-                            </GroupStyle>
+                            <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
                         </GridView.GroupStyle>
                         <GridView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel x:Name="ArtistItemWrapper" Orientation="Horizontal" Margin="0,10" Tapped="ArtistName_Tapped">
+                                <StackPanel x:Name="ArtistItemWrapper" Orientation="Horizontal" Tapped="ArtistName_Tapped">
                                     <Border x:Name="PlayArtistBorder" BorderThickness="2" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
-                                        <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/singer.png" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
+                                        <BitmapIcon Margin="12" UriSource="ms-appx:///Assets/Icons/singer.png" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
                                     </Border>
-                                    <TextBlock x:Name="ArtistNameTextBlock" Text="{Binding Label}" FontSize="28" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="ArtistNameTextBlock" Text="{Binding Label}" FontSize="28" Margin="10,0,0,0" FontWeight="SemiBold"/>
                                 </StackPanel>
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
                 </SemanticZoom.ZoomedInView>
                 <SemanticZoom.ZoomedOutView>
-                    <GridView>
-                        <GridView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0">
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="LightGray" Opacity="{Binding Group.Count, Converter={StaticResource CountToOpacityConverter}}"></SolidColorBrush>
-                                    </Grid.Background>
-                                    <TextBlock Text='{Binding Group.Key}' Foreground="Black" Margin="30" FontSize="20"/>
-                                </Grid>
-                            </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
+                    <GridView ItemTemplate="{StaticResource SemanticZoomedOutTemplate}"/>
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
         </Grid>
         <Grid Grid.Row="2" x:Name="AlbumsCVSGrid">
             <SemanticZoom x:Name="AlbumsSemanticZoom">
                 <SemanticZoom.ZoomedInView>
-                    <GridView ItemsSource="{Binding Source={StaticResource AlbumsCVS}}" Margin="0,-20,0,0" SelectionMode="None">
+                    <GridView ItemsSource="{Binding Source={StaticResource AlbumsCVS}}" SelectionMode="None">
                         <GridView.GroupStyle>
-                            <GroupStyle HidesIfEmpty="True">
-                                <GroupStyle.HeaderTemplate>
-                                    <DataTemplate>
-                                        <Grid Background="LightGray" Margin="0">
-                                            <TextBlock Text='{Binding Key}' Foreground="Black" Margin="30" FontSize="20"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </GroupStyle.HeaderTemplate>
-                            </GroupStyle>
+                            <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
                         </GridView.GroupStyle>
                         <GridView.ItemTemplate>
                             <DataTemplate>
@@ -125,12 +100,9 @@
                                         <RowDefinition Height="160"/>
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
-                                    <Image Stretch="UniformToFill">
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelType="Logical" DecodePixelHeight="175" UriSource="/Assets/DefaultArt.jpg"/>
-                                        </Image.Source>
-                                    </Image>
-                                    <Image Width="160" Stretch="UniformToFill" VerticalAlignment="Top" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h175}" />
+                                    <Border Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="10" BorderBrush="DimGray" Background="DimGray" VerticalAlignment="Stretch">
+                                        <Image Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h175}"/>
+                                    </Border>
                                     <Border Margin="10,140,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}" Grid.RowSpan="2" >
                                         <Image Source="ms-appx:///Assets/Icons/album.png" Margin="10" />
                                     </Border>
@@ -144,35 +116,16 @@
                     </GridView>
                 </SemanticZoom.ZoomedInView>
                 <SemanticZoom.ZoomedOutView>
-                    <GridView>
-                        <GridView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0">
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="LightGray" Opacity="{Binding Group.Count, Converter={StaticResource CountToOpacityConverter}}"></SolidColorBrush>
-                                    </Grid.Background>
-                                    <TextBlock Text='{Binding Group.Key}' Foreground="Black" Margin="30" FontSize="20"/>
-                                </Grid>
-                            </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
+                    <GridView ItemTemplate="{StaticResource SemanticZoomedOutTemplate}"/>
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
         </Grid>
         <Grid Grid.Row="2" x:Name="SongsCVSGrid">
             <SemanticZoom x:Name="SongsSemanticZoom">
                 <SemanticZoom.ZoomedInView>
-                    <GridView ItemsSource="{Binding Source={StaticResource SongsCVS}}" Margin="0,-20,0,0" SelectionMode="None">
+                    <GridView ItemsSource="{Binding Source={StaticResource SongsCVS}}" SelectionMode="None">
                         <GridView.GroupStyle>
-                            <GroupStyle HidesIfEmpty="True">
-                                <GroupStyle.HeaderTemplate>
-                                    <DataTemplate>
-                                        <Grid Background="LightGray" Margin="0">
-                                            <TextBlock Text='{Binding Key}' Foreground="Black" Margin="30" FontSize="20"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </GroupStyle.HeaderTemplate>
-                            </GroupStyle>
+                            <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
                         </GridView.GroupStyle>
                         <GridView.ItemTemplate>
                             <DataTemplate>
@@ -190,18 +143,7 @@
                     </GridView>
                 </SemanticZoom.ZoomedInView>
                 <SemanticZoom.ZoomedOutView>
-                    <GridView>
-                        <GridView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0">
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="LightGray" Opacity="{Binding Group.Count, Converter={StaticResource CountToOpacityConverter}}"></SolidColorBrush>
-                                    </Grid.Background>
-                                    <TextBlock Text='{Binding Group.Key}' Foreground="Black" Margin="30" FontSize="20"/>
-                                </Grid>
-                            </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
+                    <GridView ItemTemplate="{StaticResource SemanticZoomedOutTemplate}"/>
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
         </Grid>

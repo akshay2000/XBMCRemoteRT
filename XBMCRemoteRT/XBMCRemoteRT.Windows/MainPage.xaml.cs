@@ -15,12 +15,14 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models;
 using XBMCRemoteRT.Pages;
 using XBMCRemoteRT.RPCWrappers;
+using XBMCRemoteRT.Models.Network;
+
+// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+
 
 namespace XBMCRemoteRT
 {
@@ -212,6 +214,11 @@ namespace XBMCRemoteRT
         private void ConnectionItemWrapper_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        }
+
+        private void ConnectionsListView_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            ConnectionsListView.SelectedItem = null;
         }
     }
 }

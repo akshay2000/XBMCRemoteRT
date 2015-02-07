@@ -58,6 +58,7 @@ namespace XBMCRemoteRT.Pages.Video
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
 
             FilterComboBox.SelectedIndex = 0;
         }
@@ -103,7 +104,11 @@ namespace XBMCRemoteRT.Pages.Video
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
-            LoadMovies();
+
+            if (allMovies == null || allMovies.Count == 0)
+            {
+                this.LoadMovies();
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
