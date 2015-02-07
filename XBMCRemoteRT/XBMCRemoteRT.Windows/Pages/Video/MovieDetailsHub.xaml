@@ -50,11 +50,7 @@
 
 
                             <Border BorderThickness="10" BorderBrush="DimGray" Background="DimGray">
-                                <Image Stretch="UniformToFill">
-                                    <Image.Source>
-                                        <BitmapImage DecodePixelType="Logical" DecodePixelHeight="300" UriSource="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}}"/>
-                                    </Image.Source>
-                                </Image>
+                                <Image Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h175}"/>
                             </Border>
 
                             <StackPanel Grid.Row="0" Grid.Column="1">

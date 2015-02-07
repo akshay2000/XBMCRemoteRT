@@ -47,11 +47,7 @@
                         <DataTemplate>
                             <Grid x:Name="MovieWrapper" Height="250" Width="400" Margin="0,0,0,12" Tapped="MovieWrapper_Tapped" >
                                 <Border BorderThickness="10" BorderBrush="DimGray" Background="DimGray" VerticalAlignment="Top">
-                                    <Image Stretch="UniformToFill">
-                                        <Image.Source>
-                                            <BitmapImage DecodePixelWidth="380" DecodePixelType="Logical" UriSource="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}}"/>
-                                        </Image.Source>
-                                    </Image>
+                                    <Image Stretch="UniformToFill" Source="{Binding Art.Banner, Converter={StaticResource Thumbnail}, ConverterParameter=h175}"/>
                                 </Border>
                                 <Rectangle Fill="#FF1F1F1F" Opacity="0.7" />
                                 <Grid HorizontalAlignment="Left" VerticalAlignment="Center" >

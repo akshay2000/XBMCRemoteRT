@@ -26,11 +26,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="10" BorderBrush="DimGray" Background="DimGray" VerticalAlignment="Stretch">
-                    <Image Stretch="Uniform">
-                        <Image.Source>
-                            <BitmapImage DecodePixelType="Logical" UriSource="{Binding Path=Art.Banner, Converter={StaticResource AuthBitmapConverter}}"/>
-                        </Image.Source>
-                    </Image>
+                    <Image Stretch="Uniform" Source="{Binding Art.Banner, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h175}"/>
                 </Border>
 
                 <Border Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Height="40" Width="40" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}">
