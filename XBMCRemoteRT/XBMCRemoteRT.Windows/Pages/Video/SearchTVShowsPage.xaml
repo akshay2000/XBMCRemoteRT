@@ -8,11 +8,8 @@
     xmlns:common="using:XBMCRemoteRT.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:XBMCRemoteRT.UserControls"
     mc:Ignorable="d">
-
-    <Page.Resources>
-        <x:String x:Key="AppName">search tv shows</x:String>
-    </Page.Resources>
 
     <!--
         This grid acts as a root panel for the page that defines two rows:
@@ -27,6 +24,7 @@
         </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
+            <RowDefinition Height="45"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -42,19 +40,16 @@
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+            <TextBlock Text="{StaticResource AppName}" Style="{StaticResource SubheaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,90"/>
+            <TextBlock x:Name="pageTitle" Text="search tv shows" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-
-        <!--Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" x:Name="SearchTVShowsTextBox" InputScope="Search" Margin="0,10,0,0" KeyUp="SearchTVShowsTextBox_KeyUp" Loaded="SearchTVShowsTextBox_Loaded" />
-            <ListView Grid.Row="1" x:Name="SearchTVShowsListView">
-                <ListView.ItemTemplate>
+        <TextBox Grid.Row="1" x:Name="SearchTVShowsTextBox" InputScope="Search" Margin="0,10,0,0" KeyUp="SearchTVShowsTextBox_KeyUp" Loaded="SearchTVShowsTextBox_Loaded" />
+        <Grid Grid.Row="2" Margin="12,15,12,0">
+            <ScrollViewer VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+                <userControls:ColumnGridView x:Name="SearchTVShowsListView" ItemsSource="{Binding}" Columns="3" SelectionMode="None">
+                    <userControls:ColumnGridView.ItemTemplate>
                     <DataTemplate>
                         <Grid x:Name="TVShowWrapper" Tapped="TVShowWrapper_Tapped" Margin="0,0,0,24">
                             <Grid.RowDefinitions>
@@ -75,8 +70,9 @@
                             <TextBlock Text="{Binding Label}" HorizontalAlignment="Right" TextAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="5,0,5,2" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16" FontWeight="Bold"/>
                         </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                    </userControls:ColumnGridView.ItemTemplate>
+                </userControls:ColumnGridView>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Page>

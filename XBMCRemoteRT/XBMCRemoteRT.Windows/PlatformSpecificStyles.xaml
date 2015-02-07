@@ -5,7 +5,7 @@
 
     <DataTemplate x:Name="SemanticZoomHeaderTemplate">
         <Grid Background="LightGray" Margin="0">
-            <TextBlock Text='{Binding Key}' Foreground="Black" Margin="30" FontSize="20"/>
+            <TextBlock Text='{Binding Key}' Foreground="Black" Margin="20" FontSize="20"/>
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="SemanticZoomedOutTemplate">

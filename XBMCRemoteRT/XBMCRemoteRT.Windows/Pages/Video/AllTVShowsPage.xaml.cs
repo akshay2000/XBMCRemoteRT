@@ -124,7 +124,11 @@ namespace XBMCRemoteRT.Pages.Video
             ProgressRing.IsActive = true;
             ConnectionManager.ManageSystemTray(true);
             allTVShows = await VideoLibrary.GetTVShows();
-            AllTVShowsListView.ItemsSource = allTVShows;
+
+            var groupedTvShows = GroupingHelper.GroupList(allTVShows, (TVShow a) => a.Label, true);
+            TvShowsCVS.Source = groupedTvShows;
+            (TvShowsSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = TvShowsCVS.View.CollectionGroups;
+
             ConnectionManager.ManageSystemTray(false);
             ProgressRing.IsActive = false;
 
