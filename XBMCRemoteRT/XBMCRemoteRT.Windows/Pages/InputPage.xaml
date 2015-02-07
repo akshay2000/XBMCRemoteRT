@@ -206,7 +206,11 @@
                 </controls:RoundButton>
                 <controls:RoundButton x:Name="PlayPauseButton" Click="PlayPauseButton_Click" Grid.Column="2" HorizontalAlignment="Center">
                     <controls:RoundButton.Content>
-                        <Image Source="{Binding CurrentPlayerProperties.Speed, Converter={StaticResource SpeedToImgSrcConverter}}"/>
+                        <SymbolIcon Symbol="{Binding CurrentPlayerProperties.Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" RenderTransformOrigin="0.5,0.5" >
+                            <SymbolIcon.RenderTransform>
+                                <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
+                            </SymbolIcon.RenderTransform>
+                        </SymbolIcon>
                     </controls:RoundButton.Content>
                 </controls:RoundButton>
                 <controls:RoundButton x:Name="StopButton" Click="StopButton_Click" Grid.Column="3" HorizontalAlignment="Center">

@@ -85,7 +85,15 @@
 
                         <Grid Grid.Row="2" Margin="-10,0">
                             <Image x:Name="PreviousButton" Source="Assets/Glyphs/appbar.transport.rew.rest.png" HorizontalAlignment="Left" Width="50" Height="48" Tapped="PreviousButton_Click"/>
-                            <Image x:Name="PlayPauseButton" Source="{Binding CurrentPlayerProperties.Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" HorizontalAlignment="Center"  Width="50" Height="48" Tapped="PlayPauseButton_Click"/>
+                            <controls:RoundButton x:Name="PlayPauseButton" Click="PlayPauseButton_Click" >
+                                <controls:RoundButton.Content>
+                                    <SymbolIcon Symbol="{Binding CurrentPlayerProperties.Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" RenderTransformOrigin="0.5,0.5" >
+                                        <SymbolIcon.RenderTransform>
+                                            <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
+                                        </SymbolIcon.RenderTransform>
+                                    </SymbolIcon>
+                                </controls:RoundButton.Content>
+                            </controls:RoundButton>
                             <Image x:Name="NextButton" Source="Assets/Glyphs/appbar.transport.ff.rest.png" HorizontalAlignment="Right"  Width="50" Height="48" Tapped="NextButton_Click"/>
                         </Grid>
                     </Grid>
