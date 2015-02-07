@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using XBMCRemoteRT.Models;
+using XBMCRemoteRT.Models.Network;
 
 namespace XBMCRemoteRT.Helpers
 {

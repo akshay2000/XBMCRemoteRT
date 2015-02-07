@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XBMCRemoteRT.Models
+namespace XBMCRemoteRT.Models.Network
 {
     public class ConnectionItem : NotifyBase
     {
@@ -92,6 +92,67 @@ namespace XBMCRemoteRT.Models
                 }
             }
         }
+
+        private MacAddress macAddress;
+        public MacAddress MACAddress
+        {
+            get { return macAddress; }
+            set
+            {
+                if (macAddress != value)
+                {
+                    macAddress = value;
+                    NotifyPropertyChanged("MACAddress");
+                }
+            }
+        }
+
+        private IPAddress subnetMask;
+        public IPAddress SubnetMask
+        {
+            get { return subnetMask; }
+            set
+            {
+                if (subnetMask != value)
+                {
+                    subnetMask = value;
+                    NotifyPropertyChanged("SubnetMask");
+                }
+            }
+        }
+
+        private bool autoWake;
+
+        public bool AutoWake
+        {
+            get { return autoWake; }
+            set
+            {
+                if (autoWake != value)
+                {
+                    autoWake = value;
+                    NotifyPropertyChanged("AutoWake");
+                }
+            }
+        }
+
+        private bool isWakable;
+
+        public bool IsWakable
+        {
+            get { return isWakable; }
+            set
+            {
+                if (isWakable != value)
+                {
+                    isWakable = value;
+                    NotifyPropertyChanged("IsWakable");
+                }
+            }
+        }
+        
+
+        public int WakeUpTime { get; set; }
 
         public bool HasCredentials()
         {

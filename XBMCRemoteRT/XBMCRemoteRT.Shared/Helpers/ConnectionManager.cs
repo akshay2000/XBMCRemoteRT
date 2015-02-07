@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
-using XBMCRemoteRT.Models;
+using XBMCRemoteRT.Models.Network;
 
 namespace XBMCRemoteRT.Helpers
 {
@@ -86,8 +86,6 @@ namespace XBMCRemoteRT.Helpers
             }
             else
             {
-                MessageDialog msg = new MessageDialog("Make sure Kodi is running and you're connected.", "Server not found");
-                await msg.ShowAsync();
                 return new JObject();
             }
         }

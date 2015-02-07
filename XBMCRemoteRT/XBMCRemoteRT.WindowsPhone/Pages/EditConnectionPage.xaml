@@ -33,7 +33,12 @@
                     <TextBox x:Name="IPTextBox" x:Uid="ServerAddress" Header="Server address" Text="{Binding IpAddress}"/>
                     <TextBox x:Name="PortTextBox" x:Uid="Port" InputScope="Number" Header="Port" Text="{Binding Port}"/>
                     <TextBox x:Name="UsernameTextBox" x:Uid="Username" Header="Username" Text="{Binding Username}"/>
-                    <TextBox x:Name="PasswordTextBox" x:Uid="Password" Header="Password" Text="{Binding Password}"/>
+                    <TextBox x:Name="PasswordTextBox" x:Uid="Password" Header="Password" Text="{Binding Password}"/>                    
+                    <TextBlock Text="WAKE ON LAN" Style="{StaticResource ResourceKey=ParagraphHeaderTextStyle}" Margin="0,12,0,0"/>
+                    <ToggleSwitch x:Name="WOLEnabledToggle" IsOn="{Binding IsWakable}" Header="Enable wake on LAN for this server"/>
+                    <TextBox x:Name="MACAddressTextBox" x:Uid="MAC" Header="MAC address" Text="{Binding MACAddress, Converter={StaticResource MACAddressConverter}}" PlaceholderText="11:22:33:44:55:66" IsEnabled="{Binding IsOn, ElementName=WOLEnabledToggle}" />
+                    <TextBox x:Name="SubnetMaskTextBox" x:Uid="SubnetMask" Header="Subnet mask" Text="{Binding SubnetMask, Converter={StaticResource IPAddressConverter}}" PlaceholderText="255.255.255.0" IsEnabled="{Binding IsOn, ElementName=WOLEnabledToggle}" />
+                    <ToggleSwitch x:Name="AutoWakeToggle" IsOn="{Binding AutoWake}" Header="Try automatic wakeup" IsEnabled="{Binding IsOn, ElementName=WOLEnabledToggle}" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>
