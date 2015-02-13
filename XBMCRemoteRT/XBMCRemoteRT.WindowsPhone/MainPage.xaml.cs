@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,6 +27,8 @@ namespace XBMCRemoteRT
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+
+        ResourceLoader loader = new Windows.ApplicationModel.Resources.ResourceLoader();
 
         public MainPage()
         {
@@ -160,9 +163,10 @@ namespace XBMCRemoteRT
 
         private async Task ConnectToServer(ConnectionItem connectionItem)
         {
-            SetPageState(PageStates.Busy, string.Format("Connecting to {0}", connectionItem.ConnectionName));
+            string connectingTo = loader.GetString("ConnectingTo");
+            SetPageState(PageStates.Busy, string.Format(connectingTo, connectionItem.ConnectionName));
 
-            string bePatientText = "It seems to be taking a while...";
+            string bePatientText = loader.GetString("BePatient");
             int wakeupTime = connectionItem.WakeUpTime < 5 ? 5 : connectionItem.WakeUpTime;
             int stepSize = 5;
 
@@ -177,23 +181,25 @@ namespace XBMCRemoteRT
                     switch (result)
                     {
                         case 10:
-                            messageText = "Please specify an IP address rather than a hostname to use the wake feature.";
+                            messageText = loader.GetString("IPErrorMessage");
                             break;
                         default:
-                            messageText = "Could not send wake request: broadcast IP not available. Errorcode " + result;
+                            messageText = loader.GetString("WOLErrorMessage") + result;
                             break;
                     }
-                    MessageDialog message = new MessageDialog(messageText, "Wake up failed");
+                    MessageDialog message = new MessageDialog(messageText, loader.GetString("WakeUpFailed"));
                     await message.ShowAsync();
                     SetPageState(PageStates.Ready);
                     return;
                 }
-                bePatientText = String.Format("Wake up usually takes {0} to {1} seconds. We're still trying...", MathExtension.CurrentStep(wakeupTime, stepSize), MathExtension.UpperStep(wakeupTime, stepSize));
+                bePatientText = String.Format(loader.GetString("WakeupPatientMessage"), MathExtension.CurrentStep(wakeupTime, stepSize), MathExtension.UpperStep(wakeupTime, stepSize));
             }
 
-            MessageDialog tryMessage = new MessageDialog("Seems like Kodi is not ready to respond yet. What would you like to do?", "Server still not up");
-            tryMessage.Commands.Add(new UICommand("keep trying"));
-            tryMessage.Commands.Add(new UICommand("stop"));
+            MessageDialog tryMessage = new MessageDialog(loader.GetString("WOLConnectionErrorMessage"), loader.GetString("WOLConnectionErrorHeader"));
+            string keepTrying = loader.GetString("KeepTryingCommand");
+            string stopCommand = loader.GetString("StopCommand");
+            tryMessage.Commands.Add(new UICommand(keepTrying));
+            tryMessage.Commands.Add(new UICommand(stopCommand));
 
             DateTime lastPopupTime = DateTime.Now;
             while (!isSuccessful)
@@ -208,7 +214,7 @@ namespace XBMCRemoteRT
                 {
                     var selectedCommand = await tryMessage.ShowAsync();
                     lastPopupTime = DateTime.Now;
-                    if (selectedCommand.Label == "stop")
+                    if (selectedCommand.Label == stopCommand)
                     {
                         break;
                     }
@@ -261,11 +267,11 @@ namespace XBMCRemoteRT
             ConnectionItem selectedConnection = (ConnectionItem)(sender as MenuFlyoutItem).DataContext;
             if (selectedConnection.SubnetMask == null || selectedConnection.MACAddress == null)
             {
-                MessageDialog message = new MessageDialog("Please specify MAC address and subnet mask to use this feature.", "More information needed");
+                MessageDialog message = new MessageDialog(loader.GetString("WOLMacNotFoundMessage"), loader.GetString("WOLMacNotFoundHeader"));
                 await message.ShowAsync();
                 return;
             }
-            SetPageState(PageStates.Busy, "Waking up...");
+            SetPageState(PageStates.Busy, loader.GetString("WakingUp"));
             uint result = await WOLHelper.WakeUp(selectedConnection);
             await Task.Delay(3500);
             SetPageState(PageStates.Ready);
@@ -275,13 +281,13 @@ namespace XBMCRemoteRT
                 switch (result)
                 {
                     case 10:
-                        messageText = "Please specify an IP address rather than a hostname to use the wake feature.";
+                        messageText = loader.GetString("IPErrorMessage");
                         break;
                     default:
-                        messageText = "Could not send wake request: broadcast IP not available. Errorcode " + result;
+                        messageText = loader.GetString("WOLErrorMessage") + result;
                         break;
                 }
-                MessageDialog message = new MessageDialog(messageText, "Wake up failed");
+                MessageDialog message = new MessageDialog(messageText, loader.GetString("WakeUpFailed"));
                 await message.ShowAsync();
             }
         }
