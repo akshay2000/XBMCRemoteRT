@@ -49,8 +49,7 @@ namespace XBMCRemoteRT.Helpers
         private static async Task<Stream> GetImageStreamAsync(Uri imageUri)
         {
             Stream imageStream = null;
-
-            // Download the image with HTTP Basic auth
+                        
             HttpClient client = new HttpClient();
             ConnectionItem con = ConnectionManager.CurrentConnection;
             if (con != null && con.HasCredentials())
