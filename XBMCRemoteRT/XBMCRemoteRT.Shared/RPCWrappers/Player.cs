@@ -198,7 +198,7 @@ namespace XBMCRemoteRT.RPCWrappers
             await Player.Open(episodeToOpen);
         }
 
-        public static async void PlaySong(Song song)
+        public static async Task PlaySong(Song song)
         {
             GlobalVariables.CurrentTracker.SendEvent(EventCategories.Programmatic, EventActions.Play, EventNames.PlaySong, 0);
             JObject songToOpen = new JObject(new JProperty("songid", song.SongId));

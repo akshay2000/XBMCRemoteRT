@@ -173,5 +173,20 @@ namespace XBMCRemoteRT.Pages.Audio
             GlobalVariables.CurrentArtist = tappedArtist;
             Frame.Navigate(typeof(ArtistDetailsHub));
         }
+
+        private void RefreshMusicAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            ReloadAll();
+        }
+
+        private async void PartyModeAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<Players> activePlayers = await Player.GetActivePlayers();
+            if (!activePlayers.Contains(Players.Audio))
+            {
+                await Player.PlaySong(allSongs[0]);
+            }
+            await Player.SetPartyMode(Players.Audio, true);
+        }
     }
 }

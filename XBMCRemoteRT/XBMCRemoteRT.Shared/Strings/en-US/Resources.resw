@@ -521,4 +521,8 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   <data name="WOLMacNotFoundMessage" xml:space="preserve">
     <value>Please specify MAC address and subnet mask to use this feature.</value>
   </data>
+  <data name="PartyModeMenuItem.Label" xml:space="preserve">
+    <value>party mode</value>
+    <comment>Start music in party mode.</comment>
+  </data>
 </root>

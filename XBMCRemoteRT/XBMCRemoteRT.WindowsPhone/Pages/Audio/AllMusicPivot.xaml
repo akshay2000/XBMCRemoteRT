@@ -136,6 +136,20 @@
                     </SemanticZoom.ZoomedOutView>
                 </SemanticZoom>
             </PivotItem>
+            
         </Pivot>
+                
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="RefreshMusicAppBarButton" x:Uid="RefreshMenuItem" Click="RefreshMusicAppBarButton_Click" Label="refresh" Icon="Refresh"/>
+                <AppBarButton x:Name="PartyModeAppBarButton" x:Uid="PartyModeMenuItem" Click="PartyModeAppBarButton_Click" Label="party mode">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Margin="3,1,0,0" Glyph="&#57449;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
