@@ -20,6 +20,7 @@ using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.RPCWrappers;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using XBMCRemoteRT.Models.Common;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -184,7 +185,11 @@ namespace XBMCRemoteRT.Pages.Audio
             List<Players> activePlayers = await Player.GetActivePlayers();
             if (!activePlayers.Contains(Players.Audio))
             {
-                await Player.PlaySong(allSongs[0]);
+                Limits limits = new Limits();
+                limits.Start = 0;
+                limits.End = 1;
+                List<Song> oneSong = await AudioLibrary.GetSongs(null, limits, null);
+                await Player.PlaySong(oneSong[0]);
             }
             await Player.SetPartyMode(Players.Audio, true);
         }
