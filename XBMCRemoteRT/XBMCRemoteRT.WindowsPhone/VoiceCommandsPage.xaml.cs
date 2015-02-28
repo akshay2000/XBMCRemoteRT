@@ -189,6 +189,12 @@ namespace XBMCRemoteRT
                         QuestionWrapper.Visibility = Windows.UI.Xaml.Visibility.Visible;
                     }
                     break;
+                case "StartParty":
+                    await Player.PlayPartyMode();
+                    ReceivedCommandTextBlock.Text = "Started party mode!";
+                    await Task.Delay(1000);
+                    Frame.Navigate(typeof(CoverPage));
+                    break;
                 default:
                     break;
             }

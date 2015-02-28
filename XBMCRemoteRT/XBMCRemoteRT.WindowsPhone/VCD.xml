@@ -26,33 +26,14 @@
       <Feedback> Playing movie {movieTopic}... </Feedback>
       <Navigate/>
     </Command>
-
-    <!--<Command Name="PlayLevel">
-      <Example> replay level two </Example>
-      <ListenFor> replay level {number} </ListenFor>
-      <Feedback> Going to level {number}... </Feedback>
-      <Navigate />
-    </Command>
-
-    <Command Name="PlayUnknownLevel">
-      <Example> replay level two </Example>
-      <ListenFor> [and] replay level {*} </ListenFor>
-      <Feedback> Unknown level; going to level selection... </Feedback>
-      <Navigate Target="LevelSelect.xaml" />
-    </Command>-->
-
-    <!--<PhraseList Label="album">
-      <Item> Meteora </Item>
-      <Item> Avril Lavigne </Item>
-      <Item> All Things Bright and Beautiful </Item>
-    </PhraseList>-->
     
-    <!--<PhraseList Label="artist">
-      <Item> Linkin Park </Item>
-      <Item> Avril Lavigne </Item>
-      <Item> Owl City </Item>
-    </PhraseList>-->
-
+    <Command Name="StartParty">
+      <Example> start the party </Example>
+      <ListenFor> start [the] party </ListenFor>
+      <Feedback> Starting party mode </Feedback>
+      <Navigate/>
+    </Command>
+  
     <PhraseTopic Label="movieTopic" Scenario="Search"> 
         <Subject>Movies</Subject>
     </PhraseTopic>
@@ -87,33 +68,14 @@
       <Feedback> Playing movie {movieTopic}... </Feedback>
       <Navigate/>
     </Command>
-
-    <!--<Command Name="PlayLevel">
-      <Example> replay level two </Example>
-      <ListenFor> replay level {number} </ListenFor>
-      <Feedback> Going to level {number}... </Feedback>
-      <Navigate />
-    </Command>
-
-    <Command Name="PlayUnknownLevel">
-      <Example> replay level two </Example>
-      <ListenFor> [and] replay level {*} </ListenFor>
-      <Feedback> Unknown level; going to level selection... </Feedback>
-      <Navigate Target="LevelSelect.xaml" />
-    </Command>-->
-
-    <!--<PhraseList Label="album">
-      <Item> Meteora </Item>
-      <Item> Avril Lavigne </Item>
-      <Item> All Things Bright and Beautiful </Item>
-    </PhraseList>-->
     
-    <!--<PhraseList Label="artist">
-      <Item> Linkin Park </Item>
-      <Item> Avril Lavigne </Item>
-      <Item> Owl City </Item>
-    </PhraseList>-->
-
+    <Command Name="StartParty">
+      <Example> start the party </Example>
+      <ListenFor> start [the] party </ListenFor>
+      <Feedback> Starting party mode </Feedback>
+      <Navigate/>
+    </Command>
+    
     <PhraseTopic Label="movieTopic" Scenario="Search"> 
         <Subject>Movies</Subject>
     </PhraseTopic>
