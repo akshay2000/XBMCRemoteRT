@@ -8,6 +8,13 @@ namespace XBMCRemoteRT.Models.Common
 {
     public class Limits
     {
+        public Limits() { }
+
+        public Limits(int start, int end)
+        {
+            Start = start;
+            End = end;
+        }
         public int Start { get; set; }
         public int End { get; set; }
     }

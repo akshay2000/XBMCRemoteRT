@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models;
 using XBMCRemoteRT.Models.Audio;
+using XBMCRemoteRT.Models.Common;
 using XBMCRemoteRT.Models.Video;
 
 namespace XBMCRemoteRT.RPCWrappers
@@ -203,6 +204,18 @@ namespace XBMCRemoteRT.RPCWrappers
             GlobalVariables.CurrentTracker.SendEvent(EventCategories.Programmatic, EventActions.Play, EventNames.PlaySong, 0);
             JObject songToOpen = new JObject(new JProperty("songid", song.SongId));
             await Player.Open(songToOpen);
+        }
+
+        public static async Task PlayPartyMode()
+        {
+            List<Players> activePlayers = await Player.GetActivePlayers();
+            if (!activePlayers.Contains(Players.Audio))
+            {
+                Limits limits = new Limits(0, 1);
+                List<Song> oneSong = await AudioLibrary.GetSongs(null, limits, null);
+                await Player.PlaySong(oneSong[0]);
+            }
+            await SetPartyMode(Players.Audio, true);
         }
     }
 }

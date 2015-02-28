@@ -182,16 +182,7 @@ namespace XBMCRemoteRT.Pages.Audio
 
         private async void PartyModeAppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Players> activePlayers = await Player.GetActivePlayers();
-            if (!activePlayers.Contains(Players.Audio))
-            {
-                Limits limits = new Limits();
-                limits.Start = 0;
-                limits.End = 1;
-                List<Song> oneSong = await AudioLibrary.GetSongs(null, limits, null);
-                await Player.PlaySong(oneSong[0]);
-            }
-            await Player.SetPartyMode(Players.Audio, true);
+            await Player.PlayPartyMode();
         }
     }
 }

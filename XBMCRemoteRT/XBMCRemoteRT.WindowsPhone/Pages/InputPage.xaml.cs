@@ -220,7 +220,7 @@ namespace XBMCRemoteRT.Pages
         private async void StopButton_Click(object sender, RoutedEventArgs e)
         {
             await Player.Stop(GlobalVariables.CurrentPlayerState.PlayerType);
-            await PlayerHelper.RefreshPlayerState();
+          //  await PlayerHelper.RefreshPlayerState();
         }
 
         private async void SpeedUpButton_Click(object sender, RoutedEventArgs e)

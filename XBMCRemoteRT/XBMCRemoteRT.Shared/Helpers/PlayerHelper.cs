@@ -24,8 +24,8 @@ namespace XBMCRemoteRT.Helpers
             {
                 var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
                 var nothingIsPlaying = loader.GetString("NothingIsPlaying");
-                GlobalVariables.CurrentPlayerState.CurrentPlayerItem = new PlayerItem { Title = nothingIsPlaying };
-                GlobalVariables.CurrentPlayerState.PlayerType = Players.None;
+                //GlobalVariables.CurrentPlayerState.CurrentPlayerItem = new PlayerItem { Title = nothingIsPlaying };
+                //GlobalVariables.CurrentPlayerState.PlayerType = Players.None;
             }
         }
 
