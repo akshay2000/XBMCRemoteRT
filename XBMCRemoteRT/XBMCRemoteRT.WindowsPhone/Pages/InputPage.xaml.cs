@@ -360,6 +360,7 @@ namespace XBMCRemoteRT.Pages
         private string audioLibClean;// = "clean audio library";
         private string videoLibClean;// ="clean video library";
         private string showSubtitleSerach;// = "download subtitles";
+        private string showVideoInfo;// = "show codec info";
 
         private void PopulateFlyout()
         {
@@ -369,14 +370,15 @@ namespace XBMCRemoteRT.Pages
             audioLibClean = loader.GetString("CleanAudioLibrary");
             videoLibClean = loader.GetString("CleanVideoLibrary");
             showSubtitleSerach = loader.GetString("DownloadSubtitles");
+            showVideoInfo = loader.GetString("ShowCodecInfo");
 
-            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach };
+            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo };
         }
 
         private void AdvancedMenuFlyout_ItemsPicked(ListPickerFlyout sender, ItemsPickedEventArgs args)
         {
             string pickedCommand = (string)AdvancedMenuFlyout.SelectedItem;
-            
+
             if (pickedCommand == audioLibUpdate)
                 AudioLibrary.Scan();
             else if (pickedCommand == videoLibUpdate)
@@ -387,6 +389,8 @@ namespace XBMCRemoteRT.Pages
                 VideoLibrary.Clean();
             else if (pickedCommand == showSubtitleSerach)
                 GUI.ShowSubtitleSearch();
+            else if (pickedCommand == showVideoInfo)
+                Input.ExecuteAction("codecinfo");
         }
     }
 }

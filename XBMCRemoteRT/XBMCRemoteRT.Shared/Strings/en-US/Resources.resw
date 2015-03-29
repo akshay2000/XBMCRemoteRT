@@ -525,4 +525,7 @@ And to top it all, the app is fully open source. You can view, edit and modify e
     <value>party mode</value>
     <comment>Start music in party mode.</comment>
   </data>
+  <data name="ShowCodecInfo" xml:space="preserve">
+    <value>show codec info</value>
+  </data>
 </root>
