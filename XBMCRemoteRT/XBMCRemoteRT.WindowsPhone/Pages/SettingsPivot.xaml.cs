@@ -86,29 +86,30 @@ namespace XBMCRemoteRT.Pages
         //Crudest but thinnest way to manage button states
         private void LoadButtonCheckedStates()
         {
-            string[] buttons = ((string)SettingsHelper.GetValue("ButtonsToShow", "GoBack, Home, TextInput")).Split(',');
+            string[] buttons = ((string)SettingsHelper.GetValue("ButtonsToShow", "Home, TextInput")).Split(',');
             foreach (string button in buttons)
             {
                 CheckBox chk = this.FindName(button.Trim() + "CheckBox") as CheckBox;
-                chk.IsChecked = true;
+                if(chk != null)
+                    chk.IsChecked = true;
             }
         }
 
         private void SaveButtonCheckedStates()
         {
             string buttons = string.Empty;
-            if ((bool)GoBackCheckBox.IsChecked)
-                buttons = buttons + "GoBack";
-            if ((bool)HomeCheckBox.IsChecked)
-                buttons = buttons + "," + "Home";
-            if ((bool)TextInputCheckBox.IsChecked)
-                buttons = buttons + "," + "TextInput";
+            if ((bool)OSDCheckBox.IsChecked)
+                buttons = buttons + "OSD";
+            //if ((bool)HomeCheckBox.IsChecked)
+            //    buttons = buttons + "," + "Home";
+            //if ((bool)TextInputCheckBox.IsChecked)
+            //    buttons = buttons + "," + "TextInput";
             if ((bool)SubtitlesCheckBox.IsChecked)
                 buttons = buttons + "," + "Subtitles";
             if ((bool)InfoCheckBox.IsChecked)
                 buttons = buttons + "," + "Info";
-            if ((bool)AdvancedCheckBox.IsChecked)
-                buttons = buttons + "," + "Advanced";
+            //if ((bool)AdvancedCheckBox.IsChecked)
+            //    buttons = buttons + "," + "Advanced";
             SettingsHelper.SetValue("ButtonsToShow", buttons);
         }
 

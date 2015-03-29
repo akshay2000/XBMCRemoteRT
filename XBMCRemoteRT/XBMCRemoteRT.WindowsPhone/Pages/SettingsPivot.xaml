@@ -145,25 +145,21 @@
                         <TextBlock x:Uid="SettingsButtons" Text="BUTTONS" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
                         <TextBlock x:Uid="SettingsButtonsSub" Text="choose what buttons appear on remote" Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}" Pivot.SlideInAnimationGroup="GroupTwo" Opacity="0.6"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,8,0,0" Pivot.SlideInAnimationGroup="GroupTwo">
-                            <CheckBox x:Name="GoBackCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
-                                <CheckBox.Content>
-                                    <SymbolIcon Symbol="Undo"  RenderTransformOrigin="0.5,0.5">
-                                        <SymbolIcon.RenderTransform>
-                                            <CompositeTransform Rotation="45"/>
-                                        </SymbolIcon.RenderTransform>
-                                    </SymbolIcon>
-                                </CheckBox.Content>
-                            </CheckBox>
-                            <CheckBox x:Name="HomeCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
+                            <!--<CheckBox x:Name="HomeCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
                                 <CheckBox.Content>
                                     <SymbolIcon Symbol="Home"/>
                                 </CheckBox.Content>
-                            </CheckBox>
-                            <CheckBox x:Name="TextInputCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
+                            </CheckBox>-->
+                            <CheckBox x:Name="OSDCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
+                                <CheckBox.Content>
+                                    <SymbolIcon Symbol="Page2" />                                   
+                                </CheckBox.Content>
+                            </CheckBox>                           
+                            <!--<CheckBox x:Name="TextInputCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
                                 <CheckBox.Content>
                                     <SymbolIcon Symbol="Rename"/>
                                 </CheckBox.Content>
-                            </CheckBox>
+                            </CheckBox>-->
                             <CheckBox x:Name="SubtitlesCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
                                 <CheckBox.Content>
                                     <SymbolIcon Symbol="ClosedCaption"/>
@@ -174,11 +170,11 @@
                                     <SymbolIcon Symbol="DockBottom"/>
                                 </CheckBox.Content>
                             </CheckBox>
-                            <CheckBox x:Name="AdvancedCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
+                            <!--<CheckBox x:Name="AdvancedCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
                                 <CheckBox.Content>
                                     <SymbolIcon Symbol="List"/>
                                 </CheckBox.Content>
-                            </CheckBox>
+                            </CheckBox>-->
                         </StackPanel >
 
                         <TextBlock x:Uid="SettingsSkipJump" Text="SKIP + JUMP" Style="{StaticResource ParagraphHeaderTextStyle}" Margin="0,24,0,0" Pivot.SlideInAnimationGroup="GroupOne" />

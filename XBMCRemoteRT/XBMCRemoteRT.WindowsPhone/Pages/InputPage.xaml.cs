@@ -46,7 +46,7 @@ namespace XBMCRemoteRT.Pages
 
             DataContext = GlobalVariables.CurrentPlayerState;
             PopulateFlyout();
-        }        
+        }
 
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
@@ -116,11 +116,12 @@ namespace XBMCRemoteRT.Pages
 
         private void ShowButtons()
         {
-            string[] buttons = ((string)SettingsHelper.GetValue("ButtonsToShow", "GoBack, Home, TextInput")).Split(',');
+            string[] buttons = ((string)SettingsHelper.GetValue("ButtonsToShow", "Home, TextInput")).Split(',');
             foreach (string button in buttons)
             {
                 Button btn = this.FindName(button.Trim() + "Button") as Button;
-                btn.Visibility = Visibility.Visible;
+                if (btn != null)
+                    btn.Visibility = Visibility.Visible;
             }
         }
 
@@ -130,7 +131,7 @@ namespace XBMCRemoteRT.Pages
         }
 
         #endregion
-        
+
         #region Remote Keys
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
@@ -220,7 +221,7 @@ namespace XBMCRemoteRT.Pages
         private async void StopButton_Click(object sender, RoutedEventArgs e)
         {
             await Player.Stop(GlobalVariables.CurrentPlayerState.PlayerType);
-          //  await PlayerHelper.RefreshPlayerState();
+            //  await PlayerHelper.RefreshPlayerState();
         }
 
         private async void SpeedUpButton_Click(object sender, RoutedEventArgs e)
@@ -254,7 +255,7 @@ namespace XBMCRemoteRT.Pages
         {
             int volume = await Applikation.GetVolume();
             SetVolumeSliderValue(volume);
-        }        
+        }
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -354,7 +355,6 @@ namespace XBMCRemoteRT.Pages
             AdvancedMenuFlyout.SelectedItem = null;
         }
 
-        
         private string audioLibUpdate;// = "update audio library";
         private string videoLibUpdate;// = "update video library";
         private string audioLibClean;// = "clean audio library";

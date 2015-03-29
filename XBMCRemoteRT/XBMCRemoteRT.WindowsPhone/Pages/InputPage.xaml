@@ -407,21 +407,17 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <AppBarButton x:Name="GoBackButton" Click="GoBackButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Visibility="Collapsed">
-                <AppBarButton.Icon>
-                    <SymbolIcon Symbol="Undo"  RenderTransformOrigin="0.5,0.5">
-                        <SymbolIcon.RenderTransform>
-                            <CompositeTransform Rotation="45"/>
-                        </SymbolIcon.RenderTransform>
-                    </SymbolIcon>
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="HomeButton" Click="HomeButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="1" Visibility="Collapsed">
+            <AppBarButton x:Name="HomeButton" Click="HomeButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="0" Visibility="Visible">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="Home"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Name="TextInputButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="2" Click="TextInputButton_Click" Visibility="Collapsed">
+            <AppBarButton x:Name="OSDButton" Click="OSDButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="1" Visibility="Collapsed">
+                <AppBarButton.Icon>
+                    <SymbolIcon Symbol="Page2"/>                        
+                </AppBarButton.Icon>
+            </AppBarButton>            
+            <AppBarButton x:Name="TextInputButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="2" Click="TextInputButton_Click" Visibility="Visible">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="Rename"/>
                 </AppBarButton.Icon>
@@ -436,7 +432,7 @@
                     <SymbolIcon Symbol="DockBottom"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Name="AdvancedButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="5" Click="AdvancedButton_Click" Visibility="Collapsed">
+            <AppBarButton x:Name="AdvancedButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="5" Click="AdvancedButton_Click" Visibility="Visible">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="List"/>
                 </AppBarButton.Icon>
@@ -473,11 +469,11 @@
                 <Ellipse Fill="{StaticResource PhoneBackgroundBrush}" Height="135" Width="135"/>
                 <AppBarButton x:Name="EnterButton" Click="EnterButton_Click" Icon="Remote" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource HugeRoundButton}"/>
             </Grid>
-            <AppBarButton x:Name="OSDButton" Click="OSDButton_Click" Margin="24,0,0,10" Style="{StaticResource ExtraLargeRoundButton}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <AppBarButton x:Name="GoBackButton" Click="GoBackButton_Click" Margin="24,0,0,10" Style="{StaticResource ExtraLargeRoundButton}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
                 <AppBarButton.Icon>
-                    <SymbolIcon Symbol="Page2"  RenderTransformOrigin="0.5,0.5">
+                    <SymbolIcon Symbol="Undo"  RenderTransformOrigin="0.5,0.5">
                         <SymbolIcon.RenderTransform>
-                            <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
+                            <CompositeTransform ScaleX="1.6" ScaleY="1.6" Rotation="45"/>
                         </SymbolIcon.RenderTransform>
                     </SymbolIcon>
                 </AppBarButton.Icon>
