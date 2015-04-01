@@ -445,22 +445,22 @@
         <!--Dpad and big buttons-->
         <Grid Grid.Row="3">
             <Grid Margin="0,20,0,0" Height="255" Width="260" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <Button x:Name="UpButton" Click="UpButton_Click" HorizontalAlignment="Center" VerticalAlignment="Top" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <Button x:Name="UpButton" Click="UpButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Center" VerticalAlignment="Top" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
                     <Button.RenderTransform>
                         <CompositeTransform Rotation="45"/>
                     </Button.RenderTransform>
                 </Button>
-                <Button x:Name="RightButton" Click="RightButton_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <Button x:Name="RightButton" Click="RightButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Right" VerticalAlignment="Center" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
                     <Button.RenderTransform>
                         <CompositeTransform Rotation="135"/>
                     </Button.RenderTransform>
                 </Button>
-                <Button x:Name="DownButton" Click="DownButton_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <Button x:Name="DownButton" Click="DownButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
                     <Button.RenderTransform>
                         <CompositeTransform Rotation="225"/>
                     </Button.RenderTransform>
                 </Button>
-                <Button x:Name="LeftButton" Click="LeftButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <Button x:Name="LeftButton" Click="LeftButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Left" VerticalAlignment="Center" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
                     <Button.RenderTransform>
                         <CompositeTransform Rotation="-45"/>
                     </Button.RenderTransform>

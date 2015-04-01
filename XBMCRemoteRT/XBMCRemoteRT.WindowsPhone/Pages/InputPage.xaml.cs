@@ -140,7 +140,7 @@ namespace XBMCRemoteRT.Pages
 
         private void UpButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.Up);
+            string name = ((Button)sender).Name;
         }
 
         private void RightButton_Click(object sender, RoutedEventArgs e)
@@ -391,6 +391,47 @@ namespace XBMCRemoteRT.Pages
                 GUI.ShowSubtitleSearch();
             else if (pickedCommand == showVideoInfo)
                 Input.ExecuteAction("codecinfo");
+        }
+
+        //private InputCommands heldCommand;
+        private bool isHolding = false;
+
+        private void ArrowButton_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            if (e.HoldingState == Windows.UI.Input.HoldingState.Started)
+            {
+                isHolding = true;
+                string buttonName = ((Button)sender).Name;
+                switch (buttonName)
+                {
+                    case "UpButton":
+                        fire(InputCommands.Up);
+                        break;
+                    case "RightButton":
+                        fire(InputCommands.Right);
+                        break;
+                    case "DownButton":
+                        fire(InputCommands.Down);
+                        break;
+                    case "LeftButton":
+                        fire(InputCommands.Left);
+                        break;
+                }
+            }
+
+            if (e.HoldingState == Windows.UI.Input.HoldingState.Completed)
+            {
+                isHolding = false;
+            }
+        }
+
+        private async void fire(InputCommands command)
+        {
+            while (isHolding)
+            {
+                await Input.ExecuteAction(command);
+                await Task.Delay(250);
+            }
         }
     }
 }
