@@ -69,6 +69,7 @@
                         </Rectangle>-->
                         <!--<Rectangle Fill="{StaticResource PhoneForegroundBrush}" Grid.Column="1" Width="50" Height="48" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="12,60,0,0" OpacityMask="{Binding CurrentPlayerProperties.Repeat, Converter={StaticResource RepeatStateConverter}}" />-->
                         <StackPanel Grid.Row="1" Margin="0,10">
+                            <Slider x:Name="ProgressSlider" Minimum="0" Loaded="ProgressSlider_Loaded"/>
                             <TextBlock x:Name="NowPlayingItemNameTextBlock" FontSize="25" Text="{Binding CurrentPlayerItem.Title}"/>
                             <Grid>
                                 <TextBlock x:Name="NowPlayingByNameTextBlock" FontSize="18" Opacity="0.7" Text="{Binding CurrentPlayerItem.Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=false}"/>

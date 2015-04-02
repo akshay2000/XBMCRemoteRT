@@ -97,6 +97,15 @@ namespace XBMCRemoteRT.RPCWrappers
             return properties;
         }
 
+        public async static Task<JObject> GetProperties(Players player, JArray properties)
+        {
+            JObject parameters = new JObject(
+                new JProperty("playerid", getIdFromPlayers(player)),
+                new JProperty("properties", properties));
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("Player.GetProperties", parameters);
+            return (JObject)responseObject["result"];
+        }
+
         public async static Task SetSpeed(Players player, int speed)
         {
             if (player == Players.None)

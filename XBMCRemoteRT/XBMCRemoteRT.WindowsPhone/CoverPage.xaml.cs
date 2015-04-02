@@ -27,6 +27,7 @@ using XBMCRemoteRT.Models;
 using GoogleAnalytics.Core;
 using GoogleAnalytics;
 using Windows.UI.Xaml.Media.Animation;
+using Newtonsoft.Json.Linq;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -41,6 +42,7 @@ namespace XBMCRemoteRT
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
         private DispatcherTimer timer;
+        
 
         public CoverPage()
         {
@@ -52,8 +54,6 @@ namespace XBMCRemoteRT
 
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
 
-            //this.TempImage.DataContext = new { ImageUri = "http://10.0.0.2:8080/image/image://http%253a%252f%252fthetvdb.com%252fbanners%252fposters%252f121361-27.jpg" };
-
             if (GlobalVariables.CurrentPlayerState == null)
                 GlobalVariables.CurrentPlayerState = new PlayerState();
             DataContext = GlobalVariables.CurrentPlayerState;
@@ -61,7 +61,42 @@ namespace XBMCRemoteRT
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(10);
             timer.Start();
-            timer.Tick += timer_Tick;
+            timer.Tick += timer_Tick;            
+        }
+
+        private DispatcherTimer progressTimer;
+        private Slider progressSlider;
+
+        private void ProgressSlider_Loaded(object sender, RoutedEventArgs e)
+        {
+            progressTimer = new DispatcherTimer();
+            progressTimer.Interval = TimeSpan.FromSeconds(1);
+            progressTimer.Start();
+            progressTimer.Tick += progressTimer_Tick;
+            progressSlider = (Slider)sender;
+        }
+
+        void progressTimer_Tick(object sender, object e)
+        {
+            DoProgress();
+        }
+
+        private int totalSeconds = 0;
+        private async void DoProgress()
+        {
+            JArray properties = new JArray("time", "totaltime");
+            JObject result = await Player.GetProperties(GlobalVariables.CurrentPlayerState.PlayerType, properties);
+            JObject totalTime = (JObject)result["totaltime"];
+            int totalTimeInSeconds = ((int)totalTime["hours"] * 3600) + ((int)totalTime["minutes"] * 60) + (int)totalTime["seconds"];
+            if (totalSeconds != totalTimeInSeconds)
+            {
+                totalSeconds = totalTimeInSeconds;
+                progressSlider.Maximum = totalTimeInSeconds;
+            }
+
+            JObject time = (JObject)result["time"];
+            int timeInSeconds = ((int)time["hours"] * 3600) + ((int)time["minutes"] * 60) + (int)time["seconds"];
+            progressSlider.Value = timeInSeconds;
         }
 
         private void timer_Tick(object sender, object e)
@@ -248,6 +283,6 @@ namespace XBMCRemoteRT
         {
             NavigationTransitionInfo transitionInfo = new SlideNavigationTransitionInfo();
             Frame.Navigate(typeof(MainPage), false, transitionInfo);
-        }
+        }        
     }
 }
