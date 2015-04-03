@@ -155,11 +155,10 @@
                                                Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h138}"/>
                                     </Border>
                                     <TextBlock Grid.Row="1" 
-                                               Height="35"
-                                               Margin="0,5,0,0" 
+                                               Height="40"
                                                HorizontalAlignment="Left" VerticalAlignment="Top" 
                                                Text="{Binding Label}" 
-                                               TextWrapping="NoWrap"/>
+                                               TextWrapping="Wrap"/>
                                     <StackPanel Orientation="Horizontal" 
                                                 Background="DimGray" 
                                                 Margin="0,7,0,0" 
