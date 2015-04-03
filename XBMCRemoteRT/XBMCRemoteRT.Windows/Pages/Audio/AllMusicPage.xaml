@@ -29,7 +29,7 @@
         </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -50,13 +50,18 @@
             <TextBlock x:Name="pageTitle" Text="music" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" 
+              Height="50"
+              VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Filter by: " Grid.Column="0" FontSize="20" Margin="12"/>
-            <ComboBox x:Name="FilterComboBox" Grid.Column="1" SelectionChanged="FilterComboBox_OnSelectionChanged"  Width="300" HorizontalAlignment="Left">
+            <ComboBox x:Name="FilterComboBox" 
+                      Grid.Column="1" 
+                      SelectionChanged="FilterComboBox_OnSelectionChanged"
+                      Width="200" 
+                      HorizontalAlignment="Left">
                 <x:String>Artist</x:String>
                 <x:String>Album</x:String>
                 <x:String>Song</x:String>
@@ -66,16 +71,27 @@
             <SemanticZoom x:Name="ArtistsSemanticZoom">
                 <SemanticZoom.ZoomedInView>
                     <GridView ItemsSource="{Binding Source={StaticResource ArtistsCVS}}" SelectionMode="None">
+                        <GridView.Header>
+                            <Grid Width="113"></Grid>
+                        </GridView.Header>
                         <GridView.GroupStyle>
                             <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
                         </GridView.GroupStyle>
                         <GridView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel x:Name="ArtistItemWrapper" Orientation="Horizontal" Tapped="ArtistName_Tapped">
+                                <StackPanel x:Name="ArtistItemWrapper" 
+                                            Orientation="Horizontal" 
+                                            Tapped="ArtistName_Tapped"
+                                            Margin="0,0,0,12"
+                                            Width="300">
                                     <Border x:Name="PlayArtistBorder" BorderThickness="2" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                         <BitmapIcon Margin="12" UriSource="ms-appx:///Assets/Icons/singer.png" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
                                     </Border>
-                                    <TextBlock x:Name="ArtistNameTextBlock" Text="{Binding Label}" FontSize="28" Margin="10,0,0,0" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="ArtistNameTextBlock" Text="{Binding Label}" 
+                                               FontSize="25" 
+                                               Margin="10,0,0,0" 
+                                               VerticalAlignment="Center"
+                                               FontWeight="SemiBold"/>
                                 </StackPanel>
                             </DataTemplate>
                         </GridView.ItemTemplate>
