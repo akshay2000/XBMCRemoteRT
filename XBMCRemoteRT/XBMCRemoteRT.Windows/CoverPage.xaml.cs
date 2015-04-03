@@ -145,19 +145,19 @@ namespace XBMCRemoteRT
         {
             if (Albums == null)
             {
-                Albums = await AudioLibrary.GetRecentlyAddedAlbums(new Limits { Start = 0, End = 8 });
+                Albums = await AudioLibrary.GetRecentlyAddedAlbums(new Limits { Start = 0, End = 16 });
                 MusicHubSection.DataContext = Albums;
             }
 
             if (Episodes == null)
             {
-                Episodes = await VideoLibrary.GetRecentlyAddedEpisodes(new Limits { Start = 0, End = 10 });
+                Episodes = await VideoLibrary.GetRecentlyAddedEpisodes(new Limits { Start = 0, End = 16 });
                 TVHubSection.DataContext = Episodes;
             }
 
             if (Movies == null)
             {
-                Movies = await VideoLibrary.GetRecentlyAddedMovies(new Limits { Start = 0, End = 8 });
+                Movies = await VideoLibrary.GetRecentlyAddedMovies(new Limits { Start = 0, End = 16 });
                 MoviesHubSection.DataContext = Movies;
             }
         }
