@@ -11,6 +11,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="using:Coding4Fun.Toolkit.Controls"
     xmlns:userControls="using:XBMCRemoteRT.UserControls"
+    d:DataContext="{d:DesignData Source=DesignData/SamplePlayerState.xaml}"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -133,7 +134,7 @@
                 </HubSection.Header>
                 <DataTemplate>
                     <userControls:ColumnGridView ItemsSource="{Binding}" 
-                                                 Columns="4" Width="600" 
+                                                 Columns="4" Width="600"
                                                  SelectionMode="None">
                         <userControls:ColumnGridView.ItemTemplate>
                             <!-- TODO: Extract this and oher templates to be reused on artist and all albums page -->

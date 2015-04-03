@@ -1,0 +1,17 @@
+﻿<model:PlayerState xmlns:model="using:XBMCRemoteRT.Models"
+                   xmlns:sys="using:System"
+                   PlayerType="Audio">
+    <model:PlayerState.CurrentPlayerItem>
+        <model:PlayerItem Title="Saddest Song Ever"
+                          Fanart="http://lorempixel.com/600/400"
+                          Thumbnail="http://lorempixel.com/300/300">
+            <model:PlayerItem.Artist>
+                <sys:String>Esteemed Artist</sys:String>
+            </model:PlayerItem.Artist>
+        </model:PlayerItem>
+    </model:PlayerState.CurrentPlayerItem>
+    <model:PlayerState.CurrentPlayerProperties>
+        <model:PlayerProperties Speed="1"/>
+    </model:PlayerState.CurrentPlayerProperties>
+</model:PlayerState>
+    

@@ -85,4 +85,14 @@
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ru-RU\Resources.resw" />
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\sv-SE\Resources.resw" />
   </ItemGroup>
+  <ItemGroup>
+    <DesignData Include="$(MSBuildThisFileDirectory)DesignData\SampleAlbum.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </DesignData>
+    <DesignData Include="$(MSBuildThisFileDirectory)DesignData\SamplePlayerState.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </DesignData>
+  </ItemGroup>
 </Project>

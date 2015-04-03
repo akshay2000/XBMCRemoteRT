@@ -69,7 +69,7 @@ namespace XBMCRemoteRT.Pages.Audio
             SongsListView.ItemsSource = songsInAlbum;
 
             currentAlbum = await AudioLibrary.GetAlbumDetails(GlobalVariables.CurrentAlbum.AlbumId);
-            AlbumInfoStackPanel.DataContext = currentAlbum;
+            this.DataContext = currentAlbum;
             ConnectionManager.ManageSystemTray(false);
         }
 
@@ -117,6 +117,11 @@ namespace XBMCRemoteRT.Pages.Audio
         {
             var tappedSong = (sender as StackPanel).DataContext as Song;
             Player.PlaySong(tappedSong);
+        }
+
+        private void PlayAlbumButton_Click(object sender, RoutedEventArgs e)
+        {
+            Player.PlayAlbum(currentAlbum);
         }
     }
 }

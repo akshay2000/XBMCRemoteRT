@@ -6,8 +6,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:XBMCRemoteRT.Pages.Audio"
     xmlns:common="using:XBMCRemoteRT.Common"
+    xmlns:controls="using:Coding4Fun.Toolkit.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignData Source=DesignData/SampleAlbum.xaml}"
     mc:Ignorable="d">
 
     <!--
@@ -27,6 +29,9 @@
         </Grid.RowDefinitions>
 
 
+        <!-- Fanart background -->
+        <Grid Grid.RowSpan="2"
+              Background="{Binding Fanart, Converter={StaticResource StringToImageBrushConverter}}"/>
         <!-- Back button and page title -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -58,10 +63,33 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
             <GridView.Header>
-                <StackPanel Width="480" Margin="0,4,14,0" x:Name="AlbumInfoStackPanel">
-                    <TextBlock Text="{Binding Label}" FontSize="36" TextWrapping="Wrap" LineHeight="40" FontFamily="Segoe WP SemiLight" Margin="14,-10,0,0" LineStackingStrategy="BaselineToBaseline"/>
-                    <Image Width="400" Height="400" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h400}"/>
-                    <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" Margin="16,-5,0,0" TextWrapping="Wrap" />
+                <StackPanel x:Name="AlbumInfoStackPanel"
+                            Width="400"
+                            Margin="42,0">
+                    <Image Width="400" Height="400"
+                           Margin="0,0,0,12"
+                           HorizontalAlignment="Left"
+                           Stretch="UniformToFill" 
+                           Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h400}"/>
+                    <TextBlock Text="{Binding Label}" 
+                               FontSize="25" 
+                               TextWrapping="Wrap" 
+                               LineHeight="40" 
+                               FontFamily="Segoe WP SemiLight" 
+                               Margin="0,0,0,0" LineStackingStrategy="BaselineToBaseline"/>
+                    <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}"
+                               FontSize="18"
+                               Opacity="0.7"
+                               TextWrapping="Wrap" />
+                    <StackPanel Orientation="Horizontal"
+                                Margin="-10,12">
+                        <controls:RoundButton x:Name="PlayAlbumButton"
+                                              Click="PlayAlbumButton_Click">
+                            <controls:RoundButton.Content>
+                                <SymbolIcon Symbol="Play" />
+                            </controls:RoundButton.Content>
+                        </controls:RoundButton>
+                    </StackPanel>
                 </StackPanel>
             </GridView.Header>
             <GridView.ItemContainerStyle>
