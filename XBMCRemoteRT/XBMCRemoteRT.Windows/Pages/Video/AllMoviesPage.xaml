@@ -14,25 +14,6 @@
         <CollectionViewSource x:Name="AllCVS" IsSourceGrouped="True"/>
         <CollectionViewSource x:Name="NewCVS" IsSourceGrouped="True"/>
         <CollectionViewSource x:Name="WatchedCVS" IsSourceGrouped="True"/>
-        <DataTemplate x:Key="MovieItemTemplate">
-            <Grid x:Name="MovieWrapper" Height="210" Width="150" Margin="0,0,12,12" Tapped="MovieWrapper_Tapped" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="160"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Border Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="10" BorderBrush="DimGray" Background="DimGray" VerticalAlignment="Stretch">
-                    <Image Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h175}"/>
-                </Border>
-                <Border Margin="10,0,0,0" Grid.Row="1" Grid.Column="0" Height="40" Width="40" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}">
-                    <Image Source="/Assets/Icons/movie.png" Margin="10"/>
-                </Border>
-                <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,5,5,0" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
-            </Grid>
-        </DataTemplate>
     </Page.Resources>
 
     <!--
@@ -85,7 +66,7 @@
         <Grid Grid.Row="2" x:Name="AllCVSGrid">
             <SemanticZoom x:Name="AllSemanticZoom">
                 <SemanticZoom.ZoomedInView>
-                    <GridView ItemsSource="{Binding Source={StaticResource AllCVS}}" ItemTemplate="{StaticResource MovieItemTemplate}" SelectionMode="None">
+                    <GridView ItemsSource="{Binding Source={StaticResource AllCVS}}" ItemTemplate="{StaticResource MoviePosterTemplate}" SelectionMode="None">
                         <GridView.GroupStyle>
                             <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
                         </GridView.GroupStyle>
@@ -99,7 +80,7 @@
         <Grid Grid.Row="2" x:Name="NewCVSGrid">
             <SemanticZoom x:Name="NewSemanticZoom">
                 <SemanticZoom.ZoomedInView>
-                    <GridView ItemsSource="{Binding Source={StaticResource NewCVS}}" ItemTemplate="{StaticResource MovieItemTemplate}" SelectionMode="None">
+                    <GridView ItemsSource="{Binding Source={StaticResource NewCVS}}" ItemTemplate="{StaticResource MoviePosterTemplate}" SelectionMode="None">
                         <GridView.GroupStyle>
                             <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
                         </GridView.GroupStyle>
@@ -113,7 +94,7 @@
         <Grid Grid.Row="2" x:Name="WatchedCVSGrid">
             <SemanticZoom x:Name="WatchedSemanticZoom">
                 <SemanticZoom.ZoomedInView>
-                    <GridView ItemsSource="{Binding Source={StaticResource WatchedCVS}}" ItemTemplate="{StaticResource MovieItemTemplate}" SelectionMode="None">
+                    <GridView ItemsSource="{Binding Source={StaticResource WatchedCVS}}" ItemTemplate="{StaticResource MoviePosterTemplate}" SelectionMode="None">
                         <GridView.GroupStyle>
                             <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
                         </GridView.GroupStyle>
