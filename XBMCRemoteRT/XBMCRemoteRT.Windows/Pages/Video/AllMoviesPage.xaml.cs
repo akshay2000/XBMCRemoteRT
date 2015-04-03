@@ -118,13 +118,6 @@ namespace XBMCRemoteRT.Pages.Video
 
         #endregion
 
-        private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Movie tappedMovie = (sender as Grid).DataContext as Movie;
-            GlobalVariables.CurrentMovie = tappedMovie;
-            Frame.Navigate(typeof(MovieDetailsHub));
-        }
-
         private async void LoadMovies()
         {
             ProgressRing.IsActive = true;
@@ -182,6 +175,13 @@ namespace XBMCRemoteRT.Pages.Video
         private void RefreshMoviesAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             LoadMovies();
+        }
+
+        private void GridView_MovieItemClick(object sender, ItemClickEventArgs e)
+        {
+            Movie tappedMovie = e.ClickedItem as Movie;
+            GlobalVariables.CurrentMovie = tappedMovie;
+            Frame.Navigate(typeof(MovieDetailsHub));
         }
     }
 }

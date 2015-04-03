@@ -17,7 +17,7 @@
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="MoviePosterTemplate">
-        <Grid x:Name="MovieWrapper" Height="185" Width="124" Tapped="MovieWrapper_Tapped">
+        <Grid x:Name="MovieWrapper" Height="185" Width="124">
             <Border Background="DimGray" VerticalAlignment="Stretch">
                 <Image Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h185}"/>
             </Border>

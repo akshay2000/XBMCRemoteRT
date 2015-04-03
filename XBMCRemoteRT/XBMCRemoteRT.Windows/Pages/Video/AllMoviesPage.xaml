@@ -66,7 +66,11 @@
         <Grid Grid.Row="2" x:Name="AllCVSGrid">
             <SemanticZoom x:Name="AllSemanticZoom">
                 <SemanticZoom.ZoomedInView>
-                    <GridView ItemsSource="{Binding Source={StaticResource AllCVS}}" ItemTemplate="{StaticResource MoviePosterTemplate}" SelectionMode="None">
+                    <GridView ItemsSource="{Binding Source={StaticResource AllCVS}}" 
+                              ItemTemplate="{StaticResource MoviePosterTemplate}" 
+                              ItemClick="GridView_MovieItemClick"
+                              IsItemClickEnabled="True"
+                              SelectionMode="None">
                         <GridView.GroupStyle>
                             <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
                         </GridView.GroupStyle>
@@ -80,7 +84,11 @@
         <Grid Grid.Row="2" x:Name="NewCVSGrid">
             <SemanticZoom x:Name="NewSemanticZoom">
                 <SemanticZoom.ZoomedInView>
-                    <GridView ItemsSource="{Binding Source={StaticResource NewCVS}}" ItemTemplate="{StaticResource MoviePosterTemplate}" SelectionMode="None">
+                    <GridView ItemsSource="{Binding Source={StaticResource NewCVS}}"
+                              ItemTemplate="{StaticResource MoviePosterTemplate}"
+                              ItemClick="GridView_MovieItemClick"
+                              IsItemClickEnabled="True"
+                              SelectionMode="None">
                         <GridView.GroupStyle>
                             <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
                         </GridView.GroupStyle>
@@ -94,7 +102,11 @@
         <Grid Grid.Row="2" x:Name="WatchedCVSGrid">
             <SemanticZoom x:Name="WatchedSemanticZoom">
                 <SemanticZoom.ZoomedInView>
-                    <GridView ItemsSource="{Binding Source={StaticResource WatchedCVS}}" ItemTemplate="{StaticResource MoviePosterTemplate}" SelectionMode="None">
+                    <GridView ItemsSource="{Binding Source={StaticResource WatchedCVS}}" 
+                              ItemTemplate="{StaticResource MoviePosterTemplate}" 
+                              ItemClick="GridView_MovieItemClick"
+                              IsItemClickEnabled="True"
+                              SelectionMode="None">
                         <GridView.GroupStyle>
                             <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
                         </GridView.GroupStyle>
