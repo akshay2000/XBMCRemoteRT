@@ -26,6 +26,7 @@
                     <converters:AuthBitmapConverter x:Key="AuthBitmapConverter"/>
                     <converters:MacAddressConverter x:Key="MACAddressConverter"/>
                     <converters:IPAddressConverter x:Key="IPAddressConverter"/>
+                    <converters:PlayerTypeToBoolConverter x:Key="PlayerTypeToBoolConverter"/>
 
                 </ResourceDictionary>
 

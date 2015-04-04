@@ -149,7 +149,18 @@ namespace XBMCRemoteRT.Models
 
         #endregion
 
-        public Players PlayerType { get; set; }
+        private Players playerType;
+        public Players PlayerType
+        {
+            get { return playerType; }
+            set {
+                if (value != playerType)
+                {
+                    playerType = value;
+                    NotifyPropertyChanged("PlayerType");
+                }
+            }
+        }
 
         public void SetDefaultState()
         {
