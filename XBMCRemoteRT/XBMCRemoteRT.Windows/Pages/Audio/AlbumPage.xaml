@@ -27,10 +27,14 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
 
         <!-- Fanart background -->
-        <Grid Grid.RowSpan="2"
+        <Grid Grid.RowSpan="2" Grid.ColumnSpan="2"
               Background="{Binding Fanart, Converter={StaticResource StringToImageBrushConverter}}"/>
         <!-- Back button and page title -->
         <Grid Grid.Row="0">
@@ -49,54 +53,68 @@
             <TextBlock x:Name="pageTitle" Text="songs" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <GridView x:Name="SongsListView" Grid.Row="1" SelectionMode="None">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Height="70" Width="480" Margin="5">
-                        <StackPanel x:Name="SongItemWrapper" Orientation="Horizontal" Margin="0,10" Tapped="SongItemWrapper_Tapped">
-                            <Border BorderThickness="2" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
-                                <BitmapIcon Margin="12" UriSource="/Assets/Icons/musicnote.png" Foreground="{StaticResource ApplicationForegroundThemeBrush}" ></BitmapIcon>
-                            </Border>
-                            <TextBlock Text="{Binding Label}" FontSize="25" FontWeight="SemiBold" Margin="10,-2,0,0"  VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-            <GridView.Header>
-                <StackPanel x:Name="AlbumInfoStackPanel"
-                            Width="400"
-                            Margin="42,0">
-                    <Image Width="400" Height="400"
+        <StackPanel x:Name="AlbumInfoStackPanel"
+                    Grid.Row="1" Grid.Column="0"
+                    Width="400"
+                    Margin="42,0">
+            <Image Width="400" Height="400"
                            Margin="0,0,0,12"
                            HorizontalAlignment="Left"
                            Stretch="UniformToFill" 
                            Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h400}"/>
-                    <TextBlock Text="{Binding Label}" 
+            <TextBlock Text="{Binding Label}" 
                                FontSize="25" 
                                TextWrapping="Wrap" 
                                LineHeight="40" 
                                FontFamily="Segoe WP SemiLight" 
                                Margin="0,0,0,0" LineStackingStrategy="BaselineToBaseline"/>
-                    <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}"
+            <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}"
                                FontSize="18"
                                Opacity="0.7"
                                TextWrapping="Wrap" />
-                    <StackPanel Orientation="Horizontal"
+            <StackPanel Orientation="Horizontal"
                                 Margin="-10,12">
-                        <controls:RoundButton x:Name="PlayAlbumButton"
+                <controls:RoundButton x:Name="PlayAlbumButton"
                                               Click="PlayAlbumButton_Click">
-                            <controls:RoundButton.Content>
-                                <SymbolIcon Symbol="Play" />
-                            </controls:RoundButton.Content>
-                        </controls:RoundButton>
-                    </StackPanel>
-                </StackPanel>
-            </GridView.Header>
-            <GridView.ItemContainerStyle>
-                <Style TargetType="FrameworkElement">
-                    <Setter Property="Margin" Value="52,0,0,2"/>
+                    <controls:RoundButton.Content>
+                        <SymbolIcon Symbol="Play" />
+                    </controls:RoundButton.Content>
+                </controls:RoundButton>
+            </StackPanel>
+        </StackPanel>
+        <ListView x:Name="SongsListView" 
+                  Grid.RowSpan="2" Grid.Column="1"
+                  SelectionMode="None">
+            <ListView.Header>
+                <Grid Height="140"></Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Tapped="SongItemWrapper_Tapped"
+                          Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" BorderThickness="2" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" Background="Transparent" CornerRadius="24" Width="48" Height="48">
+                            <TextBlock Text="{Binding Track}" FontSize="18"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <TextBlock Grid.Column="1" Text="{Binding Label}" 
+                                   Margin="12,0"
+                                   FontSize="18" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Duration, Converter={StaticResource DurationToStringConverter}}"
+                                   FontSize="18"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
-            </GridView.ItemContainerStyle>
-        </GridView>
+            </ListView.ItemContainerStyle>
+        </ListView>
     </Grid>
 </Page>

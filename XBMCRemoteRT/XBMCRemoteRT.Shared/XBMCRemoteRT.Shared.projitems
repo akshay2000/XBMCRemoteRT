@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListTrimmer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IPAddressConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MacAddressConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\DurationToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MinutesToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RatingConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RepeatStateConverter.cs" />
