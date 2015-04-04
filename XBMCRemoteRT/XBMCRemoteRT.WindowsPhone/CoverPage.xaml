@@ -15,6 +15,11 @@
             <Setter Property="Margin" Value="5,-5,0,0"/>
             <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
         </Style>
+
+        <Style x:Key="ScrubberTimeStyle" TargetType="TextBlock">
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
     </Page.Resources>
     
     <Grid x:Name="LayoutRoot">
@@ -59,17 +64,19 @@
                                 <BitmapImage DecodePixelType="Logical" DecodePixelWidth="253" UriSource="/Assets/DefaultArt.jpg"/>
                             </Image.Source>
                         </Image>
-                        <Image Width="253" Height="253" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w253}"/>
-                            
-                        <!--Shuffle Repeat-->
-                        <!--<Rectangle Fill="{StaticResource PhoneForegroundBrush}" Grid.Column="1" Width="50" Height="48" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="12,-12,0,0" Opacity="{Binding CurrentPlayerProperties.Shuffled, Converter={StaticResource BoolToOpacityConverter}}">
-                            <Rectangle.OpacityMask>
-                                <ImageBrush ImageSource="/Assets/Glyphs/shuffle.png" Stretch="Uniform"/>
-                            </Rectangle.OpacityMask>
-                        </Rectangle>-->
-                        <!--<Rectangle Fill="{StaticResource PhoneForegroundBrush}" Grid.Column="1" Width="50" Height="48" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="12,60,0,0" OpacityMask="{Binding CurrentPlayerProperties.Repeat, Converter={StaticResource RepeatStateConverter}}" />-->
+                        <Image Width="253" Height="253" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w253}"/>                       
+                        
                         <StackPanel Grid.Row="1" Margin="0,10">
-                            <Slider x:Name="ProgressSlider" Minimum="0" Maximum="{Binding TotalTimeSeconds}" Value="{Binding TimeSeconds, Mode=TwoWay}" Loaded="ProgressSlider_Loaded" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Path=Value, ElementName=ProgressSlider, Converter={StaticResource SecondsToStringConverter}}" VerticalAlignment="Center" Style="{StaticResource ScrubberTimeStyle}"/>
+                                <Slider x:Name="ProgressSlider" Minimum="0" Maximum="{Binding TotalTimeSeconds}" Value="{Binding TimeSeconds, Mode=TwoWay}" Loaded="ProgressSlider_Loaded" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}" Grid.Column="1"/>
+                                <TextBlock Text="{Binding Path=Maximum, ElementName=ProgressSlider, Converter={StaticResource SecondsToStringConverter}}" VerticalAlignment="Center" Grid.Column="2" Style="{StaticResource ScrubberTimeStyle}"/>
+                            </Grid>
                             <TextBlock x:Name="NowPlayingItemNameTextBlock" FontSize="25" Text="{Binding Title}"/>
                             <Grid>
                                 <TextBlock x:Name="NowPlayingByNameTextBlock" FontSize="18" Opacity="0.7" Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=false}"/>

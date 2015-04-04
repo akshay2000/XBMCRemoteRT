@@ -172,7 +172,7 @@ namespace XBMCRemoteRT.Models
             Artist = new List<string>();
             Speed = -1;
             TimeSeconds = 0;
-            TotalTimeSeconds = 100;
+            TotalTimeSeconds = 0;
 
             PlayerType = Players.None;
         }

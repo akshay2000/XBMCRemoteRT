@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PlayerTypeToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RatingConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RepeatStateConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SecondsToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SpeedToSymbolIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToImageBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />

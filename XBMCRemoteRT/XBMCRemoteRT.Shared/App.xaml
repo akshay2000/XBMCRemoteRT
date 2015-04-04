@@ -27,6 +27,7 @@
                     <converters:MacAddressConverter x:Key="MACAddressConverter"/>
                     <converters:IPAddressConverter x:Key="IPAddressConverter"/>
                     <converters:PlayerTypeToBoolConverter x:Key="PlayerTypeToBoolConverter"/>
+                    <converters:SecondsToStringConverter x:Key="SecondsToStringConverter"/>
 
                 </ResourceDictionary>
 
