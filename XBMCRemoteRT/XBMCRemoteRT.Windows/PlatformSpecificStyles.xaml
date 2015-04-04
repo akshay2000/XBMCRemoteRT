@@ -31,20 +31,20 @@
     <DataTemplate x:Name="SongWithTrackTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="48"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" BorderThickness="2" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" Background="Transparent" CornerRadius="24" Width="48" Height="48">
-                <TextBlock Text="{Binding Track}" FontSize="18"
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Border>
-            <TextBlock Grid.Column="1" Text="{Binding Label}" 
-                                   Margin="12,0"
-                                   FontSize="18" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="2" Text="{Binding Duration, Converter={StaticResource DurationToStringConverter}}"
-                                   FontSize="18"
-                                   VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Track}" FontSize="36"
+                       Margin="0,-6,0,0"
+                       HorizontalAlignment="Right" VerticalAlignment="Top"/>
+            <StackPanel Grid.Column="1" 
+                        Margin="12,0">
+                <TextBlock Text="{Binding Label}"
+                           FontSize="18"/>
+                <TextBlock Text="{Binding Duration, Converter={StaticResource DurationToStringConverter}}"
+                           FontSize="12"
+                           Opacity="0.7"/>
+            </StackPanel>
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="AlbumTemplate">
