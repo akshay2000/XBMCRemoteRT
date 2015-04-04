@@ -31,12 +31,20 @@ namespace XBMCRemoteRT.Helpers
         
         public static List<ListGroup<T>> GroupList<T>(IEnumerable<T> listToGroup, GetNameDelegate<T> getName, bool sort)
         {
+            string numberKey = "0 – 9";
+            string displayNumberKey = "#";
             List<ListGroup<T>> groupedList = new List<ListGroup<T>>();
             CharacterGroupings slg = new CharacterGroupings();
             foreach (CharacterGrouping key in slg)
             {
-                if (string.IsNullOrWhiteSpace(key.Label) == false)
-                    groupedList.Add(new ListGroup<T>(key.Label));
+                if (string.IsNullOrWhiteSpace(key.Label) == false){
+                    string displayKey = key.Label;
+                    if (displayKey.Equals(numberKey))
+                    {
+                        displayKey = displayNumberKey;
+                    }
+                    groupedList.Add(new ListGroup<T>(displayKey));
+                }
             }
 
 #if WINDOWS_APP //Duct tape for Windows 8
@@ -51,6 +59,10 @@ namespace XBMCRemoteRT.Helpers
                 string itemName = GetTrimmedName(getName(item));
 
                 string groupLabel = slg.Lookup(itemName);
+                if (groupLabel.Equals(numberKey))
+                {
+                    groupLabel = displayNumberKey;
+                }
                 if (!string.IsNullOrEmpty(groupLabel))
                 {
                     var groupToAddTo = groupedList.Find(t => t.Key == groupLabel);
