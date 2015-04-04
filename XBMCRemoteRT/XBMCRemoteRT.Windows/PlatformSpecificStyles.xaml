@@ -36,7 +36,7 @@
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="AlbumTemplate">
-        <Grid x:Name="AlbumWrapper" Height="190" Width="150" >
+        <Grid x:Name="AlbumWrapper" Height="196" Width="150" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
                 <RowDefinition Height="auto"/>
@@ -45,9 +45,10 @@
                 <Image Stretch="UniformToFill" VerticalAlignment="Top" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h150}" />
             </Border>
             <TextBlock Grid.Row="1" Height="40" 
-                           HorizontalAlignment="Left" VerticalAlignment="Top" 
-                           Text="{Binding Label}" 
-                           TextWrapping="Wrap"/>
+                       Margin="0,6,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Top" 
+                       Text="{Binding Label}" 
+                       TextWrapping="Wrap"/>
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="MoviePosterTemplate">
