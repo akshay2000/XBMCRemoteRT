@@ -44,7 +44,7 @@
             <HubSection Header=" ">
                 <DataTemplate>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" 
-                                  HorizontalScrollBarVisibility="Disabled">
+                                  HorizontalScrollMode="Disabled">
                         <Grid Margin="0,0,24,12">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="400"/>
@@ -80,7 +80,8 @@
                                   IsItemClickEnabled="True"
                                   ItemClick="AlbumsGridView_ItemClick"
                                   ItemTemplate="{StaticResource AlbumTemplate}"
-                                  SelectionMode="None"/>
+                                  SelectionMode="None"
+                                  ScrollViewer.HorizontalScrollMode="Disabled"/>
                     </Grid>
                 </DataTemplate>
             </HubSection>
