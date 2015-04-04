@@ -105,13 +105,6 @@ namespace XBMCRemoteRT.Pages.Audio
             Player.PlaySong(tappedSong);
         }
 
-        private void AlbumWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            var tappedAlbum = (sender as Grid).DataContext as Album;
-            GlobalVariables.CurrentAlbum = tappedAlbum;
-            Frame.Navigate(typeof(AlbumPage));
-        }
-
         private async void ReloadAll()
         {
             JObject filter = new JObject(new JProperty("artistid", GlobalVariables.CurrentArtist.ArtistId));
@@ -124,6 +117,13 @@ namespace XBMCRemoteRT.Pages.Audio
         private void PlayArtistAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             Player.PlayArtist(GlobalVariables.CurrentArtist);
+        }
+
+        private void AlbumsGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var tappedAlbum = e.ClickedItem as Album;
+            GlobalVariables.CurrentAlbum = tappedAlbum;
+            Frame.Navigate(typeof(AlbumPage));
         }
     }
 }

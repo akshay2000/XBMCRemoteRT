@@ -84,32 +84,13 @@
         </StackPanel>
         <ListView x:Name="SongsListView" 
                   Grid.RowSpan="2" Grid.Column="1"
+                  ItemTemplate="{StaticResource SongWithTrackTemplate}"
+                  IsItemClickEnabled="True"
+                  ItemClick="SongsListView_ItemClick"
                   SelectionMode="None">
             <ListView.Header>
                 <Grid Height="140"></Grid>
             </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Tapped="SongItemWrapper_Tapped"
-                          Margin="0,0,0,12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" BorderThickness="2" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" Background="Transparent" CornerRadius="24" Width="48" Height="48">
-                            <TextBlock Text="{Binding Track}" FontSize="18"
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <TextBlock Grid.Column="1" Text="{Binding Label}" 
-                                   Margin="12,0"
-                                   FontSize="18" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Column="2" Text="{Binding Duration, Converter={StaticResource DurationToStringConverter}}"
-                                   FontSize="18"
-                                   VerticalAlignment="Center"/>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

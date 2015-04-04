@@ -113,15 +113,15 @@ namespace XBMCRemoteRT.Pages.Audio
 
         #endregion
 
-        private void SongItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            var tappedSong = (sender as FrameworkElement).DataContext as Song;
-            Player.PlaySong(tappedSong);
-        }
-
         private void PlayAlbumButton_Click(object sender, RoutedEventArgs e)
         {
             Player.PlayAlbum(currentAlbum);
+        }
+
+        private void SongsListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var tappedSong = e.ClickedItem as Song;
+            Player.PlaySong(tappedSong);
         }
     }
 }
