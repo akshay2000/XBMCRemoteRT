@@ -98,13 +98,6 @@ namespace XBMCRemoteRT.Pages.Audio
 
         #endregion
 
-
-        private void SongItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            var tappedSong = (sender as StackPanel).DataContext as Song;
-            Player.PlaySong(tappedSong);
-        }
-
         private async void ReloadAll()
         {
             JObject filter = new JObject(new JProperty("artistid", GlobalVariables.CurrentArtist.ArtistId));
@@ -124,6 +117,12 @@ namespace XBMCRemoteRT.Pages.Audio
             var tappedAlbum = e.ClickedItem as Album;
             GlobalVariables.CurrentAlbum = tappedAlbum;
             Frame.Navigate(typeof(AlbumPage));
+        }
+
+        private void SongsListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var tappedSong = e.ClickedItem as Song;
+            Player.PlaySong(tappedSong);
         }
     }
 }

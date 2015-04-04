@@ -84,24 +84,16 @@
                     </Grid>
                 </DataTemplate>
             </HubSection>
-            <HubSection x:Name="SongsHubSection" Header="SONGS" Width="480">
+            <HubSection x:Name="SongsHubSection" Header="SONGS" MaxWidth="720">
                 <DataTemplate>
                     <Grid>
                         <ListView x:Name="SongsListView"
                                   IsSwipeEnabled="False"
-                                  ItemsSource="{Binding}" 
-                                  SelectionMode="None">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel x:Name="SongItemWrapper" Orientation="Horizontal" Margin="0,10" Tapped="SongItemWrapper_Tapped">
-                                        <Border BorderThickness="2" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
-                                            <BitmapIcon Margin="12" UriSource="/Assets/Icons/musicnote.png" Foreground="{StaticResource ApplicationForegroundThemeBrush}" ></BitmapIcon>
-                                        </Border>
-                                        <TextBlock Text="{Binding Label}" FontSize="25" FontWeight="SemiBold" Margin="10,-2,0,0"  VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                                  ItemsSource="{Binding}"
+                                  ItemTemplate="{StaticResource SongWithAlbumTemplate}"
+                                  IsItemClickEnabled="True"
+                                  ItemClick="SongsListView_ItemClick"
+                                  SelectionMode="None"/>
                     </Grid>
                 </DataTemplate>
             </HubSection>

@@ -16,6 +16,18 @@
             <TextBlock Text='{Binding Group.Key}' Foreground="Black" Margin="30" FontSize="20"/>
         </Grid>
     </DataTemplate>
+    <DataTemplate x:Name="SongWithAlbumTemplate">
+        <StackPanel x:Name="SongItemWrapper">
+            <TextBlock Text="{Binding Label}" 
+                       FontSize="18"/>
+            <TextBlock Text="{Binding Album}"
+                       FontSize="12"
+                       Opacity="0.7"/>
+            <TextBlock Text="{Binding Duration, Converter={StaticResource DurationToStringConverter}}"
+                       FontSize="12"
+                       Opacity="0.7"/>
+        </StackPanel>
+    </DataTemplate>
     <DataTemplate x:Name="SongWithTrackTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
