@@ -133,46 +133,15 @@
                     </Grid>
                 </HubSection.Header>
                 <DataTemplate>
-                    <userControls:ColumnGridView ItemsSource="{Binding}" 
-                                                 Columns="4" Width="600"
-                                                 SelectionMode="None">
-                        <userControls:ColumnGridView.ItemTemplate>
-                            <!-- TODO: Extract this and oher templates to be reused on artist and all albums page -->
-                            <DataTemplate>
-                                <Grid x:Name="AlbumWrapper" 
-                                      Height="185" Width="138"
-                                      Margin="0,0,0,0" 
-                                      Tapped="AlbumWrapper_Tapped">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="138"/>
-                                        <RowDefinition Height="auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Border Grid.Row="0" 
-                                            BorderThickness="0"
-                                            Background="DimGray"
-                                            VerticalAlignment="Stretch">
-                                        <Image Stretch="UniformToFill" 
-                                               Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h138}"/>
-                                    </Border>
-                                    <TextBlock Grid.Row="1" 
-                                               Height="40"
-                                               HorizontalAlignment="Left" VerticalAlignment="Top" 
-                                               Text="{Binding Label}" 
-                                               TextWrapping="Wrap"/>
-                                    <StackPanel Orientation="Horizontal" 
-                                                Background="DimGray" 
-                                                Margin="0,7,0,0" 
-                                                HorizontalAlignment="Right" VerticalAlignment="Top">
-                                        <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" 
-                                                   TextWrapping="Wrap"
-                                                   Margin="5" 
-                                                   Foreground="White" FontWeight="Bold" 
-                                                   MaxWidth="120" MaxHeight="40"/>
-                                    </StackPanel>
-                                </Grid>
-                            </DataTemplate>
-                        </userControls:ColumnGridView.ItemTemplate>
-                    </userControls:ColumnGridView>
+                    <Grid>
+                        <GridView ItemsSource="{Binding}"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  IsSwipeEnabled="False"
+                                  IsItemClickEnabled="True"
+                                  ItemClick="AlbumGridView_ItemClick"
+                                  ItemTemplate="{StaticResource AlbumTemplate}"
+                                  SelectionMode="None"/>
+                    </Grid>
                 </DataTemplate>
             </HubSection>
             

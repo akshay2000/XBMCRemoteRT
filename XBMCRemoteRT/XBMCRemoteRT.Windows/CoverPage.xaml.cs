@@ -120,13 +120,6 @@ namespace XBMCRemoteRT
         private List<Episode> Episodes;
         private List<Movie> Movies;
 
-        private void AlbumWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            var tappedAlbum = (sender as Grid).DataContext as Album;
-            GlobalVariables.CurrentAlbum = tappedAlbum;
-            Frame.Navigate(typeof(AlbumPage));
-        }
-
         private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var tappedEpisode = (sender as Grid).DataContext as Episode;
@@ -203,6 +196,13 @@ namespace XBMCRemoteRT
         private void ConnectionsAppBarButton_OnClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage), true);
+        }
+
+        private void AlbumGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var tappedAlbum = e.ClickedItem as Album;
+            GlobalVariables.CurrentAlbum = tappedAlbum;
+            Frame.Navigate(typeof(AlbumPage));
         }
     }
 }
