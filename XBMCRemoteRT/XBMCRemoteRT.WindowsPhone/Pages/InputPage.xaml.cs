@@ -196,7 +196,7 @@ namespace XBMCRemoteRT.Pages
             string backwardCommand = (string)SettingsHelper.GetValue("BackwardButtonCommand", "SmallBackward");
             if (backwardCommand == "DecreaseSpeed")
             {
-                int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+                int speed = GlobalVariables.CurrentPlayerState.Speed;
 
                 if (speed != 0 && speed != -32)
                 {
@@ -229,7 +229,7 @@ namespace XBMCRemoteRT.Pages
             string forwardCommand = (string)SettingsHelper.GetValue("ForwardButtonCommand", "SmallForward");
             if (forwardCommand == "IncreaseSpeed")
             {
-                int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+                int speed = GlobalVariables.CurrentPlayerState.Speed;
 
                 if (speed != 0 && speed != 32)
                 {

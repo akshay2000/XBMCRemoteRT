@@ -59,46 +59,11 @@ namespace XBMCRemoteRT
             DataContext = GlobalVariables.CurrentPlayerState;
             PlayerHelper.RefreshPlayerState();
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(10);
+            timer.Interval = TimeSpan.FromSeconds(5);
             timer.Start();
             timer.Tick += timer_Tick;            
         }
-
-        private DispatcherTimer progressTimer;
-        private Slider progressSlider;
-
-        private void ProgressSlider_Loaded(object sender, RoutedEventArgs e)
-        {
-            progressTimer = new DispatcherTimer();
-            progressTimer.Interval = TimeSpan.FromSeconds(1);
-            progressTimer.Start();
-            progressTimer.Tick += progressTimer_Tick;
-            progressSlider = (Slider)sender;
-        }
-
-        void progressTimer_Tick(object sender, object e)
-        {
-            DoProgress();
-        }
-
-        private int totalSeconds = 0;
-        private async void DoProgress()
-        {
-            JArray properties = new JArray("time", "totaltime");
-            JObject result = await Player.GetProperties(GlobalVariables.CurrentPlayerState.PlayerType, properties);
-            JObject totalTime = (JObject)result["totaltime"];
-            int totalTimeInSeconds = ((int)totalTime["hours"] * 3600) + ((int)totalTime["minutes"] * 60) + (int)totalTime["seconds"];
-            if (totalSeconds != totalTimeInSeconds)
-            {
-                totalSeconds = totalTimeInSeconds;
-                progressSlider.Maximum = totalTimeInSeconds;
-            }
-
-            JObject time = (JObject)result["time"];
-            int timeInSeconds = ((int)time["hours"] * 3600) + ((int)time["minutes"] * 60) + (int)time["seconds"];
-            progressSlider.Value = timeInSeconds;
-        }
-
+   
         private void timer_Tick(object sender, object e)
         {
             PlayerHelper.RefreshPlayerState();
@@ -190,7 +155,7 @@ namespace XBMCRemoteRT
             CommonNavigationTransitionInfo infoOverride = new CommonNavigationTransitionInfo();
             Frame.Navigate(typeof(AlbumPage), null, infoOverride);
         }
-
+        
         private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             GlobalVariables.CurrentTracker.SendEvent(EventCategories.UIInteraction, EventActions.Click, "CoverPageEpisodeWrapper", 0);
@@ -283,6 +248,19 @@ namespace XBMCRemoteRT
         {
             NavigationTransitionInfo transitionInfo = new SlideNavigationTransitionInfo();
             Frame.Navigate(typeof(MainPage), false, transitionInfo);
+        }
+
+        Slider slider;
+        private void ProgressSlider_Loaded(object sender, RoutedEventArgs e)
+        {
+            slider = sender as Slider;
+            slider.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(slider_PointerReleased), true);
+        }
+
+        void slider_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            var percentage = (slider.Value * 100) / slider.Maximum;
+            Player.Seek(GlobalVariables.CurrentPlayerState.PlayerType, percentage);
         }        
     }
 }

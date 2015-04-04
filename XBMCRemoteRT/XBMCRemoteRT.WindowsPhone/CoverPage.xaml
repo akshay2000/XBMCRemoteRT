@@ -24,7 +24,7 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <Hub x:Name="CoverHub" Background="{Binding CurrentPlayerItem.Fanart, Converter={StaticResource StringToImageBrushConverter}}">
+        <Hub x:Name="CoverHub" Background="{Binding Fanart, Converter={StaticResource StringToImageBrushConverter}}">
             <Hub.Header>
                 <StackPanel>
                     <TextBlock Text="kodi assist" FontWeight="Bold" FontSize="75" />
@@ -59,7 +59,7 @@
                                 <BitmapImage DecodePixelType="Logical" DecodePixelWidth="253" UriSource="/Assets/DefaultArt.jpg"/>
                             </Image.Source>
                         </Image>
-                        <Image Width="253" Height="253" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill" Source="{Binding CurrentPlayerItem.Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w253}"/>
+                        <Image Width="253" Height="253" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=w253}"/>
                             
                         <!--Shuffle Repeat-->
                         <!--<Rectangle Fill="{StaticResource PhoneForegroundBrush}" Grid.Column="1" Width="50" Height="48" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="12,-12,0,0" Opacity="{Binding CurrentPlayerProperties.Shuffled, Converter={StaticResource BoolToOpacityConverter}}">
@@ -69,18 +69,18 @@
                         </Rectangle>-->
                         <!--<Rectangle Fill="{StaticResource PhoneForegroundBrush}" Grid.Column="1" Width="50" Height="48" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="12,60,0,0" OpacityMask="{Binding CurrentPlayerProperties.Repeat, Converter={StaticResource RepeatStateConverter}}" />-->
                         <StackPanel Grid.Row="1" Margin="0,10">
-                            <Slider x:Name="ProgressSlider" Minimum="0" Loaded="ProgressSlider_Loaded"/>
-                            <TextBlock x:Name="NowPlayingItemNameTextBlock" FontSize="25" Text="{Binding CurrentPlayerItem.Title}"/>
+                            <Slider x:Name="ProgressSlider" Minimum="0" Maximum="{Binding TotalTimeSeconds}" Value="{Binding TimeSeconds, Mode=TwoWay}" Loaded="ProgressSlider_Loaded"/>
+                            <TextBlock x:Name="NowPlayingItemNameTextBlock" FontSize="25" Text="{Binding Title}"/>
                             <Grid>
-                                <TextBlock x:Name="NowPlayingByNameTextBlock" FontSize="18" Opacity="0.7" Text="{Binding CurrentPlayerItem.Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=false}"/>
-                                <TextBlock Text="{Binding CurrentPlayerItem.Tagline}" FontSize="18" Opacity="0.7"/>
-                                <TextBlock Text="{Binding CurrentPlayerItem.ShowTitle}" FontSize="18" Opacity="0.7"/>
+                                <TextBlock x:Name="NowPlayingByNameTextBlock" FontSize="18" Opacity="0.7" Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=false}"/>
+                                <TextBlock Text="{Binding Tagline}" FontSize="18" Opacity="0.7"/>
+                                <TextBlock Text="{Binding ShowTitle}" FontSize="18" Opacity="0.7"/>
                             </Grid>
                         </StackPanel>
                         <Grid Grid.Row="2" Margin="-10,0">
                             <AppBarButton x:Name="PlayPauseButton"  Margin="10,-7,0,0" Click="PlayPauseButton_Click" Style="{StaticResource ExtraLargeRoundButton}">
                                 <AppBarButton.Icon>
-                                    <SymbolIcon Symbol="{Binding CurrentPlayerProperties.Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" RenderTransformOrigin="0.5,0.5" >
+                                    <SymbolIcon Symbol="{Binding Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" RenderTransformOrigin="0.5,0.5" >
                                         <SymbolIcon.RenderTransform>
                                             <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
                                         </SymbolIcon.RenderTransform>

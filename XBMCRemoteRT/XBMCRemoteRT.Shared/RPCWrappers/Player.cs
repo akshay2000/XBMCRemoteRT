@@ -15,7 +15,7 @@ using XBMCRemoteRT.Models.Video;
 namespace XBMCRemoteRT.RPCWrappers
 {
     public enum Players { Audio, Video, Picture, None}
-    public enum GoTo{ Previous, Next}
+    public enum GoTo { Previous, Next}
     public class Player
     {
         private static JObject defaultPlayerOptions = new JObject(
@@ -83,6 +83,15 @@ namespace XBMCRemoteRT.RPCWrappers
             return playerItem;
         }
 
+        public async static Task<JObject> GetItem(Players player, JArray properties)
+        {
+            JObject parameters = new JObject(
+                new JProperty("playerid", getIdFromPlayers(player)),
+                new JProperty("properties", properties));
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("Player.GetItem", parameters);
+            return (JObject)responseObject["result"];
+        }
+
         public async static Task<PlayerProperties> GetProperties(Players player)
         {
             if (player == Players.None)
@@ -135,7 +144,12 @@ namespace XBMCRemoteRT.RPCWrappers
             await ConnectionManager.ExecuteRPCRequest("Player.Stop", parameters);
         }
 
-        public async static void Seek(Players player, string value)
+        //public async static void Seek(Players player, string value)
+        //{
+        //    Seek(player, (oject)value);
+        //}
+
+        public async static void Seek(Players player, object value)
         {
             if (player == Players.None)
                 return;
@@ -173,7 +187,7 @@ namespace XBMCRemoteRT.RPCWrappers
             }
         }
 
-        //Extra player methods
+        #region EXTRA METHODS
         public static async void PlayArtist(Artist artist)
         {
             GlobalVariables.CurrentTracker.SendEvent(EventCategories.Programmatic, EventActions.Play, EventNames.PlayArtist, 0);
@@ -226,5 +240,7 @@ namespace XBMCRemoteRT.RPCWrappers
             }
             await SetPartyMode(Players.Audio, true);
         }
+
+        #endregion
     }
 }

@@ -509,7 +509,7 @@
             </AppBarButton>
             <AppBarButton x:Name="PlayPauseButton" Click="PlayPauseButton_Click" Style="{StaticResource ExtraLargeRoundButton}" Grid.Column="2">
                 <AppBarButton.Icon>
-                    <SymbolIcon Symbol="{Binding CurrentPlayerProperties.Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" RenderTransformOrigin="0.5,0.5" >
+                    <SymbolIcon Symbol="{Binding Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" RenderTransformOrigin="0.5,0.5" >
                         <SymbolIcon.RenderTransform>
                             <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
                         </SymbolIcon.RenderTransform>

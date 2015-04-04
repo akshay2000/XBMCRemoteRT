@@ -21,24 +21,37 @@ namespace XBMCRemoteRT.Helpers
                 await RefreshPlayerProperties(activePlayers[0]);
             }
             else if (activePlayers.Count == 0)
-            {
-                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-                var nothingIsPlaying = loader.GetString("NothingIsPlaying");
-                //GlobalVariables.CurrentPlayerState.CurrentPlayerItem = new PlayerItem { Title = nothingIsPlaying };
-                //GlobalVariables.CurrentPlayerState.PlayerType = Players.None;
+            {                
+                GlobalVariables.CurrentPlayerState.SetDefaultState();
             }
         }
 
         private static async Task RefreshPlayerItem(Players player)
         {
-            PlayerItem item = await Player.GetItem(player);
-            GlobalVariables.CurrentPlayerState.CurrentPlayerItem = item;
+            JArray properties = new JArray("title", "artist", "fanart", "thumbnail", "showtitle", "tagline");
+            JObject result = await Player.GetItem(player, properties);
+            JObject item = (JObject)result["item"];
+
+            GlobalVariables.CurrentPlayerState.Title = (string)item["title"];
+            GlobalVariables.CurrentPlayerState.Artist = ((JArray)item["artist"]).ToObject<List<string>>();
+            GlobalVariables.CurrentPlayerState.Fanart = (string)item["fanart"];
+            GlobalVariables.CurrentPlayerState.Thumbnail = (string)item["thumbnail"];
+            GlobalVariables.CurrentPlayerState.ShowTitle = (string)item["showtitle"];
+            GlobalVariables.CurrentPlayerState.Tagline = (string)item["tagline"];
         }
 
         private static async Task RefreshPlayerProperties(Players player)
         {
-            PlayerProperties properties = await Player.GetProperties(player);
-            GlobalVariables.CurrentPlayerState.CurrentPlayerProperties = properties;
+            JArray properties = new JArray("time", "totaltime", "speed");
+            JObject result = await Player.GetProperties(GlobalVariables.CurrentPlayerState.PlayerType, properties);
+
+            JObject totalTime = (JObject)result["totaltime"];
+            GlobalVariables.CurrentPlayerState.TotalTimeSeconds = ((int)totalTime["hours"] * 3600) + ((int)totalTime["minutes"] * 60) + (int)totalTime["seconds"];
+            
+            JObject time = (JObject)result["time"];
+            GlobalVariables.CurrentPlayerState.TimeSeconds = ((int)time["hours"] * 3600) + ((int)time["minutes"] * 60) + (int)time["seconds"];
+
+            GlobalVariables.CurrentPlayerState.Speed = (int)result["speed"];
         }
     }
 }
