@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using XBMCRemoteRT.Models;
 using XBMCRemoteRT.RPCWrappers;
 
@@ -52,6 +53,25 @@ namespace XBMCRemoteRT.Helpers
             GlobalVariables.CurrentPlayerState.TimeSeconds = ((int)time["hours"] * 3600) + ((int)time["minutes"] * 60) + (int)time["seconds"];
 
             GlobalVariables.CurrentPlayerState.Speed = (int)result["speed"];
+        }
+
+        private static DispatcherTimer timer;
+
+        public static void StartAutoRefresh(uint seconds)
+        {
+            if (timer != null)
+            {
+                timer.Stop();
+            }
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(seconds);
+            timer.Start();
+            timer.Tick += timer_Tick;       
+        }
+
+        private static void timer_Tick(object sender, object e)
+        {
+            PlayerHelper.RefreshPlayerState();
         }
     }
 }

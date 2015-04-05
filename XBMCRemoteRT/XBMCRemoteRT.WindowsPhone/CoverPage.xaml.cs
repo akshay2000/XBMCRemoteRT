@@ -41,7 +41,7 @@ namespace XBMCRemoteRT
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        private DispatcherTimer timer;
+        //private DispatcherTimer timer;
         
 
         public CoverPage()
@@ -58,16 +58,17 @@ namespace XBMCRemoteRT
                 GlobalVariables.CurrentPlayerState = new PlayerState();
             DataContext = GlobalVariables.CurrentPlayerState;
             PlayerHelper.RefreshPlayerState();
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(5);
-            timer.Start();
-            timer.Tick += timer_Tick;            
+            PlayerHelper.StartAutoRefresh(1);
+            //timer = new DispatcherTimer();
+            //timer.Interval = TimeSpan.FromSeconds(5);
+            //timer.Start();
+            //timer.Tick += timer_Tick;            
         }
    
-        private void timer_Tick(object sender, object e)
-        {
-            PlayerHelper.RefreshPlayerState();
-        }
+        //private void timer_Tick(object sender, object e)
+        //{
+        //    PlayerHelper.RefreshPlayerState();
+        //}
 
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
