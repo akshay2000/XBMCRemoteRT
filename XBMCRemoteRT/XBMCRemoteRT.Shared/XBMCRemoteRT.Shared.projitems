@@ -54,8 +54,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Network\IPAddress.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Network\MacAddress.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\NotifyBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Art.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Cast.cs" />

@@ -66,22 +66,7 @@ namespace XBMCRemoteRT.RPCWrappers
                listToReturn.Add(getPlayersFromId((int)t["playerid"]));
             }
             return listToReturn;
-        }
-
-        public async static Task<PlayerItem> GetItem(Players player)
-        {
-            if (player == Players.None)
-                return new PlayerItem();
-            JObject parameters = new JObject(
-                new JProperty("playerid", getIdFromPlayers(player)),
-                new JProperty("properties",
-                    new JArray("title", "artist", "fanart", "thumbnail", "showtitle", "tagline")
-                    ));
-            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("Player.GetItem", parameters);
-            JObject itemJson = (JObject)responseObject["result"]["item"];
-            PlayerItem playerItem = itemJson.ToObject<PlayerItem>();
-            return playerItem;
-        }
+        }        
 
         public async static Task<JObject> GetItem(Players player, JArray properties)
         {
@@ -90,21 +75,7 @@ namespace XBMCRemoteRT.RPCWrappers
                 new JProperty("properties", properties));
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("Player.GetItem", parameters);
             return (JObject)responseObject["result"];
-        }
-
-        public async static Task<PlayerProperties> GetProperties(Players player)
-        {
-            if (player == Players.None)
-                return new PlayerProperties();
-            JObject parameters = new JObject(
-                new JProperty("playerid", getIdFromPlayers(player)),
-                new JProperty("properties", 
-                    new JArray("speed", "repeat", "shuffled", "partymode")));
-            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("Player.GetProperties", parameters);
-            JObject propertiesJson = (JObject)responseObject["result"];
-            PlayerProperties properties = propertiesJson.ToObject<PlayerProperties>();
-            return properties;
-        }
+        }      
 
         public async static Task<JObject> GetProperties(Players player, JArray properties)
         {
