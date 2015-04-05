@@ -18,8 +18,29 @@
             <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled"/>
         </Style>
         <Style TargetType="ListView">
+            <Setter Property="ScrollViewer.IsHorizontalScrollChainingEnabled" Value="False"/>
+            <Setter Property="ScrollViewer.IsVerticalScrollChainingEnabled" Value="False"/>
             <Setter Property="SelectionMode" Value="None"/>
             <Setter Property="IsItemClickEnabled" Value="True"/>
+            <Setter Property="IsSwipeEnabled" Value="False"/>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ZoomedOutListStyle" TargetType="ListView">
+            <Setter Property="ItemTemplate" Value="{StaticResource SemanticZoomedOutTemplate}"/>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="SelectionMode" Value="None"/>
             <Setter Property="IsSwipeEnabled" Value="False"/>
             <Setter Property="ItemContainerStyle">
                 <Setter.Value>
@@ -81,7 +102,8 @@
             <SemanticZoom x:Name="ArtistsSemanticZoom">
                 <SemanticZoom.ZoomedInView>
                     <ListView ItemsSource="{Binding Source={StaticResource ArtistsCVS}}" 
-                              ItemClick="ArtistListView_ItemClick">
+                              ItemClick="ArtistListView_ItemClick"
+                              ItemTemplate="{StaticResource ArtistTemplate}">
                         <ListView.GroupStyle>
                             <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
                         </ListView.GroupStyle>
@@ -93,33 +115,10 @@
                                 <ItemsWrapGrid Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="150"/>
-                                        <RowDefinition Height="auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid x:Name="ArtistItemWrapper" 
-                                      Width="150" Height="150"
-                                      Background="DimGray">
-                                        <Image Stretch="UniformToFill" 
-                                               Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h150}"/>
-                                    </Grid>
-                                    <TextBlock x:Name="ArtistNameTextBlock" 
-                                               Grid.Row="1"
-                                               Height="48"
-                                               Text="{Binding Label}" 
-                                               TextWrapping="Wrap"
-                                               FontSize="18" 
-                                               Margin="0,6,0,0"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
                     </ListView>
                 </SemanticZoom.ZoomedInView>
                 <SemanticZoom.ZoomedOutView>
-                    <GridView ItemTemplate="{StaticResource SemanticZoomedOutTemplate}"/>
+                    <ListView Style="{StaticResource ZoomedOutListStyle}"/>
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
         </Grid>
@@ -143,7 +142,7 @@
                     </ListView>
                 </SemanticZoom.ZoomedInView>
                 <SemanticZoom.ZoomedOutView>
-                    <GridView ItemTemplate="{StaticResource SemanticZoomedOutTemplate}"/>
+                    <ListView Style="{StaticResource ZoomedOutListStyle}"/>
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
         </Grid>
@@ -199,7 +198,7 @@
                     </ListView>
                 </SemanticZoom.ZoomedInView>
                 <SemanticZoom.ZoomedOutView>
-                    <GridView ItemTemplate="{StaticResource SemanticZoomedOutTemplate}"/>
+                    <ListView Style="{StaticResource ZoomedOutListStyle}"/>
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
         </Grid>
