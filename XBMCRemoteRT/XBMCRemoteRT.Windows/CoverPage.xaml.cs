@@ -58,6 +58,7 @@ namespace XBMCRemoteRT
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
 
             if (GlobalVariables.CurrentPlayerState == null)
                 GlobalVariables.CurrentPlayerState = new PlayerState();
