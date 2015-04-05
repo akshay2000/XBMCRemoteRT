@@ -178,6 +178,7 @@
                                             <Setter Property="HorizontalAlignment" Value="Left"/>
                                             <Setter Property="Margin" Value="0,0,12,0"/>
                                             <Setter Property="FontSize" Value="18"/>
+                                            <Setter Property="FontWeight" Value="SemiLight"/>
                                             <Setter Property="Opacity" Value="0.7"/>
                                         </Style>
                                     </Grid.Resources>

@@ -41,14 +41,14 @@
                        Height="48"
                        Text="{Binding Label}" 
                        TextWrapping="Wrap"
-                       FontSize="18" 
+                       FontSize="18"  FontWeight="SemiLight"
                        Margin="0,6,0,0"/>
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="SongWithAlbumTemplate">
         <StackPanel x:Name="SongItemWrapper">
             <TextBlock Text="{Binding Label}" 
-                       FontSize="18"/>
+                       FontSize="18"  FontWeight="SemiLight"/>
             <TextBlock Text="{Binding Album}"
                        FontSize="12"
                        Opacity="0.7"/>
@@ -69,7 +69,7 @@
             <StackPanel Grid.Column="1" 
                         Margin="12,0">
                 <TextBlock Text="{Binding Label}"
-                           FontSize="18"/>
+                           FontSize="18"  FontWeight="SemiLight"/>
                 <TextBlock Text="{Binding Duration, Converter={StaticResource DurationToStringConverter}}"
                            FontSize="12"
                            Opacity="0.7"/>
@@ -87,7 +87,7 @@
             </Border>
             <TextBlock Grid.Row="1" Height="48" 
                        Margin="0,6,0,0"
-                       FontSize="18"
+                       FontSize="18" FontWeight="SemiLight"
                        HorizontalAlignment="Left" VerticalAlignment="Top" 
                        Text="{Binding Label}" 
                        TextWrapping="Wrap"/>
