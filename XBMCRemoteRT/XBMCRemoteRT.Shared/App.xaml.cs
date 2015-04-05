@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -102,6 +103,7 @@ namespace XBMCRemoteRT
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+            Debug.WriteLine("Launched with tile id " + e.TileId);            
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -110,6 +112,10 @@ namespace XBMCRemoteRT
 #endif
 
             EnsureRootFrame(e.PreviousExecutionState);
+            if (e.TileId.StartsWith("tvShow"))
+            {
+                rootFrame.Navigate(typeof(TVShowThinPage), e.Arguments);
+            }
 
             if (rootFrame.Content == null)
             {
@@ -130,12 +136,14 @@ namespace XBMCRemoteRT
 
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
-                // parameter
+                // parameter                
                 if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
             }
+                
+            
 
             // Ensure the current window is active
             Window.Current.Activate();
