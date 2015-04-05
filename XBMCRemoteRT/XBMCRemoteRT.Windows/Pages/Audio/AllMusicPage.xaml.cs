@@ -136,49 +136,48 @@ namespace XBMCRemoteRT.Pages.Audio
             ConnectionManager.ManageSystemTray(false);
         }
 
-
-        private void ArtistName_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Artist tappedArtist = (sender as StackPanel).DataContext as Artist;
-            GlobalVariables.CurrentArtist = tappedArtist;
-            Frame.Navigate(typeof(ArtistDetailsPage));
-        }
-
-        private void AlbumArtWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Album tappedAlbum = (sender as Grid).DataContext as Album;
-            GlobalVariables.CurrentAlbum = tappedAlbum;
-            Frame.Navigate(typeof(AlbumPage));
-        }
-
-        private void SongItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            var tappedSong = (sender as StackPanel).DataContext as Song;
-            Player.PlaySong(tappedSong);
-        }
-
         private void FilterComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var choice = (sender as ComboBox).SelectedValue.ToString();
 
-            switch (choice)
+            switch (choice.ToLower())
             {
-                case "Artist" :
+                case "artists" :
                     ArtistsCVSGrid.Visibility = Visibility.Visible;
                     AlbumsCVSGrid.Visibility = Visibility.Collapsed;
                     SongsCVSGrid.Visibility = Visibility.Collapsed;
                     break;
-                case "Album":
+                case "albums":
                     AlbumsCVSGrid.Visibility = Visibility.Visible;
                     ArtistsCVSGrid.Visibility = Visibility.Collapsed;
                     SongsCVSGrid.Visibility = Visibility.Collapsed;
                     break;
-                case "Song":
+                case "songs":
                     SongsCVSGrid.Visibility = Visibility.Visible;
                     ArtistsCVSGrid.Visibility = Visibility.Collapsed;
                     AlbumsCVSGrid.Visibility = Visibility.Collapsed;
                     break;
             }
+        }
+
+        private void ArtistListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Artist tappedArtist = e.ClickedItem as Artist;
+            GlobalVariables.CurrentArtist = tappedArtist;
+            Frame.Navigate(typeof(ArtistDetailsPage));
+        }
+
+        private void AlbumListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Album tappedAlbum = e.ClickedItem as Album;
+            GlobalVariables.CurrentAlbum = tappedAlbum;
+            Frame.Navigate(typeof(AlbumPage));
+        }
+
+        private void SongListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var tappedSong = e.ClickedItem as Song;
+            Player.PlaySong(tappedSong);
         }
     }
 }

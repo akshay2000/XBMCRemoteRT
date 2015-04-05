@@ -14,6 +14,21 @@
         <CollectionViewSource x:Name="ArtistsCVS" IsSourceGrouped="True"/>
         <CollectionViewSource x:Name="AlbumsCVS" IsSourceGrouped="True"/>
         <CollectionViewSource x:Name="SongsCVS" IsSourceGrouped="True"/>
+        <Style TargetType="SemanticZoom">
+            <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled"/>
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="SelectionMode" Value="None"/>
+            <Setter Property="IsItemClickEnabled" Value="True"/>
+            <Setter Property="IsSwipeEnabled" Value="False"/>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <!--
@@ -29,15 +44,18 @@
         </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
-            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
         <!-- Back button and page title -->
-        <Grid>
+        <Grid Grid.Row="0" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
@@ -47,116 +65,138 @@
                         AutomationProperties.ItemType="Navigation Button"/>
             <TextBlock Text="{StaticResource AppName}" Style="{StaticResource SubheaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,90"/>
-            <TextBlock x:Name="pageTitle" Text="music" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
-        </Grid>
-        <Grid Grid.Row="1" 
-              Height="50"
-              VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
             <ComboBox x:Name="FilterComboBox" 
                       Grid.Column="1" 
                       SelectionChanged="FilterComboBox_OnSelectionChanged"
-                      Width="200" 
-                      HorizontalAlignment="Left">
-                <x:String>Artist</x:String>
-                <x:String>Album</x:String>
-                <x:String>Song</x:String>
+                      Margin="0,0,0,40"
+                      VerticalAlignment="Bottom"
+                      HorizontalAlignment="Left" Style="{StaticResource PlaintextComboBoxStyle}">
+                <x:String>artists</x:String>
+                <x:String>albums</x:String>
+                <x:String>songs</x:String>
             </ComboBox>
         </Grid>
-        <Grid Grid.Row="2" x:Name="ArtistsCVSGrid">
+        <Grid Grid.RowSpan="2" Grid.Column="1"
+              x:Name="ArtistsCVSGrid">
             <SemanticZoom x:Name="ArtistsSemanticZoom">
                 <SemanticZoom.ZoomedInView>
-                    <GridView ItemsSource="{Binding Source={StaticResource ArtistsCVS}}" SelectionMode="None">
-                        <GridView.Header>
-                            <Grid Width="113"></Grid>
-                        </GridView.Header>
-                        <GridView.GroupStyle>
+                    <ListView ItemsSource="{Binding Source={StaticResource ArtistsCVS}}" 
+                              ItemClick="ArtistListView_ItemClick">
+                        <ListView.GroupStyle>
                             <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
-                        </GridView.GroupStyle>
-                        <GridView.ItemTemplate>
+                        </ListView.GroupStyle>
+                        <ListView.Header>
+                            <Grid Height="40"></Grid>
+                        </ListView.Header>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel x:Name="ArtistItemWrapper" 
-                                            Orientation="Horizontal" 
-                                            Tapped="ArtistName_Tapped"
-                                            Margin="0,0,0,12"
-                                            Width="300">
-                                    <Border x:Name="PlayArtistBorder" BorderThickness="2" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
-                                        <BitmapIcon Margin="12" UriSource="ms-appx:///Assets/Icons/singer.png" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
-                                    </Border>
-                                    <TextBlock x:Name="ArtistNameTextBlock" Text="{Binding Label}" 
-                                               FontSize="25" 
-                                               Margin="10,0,0,0" 
-                                               VerticalAlignment="Center"
-                                               FontWeight="SemiBold"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
-                </SemanticZoom.ZoomedInView>
-                <SemanticZoom.ZoomedOutView>
-                    <GridView ItemTemplate="{StaticResource SemanticZoomedOutTemplate}"/>
-                </SemanticZoom.ZoomedOutView>
-            </SemanticZoom>
-        </Grid>
-        <Grid Grid.Row="2" x:Name="AlbumsCVSGrid">
-            <SemanticZoom x:Name="AlbumsSemanticZoom">
-                <SemanticZoom.ZoomedInView>
-                    <GridView ItemsSource="{Binding Source={StaticResource AlbumsCVS}}" SelectionMode="None">
-                        <GridView.GroupStyle>
-                            <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
-                        </GridView.GroupStyle>
-                        <GridView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid x:Name="AlbumArtWrapper" Tapped="AlbumArtWrapper_Tapped" Height="205" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Width="160" Margin="0,0,12,12" >
+                                <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="160"/>
+                                        <RowDefinition Height="150"/>
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
-                                    <Border Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="10" BorderBrush="DimGray" Background="DimGray" VerticalAlignment="Stretch">
-                                        <Image Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h175}"/>
-                                    </Border>
-                                    <Border Margin="10,140,0,0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="50" Background="{StaticResource ApplicationForegroundThemeBrush}" Grid.RowSpan="2" >
-                                        <Image Source="ms-appx:///Assets/Icons/album.png" Margin="10" />
-                                    </Border>
-                                    <TextBlock Grid.Row="1" Width="95" Height="35" TextAlignment="Right" Margin="0,5,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Label}" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold"/>
-                                    <StackPanel Orientation="Horizontal" Background="{StaticResource ApplicationForegroundThemeBrush}" Margin="0,7,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-                                        <TextBlock Text="{Binding Artist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" TextWrapping="Wrap" Margin="5" Foreground="White" FontWeight="Bold" MaxWidth="120" MaxHeight="40" TextTrimming="WordEllipsis"/>
-                                    </StackPanel>
+                                    <Grid x:Name="ArtistItemWrapper" 
+                                      Width="150" Height="150"
+                                      Background="DimGray">
+                                        <Image Stretch="UniformToFill" 
+                                               Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h150}"/>
+                                    </Grid>
+                                    <TextBlock x:Name="ArtistNameTextBlock" 
+                                               Grid.Row="1"
+                                               Height="54"
+                                               Text="{Binding Label}" 
+                                               TextWrapping="Wrap"
+                                               FontSize="18" 
+                                               Margin="0,6,0,0"/>
                                 </Grid>
                             </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </SemanticZoom.ZoomedInView>
                 <SemanticZoom.ZoomedOutView>
                     <GridView ItemTemplate="{StaticResource SemanticZoomedOutTemplate}"/>
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
         </Grid>
-        <Grid Grid.Row="2" x:Name="SongsCVSGrid">
+        <Grid Grid.RowSpan="2" Grid.Column="1" x:Name="AlbumsCVSGrid">
+            <SemanticZoom x:Name="AlbumsSemanticZoom">
+                <SemanticZoom.ZoomedInView>
+                    <ListView ItemsSource="{Binding Source={StaticResource AlbumsCVS}}" 
+                              ItemTemplate="{StaticResource AlbumTemplate}"
+                              ItemClick="AlbumListView_ItemClick">
+                        <ListView.GroupStyle>
+                            <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
+                        </ListView.GroupStyle>
+                        <ListView.Header>
+                            <Grid Height="40"></Grid>
+                        </ListView.Header>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </SemanticZoom.ZoomedInView>
+                <SemanticZoom.ZoomedOutView>
+                    <GridView ItemTemplate="{StaticResource SemanticZoomedOutTemplate}"/>
+                </SemanticZoom.ZoomedOutView>
+            </SemanticZoom>
+        </Grid>
+        <Grid Grid.RowSpan="2" Grid.Column="1" x:Name="SongsCVSGrid">
             <SemanticZoom x:Name="SongsSemanticZoom">
                 <SemanticZoom.ZoomedInView>
-                    <GridView ItemsSource="{Binding Source={StaticResource SongsCVS}}" SelectionMode="None">
-                        <GridView.GroupStyle>
+                    <ListView ItemsSource="{Binding Source={StaticResource SongsCVS}}"
+                              ItemClick="SongListView_ItemClick">
+                        <ListView.GroupStyle>
                             <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource SemanticZoomHeaderTemplate}"/>
-                        </GridView.GroupStyle>
-                        <GridView.ItemTemplate>
+                        </ListView.GroupStyle>
+                        <ListView.Header>
+                            <Grid Height="40"></Grid>
+                        </ListView.Header>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Margin" Value="0"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel x:Name="SongItemWrapper" Orientation="Horizontal" Margin="0,10" Tapped="SongItemWrapper_Tapped">
-                                    <Border x:Name="PlayArtistBorder" BorderThickness="2" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
-                                        <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/musicnote.png" Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
-                                    </Border>
-                                    <StackPanel Margin="10,0,0,0" >
-                                        <TextBlock Text="{Binding Label}" FontWeight="SemiBold"/>
-                                        <TextBlock Text="{Binding AlbumArtist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" Opacity="0.5" TextWrapping="Wrap"/>
-                                    </StackPanel>
-                                </StackPanel>
+                                <Grid x:Name="SongItemWrapper"
+                                      Margin="0,6,12,6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="36"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                                            <Setter Property="Margin" Value="0,0,12,0"/>
+                                            <Setter Property="FontSize" Value="18"/>
+                                            <Setter Property="Opacity" Value="0.7"/>
+                                        </Style>
+                                    </Grid.Resources>
+                                    <TextBlock Text="{Binding Label}" 
+                                               Opacity="1"
+                                               Grid.Column="0"/>
+                                    <TextBlock Text="{Binding AlbumArtist, Converter={StaticResource ListToStringConverter}, ConverterParameter=true}" 
+                                               Grid.Column="1"/>
+                                    <TextBlock Text="{Binding Album}" 
+                                               Grid.Column="2"/>
+                                    <TextBlock Text="{Binding Duration, Converter={StaticResource DurationToStringConverter}}" 
+                                               HorizontalAlignment="Right"
+                                               Margin="0"
+                                               Grid.Column="3"/>
+                                </Grid>
                             </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </SemanticZoom.ZoomedInView>
                 <SemanticZoom.ZoomedOutView>
                     <GridView ItemTemplate="{StaticResource SemanticZoomedOutTemplate}"/>
