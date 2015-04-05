@@ -200,18 +200,15 @@
                     </StackPanel>
                 </HubSection.Header>
                 <DataTemplate>
-                    <userControls:ColumnGridView ItemsSource="{Binding}" 
-                                                 Columns="4" Width="544" 
-                                                 SelectionMode="None">
-                        <userControls:ColumnGridView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Tapped="MovieWrapper_Tapped">
-                                    <ContentControl Content="{Binding}"
-                                                    ContentTemplate="{StaticResource MoviePosterTemplate}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </userControls:ColumnGridView.ItemTemplate>
-                    </userControls:ColumnGridView>
+                    <Grid>
+                        <GridView ItemsSource="{Binding}"
+                                  ScrollViewer.HorizontalScrollMode="Disabled"
+                                  IsSwipeEnabled="False"
+                                  IsItemClickEnabled="True"
+                                  ItemClick="MovieGridView_ItemClick"
+                                  ItemTemplate="{StaticResource MoviePosterTemplate}"
+                                  SelectionMode="None"/>
+                    </Grid>
                 </DataTemplate>
             </HubSection>
         </Hub>

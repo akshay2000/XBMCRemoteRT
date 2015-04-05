@@ -121,14 +121,6 @@ namespace XBMCRemoteRT
         private List<Movie> Movies;
 
         
-        private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            var tappedMovie = (sender as Grid).DataContext as Movie;
-            GlobalVariables.CurrentMovie = tappedMovie;
-            Frame.Navigate(typeof(MovieDetailsHub));
-        }
-
-
         private async void RefreshListsIfNull()
         {
             if (Albums == null)
@@ -204,6 +196,13 @@ namespace XBMCRemoteRT
         {
             var tappedEpisode = e.ClickedItem as Episode;
             Player.PlayEpidose(tappedEpisode);
+        }
+
+        private void MovieGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var tappedMovie = e.ClickedItem as Movie;
+            GlobalVariables.CurrentMovie = tappedMovie;
+            Frame.Navigate(typeof(MovieDetailsHub));
         }
     }
 }
