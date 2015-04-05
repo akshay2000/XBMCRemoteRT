@@ -248,13 +248,13 @@
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxPointerOverBackgroundThemeBrush}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxPointerOverBorderThemeBrush}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="Highlight">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxSelectedPointerOverBackgroundThemeBrush}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -265,7 +265,7 @@
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxDisabledBorderThemeBrush}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxDisabledForegroundThemeBrush}"/>
