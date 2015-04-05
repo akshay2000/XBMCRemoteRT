@@ -29,7 +29,6 @@
         </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
-            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -37,7 +36,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="240"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
@@ -47,22 +46,18 @@
                         AutomationProperties.ItemType="Navigation Button"/>
             <TextBlock Text="{StaticResource AppName}" Style="{StaticResource SubheaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,90"/>
-            <TextBlock x:Name="pageTitle" Text="movies" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
-        </Grid>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Filter by: " Grid.Column="0" FontSize="20" Margin="12"/>
-            <ComboBox x:Name="FilterComboBox" Grid.Column="1" SelectionChanged="FilterComboBox_OnSelectionChanged"  Width="300" HorizontalAlignment="Left" >
-                <x:String>All</x:String>
-                <x:String>New</x:String>
-                <x:String>Watched</x:String>
+            <ComboBox x:Name="FilterComboBox" 
+                      Grid.Column="1" 
+                      SelectionChanged="FilterComboBox_OnSelectionChanged"
+                      Margin="0,0,0,34"
+                      HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                      Style="{StaticResource PlaintextComboBoxStyle}">
+                <x:String>movies</x:String>
+                <x:String>new</x:String>
+                <x:String>watched</x:String>
             </ComboBox>
         </Grid>
+
         <Grid Grid.Row="2" x:Name="AllCVSGrid">
             <SemanticZoom x:Name="AllSemanticZoom">
                 <SemanticZoom.ZoomedInView>

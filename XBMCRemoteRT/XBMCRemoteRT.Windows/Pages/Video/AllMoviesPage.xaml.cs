@@ -147,19 +147,19 @@ namespace XBMCRemoteRT.Pages.Video
         {
             var choice = (sender as ComboBox).SelectedValue.ToString();
 
-            switch (choice)
+            switch (choice.ToLower())
             {
-                case "All":
+                case "movies":
                     AllCVSGrid.Visibility = Visibility.Visible;
                     NewCVSGrid.Visibility = Visibility.Collapsed;
                     WatchedCVSGrid.Visibility = Visibility.Collapsed;
                     break;
-                case "New":
+                case "new":
                     NewCVSGrid.Visibility = Visibility.Visible;
                     AllCVSGrid.Visibility = Visibility.Collapsed;
                     WatchedCVSGrid.Visibility = Visibility.Collapsed;
                     break;
-                case "Watched":
+                case "watched":
                     WatchedCVSGrid.Visibility = Visibility.Visible;
                     AllCVSGrid.Visibility = Visibility.Collapsed;
                     NewCVSGrid.Visibility = Visibility.Collapsed;
