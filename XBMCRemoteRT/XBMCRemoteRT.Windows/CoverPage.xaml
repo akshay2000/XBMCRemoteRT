@@ -135,7 +135,7 @@
                 <DataTemplate>
                     <Grid>
                         <GridView ItemsSource="{Binding}"
-                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ScrollViewer.HorizontalScrollMode="Disabled"
                                   IsSwipeEnabled="False"
                                   IsItemClickEnabled="True"
                                   ItemClick="AlbumGridView_ItemClick"
@@ -156,31 +156,36 @@
                     </StackPanel>
                 </HubSection.Header>
                 <DataTemplate>
-                    <userControls:ColumnGridView ItemsSource="{Binding}" 
-                                                 Columns="4" Width="600" 
-                                                 SelectionMode="None">
-                        <userControls:ColumnGridView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid x:Name="EpisodeWrapper" 
-                                      Width="138" Height="185" 
-                                      Tapped="EpisodeWrapper_Tapped">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="138"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Border Grid.Row="0" 
-                                            Background="DimGray"
-                                            VerticalAlignment="Stretch">
-                                        <Image Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h175}"/>
-                                    </Border>
-                                    <TextBlock Text="{Binding Label}" 
+                    <Grid>
+                        <GridView ItemsSource="{Binding}"
+                                  ScrollViewer.HorizontalScrollMode="Disabled"
+                                  IsSwipeEnabled="False"
+                                  IsItemClickEnabled="True"
+                                  ItemClick="EpisodeGridView_ItemClick"
+                                  SelectionMode="None">
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid x:Name="EpisodeWrapper" 
+                                      Width="150" Height="204">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="150"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Border Grid.Row="0" 
+                                            Background="DimGray">
+                                            <Image Stretch="UniformToFill" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h150}"/>
+                                        </Border>
+                                        <TextBlock Text="{Binding Label}"
+                                               Grid.Row="1" Height="48" 
+                                               Margin="0,6,0,0"
+                                               FontSize="18" FontWeight="SemiLight"
                                                HorizontalAlignment="Left" VerticalAlignment="Top"
-                                               Grid.Row="1"
-                                               Margin="5,0,5,2" TextWrapping="Wrap"/>
-                                </Grid>
-                            </DataTemplate>
-                        </userControls:ColumnGridView.ItemTemplate>
-                    </userControls:ColumnGridView>
+                                               TextWrapping="Wrap"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </Grid>
                 </DataTemplate>
             </HubSection>
 
