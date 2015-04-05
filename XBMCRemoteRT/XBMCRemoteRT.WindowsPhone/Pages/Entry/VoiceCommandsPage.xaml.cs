@@ -29,7 +29,7 @@ using XBMCRemoteRT.Models.Video;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace XBMCRemoteRT
+namespace XBMCRemoteRT.Pages.Entry
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -50,22 +50,7 @@ namespace XBMCRemoteRT
             this.InitializeComponent();
             //HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             searchHitState = SearchHitState.None;
-        }
-
-        //void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
-        //{
-        //    if (Frame.CanGoBack)
-        //    {
-        //        Frame.GoBack();
-        //    }
-        //    else
-        //    {
-        //        Frame.Navigate(typeof(CoverPage));
-        //    }
-        //    e.Handled = true;
-        //    HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
-        //}
-
+        }    
      
         #region NavigationHelper registration
 
