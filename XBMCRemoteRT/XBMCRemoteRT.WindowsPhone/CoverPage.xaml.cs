@@ -261,6 +261,6 @@ namespace XBMCRemoteRT
         {
             var percentage = (slider.Value * 100) / slider.Maximum;
             Player.Seek(GlobalVariables.CurrentPlayerState.PlayerType, percentage);
-        }        
+        }
     }
 }
