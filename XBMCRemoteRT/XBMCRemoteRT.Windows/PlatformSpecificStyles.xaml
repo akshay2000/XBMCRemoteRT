@@ -52,7 +52,7 @@
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="AlbumTemplate">
-        <Grid x:Name="AlbumWrapper" Height="196" Width="150" >
+        <Grid x:Name="AlbumWrapper" Height="204" Width="150" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
                 <RowDefinition Height="auto"/>
@@ -60,8 +60,9 @@
             <Border Grid.Row="0" Width="150" Height="150" BorderThickness="0" Background="DimGray">
                 <Image Stretch="UniformToFill" VerticalAlignment="Top" Source="{Binding Thumbnail, Converter={StaticResource AuthBitmapConverter}, ConverterParameter=h150}" />
             </Border>
-            <TextBlock Grid.Row="1" Height="40" 
+            <TextBlock Grid.Row="1" Height="48" 
                        Margin="0,6,0,0"
+                       FontSize="18"
                        HorizontalAlignment="Left" VerticalAlignment="Top" 
                        Text="{Binding Label}" 
                        TextWrapping="Wrap"/>

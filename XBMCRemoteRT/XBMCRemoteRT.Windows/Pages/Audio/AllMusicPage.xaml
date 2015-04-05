@@ -108,7 +108,7 @@
                                     </Grid>
                                     <TextBlock x:Name="ArtistNameTextBlock" 
                                                Grid.Row="1"
-                                               Height="54"
+                                               Height="48"
                                                Text="{Binding Label}" 
                                                TextWrapping="Wrap"
                                                FontSize="18" 
