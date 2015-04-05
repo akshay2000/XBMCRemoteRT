@@ -166,7 +166,8 @@ namespace XBMCRemoteRT.Pages.Video
             else
             {
                 string activationArgs = "tvShow_" + GlobalVariables.CurrentTVShow.Title;
-                Uri logoUri = new Uri(GlobalVariables.CurrentTVShow.Thumbnail);
+                string logoUriString = await DownloadHelper.DownloadFile(GlobalVariables.CurrentTVShow.Thumbnail);
+                Uri logoUri = new Uri("ms-appx:///Assets/Square71x71Logo.scale-240.png");
 
                 SecondaryTile tvShowTile = new SecondaryTile(tileId, tileId, activationArgs, logoUri, TileSize.Default);
                 ToggleAppBarButton(false);
