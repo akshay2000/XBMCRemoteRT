@@ -114,27 +114,94 @@ namespace XBMCRemoteRT.Helpers
         {
             Uri imageUri = new Uri(GetRemoteUri(uriString));
             var stream = await GetImageStreamAsync(imageUri);
-            BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream.AsRandomAccessStream());
+            IRandomAccessStream inStream = stream.AsRandomAccessStream();
+           // BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream.AsRandomAccessStream());
 
-            BitmapTransform transform = new BitmapTransform() { ScaledWidth = 512 };
+            var ras = await ResizeImage(inStream, 1024, 1024);
+            //BitmapEncoder encoder = await BitmapEncoder.CreateForTranscodingAsync(ras, decoder);
+
+            //encoder.BitmapTransform.ScaledWidth = 1024;
+            //encoder.BitmapTransform.sc
+            //await encoder.FlushAsync();
+
+
 
             string fileName = "tile.tmp";
             var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-
-            PixelDataProvider pixelData = await decoder.GetPixelDataAsync(
-                BitmapPixelFormat.Rgba8,
-                BitmapAlphaMode.Straight,
-                transform,
-                ExifOrientationMode.RespectExifOrientation,
-                ColorManagementMode.DoNotColorManage);
-
-            using (var destinationStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+            using (var reader = new DataReader(ras))
             {
-                BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, destinationStream);
-                encoder.SetPixelData(BitmapPixelFormat.Rgba8, BitmapAlphaMode.Premultiplied, 512, 288, 96, 96, pixelData.DetachPixelData());
-                await encoder.FlushAsync();
+                await reader.LoadAsync((uint)ras.Size);
+                var buffer = new byte[(int)ras.Size];
+                reader.ReadBytes(buffer);
+                await Windows.Storage.FileIO.WriteBytesAsync(file, buffer);
             }
             return file.Path;
+        }
+
+        /// <summary> 
+
+        /// Resizes image data within a stream to a given width and height.
+
+        /// </summary>
+
+        /// <returns>
+
+        /// Returns an image stream with the resized image data.
+
+        /// </returns>
+
+        private static async Task<IRandomAccessStream> ResizeImage(IRandomAccessStream imageStream, uint width, uint height)
+        {
+
+            IRandomAccessStream resizedStream = imageStream;
+
+            var decoder = await BitmapDecoder.CreateAsync(imageStream);
+
+            if (decoder.OrientedPixelHeight > height || decoder.OrientedPixelWidth > width)
+            {
+
+                resizedStream = new InMemoryRandomAccessStream();
+
+                BitmapEncoder encoder = await BitmapEncoder.CreateForTranscodingAsync(resizedStream, decoder);
+
+                double widthRatio = (double)width / decoder.OrientedPixelWidth;
+
+                double heightRatio = (double)height / decoder.OrientedPixelHeight;
+
+
+
+                // Use whichever ratio had to be sized down the most to make sure the image fits within our constraints.
+
+                double scaleRatio = Math.Min(widthRatio, heightRatio);
+
+                uint aspectHeight = (uint)Math.Floor((double)decoder.OrientedPixelHeight * scaleRatio);
+
+                uint aspectWidth = (uint)Math.Floor((double)decoder.OrientedPixelWidth * scaleRatio);
+
+
+
+                encoder.BitmapTransform.ScaledHeight = aspectHeight;
+
+                encoder.BitmapTransform.ScaledWidth = aspectWidth;
+
+
+
+                // write out to the stream
+
+                await encoder.FlushAsync();
+
+
+
+                // Reset the stream location.
+
+                resizedStream.Seek(0);
+
+            }
+
+
+
+            return resizedStream;
+
         }
 
         /// <summary>

@@ -40,19 +40,19 @@ namespace XBMCRemoteRT.Helpers
 
             List<Episode> episodes = await VideoLibrary.GetEpisodes(limits:limits, sort: sort, tvShowID: currentShow.TvShowId);
 
-            ////Square tile
-            //XmlDocument tileXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileSquare150x150PeekImageAndText01);
-            //XmlNodeList tileTextAttributes = tileXml.GetElementsByTagName("text");
-            //tileTextAttributes[0].InnerText = "Episodes";
+            //Square tile
+            XmlDocument tileXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileSquare150x150PeekImageAndText01);
+            XmlNodeList tileTextAttributes = tileXml.GetElementsByTagName("text");
+            tileTextAttributes[0].InnerText = "Episodes";
 
-            //for (int i = 0; i < episodes.Count; i++)
-            //{
-            //    tileTextAttributes[i + 1].InnerText = episodes[i].Label;
-            //}
+            for (int i = 0; i < episodes.Count; i++)
+            {
+                tileTextAttributes[i + 1].InnerText = episodes[i].Label;
+            }
 
-            //XmlNodeList tileImageAttributes = tileXml.GetElementsByTagName("image");
-            //string uriString = DownloadHelper.GetRemoteUri(currentShow.Thumbnail);
-            //(tileImageAttributes[0] as XmlElement).SetAttribute("src", uriString);
+            XmlNodeList tileImageAttributes = tileXml.GetElementsByTagName("image");
+            string uriString = DownloadHelper.GetRemoteUri(currentShow.Thumbnail);
+            (tileImageAttributes[0] as XmlElement).SetAttribute("src", uriString);
 
             //Wide tile
             XmlDocument wideTileXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWide310x150PeekImage02);
@@ -64,15 +64,14 @@ namespace XBMCRemoteRT.Helpers
                 tileTextWideAttributes[i + 1].InnerText = episodes[i].Label;
             }
 
-            tileTextWideAttributes[4].InnerText = "Hi";
 
             XmlNodeList tileImageWideAttributes = wideTileXml.GetElementsByTagName("image");
-            string uriWideString = await DownloadHelper.DownloadImageForTile(currentShow.Thumbnail);
+            string uriWideString = await DownloadHelper.DownloadImageForTile(currentShow.Fanart);
             (tileImageWideAttributes[0] as XmlElement).SetAttribute("src", uriWideString);
-            
-            ////Packaging
-            //IXmlNode node = wideTileXml.ImportNode(tileXml.GetElementsByTagName("binding").Item(0), true);
-            //wideTileXml.GetElementsByTagName("visual").Item(0).AppendChild(node);
+
+            //Packaging
+            IXmlNode node = wideTileXml.ImportNode(tileXml.GetElementsByTagName("binding").Item(0), true);
+            wideTileXml.GetElementsByTagName("visual").Item(0).AppendChild(node);
 
             TileNotification tileNotification = new TileNotification(wideTileXml);
 
