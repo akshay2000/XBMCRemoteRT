@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using XBMCRemoteRT.Models.Network;
@@ -101,12 +102,39 @@ namespace XBMCRemoteRT.Helpers
             return ApplicationData.Current.TemporaryFolder;
         }
 
-        public async static Task<string> DownloadFile(String uriString)
+        public async static Task<string> DownloadFile(string uriString)
         {
             Uri imageUri = new Uri(GetRemoteUri(uriString));
             var stream = await GetImageStreamAsync(imageUri);
             await WriteFileAsync(stream, "tempFile");
             return Path.Combine(GetCacheFolder().Path, "tempfile");
+        }
+
+        public async static Task<string> DownloadImageForTile(string uriString)
+        {
+            Uri imageUri = new Uri(GetRemoteUri(uriString));
+            var stream = await GetImageStreamAsync(imageUri);
+            BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream.AsRandomAccessStream());
+
+            BitmapTransform transform = new BitmapTransform() { ScaledWidth = 512 };
+
+            string fileName = "tile.tmp";
+            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+
+            PixelDataProvider pixelData = await decoder.GetPixelDataAsync(
+                BitmapPixelFormat.Rgba8,
+                BitmapAlphaMode.Straight,
+                transform,
+                ExifOrientationMode.RespectExifOrientation,
+                ColorManagementMode.DoNotColorManage);
+
+            using (var destinationStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+            {
+                BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, destinationStream);
+                encoder.SetPixelData(BitmapPixelFormat.Rgba8, BitmapAlphaMode.Premultiplied, 512, 288, 96, 96, pixelData.DetachPixelData());
+                await encoder.FlushAsync();
+            }
+            return file.Path;
         }
 
         /// <summary>

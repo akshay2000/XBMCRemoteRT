@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Helpers;
+using Windows.UI.Xaml.Media.Imaging;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -98,9 +99,10 @@ namespace XBMCRemoteRT.Pages.Entry
         /// </summary>
         /// <param name="e">Provides data for navigation methods and event
         /// handlers that cannot cancel the navigation request.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             PageTitleTextBlock.Text = e.Parameter.ToString();
+           // BingoImage.Source = new BitmapImage(new Uri(await DownloadHelper.DownloadImageForTile("image://http%3a%2f%2fthetvdb.com%2fbanners%2ffanart%2foriginal%2f264030-2.jpg/")));
             this.navigationHelper.OnNavigatedTo(e);
         }
 

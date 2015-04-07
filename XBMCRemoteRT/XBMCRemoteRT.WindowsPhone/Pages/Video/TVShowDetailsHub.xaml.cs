@@ -171,6 +171,8 @@ namespace XBMCRemoteRT.Pages.Video
                 Uri logoUri = new Uri("ms-appx:///Assets/Square71x71Logo.scale-240.png");
 
                 SecondaryTile tvShowTile = new SecondaryTile(tileId, displayName, activationArgs, logoUri, TileSize.Wide310x150);
+                tvShowTile.VisualElements.Wide310x150Logo = new Uri("ms-appx:///Assets/WideLogo.scale-240.png");
+
                 ToggleAppBarButton(false);
                 bool pinned = await tvShowTile.RequestCreateAsync();
             }

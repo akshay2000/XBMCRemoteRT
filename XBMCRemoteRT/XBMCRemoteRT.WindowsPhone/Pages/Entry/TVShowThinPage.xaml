@@ -29,7 +29,7 @@
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-
+            <Image x:Name="BingoImage" Stretch="None"/>
         </Grid>
     </Grid>
 </Page>
