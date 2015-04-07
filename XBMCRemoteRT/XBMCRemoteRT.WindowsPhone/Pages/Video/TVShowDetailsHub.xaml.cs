@@ -165,11 +165,12 @@ namespace XBMCRemoteRT.Pages.Video
             }
             else
             {
+                string displayName = GlobalVariables.CurrentTVShow.Label;
                 string activationArgs = "tvShow_" + GlobalVariables.CurrentTVShow.Title;
                 string logoUriString = await DownloadHelper.DownloadFile(GlobalVariables.CurrentTVShow.Thumbnail);
                 Uri logoUri = new Uri("ms-appx:///Assets/Square71x71Logo.scale-240.png");
 
-                SecondaryTile tvShowTile = new SecondaryTile(tileId, tileId, activationArgs, logoUri, TileSize.Default);
+                SecondaryTile tvShowTile = new SecondaryTile(tileId, displayName, activationArgs, logoUri, TileSize.Wide310x150);
                 ToggleAppBarButton(false);
                 bool pinned = await tvShowTile.RequestCreateAsync();
             }

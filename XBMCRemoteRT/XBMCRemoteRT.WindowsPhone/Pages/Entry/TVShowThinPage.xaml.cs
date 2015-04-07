@@ -36,7 +36,7 @@ namespace XBMCRemoteRT.Pages.Entry
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-            TileHelper.UpdateTile("tvShow_1");
+            TileHelper.UpdateAllTiles();
         }
 
         /// <summary>

@@ -103,7 +103,7 @@ namespace XBMCRemoteRT.Helpers
 
         public async static Task<string> DownloadFile(String uriString)
         {
-            Uri imageUri = GetRemoteUri(uriString);
+            Uri imageUri = new Uri(GetRemoteUri(uriString));
             var stream = await GetImageStreamAsync(imageUri);
             await WriteFileAsync(stream, "tempFile");
             return Path.Combine(GetCacheFolder().Path, "tempfile");
@@ -114,9 +114,9 @@ namespace XBMCRemoteRT.Helpers
         /// </summary>
         /// <param name="imagePath">Path on remote server to the resource. Usually begins with "image://"</param>
         /// <returns>Location of the resource on the currently connected Kodi server. null if not connected or if imagePath is invalid.</returns>
-        public static Uri GetRemoteUri(string imagePath)
+        public static string GetRemoteUri(string imagePath)
         {
-            Uri imageUri = null;
+            string imageUri = null;
             // Build Kodi proxy image address
             ConnectionItem con = ConnectionManager.CurrentConnection;
             if (con != null)
@@ -125,7 +125,7 @@ namespace XBMCRemoteRT.Helpers
                 string encodedUri = WebUtility.UrlEncode(imagePath);
                 try
                 {
-                    imageUri = new Uri(baseUrlString + encodedUri);
+                    imageUri = baseUrlString + encodedUri;
                 }
                 catch (FormatException) { }
             }
