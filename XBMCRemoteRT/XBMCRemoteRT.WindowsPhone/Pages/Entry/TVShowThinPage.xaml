@@ -7,15 +7,28 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Page.Resources>
+        <DataTemplate x:Key="EpisodeItemTemplate">
+            <StackPanel x:Name="EpisodeWrapper" Orientation="Horizontal" Margin="0,10" Tapped="EpisodeWrapper_Tapped" CommonNavigationTransitionInfo.IsStaggerElement="True">
+                <TextBlock Text="{Binding Label}" FontSize="25" Margin="10,-2,0,0" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
 
+    
     <Grid x:Name="LayoutRoot">
-
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -23,13 +36,25 @@
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="MY APPLICATION" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock x:Name="PageTitleTextBlock" Text="page title" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Text="{StaticResource AppName}" Margin="3,12,0,-8"  Style="{StaticResource PageTitleTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+            <TextBlock x:Name="PageTitleTextBlock" Text="Arrow" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <Image x:Name="BingoImage" Stretch="None"/>
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel x:Name="NewWrapper" CommonNavigationTransitionInfo.IsStaggerElement="True">
+                        <TextBlock Text="NEW" Style="{StaticResource ResourceKey=ParagraphHeaderTextStyle}" />
+                        <ListView x:Name="NewEpisodesListView" ItemTemplate="{StaticResource EpisodeItemTemplate}"/>
+                    </StackPanel>
+                    
+                    <StackPanel x:Name="WatchedWrapper" CommonNavigationTransitionInfo.IsStaggerElement="True">
+                        <TextBlock Text="WATCHED" Style="{StaticResource ResourceKey=ParagraphHeaderTextStyle}" />
+                        <ListView x:Name="WatchedEpisodesListView" ItemTemplate="{StaticResource EpisodeItemTemplate}"/>
+                    </StackPanel>
+                </StackPanel>                
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Page>

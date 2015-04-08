@@ -17,6 +17,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Helpers;
 using Windows.UI.Xaml.Media.Imaging;
+using XBMCRemoteRT.Models.Video;
+using Newtonsoft.Json.Linq;
+using XBMCRemoteRT.RPCWrappers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -101,9 +104,40 @@ namespace XBMCRemoteRT.Pages.Entry
         /// handlers that cannot cancel the navigation request.</param>
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            PageTitleTextBlock.Text = e.Parameter.ToString();
-           // BingoImage.Source = new BitmapImage(new Uri(await DownloadHelper.DownloadImageForTile("image://http%3a%2f%2fthetvdb.com%2fbanners%2ffanart%2foriginal%2f264030-2.jpg/")));
             this.navigationHelper.OnNavigatedTo(e);
+            string showName = e.Parameter.ToString().Split("_".ToArray())[1];
+            var shows = await VideoLibrary.GetTVShows();
+            int showId = shows.Where(show => show.Title == showName).FirstOrDefault().TvShowId;
+
+            if (showId == null)
+                return;
+
+            JObject filter = new JObject(
+                new JProperty("field", "playcount"),
+                new JProperty("operator", "is"),
+                new JProperty("value", "0"));
+
+            JObject sort = new JObject(
+                new JProperty("order", "ascending"),
+                new JProperty("method", "label"));
+
+            List<Episode> newEpisodes = await VideoLibrary.GetEpisodes(filter: filter, sort: sort, tvShowID:showId);
+
+            if (newEpisodes.Count > 0)
+                NewEpisodesListView.ItemsSource = newEpisodes;
+            else
+                NewWrapper.Visibility = Visibility.Collapsed;
+
+            filter["operator"] = "greaterthan";
+
+            List<Episode> watchedEpisodes = await VideoLibrary.GetEpisodes(filter: filter, sort: sort, tvShowID: showId);
+
+            if (watchedEpisodes.Count > 0)
+                WatchedEpisodesListView.ItemsSource = watchedEpisodes;
+            else
+                WatchedWrapper.Visibility = Visibility.Collapsed;
+
+            PageTitleTextBlock.Text = showName;         
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -112,5 +146,10 @@ namespace XBMCRemoteRT.Pages.Entry
         }
 
         #endregion
+
+        private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
     }
 }

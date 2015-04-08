@@ -167,7 +167,6 @@ namespace XBMCRemoteRT.Pages.Video
             {
                 string displayName = GlobalVariables.CurrentTVShow.Label;
                 string activationArgs = "tvShow_" + GlobalVariables.CurrentTVShow.Title;
-                string logoUriString = await DownloadHelper.DownloadFile(GlobalVariables.CurrentTVShow.Thumbnail);
                 Uri logoUri = new Uri("ms-appx:///Assets/Square71x71Logo.scale-240.png");
 
                 SecondaryTile tvShowTile = new SecondaryTile(tileId, displayName, activationArgs, logoUri, TileSize.Wide310x150);
