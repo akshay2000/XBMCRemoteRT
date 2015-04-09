@@ -255,12 +255,7 @@ namespace XBMCRemoteRT.Pages
         {
             int volume = await Applikation.GetVolume();
             SetVolumeSliderValue(volume);
-        }
-
-        private void QuitButton_Click(object sender, RoutedEventArgs e)
-        {
-            Applikation.Quit();
-        }
+        }        
 
         private DispatcherTimer timer;
         private void VolumeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -361,6 +356,7 @@ namespace XBMCRemoteRT.Pages
         private string videoLibClean;// ="clean video library";
         private string showSubtitleSerach;// = "download subtitles";
         private string showVideoInfo;// = "show codec info";
+        private string shutDown;// = "shut down";
 
         private void PopulateFlyout()
         {
@@ -371,8 +367,9 @@ namespace XBMCRemoteRT.Pages
             videoLibClean = loader.GetString("CleanVideoLibrary");
             showSubtitleSerach = loader.GetString("DownloadSubtitles");
             showVideoInfo = loader.GetString("ShowCodecInfo");
+            shutDown = loader.GetString("ShutDown");
 
-            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo };
+            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo, shutDown };
         }
 
         private void AdvancedMenuFlyout_ItemsPicked(ListPickerFlyout sender, ItemsPickedEventArgs args)
@@ -391,6 +388,12 @@ namespace XBMCRemoteRT.Pages
                 GUI.ShowSubtitleSearch();
             else if (pickedCommand == showVideoInfo)
                 Input.ExecuteAction("codecinfo");
+            else if (pickedCommand == shutDown)
+            {
+                Applikation.Quit();
+                NavigationTransitionInfo transitionInfo = new SlideNavigationTransitionInfo();
+                Frame.Navigate(typeof(MainPage), false, transitionInfo);
+            }
         }
 
         //private InputCommands heldCommand;

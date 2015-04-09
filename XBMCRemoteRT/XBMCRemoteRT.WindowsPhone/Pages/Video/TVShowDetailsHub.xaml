@@ -116,7 +116,7 @@
     </Grid>
 
     <Page.BottomAppBar>
-        <CommandBar Opacity="0.5">
+        <CommandBar ClosedDisplayMode="Minimal" Opacity="0.5">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="PinUnpinAppBarButton" Label="pin to start" Click="PinUnpinAppBarButton_Click" />
             </CommandBar.SecondaryCommands>
