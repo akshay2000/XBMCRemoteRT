@@ -154,7 +154,14 @@ namespace XBMCRemoteRT.Pages.Entry
             else
                 WatchedWrapper.Visibility = Visibility.Collapsed;
 
-            PageTitleTextBlock.Text = showName;         
+            PageTitleTextBlock.Text = showName;
+
+            if (newEpisodes.Count + watchedEpisodes.Count == 0)
+            {
+                MessageDialog msg = new MessageDialog("No episodes were found. We'll take you to the library now.", "Nothing Here");
+                await msg.ShowAsync();
+                Frame.Navigate(typeof(CoverPage));
+            }
         }
 
         private async Task<bool> LoadAndConnnect()
@@ -188,7 +195,9 @@ namespace XBMCRemoteRT.Pages.Entry
 
         private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            var tappedEpisode = (sender as StackPanel).DataContext as Episode;
+            Player.PlayEpidose(tappedEpisode);
+            Frame.Navigate(typeof(CoverPage));
         }
     }
 }
