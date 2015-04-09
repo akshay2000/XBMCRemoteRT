@@ -127,7 +127,7 @@ namespace XBMCRemoteRT.Helpers
 
 
             string fileName = "tile.tmp";
-            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
+            var file = await (await ApplicationData.Current.LocalFolder.CreateFolderAsync("Tiles", CreationCollisionOption.OpenIfExists)).CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
             using (var reader = new DataReader(ras))
             {
                 await reader.LoadAsync((uint)ras.Size);

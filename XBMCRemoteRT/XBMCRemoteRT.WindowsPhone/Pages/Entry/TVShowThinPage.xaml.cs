@@ -20,6 +20,8 @@ using Windows.UI.Xaml.Media.Imaging;
 using XBMCRemoteRT.Models.Video;
 using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.RPCWrappers;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -39,8 +41,7 @@ namespace XBMCRemoteRT.Pages.Entry
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
-            this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-            TileHelper.UpdateAllTiles();
+            this.navigationHelper.SaveState += this.NavigationHelper_SaveState;            
         }
 
         /// <summary>
@@ -105,7 +106,23 @@ namespace XBMCRemoteRT.Pages.Entry
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
-            string showName = e.Parameter.ToString().Split("_".ToArray())[1];
+            Frame.BackStack.Clear();
+            Init(e.Parameter.ToString());
+        }
+
+        private async void Init(string navigationArgs)
+        {
+            bool isConnected = await LoadAndConnnect();
+            if (!isConnected)
+                return;
+
+            await PopulatePage(navigationArgs);
+            TileHelper.UpdateAllTiles();
+        }
+
+        private async Task PopulatePage(string navigationArgs)
+        {
+            string showName = navigationArgs.Split("_".ToArray())[1];
             var shows = await VideoLibrary.GetTVShows();
             int showId = shows.Where(show => show.Title == showName).FirstOrDefault().TvShowId;
 
@@ -121,7 +138,7 @@ namespace XBMCRemoteRT.Pages.Entry
                 new JProperty("order", "ascending"),
                 new JProperty("method", "label"));
 
-            List<Episode> newEpisodes = await VideoLibrary.GetEpisodes(filter: filter, sort: sort, tvShowID:showId);
+            List<Episode> newEpisodes = await VideoLibrary.GetEpisodes(filter: filter, sort: sort, tvShowID: showId);
 
             if (newEpisodes.Count > 0)
                 NewEpisodesListView.ItemsSource = newEpisodes;
@@ -138,6 +155,28 @@ namespace XBMCRemoteRT.Pages.Entry
                 WatchedWrapper.Visibility = Visibility.Collapsed;
 
             PageTitleTextBlock.Text = showName;         
+        }
+
+        private async Task<bool> LoadAndConnnect()
+        {
+            await App.ConnectionsVM.ReloadConnections();
+            string ip = (string)SettingsHelper.GetValue("RecentServerIP");
+            if (ip != null)
+            {
+                var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
+                if (connectionItem != null)
+                {
+                    if (await JSONRPC.Ping(connectionItem))
+                    {
+                        ConnectionManager.CurrentConnection = connectionItem;
+                        return true;
+                    }
+                }
+            }
+            MessageDialog msg = new MessageDialog("Could not connect to a server. Please check the connection on next screen.", "Connection Unsuccessful");
+            await msg.ShowAsync();
+            Frame.Navigate(typeof(MainPage), false);
+            return false;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
