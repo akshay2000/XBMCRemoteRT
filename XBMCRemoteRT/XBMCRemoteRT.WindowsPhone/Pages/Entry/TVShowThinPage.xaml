@@ -10,23 +10,23 @@
     
     <Page.Resources>
         <DataTemplate x:Key="EpisodeItemTemplate">
-            <StackPanel x:Name="EpisodeWrapper" Orientation="Horizontal" Margin="0,10" Tapped="EpisodeWrapper_Tapped" CommonNavigationTransitionInfo.IsStaggerElement="True">
+            <StackPanel x:Name="EpisodeWrapper" Orientation="Horizontal" Margin="0,10" Tapped="EpisodeWrapper_Tapped" >
                 <TextBlock Text="{Binding Label}" FontSize="25" Margin="10,-2,0,0" FontWeight="SemiBold" VerticalAlignment="Center"/>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    
+
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition>
                 <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
+                    <CommonNavigationTransitionInfo/>
                 </NavigationThemeTransition.DefaultNavigationTransitionInfo>
             </NavigationThemeTransition>
         </TransitionCollection>
     </Page.Transitions>
 
-    
+
     <Grid x:Name="LayoutRoot">
         
         <Grid.RowDefinitions>
@@ -36,20 +36,20 @@
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="{StaticResource AppName}" Margin="3,12,0,-8"  Style="{StaticResource PageTitleTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
-            <TextBlock x:Name="PageTitleTextBlock" Text="Arrow" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+            <TextBlock Text="{StaticResource AppName}" Margin="3,12,0,-8"  Style="{StaticResource PageTitleTextStyle}" />
+            <TextBlock x:Name="PageTitleTextBlock" Text="Arrow" Style="{StaticResource PageHeaderTextStyle}" />
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <ScrollViewer>
                 <StackPanel>
-                    <StackPanel x:Name="NewWrapper" CommonNavigationTransitionInfo.IsStaggerElement="True">
+                    <StackPanel x:Name="NewWrapper" Visibility="Collapsed">
                         <TextBlock Text="NEW" Style="{StaticResource ResourceKey=ParagraphHeaderTextStyle}" />
                         <ListView x:Name="NewEpisodesListView" ItemTemplate="{StaticResource EpisodeItemTemplate}"/>
                     </StackPanel>
-                    
-                    <StackPanel x:Name="WatchedWrapper" CommonNavigationTransitionInfo.IsStaggerElement="True">
+
+                    <StackPanel x:Name="WatchedWrapper" Visibility="Collapsed">
                         <TextBlock Text="WATCHED" Style="{StaticResource ResourceKey=ParagraphHeaderTextStyle}" />
                         <ListView x:Name="WatchedEpisodesListView" ItemTemplate="{StaticResource EpisodeItemTemplate}"/>
                     </StackPanel>

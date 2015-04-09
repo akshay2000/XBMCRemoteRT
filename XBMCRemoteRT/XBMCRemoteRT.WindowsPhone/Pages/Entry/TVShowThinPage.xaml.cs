@@ -108,21 +108,33 @@ namespace XBMCRemoteRT.Pages.Entry
             this.navigationHelper.OnNavigatedTo(e);
             Frame.BackStack.Clear();
             Init(e.Parameter.ToString());
+        }       
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            this.navigationHelper.OnNavigatedFrom(e);
+            ConnectionManager.ManageSystemTray(false);
         }
+
+        #endregion
 
         private async void Init(string navigationArgs)
         {
+            ConnectionManager.ManageSystemTray(true);
             bool isConnected = await LoadAndConnnect();
             if (!isConnected)
                 return;
 
             await PopulatePage(navigationArgs);
             TileHelper.UpdateAllTiles();
+            ConnectionManager.ManageSystemTray(false);
         }
 
         private async Task PopulatePage(string navigationArgs)
         {
             string showName = navigationArgs.Split("_".ToArray())[1];
+            PageTitleTextBlock.Text = showName;
+
             var shows = await VideoLibrary.GetTVShows();
             int showId = shows.Where(show => show.Title == showName).FirstOrDefault().TvShowId;
 
@@ -141,20 +153,20 @@ namespace XBMCRemoteRT.Pages.Entry
             List<Episode> newEpisodes = await VideoLibrary.GetEpisodes(filter: filter, sort: sort, tvShowID: showId);
 
             if (newEpisodes.Count > 0)
+            {
                 NewEpisodesListView.ItemsSource = newEpisodes;
-            else
-                NewWrapper.Visibility = Visibility.Collapsed;
+                NewWrapper.Visibility = Visibility.Visible;
+            }
 
             filter["operator"] = "greaterthan";
 
             List<Episode> watchedEpisodes = await VideoLibrary.GetEpisodes(filter: filter, sort: sort, tvShowID: showId);
 
             if (watchedEpisodes.Count > 0)
+            {
                 WatchedEpisodesListView.ItemsSource = watchedEpisodes;
-            else
-                WatchedWrapper.Visibility = Visibility.Collapsed;
-
-            PageTitleTextBlock.Text = showName;
+                WatchedWrapper.Visibility = Visibility.Visible;
+            }
 
             if (newEpisodes.Count + watchedEpisodes.Count == 0)
             {
@@ -189,13 +201,6 @@ namespace XBMCRemoteRT.Pages.Entry
             Frame.Navigate(typeof(MainPage), false);
             return false;
         }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            this.navigationHelper.OnNavigatedFrom(e);
-        }
-
-        #endregion
 
         private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
