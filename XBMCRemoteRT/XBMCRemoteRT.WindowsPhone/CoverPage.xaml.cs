@@ -58,18 +58,9 @@ namespace XBMCRemoteRT
                 GlobalVariables.CurrentPlayerState = new PlayerState();
             DataContext = GlobalVariables.CurrentPlayerState;
             PlayerHelper.RefreshPlayerState();
-            PlayerHelper.StartAutoRefresh(1);
-            //timer = new DispatcherTimer();
-            //timer.Interval = TimeSpan.FromSeconds(5);
-            //timer.Start();
-            //timer.Tick += timer_Tick;            
-        }
-   
-        //private void timer_Tick(object sender, object e)
-        //{
-        //    PlayerHelper.RefreshPlayerState();
-        //}
-
+            PlayerHelper.StartAutoRefresh(1);            
+        }   
+       
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
         /// </summary>
@@ -136,6 +127,7 @@ namespace XBMCRemoteRT
             RefreshListsIfNull();
             ServerNameTextBlock.Text = ConnectionManager.CurrentConnection.ConnectionName;
             Frame.BackStack.Clear();
+            TileHelper.UpdateAllTiles();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
