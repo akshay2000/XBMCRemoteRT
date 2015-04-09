@@ -140,7 +140,7 @@ namespace XBMCRemoteRT.Pages
 
         private void UpButton_Click(object sender, RoutedEventArgs e)
         {
-            string name = ((Button)sender).Name;
+            Input.ExecuteAction(InputCommands.Up);
         }
 
         private void RightButton_Click(object sender, RoutedEventArgs e)
