@@ -103,7 +103,7 @@ namespace XBMCRemoteRT.Pages.Entry
         /// </summary>
         /// <param name="e">Provides data for navigation methods and event
         /// handlers that cannot cancel the navigation request.</param>
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
             Frame.BackStack.Clear();
@@ -158,7 +158,9 @@ namespace XBMCRemoteRT.Pages.Entry
 
             if (newEpisodes.Count + watchedEpisodes.Count == 0)
             {
-                MessageDialog msg = new MessageDialog("No episodes were found. We'll take you to the library now.", "Nothing Here");
+                string message = String.Format("No episodes were found in {0}. We will take you to the library now.", showName);
+                string messageHeader = "Nothing Here!";
+                MessageDialog msg = new MessageDialog(message, messageHeader);
                 await msg.ShowAsync();
                 Frame.Navigate(typeof(CoverPage));
             }
@@ -180,7 +182,9 @@ namespace XBMCRemoteRT.Pages.Entry
                     }
                 }
             }
-            MessageDialog msg = new MessageDialog("Could not connect to a server. Please check the connection on next screen.", "Connection Unsuccessful");
+            string message = "Could not connect to a server. Please check the connection on next screen.";
+            string messageHeader = "Connection Unsuccessful";
+            MessageDialog msg = new MessageDialog(message, messageHeader);
             await msg.ShowAsync();
             Frame.Navigate(typeof(MainPage), false);
             return false;

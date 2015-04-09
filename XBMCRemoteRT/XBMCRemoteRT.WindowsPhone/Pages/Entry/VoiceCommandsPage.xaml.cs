@@ -208,8 +208,10 @@ namespace XBMCRemoteRT.Pages.Entry
                         return true;
                     }                    
                 }
-            }            
-            MessageDialog msg = new MessageDialog("Could not connect to a server. Please check the connection on next screen.", "Connection Unsuccessful");            
+            }
+            string message = "Could not connect to a server. Please check the connection on next screen.";
+            string messageHeader = "Connection Unsuccessful";
+            MessageDialog msg = new MessageDialog(message, messageHeader);
             await msg.ShowAsync();
             Frame.Navigate(typeof(MainPage), false);
             return false;
