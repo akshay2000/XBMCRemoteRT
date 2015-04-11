@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:element name="data">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
-        <xsd:sequence>
-          <xsd:element name="value" type="xsd:string" minOccurs="0"                     msdata:Ordinal="2" />
-        </xsd:sequence>
-        <xsd:attribute name="name" type="xsd:string" />
-        <xsd:attribute name="type" type="xsd:string" />
-        <xsd:attribute name="mimetype" type="xsd:string" />
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
       </xsd:complexType>
     </xsd:element>
   </xsd:schema>
@@ -19,222 +112,430 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-<data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>om</value>
-</data>
-<data name="MoviesHubSectionHeader.Text" xml:space="preserve">
-	<value>FILMER</value>
-</data>
-<data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
-	<value>se alla filmer</value>
-</data>
-<data name="MusicHubSectionHeader.Text" xml:space="preserve">
-	<value>MUSIK</value>
-	<comment>Header of music section on cover page</comment>
-</data>
-<data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
-	<value>se all musik</value>
-</data>
-<data name="NotAvailable" xml:space="preserve">
-	<value>ej tillgänglig</value>
-	<comment>When artists aren&apos;t available</comment>
-</data>
-<data name="NothingIsPlaying" xml:space="preserve">
-	<value>Inget spelas</value>
-</data>
-<data name="NowPlayingHeader.Text" xml:space="preserve">
-	<value>NU SPELAS</value>
-	<comment>Header of now playing on cover page</comment>
-</data>
-<data name="NowPlayingSubHeader.Text" xml:space="preserve">
-	<value>öppna fjärrkontroll</value>
-	<comment>Subheader of now playing on cover page
+  <data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>om</value>
+  </data>
+  <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
+    <value>FILMER</value>
+  </data>
+  <data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
+    <value>se alla filmer</value>
+  </data>
+  <data name="MusicHubSectionHeader.Text" xml:space="preserve">
+    <value>MUSIK</value>
+    <comment>Header of music section on cover page</comment>
+  </data>
+  <data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
+    <value>se all musik</value>
+  </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>ej tillgänglig</value>
+    <comment>When artists aren&apos;t available</comment>
+  </data>
+  <data name="NothingIsPlaying" xml:space="preserve">
+    <value>Inget spelas</value>
+  </data>
+  <data name="NowPlayingHeader.Text" xml:space="preserve">
+    <value>NU SPELAS</value>
+    <comment>Header of now playing on cover page</comment>
+  </data>
+  <data name="NowPlayingSubHeader.Text" xml:space="preserve">
+    <value>öppna fjärrkontroll</value>
+    <comment>Subheader of now playing on cover page
 Fuzzy</comment>
-</data>
-<data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>fjärrkontroll</value>
-	<comment>Appbar menu item
+  </data>
+  <data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>fjärrkontroll</value>
+    <comment>Appbar menu item
 Fuzzy</comment>
-</data>
-<data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>inställningar</value>
-</data>
-<data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
-	<value>TV-PROGRAM</value>
-</data>
-<data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
-	<value>se alla program</value>
-</data>
-<data name="AboutAppBarMenu.Label" xml:space="preserve">
-	<value>om</value>
-</data>
-<data name="AddConnectionPageTitle.Text" xml:space="preserve">
-	<value>LÄGG TILL ANSLUTNING</value>
-</data>
-<data name="AddServer.Label" xml:space="preserve">
-	<value>lägg till server</value>
-</data>
-<data name="AlbumPageTitle.Text" xml:space="preserve">
-	<value>LÅTAR</value>
-</data>
-<data name="Albums.Header" xml:space="preserve">
-	<value>ALBUM</value>
-</data>
-<data name="AlbumsTitle.Text" xml:space="preserve">
-	<value>ALBUM</value>
-</data>
-<data name="AllMoviesTitle.Text" xml:space="preserve">
-	<value>ALLA</value>
-</data>
-<data name="AllMusicPivotTitle.Text" xml:space="preserve">
-	<value>ALL MUSIK</value>
-</data>
-<data name="ArtistsTitle.Text" xml:space="preserve">
-	<value>ARTISTER</value>
-</data>
-<data name="Bio.Text" xml:space="preserve">
-	<value>BIO</value>
-</data>
-<data name="CancelAppBarMenu.Label" xml:space="preserve">
-	<value>avbryt</value>
-</data>
-<data name="Cast.Header" xml:space="preserve">
-	<value>SKÅDESPELARE</value>
-	<comment>Fuzzy</comment>
-</data>
-<data name="CleanAudioLibrary" xml:space="preserve">
-	<value>rensa ljudbibliotek</value>
-</data>
-<data name="CleanVideoLibrary" xml:space="preserve">
-	<value>rensa videobibliotek</value>
-</data>
-<data name="ConnectionName.Header" xml:space="preserve">
-	<value>Namn</value>
-</data>
-<data name="ConnectionsPageTitle.Text" xml:space="preserve">
-	<value>ANSLUTNINGAR</value>
-</data>
-<data name="Director.Text" xml:space="preserve">
-	<value>REGISSÖR</value>
-</data>
-<data name="DownloadSubtitles" xml:space="preserve">
-	<value>ladda ner undertexter</value>
-</data>
-<data name="Genre.Text" xml:space="preserve">
-	<value>GENRE</value>
-</data>
-<data name="Info.Header" xml:space="preserve">
-	<value>INFO</value>
-</data>
-<data name="Mood.Text" xml:space="preserve">
-	<value>STÄMNING</value>
-	<comment>Fuzzy</comment>
-</data>
-<data name="Passowrd.Header" xml:space="preserve">
-	<value>Lösenord</value>
-</data>
-<data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
-	<value>spela album</value>
-</data>
-<data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
-	<value>spela artist</value>
-</data>
-<data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
-	<value>spela film</value>
-</data>
-<data name="Plot.Header" xml:space="preserve">
-	<value>PLOT</value>
-</data>
-<data name="PlotText.Text" xml:space="preserve">
-	<value>PLOT</value>
-</data>
-<data name="Port.Header" xml:space="preserve">
-	<value>Port</value>
-</data>
-<data name="Rating.Text" xml:space="preserve">
-	<value>Omdöme</value>
-</data>
-<data name="RefreshAppBarMenu.Label" xml:space="preserve">
-	<value>Uppdatera</value>
-</data>
-<data name="RemoteAppBarMenu.Label" xml:space="preserve">
-	<value>fjärrkontroll</value>
-	<comment>Appbar menu item
+  </data>
+  <data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>inställningar</value>
+  </data>
+  <data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
+    <value>TV-PROGRAM</value>
+  </data>
+  <data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
+    <value>se alla program</value>
+  </data>
+  <data name="AboutAppBarMenu.Label" xml:space="preserve">
+    <value>om</value>
+  </data>
+  <data name="AddConnectionPageTitle.Text" xml:space="preserve">
+    <value>LÄGG TILL ANSLUTNING</value>
+  </data>
+  <data name="AddServer.Label" xml:space="preserve">
+    <value>lägg till server</value>
+  </data>
+  <data name="AlbumPageTitle.Text" xml:space="preserve">
+    <value>LÅTAR</value>
+  </data>
+  <data name="Albums.Header" xml:space="preserve">
+    <value>ALBUM</value>
+  </data>
+  <data name="AlbumsTitle.Text" xml:space="preserve">
+    <value>ALBUM</value>
+  </data>
+  <data name="AllMoviesTitle.Text" xml:space="preserve">
+    <value>ALLA</value>
+  </data>
+  <data name="AllMusicPivotTitle.Text" xml:space="preserve">
+    <value>ALL MUSIK</value>
+  </data>
+  <data name="ArtistsTitle.Text" xml:space="preserve">
+    <value>ARTISTER</value>
+  </data>
+  <data name="Bio.Text" xml:space="preserve">
+    <value>BIO</value>
+  </data>
+  <data name="CancelAppBarMenu.Label" xml:space="preserve">
+    <value>avbryt</value>
+  </data>
+  <data name="Cast.Header" xml:space="preserve">
+    <value>SKÅDESPELARE</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="CleanAudioLibrary" xml:space="preserve">
+    <value>rensa ljudbibliotek</value>
+  </data>
+  <data name="CleanVideoLibrary" xml:space="preserve">
+    <value>rensa videobibliotek</value>
+  </data>
+  <data name="ConnectionName.Header" xml:space="preserve">
+    <value>Namn</value>
+  </data>
+  <data name="ConnectionsPageTitle.Text" xml:space="preserve">
+    <value>ANSLUTNINGAR</value>
+  </data>
+  <data name="Director.Text" xml:space="preserve">
+    <value>REGISSÖR</value>
+  </data>
+  <data name="DownloadSubtitles" xml:space="preserve">
+    <value>ladda ner undertexter</value>
+  </data>
+  <data name="Genre.Text" xml:space="preserve">
+    <value>GENRE</value>
+  </data>
+  <data name="Info.Header" xml:space="preserve">
+    <value>INFO</value>
+  </data>
+  <data name="Mood.Text" xml:space="preserve">
+    <value>STÄMNING</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="Passowrd.Header" xml:space="preserve">
+    <value>Lösenord</value>
+  </data>
+  <data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
+    <value>spela album</value>
+  </data>
+  <data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
+    <value>spela artist</value>
+  </data>
+  <data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
+    <value>spela film</value>
+  </data>
+  <data name="Plot.Header" xml:space="preserve">
+    <value>PLOT</value>
+  </data>
+  <data name="PlotText.Text" xml:space="preserve">
+    <value>PLOT</value>
+  </data>
+  <data name="Port.Header" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Rating.Text" xml:space="preserve">
+    <value>Omdöme</value>
+  </data>
+  <data name="RefreshAppBarMenu.Label" xml:space="preserve">
+    <value>Uppdatera</value>
+  </data>
+  <data name="RemoteAppBarMenu.Label" xml:space="preserve">
+    <value>fjärrkontroll</value>
+    <comment>Appbar menu item
 Fuzzy</comment>
-</data>
-<data name="Runtime.Text" xml:space="preserve">
-	<value>LÄNGD</value>
-</data>
-<data name="SaveAppBarMenu.Label" xml:space="preserve">
-	<value>spara</value>
-</data>
-<data name="SearchAppBarMenu.Lable" xml:space="preserve">
-	<value>sök</value>
-</data>
-<data name="SearchMoviesTitle.Text" xml:space="preserve">
-	<value>SÖK FILMER</value>
-</data>
-<data name="SearchTVShowsTitle.Text" xml:space="preserve">
-	<value>SÖK TV-PROGRAM</value>
-</data>
-<data name="Seasons.Header" xml:space="preserve">
-	<value>SÄSONGER</value>
-</data>
-<data name="ServerAddress.Header" xml:space="preserve">
-	<value>Serveradress</value>
-</data>
-<data name="SettingsAppBarMenu.Label" xml:space="preserve">
-	<value>inställningar</value>
-</data>
-<data name="Songs.Header" xml:space="preserve">
-	<value>LÅTAR</value>
-</data>
-<data name="SongsTitle.Text" xml:space="preserve">
-	<value>LÅTAR</value>
-</data>
-<data name="Studio.Text" xml:space="preserve">
-	<value>STUDIO</value>
-</data>
-<data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
-	<value>byt server</value>
-</data>
-<data name="Tagline.Text" xml:space="preserve">
-	<value>TAGLINE</value>
-</data>
-<data name="Track" xml:space="preserve">
-	<value>spår</value>
-</data>
-<data name="Tracks" xml:space="preserve">
-	<value>spår</value>
-</data>
-<data name="TVShowsPageTitle.Text" xml:space="preserve">
-	<value>TV-PROGRAM</value>
-</data>
-<data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
-	<value>NYA</value>
-</data>
-<data name="UpdateAudioLibrary" xml:space="preserve">
-	<value>uppdatera ljudbibliotek</value>
-</data>
-<data name="UpdateVideoLibrary" xml:space="preserve">
-	<value>uppdatera videobibliotek</value>
-</data>
-<data name="Username.Header" xml:space="preserve">
-	<value>Användarnamn</value>
-</data>
-<data name="WarningNote.Text" xml:space="preserve">
-	<value>Notera: Användarnamn och lösenord är lagrade och skickade i klartext. Se till att du inte använder samma lösenord någon annanstans.</value>
-</data>
-<data name="WatchedMovies.Text" xml:space="preserve">
-	<value>SEDDA</value>
-</data>
-<data name="Writer.Text" xml:space="preserve">
-	<value>FÖRFATTARE</value>
-</data>
+  </data>
+  <data name="Runtime.Text" xml:space="preserve">
+    <value>LÄNGD</value>
+  </data>
+  <data name="SaveAppBarMenu.Label" xml:space="preserve">
+    <value>spara</value>
+  </data>
+  <data name="SearchAppBarMenu.Lable" xml:space="preserve">
+    <value>sök</value>
+  </data>
+  <data name="SearchMoviesTitle.Text" xml:space="preserve">
+    <value>SÖK FILMER</value>
+  </data>
+  <data name="SearchTVShowsTitle.Text" xml:space="preserve">
+    <value>SÖK TV-PROGRAM</value>
+  </data>
+  <data name="Seasons.Header" xml:space="preserve">
+    <value>SÄSONGER</value>
+  </data>
+  <data name="ServerAddress.Header" xml:space="preserve">
+    <value>Serveradress</value>
+  </data>
+  <data name="SettingsAppBarMenu.Label" xml:space="preserve">
+    <value>inställningar</value>
+  </data>
+  <data name="Songs.Header" xml:space="preserve">
+    <value>LÅTAR</value>
+  </data>
+  <data name="SongsTitle.Text" xml:space="preserve">
+    <value>LÅTAR</value>
+  </data>
+  <data name="Studio.Text" xml:space="preserve">
+    <value>STUDIO</value>
+  </data>
+  <data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
+    <value>byt server</value>
+  </data>
+  <data name="Tagline.Text" xml:space="preserve">
+    <value>TAGLINE</value>
+  </data>
+  <data name="Track" xml:space="preserve">
+    <value>spår</value>
+  </data>
+  <data name="Tracks" xml:space="preserve">
+    <value>spår</value>
+  </data>
+  <data name="TVShowsPageTitle.Text" xml:space="preserve">
+    <value>TV-PROGRAM</value>
+  </data>
+  <data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
+    <value>NYA</value>
+  </data>
+  <data name="UpdateAudioLibrary" xml:space="preserve">
+    <value>uppdatera ljudbibliotek</value>
+  </data>
+  <data name="UpdateVideoLibrary" xml:space="preserve">
+    <value>uppdatera videobibliotek</value>
+  </data>
+  <data name="Username.Header" xml:space="preserve">
+    <value>Användarnamn</value>
+  </data>
+  <data name="WarningNote.Text" xml:space="preserve">
+    <value>Notera: Användarnamn och lösenord är lagrade och skickade i klartext. Se till att du inte använder samma lösenord någon annanstans.</value>
+  </data>
+  <data name="WatchedMovies.Text" xml:space="preserve">
+    <value>SEDDA</value>
+  </data>
+  <data name="Writer.Text" xml:space="preserve">
+    <value>FÖRFATTARE</value>
+  </data>
+  <data name="QueueAlbumMenu.Label" xml:space="preserve">
+    <value>Köa album</value>
+  </data>
+  <data name="QueueArtistMenu.Label" xml:space="preserve">
+    <value>Köa artist</value>
+  </data>
+  <data name="BackwardComboBox.Header" xml:space="preserve">
+    <value>vad gör bakåt?</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="ForwardComboBox.Header" xml:space="preserve">
+    <value>vad gör framåt?</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="SettingsButtons.Text" xml:space="preserve">
+    <value>KNAPPAR</value>
+  </data>
+  <data name="SettingsButtonsSub.Text" xml:space="preserve">
+    <value>välj vilka knappar som visas på fjärkontrollen</value>
+  </data>
+  <data name="SettingsSkipJump.Text" xml:space="preserve">
+    <value>HOPPA FÖRBI + HOPPA ÖVER</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="CacheNote.Text" xml:space="preserve">
+    <value>Kodi Assist sparar några bilder på din telefon för att du ska komma åt ditt bibliotek fortare. Om något som album och filmaffischer har ändrats kan du uppdatera för att se de direkt.</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="JustAMoment.Text" xml:space="preserve">
+    <value>Bara en sekund...</value>
+  </data>
+  <data name="SettingsAutoconnect.Text" xml:space="preserve">
+    <value>AUTOMATISK ANSLUTNING</value>
+  </data>
+  <data name="SettingsAutoconnectToggle.Header" xml:space="preserve">
+    <value>anslut automatiskt vid uppstart</value>
+  </data>
+  <data name="SettingsConnectionsPivotHeader.Text" xml:space="preserve">
+    <value>ANSLUTNINGAR</value>
+  </data>
+  <data name="SettingsPageHeader.Text" xml:space="preserve">
+    <value>INSTÄLLNINGAR</value>
+  </data>
+  <data name="SettingsRefreshCacheButton.Content" xml:space="preserve">
+    <value>uppdatera</value>
+  </data>
+  <data name="SettingsRemotePivotHeader.Text" xml:space="preserve">
+    <value>FJÄRRKONTROLL</value>
+  </data>
+  <data name="SettingsTempFiles.Text" xml:space="preserve">
+    <value>TILLFÄLLIGA FILER</value>
+  </data>
+  <data name="AboutAboutPivotHeader.Text" xml:space="preserve">
+    <value>OM</value>
+  </data>
+  <data name="AboutAnagh.Text" xml:space="preserve">
+    <value>Utmärkta designer av</value>
+  </data>
+  <data name="AboutAppHeader.Text" xml:space="preserve">
+    <value>APP</value>
+  </data>
+  <data name="AboutAppText.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutCodeIn.Text" xml:space="preserve">
+    <value>KOD IN</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="AboutCodeInNote.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutContributeNote.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutContributePivotHeader.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutCreditsHeader.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutDeveloperHeader.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutFeedbackPivotHeader.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutFeedbackTextBox.PlaceholderText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutIconsAndFonts.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutProjectHeader.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutProjectLink.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutProjectText.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutReddit.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutReportIssues.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutSendGreetings.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutSendGreetingsNote.Text" xml:space="preserve">
+    <value>En enkel uppskattningsgest kan göra underverk i öppen källkods-communityt. Du kan enkelt bidra genom att skicka ett tack över Twitter, i ett mejl, genom att recensera i butiken eller på något annat sätt du föredrar. Det betyder mycket för utvecklare.</value>
+  </data>
+  <data name="AboutTranslate.Text" xml:space="preserve">
+    <value>ÖVERSÄTT</value>
+  </data>
+  <data name="AboutTranslateLink.Text" xml:space="preserve">
+    <value>översättningar på POEditor</value>
+  </data>
+  <data name="AboutTranslateNote.Text" xml:space="preserve">
+    <value>Behärskar du flera språk? Vill ha en app i ditt eget språk? Ser du något som skulle kunna formuleras bättre? Översättningar är också öppen källkod.</value>
+  </data>
+  <data name="AboutTranslators.Text" xml:space="preserve">
+    <value>Alla översättare arbetar ständigt för att möjliggöra denna app.</value>
+  </data>
+  <data name="AboutViewApp.Text" xml:space="preserve">
+    <value>Japp, det är samma kille bakom vår älskade</value>
+  </data>
+  <data name="AppsFromDev.Content" xml:space="preserve">
+    <value>appar från utvecklaren</value>
+  </data>
+  <data name="AppSupport.Content" xml:space="preserve">
+    <value>support för appen</value>
+  </data>
+  <data name="ReportIssuesLink.Text" xml:space="preserve">
+    <value>problem på GitHub</value>
+  </data>
+  <data name="ReportIssuesNote.Text" xml:space="preserve">
+    <value>Hittar du något som inte fungerar perfekt i appen? Hittat en bugg? Tycker du att något kan förbättras? Gör bara en anmärkning via länken nedan. En av utvecklarna återkommer så snabbt som möjligt.</value>
+  </data>
+  <data name="SendFeedbackButton.Content" xml:space="preserve">
+    <value>skicka feedback</value>
+  </data>
+  <data name="AboutRateApp.Content" xml:space="preserve">
+    <value>betygsätt appen</value>
+  </data>
+  <data name="DeleteConnectionMenu.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EditConnectionMenu.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WakeUpMenu.Text" xml:space="preserve">
+    <value></value>
+    <comment>Context menu used to wake up sleeping computer using wake-on-lan</comment>
+  </data>
+  <data name="StoreDescription" xml:space="preserve">
+    <value></value>
+    <comment>Description for Windows Store</comment>
+  </data>
+  <data name="BePatient" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ConnectingTo" xml:space="preserve">
+    <value></value>
+    <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, &quot;Connecting to mediaserver&quot; Please use it in your translations.</comment>
+  </data>
+  <data name="IPErrorMessage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="KeepTryingCommand" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="StopCommand" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WakeUpFailed" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WakeupPatientMessage" xml:space="preserve">
+    <value></value>
+    <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes &quot;takes 5 to 10&quot; seconds&quot;. Use the same placeholders in translations.</comment>
+  </data>
+  <data name="WakingUp" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WOLConnectionErrorHeader" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WOLConnectionErrorMessage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WOLErrorMessage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WOLMacNotFoundHeader" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WOLMacNotFoundMessage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PartyModeMenuItem.Label" xml:space="preserve">
+    <value></value>
+    <comment>Start music in party mode.</comment>
+  </data>
+  <data name="ShowCodecInfo" xml:space="preserve">
+    <value></value>
+  </data>
 
 </root>
