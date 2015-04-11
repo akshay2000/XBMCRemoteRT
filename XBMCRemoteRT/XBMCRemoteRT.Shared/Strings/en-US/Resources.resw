@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,6 +117,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>about</value>
+  </data>
+  <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
+    <value>MOVIES</value>
+  </data>
+  <data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
+    <value>see all movies</value>
+  </data>
+  <data name="MusicHubSectionHeader.Text" xml:space="preserve">
+    <value>MUSIC</value>
+    <comment>Header of music section on cover page</comment>
+  </data>
+  <data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
+    <value>see all music</value>
+  </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>not available</value>
+    <comment>When artists aren&apos;t available</comment>
+  </data>
+  <data name="NothingIsPlaying" xml:space="preserve">
+    <value>Nothing is playing</value>
+  </data>
+  <data name="NowPlayingHeader.Text" xml:space="preserve">
+    <value>NOW PLAYING</value>
+    <comment>Header of now playing on cover page</comment>
+  </data>
+  <data name="NowPlayingSubHeader.Text" xml:space="preserve">
+    <value>open remote</value>
+    <comment>Subheader of now playing on cover page</comment>
+  </data>
+  <data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>remote</value>
+    <comment>Appbar menu item</comment>
+  </data>
+  <data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
+    <value>TV SHOWS</value>
+  </data>
+  <data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
+    <value>see all shows</value>
+  </data>
   <data name="AboutAppBarMenu.Label" xml:space="preserve">
     <value>about</value>
   </data>
@@ -179,34 +223,6 @@
   </data>
   <data name="Mood.Text" xml:space="preserve">
     <value>MOOD</value>
-  </data>
-  <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
-    <value>MOVIES</value>
-  </data>
-  <data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
-    <value>see all movies</value>
-  </data>
-  <data name="MusicHubSectionHeader.Text" xml:space="preserve">
-    <value>MUSIC</value>
-    <comment>Header of music section on cover page</comment>
-  </data>
-  <data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
-    <value>see all music</value>
-  </data>
-  <data name="NotAvailable" xml:space="preserve">
-    <value>not available</value>
-    <comment>When artists aren't available</comment>
-  </data>
-  <data name="NothingIsPlaying" xml:space="preserve">
-    <value>Nothing is playing</value>
-  </data>
-  <data name="NowPlayingHeader.Text" xml:space="preserve">
-    <value>NOW PLAYING</value>
-    <comment>Header of now playing on cover page</comment>
-  </data>
-  <data name="NowPlayingSubHeader.Text" xml:space="preserve">
-    <value>open remote</value>
-    <comment>Subheader of now playing on cover page</comment>
   </data>
   <data name="Passowrd.Header" xml:space="preserve">
     <value>Password</value>
@@ -283,12 +299,6 @@
   </data>
   <data name="Tracks" xml:space="preserve">
     <value>tracks</value>
-  </data>
-  <data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
-    <value>TV SHOWS</value>
-  </data>
-  <data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
-    <value>see all shows</value>
   </data>
   <data name="TVShowsPageTitle.Text" xml:space="preserve">
     <value>TV SHOWS</value>
@@ -435,7 +445,7 @@
     <value>All the translators working constantly to make this app possible.</value>
   </data>
   <data name="AboutViewApp.Text" xml:space="preserve">
-    <value>Yup, that's the same guy behind our beloved</value>
+    <value>Yup, that&apos;s the same guy behind our beloved</value>
   </data>
   <data name="AppsFromDev.Content" xml:space="preserve">
     <value>apps from the developer</value>
@@ -485,7 +495,7 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   </data>
   <data name="ConnectingTo" xml:space="preserve">
     <value>Connecting to {0}...</value>
-    <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, "Connecting to mediaserver" Please use it in your translations. </comment>
+    <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, &quot;Connecting to mediaserver&quot; Please use it in your translations.</comment>
   </data>
   <data name="IPErrorMessage" xml:space="preserve">
     <value>Please specify an IP address rather than a hostname to use the wake feature.</value>
@@ -500,8 +510,8 @@ And to top it all, the app is fully open source. You can view, edit and modify e
     <value>Wake up failed</value>
   </data>
   <data name="WakeupPatientMessage" xml:space="preserve">
-    <value>Wake up usually takes {0} to {1} seconds. We're still trying...</value>
-    <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes "takes 5 to 10" seconds". Use the same placeholders in translations.</comment>
+    <value>Wake up usually takes {0} to {1} seconds. We&apos;re still trying...</value>
+    <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes &quot;takes 5 to 10&quot; seconds&quot;. Use the same placeholders in translations.</comment>
   </data>
   <data name="WakingUp" xml:space="preserve">
     <value>Waking up...</value>
@@ -528,7 +538,5 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   <data name="ShowCodecInfo" xml:space="preserve">
     <value>show codec info</value>
   </data>
-  <data name="ShutDown" xml:space="preserve">
-    <value>shut down</value>
-  </data>
+
 </root>
