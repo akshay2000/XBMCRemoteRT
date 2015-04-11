@@ -129,7 +129,7 @@ namespace XBMCRemoteRT.Pages.Video
         {
             ConnectionManager.ManageSystemTray(true);
             if (allMovies == null)
-                allMovies = await VideoLibrary.GetMovies();
+                allMovies = await VideoLibrary.GetAllMovies();
 
             filteredMovies = allMovies.Where(t => t.Title.ToLower().Contains(query.ToLower())).ToList();
             SearchMoviesListView.ItemsSource = filteredMovies;

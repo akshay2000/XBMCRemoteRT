@@ -126,6 +126,39 @@ namespace XBMCRemoteRT.RPCWrappers
             return listToReturn;
         }
 
+        public static async Task<List<Movie>> GetAllMovies(JObject sort = null)
+        {
+            JObject parameters = new JObject(
+                                new JProperty("properties",
+                                    new JArray("title", "genre", "year", "rating", "director", "trailer", "tagline", "plot", "plotoutline", "originaltitle", "lastplayed", "playcount", "writer", "studio", "mpaa", "cast", "country", "imdbnumber", "runtime", "set", "showlink", "streamdetails", "top250", "votes", "fanart", "thumbnail", "file", "sorttitle", "resume", "setid", "dateadded", "tag", "art")
+                                    ));
+
+            if (sort != null)
+            {
+                parameters["sort"] = sort;
+            }
+
+            Limits limits = new Limits() { Start = 0, End = 50 };
+            
+            int total = 10;
+            List<Movie> movies = new List<Movie>();
+
+            while (limits.Start < total)
+            {
+                parameters["limits"] = new JObject(
+                                            new JProperty("start", limits.Start),
+                                            new JProperty("end", limits.End));
+                JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.GetMovies", parameters);
+                JArray movieListObject = (JArray)responseObject["result"]["movies"];
+                total = (int)responseObject["result"]["limits"]["total"];
+                List<Movie> partial = movieListObject != null ? movieListObject.ToObject<List<Movie>>() : new List<Movie>();
+                movies.AddRange(partial);
+                limits.Start += 50;
+                limits.End += 50;
+            }
+            return movies;
+        }
+
         public static async Task<List<Episode>> GetEpisodes(Limits limits = null, JObject filter = null, JObject sort = null, int? tvShowID = null)
         {
             JObject parameters = new JObject(

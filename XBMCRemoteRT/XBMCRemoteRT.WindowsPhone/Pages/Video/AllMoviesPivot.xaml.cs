@@ -132,7 +132,7 @@ namespace XBMCRemoteRT.Pages.Video
             var loadStartTime = DateTime.Now;
 
             ConnectionManager.ManageSystemTray(true);
-            allMovies = await VideoLibrary.GetMovies();
+            allMovies = await VideoLibrary.GetAllMovies();
             AllMoviesListView.ItemsSource = allMovies;
 
             unwatchedMovies = allMovies.Where(movie => movie.PlayCount == 0).ToList<Movie>();
