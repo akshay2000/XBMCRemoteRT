@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:element name="data">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
-        <xsd:sequence>
-          <xsd:element name="value" type="xsd:string" minOccurs="0"                     msdata:Ordinal="2" />
-        </xsd:sequence>
-        <xsd:attribute name="name" type="xsd:string" />
-        <xsd:attribute name="type" type="xsd:string" />
-        <xsd:attribute name="mimetype" type="xsd:string" />
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
       </xsd:complexType>
     </xsd:element>
   </xsd:schema>
@@ -19,222 +112,437 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-<data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>über</value>
-</data>
-<data name="MoviesHubSectionHeader.Text" xml:space="preserve">
-	<value>FILME</value>
-</data>
-<data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
-	<value>alle filme anzeigen</value>
-</data>
-<data name="MusicHubSectionHeader.Text" xml:space="preserve">
-	<value>MUSIK</value>
-	<comment>Header of music section on cover page</comment>
-</data>
-<data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
-	<value>gesamte musik anzeigen</value>
-</data>
-<data name="NotAvailable" xml:space="preserve">
-	<value>nicht vorhanden</value>
-	<comment>When artists aren&apos;t available</comment>
-</data>
-<data name="NothingIsPlaying" xml:space="preserve">
-	<value>Keine Wiedergabe</value>
-</data>
-<data name="NowPlayingHeader.Text" xml:space="preserve">
-	<value>AKTUELLE WIEDERGABE</value>
-	<comment>Header of now playing on cover page</comment>
-</data>
-<data name="NowPlayingSubHeader.Text" xml:space="preserve">
-	<value>fernbedienung öffnen</value>
-	<comment>Subheader of now playing on cover page</comment>
-</data>
-<data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>fernbedienung</value>
-	<comment>Appbar menu item</comment>
-</data>
-<data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>einstellungen</value>
-</data>
-<data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
-	<value>TV-SENDUNGEN</value>
-	<comment>Why was the hyphen (-) being used here? Why not just TV SENDUNGEN.</comment>
-</data>
-<data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
-	<value>alle sendungen anzeigen</value>
-</data>
-<data name="AboutAppBarMenu.Label" xml:space="preserve">
-	<value>über</value>
-</data>
-<data name="AddConnectionPageTitle.Text" xml:space="preserve">
-	<value>VERBINDUNG HINZUFÜGEN</value>
-</data>
-<data name="AddServer.Label" xml:space="preserve">
-	<value>server hinzufügen</value>
-	<comment>This should be in complete lowercase!</comment>
-</data>
-<data name="AlbumPageTitle.Text" xml:space="preserve">
-	<value>SONGS</value>
-</data>
-<data name="Albums.Header" xml:space="preserve">
-	<value>ALBEN</value>
-</data>
-<data name="AlbumsTitle.Text" xml:space="preserve">
-	<value>ALBEN</value>
-</data>
-<data name="AllMoviesTitle.Text" xml:space="preserve">
-	<value>ALLE</value>
-</data>
-<data name="AllMusicPivotTitle.Text" xml:space="preserve">
-	<value>GESAMTE MUSIK</value>
-</data>
-<data name="ArtistsTitle.Text" xml:space="preserve">
-	<value>KÜNSTLER</value>
-</data>
-<data name="Bio.Text" xml:space="preserve">
-	<value>BIO</value>
-</data>
-<data name="CancelAppBarMenu.Label" xml:space="preserve">
-	<value>abbrechen</value>
-</data>
-<data name="Cast.Header" xml:space="preserve">
-	<value>DARSTELLER</value>
-</data>
-<data name="CleanAudioLibrary" xml:space="preserve">
-	<value>audio-bibliothek säubern</value>
-</data>
-<data name="CleanVideoLibrary" xml:space="preserve">
-	<value>video-bibliothek säubern</value>
-</data>
-<data name="ConnectionName.Header" xml:space="preserve">
-	<value>Name</value>
-</data>
-<data name="ConnectionsPageTitle.Text" xml:space="preserve">
-	<value>VERBINDUNGEN</value>
-</data>
-<data name="Director.Text" xml:space="preserve">
-	<value>REGISSEUR</value>
-</data>
-<data name="DownloadSubtitles" xml:space="preserve">
-	<value>untertitel herunterladen</value>
-	<comment>Use complete lower case here!</comment>
-</data>
-<data name="Genre.Text" xml:space="preserve">
-	<value>GENRE</value>
-</data>
-<data name="Info.Header" xml:space="preserve">
-	<value>INFO</value>
-</data>
-<data name="Mood.Text" xml:space="preserve">
-	<value>STIMMUNG</value>
-</data>
-<data name="Passowrd.Header" xml:space="preserve">
-	<value>Passwort</value>
-</data>
-<data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
-	<value>album abspielen</value>
-	<comment>Lowercase please!</comment>
-</data>
-<data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
-	<value>künstler abspielen</value>
-</data>
-<data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
-	<value>film abspielen</value>
-</data>
-<data name="Plot.Header" xml:space="preserve">
-	<value>HANDLUNG</value>
-</data>
-<data name="PlotText.Text" xml:space="preserve">
-	<value>HANDLUNG</value>
-</data>
-<data name="Port.Header" xml:space="preserve">
-	<value>Port</value>
-</data>
-<data name="Rating.Text" xml:space="preserve">
-	<value>BEWERTUNG</value>
-</data>
-<data name="RefreshAppBarMenu.Label" xml:space="preserve">
-	<value>aktualisieren</value>
-</data>
-<data name="RemoteAppBarMenu.Label" xml:space="preserve">
-	<value>fernbedienung</value>
-	<comment>Appbar menu item</comment>
-</data>
-<data name="Runtime.Text" xml:space="preserve">
-	<value>SPIELZEIT</value>
-</data>
-<data name="SaveAppBarMenu.Label" xml:space="preserve">
-	<value>speichern</value>
-</data>
-<data name="SearchAppBarMenu.Lable" xml:space="preserve">
-	<value>suchen</value>
-</data>
-<data name="SearchMoviesTitle.Text" xml:space="preserve">
-	<value>FILME SUCHEN</value>
-</data>
-<data name="SearchTVShowsTitle.Text" xml:space="preserve">
-	<value>TV-SENDUNGEN SUCHEN</value>
-</data>
-<data name="Seasons.Header" xml:space="preserve">
-	<value>STAFFELN</value>
-</data>
-<data name="ServerAddress.Header" xml:space="preserve">
-	<value>Serveradresse</value>
-</data>
-<data name="SettingsAppBarMenu.Label" xml:space="preserve">
-	<value>einstellungen</value>
-</data>
-<data name="Songs.Header" xml:space="preserve">
-	<value>SONGS</value>
-</data>
-<data name="SongsTitle.Text" xml:space="preserve">
-	<value>SONGS</value>
-</data>
-<data name="Studio.Text" xml:space="preserve">
-	<value>STUDIO</value>
-</data>
-<data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
-	<value>server wechseln</value>
-</data>
-<data name="Tagline.Text" xml:space="preserve">
-	<value>TAGLINE</value>
-</data>
-<data name="Track" xml:space="preserve">
-	<value>song</value>
-	<comment>I&apos;m assuming this is for audio/video tracks in movies/tv shows and not &quot;track&quot; as synonym for &quot;song&quot;?</comment>
-</data>
-<data name="Tracks" xml:space="preserve">
-	<value>songs</value>
-</data>
-<data name="TVShowsPageTitle.Text" xml:space="preserve">
-	<value>TV-SENDUNGEN</value>
-</data>
-<data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
-	<value>NEU</value>
-</data>
-<data name="UpdateAudioLibrary" xml:space="preserve">
-	<value>audio-bibliothek aktualisieren</value>
-</data>
-<data name="UpdateVideoLibrary" xml:space="preserve">
-	<value>video-bibliothek aktualisieren</value>
-</data>
-<data name="Username.Header" xml:space="preserve">
-	<value>Benutzername</value>
-</data>
-<data name="WarningNote.Text" xml:space="preserve">
-	<value>Info: Benutzernamen und Passwörter werden in Klartext gespeichert und versendet. Stellen Sie sicher, dass Sie die gleichen Daten nirgendwo anders benutzen.</value>
-</data>
-<data name="WatchedMovies.Text" xml:space="preserve">
-	<value>GESEHEN</value>
-</data>
-<data name="Writer.Text" xml:space="preserve">
-	<value>DREHBUCH</value>
-</data>
+  <data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>über</value>
+  </data>
+  <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
+    <value>FILME</value>
+  </data>
+  <data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
+    <value>alle filme anzeigen</value>
+  </data>
+  <data name="MusicHubSectionHeader.Text" xml:space="preserve">
+    <value>MUSIK</value>
+    <comment>Header of music section on cover page</comment>
+  </data>
+  <data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
+    <value>gesamte musik anzeigen</value>
+  </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>nicht vorhanden</value>
+    <comment>When artists aren&apos;t available</comment>
+  </data>
+  <data name="NothingIsPlaying" xml:space="preserve">
+    <value>Keine Wiedergabe</value>
+  </data>
+  <data name="NowPlayingHeader.Text" xml:space="preserve">
+    <value>AKTUELLE WIEDERGABE</value>
+    <comment>Header of now playing on cover page</comment>
+  </data>
+  <data name="NowPlayingSubHeader.Text" xml:space="preserve">
+    <value>fernbedienung öffnen</value>
+    <comment>Subheader of now playing on cover page</comment>
+  </data>
+  <data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>fernbedienung</value>
+    <comment>Appbar menu item</comment>
+  </data>
+  <data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>einstellungen</value>
+  </data>
+  <data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
+    <value>TV-SENDUNGEN</value>
+    <comment>Why was the hyphen (-) being used here? Why not just TV SENDUNGEN.</comment>
+  </data>
+  <data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
+    <value>alle sendungen anzeigen</value>
+  </data>
+  <data name="AboutAppBarMenu.Label" xml:space="preserve">
+    <value>über</value>
+  </data>
+  <data name="AddConnectionPageTitle.Text" xml:space="preserve">
+    <value>VERBINDUNG HINZUFÜGEN</value>
+  </data>
+  <data name="AddServer.Label" xml:space="preserve">
+    <value>server hinzufügen</value>
+    <comment>This should be in complete lowercase!</comment>
+  </data>
+  <data name="AlbumPageTitle.Text" xml:space="preserve">
+    <value>SONGS</value>
+  </data>
+  <data name="Albums.Header" xml:space="preserve">
+    <value>ALBEN</value>
+  </data>
+  <data name="AlbumsTitle.Text" xml:space="preserve">
+    <value>ALBEN</value>
+  </data>
+  <data name="AllMoviesTitle.Text" xml:space="preserve">
+    <value>ALLE</value>
+  </data>
+  <data name="AllMusicPivotTitle.Text" xml:space="preserve">
+    <value>GESAMTE MUSIK</value>
+  </data>
+  <data name="ArtistsTitle.Text" xml:space="preserve">
+    <value>KÜNSTLER</value>
+  </data>
+  <data name="Bio.Text" xml:space="preserve">
+    <value>BIO</value>
+  </data>
+  <data name="CancelAppBarMenu.Label" xml:space="preserve">
+    <value>abbrechen</value>
+  </data>
+  <data name="Cast.Header" xml:space="preserve">
+    <value>DARSTELLER</value>
+  </data>
+  <data name="CleanAudioLibrary" xml:space="preserve">
+    <value>audio-bibliothek säubern</value>
+  </data>
+  <data name="CleanVideoLibrary" xml:space="preserve">
+    <value>video-bibliothek säubern</value>
+  </data>
+  <data name="ConnectionName.Header" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ConnectionsPageTitle.Text" xml:space="preserve">
+    <value>VERBINDUNGEN</value>
+  </data>
+  <data name="Director.Text" xml:space="preserve">
+    <value>REGISSEUR</value>
+  </data>
+  <data name="DownloadSubtitles" xml:space="preserve">
+    <value>untertitel herunterladen</value>
+    <comment>Use complete lower case here!</comment>
+  </data>
+  <data name="Genre.Text" xml:space="preserve">
+    <value>GENRE</value>
+  </data>
+  <data name="Info.Header" xml:space="preserve">
+    <value>INFO</value>
+  </data>
+  <data name="Mood.Text" xml:space="preserve">
+    <value>STIMMUNG</value>
+  </data>
+  <data name="Passowrd.Header" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
+    <value>album abspielen</value>
+    <comment>Lowercase please!</comment>
+  </data>
+  <data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
+    <value>künstler abspielen</value>
+  </data>
+  <data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
+    <value>film abspielen</value>
+  </data>
+  <data name="Plot.Header" xml:space="preserve">
+    <value>HANDLUNG</value>
+  </data>
+  <data name="PlotText.Text" xml:space="preserve">
+    <value>HANDLUNG</value>
+  </data>
+  <data name="Port.Header" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Rating.Text" xml:space="preserve">
+    <value>BEWERTUNG</value>
+  </data>
+  <data name="RefreshAppBarMenu.Label" xml:space="preserve">
+    <value>aktualisieren</value>
+  </data>
+  <data name="RemoteAppBarMenu.Label" xml:space="preserve">
+    <value>fernbedienung</value>
+    <comment>Appbar menu item</comment>
+  </data>
+  <data name="Runtime.Text" xml:space="preserve">
+    <value>SPIELZEIT</value>
+  </data>
+  <data name="SaveAppBarMenu.Label" xml:space="preserve">
+    <value>speichern</value>
+  </data>
+  <data name="SearchAppBarMenu.Lable" xml:space="preserve">
+    <value>suchen</value>
+  </data>
+  <data name="SearchMoviesTitle.Text" xml:space="preserve">
+    <value>FILME SUCHEN</value>
+  </data>
+  <data name="SearchTVShowsTitle.Text" xml:space="preserve">
+    <value>TV-SENDUNGEN SUCHEN</value>
+  </data>
+  <data name="Seasons.Header" xml:space="preserve">
+    <value>STAFFELN</value>
+  </data>
+  <data name="ServerAddress.Header" xml:space="preserve">
+    <value>Serveradresse</value>
+  </data>
+  <data name="SettingsAppBarMenu.Label" xml:space="preserve">
+    <value>einstellungen</value>
+  </data>
+  <data name="Songs.Header" xml:space="preserve">
+    <value>SONGS</value>
+  </data>
+  <data name="SongsTitle.Text" xml:space="preserve">
+    <value>SONGS</value>
+  </data>
+  <data name="Studio.Text" xml:space="preserve">
+    <value>STUDIO</value>
+  </data>
+  <data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
+    <value>server wechseln</value>
+  </data>
+  <data name="Tagline.Text" xml:space="preserve">
+    <value>TAGLINE</value>
+  </data>
+  <data name="Track" xml:space="preserve">
+    <value>song</value>
+    <comment>I&apos;m assuming this is for audio/video tracks in movies/tv shows and not &quot;track&quot; as synonym for &quot;song&quot;?</comment>
+  </data>
+  <data name="Tracks" xml:space="preserve">
+    <value>songs</value>
+  </data>
+  <data name="TVShowsPageTitle.Text" xml:space="preserve">
+    <value>TV-SENDUNGEN</value>
+  </data>
+  <data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
+    <value>NEU</value>
+  </data>
+  <data name="UpdateAudioLibrary" xml:space="preserve">
+    <value>audio-bibliothek aktualisieren</value>
+  </data>
+  <data name="UpdateVideoLibrary" xml:space="preserve">
+    <value>video-bibliothek aktualisieren</value>
+  </data>
+  <data name="Username.Header" xml:space="preserve">
+    <value>Benutzername</value>
+  </data>
+  <data name="WarningNote.Text" xml:space="preserve">
+    <value>Info: Benutzernamen und Passwörter werden in Klartext gespeichert und versendet. Stelle sicher, dass Du die gleichen Daten nirgendwo anders benutzt.</value>
+  </data>
+  <data name="WatchedMovies.Text" xml:space="preserve">
+    <value>GESEHEN</value>
+  </data>
+  <data name="Writer.Text" xml:space="preserve">
+    <value>DREHBUCH</value>
+  </data>
+  <data name="QueueAlbumMenu.Label" xml:space="preserve">
+    <value>album einreihen</value>
+  </data>
+  <data name="QueueArtistMenu.Label" xml:space="preserve">
+    <value>küntler einreihen</value>
+  </data>
+  <data name="BackwardComboBox.Header" xml:space="preserve">
+    <value>was macht zurück</value>
+  </data>
+  <data name="ForwardComboBox.Header" xml:space="preserve">
+    <value>was macht vorwärts</value>
+  </data>
+  <data name="SettingsButtons.Text" xml:space="preserve">
+    <value>TASTEN</value>
+  </data>
+  <data name="SettingsButtonsSub.Text" xml:space="preserve">
+    <value>wähle aus, welche tasten auf der fernbedienung erscheinen sollen</value>
+  </data>
+  <data name="SettingsSkipJump.Text" xml:space="preserve">
+    <value>ÜBER-/SPRINGEN</value>
+  </data>
+  <data name="CacheNote.Text" xml:space="preserve">
+    <value>Kodi Assist speichert einige Bilder auf Ihrem Telefon, um schneller auf Ihre Bibliothek zugreifen zu können. Wenn sich Dinge wie Album-Cover und Filmplakate geändert haben, können Sie aktualisieren, um sie sofort anzuzeigen.</value>
+  </data>
+  <data name="JustAMoment.Text" xml:space="preserve">
+    <value>Einen Moment, bitte...</value>
+  </data>
+  <data name="SettingsAutoconnect.Text" xml:space="preserve">
+    <value>AUTOMATISCH VERBINDEN</value>
+  </data>
+  <data name="SettingsAutoconnectToggle.Header" xml:space="preserve">
+    <value>beim start automatisch verbinden</value>
+  </data>
+  <data name="SettingsConnectionsPivotHeader.Text" xml:space="preserve">
+    <value>VERBINDUNGEN</value>
+  </data>
+  <data name="SettingsPageHeader.Text" xml:space="preserve">
+    <value>EINSTELLUNGEN</value>
+  </data>
+  <data name="SettingsRefreshCacheButton.Content" xml:space="preserve">
+    <value>aktualisieren</value>
+  </data>
+  <data name="SettingsRemotePivotHeader.Text" xml:space="preserve">
+    <value>FERNBEDIENUNG</value>
+  </data>
+  <data name="SettingsTempFiles.Text" xml:space="preserve">
+    <value>TEMPORÄRE DATEIEN</value>
+  </data>
+  <data name="AboutAboutPivotHeader.Text" xml:space="preserve">
+    <value>ÜBER</value>
+  </data>
+  <data name="AboutAnagh.Text" xml:space="preserve">
+    <value>Herausragende Designs von</value>
+  </data>
+  <data name="AboutAppHeader.Text" xml:space="preserve">
+    <value>APP</value>
+  </data>
+  <data name="AboutAppText.Text" xml:space="preserve">
+    <value>Diese soll der ultimative Fernbedienungs-Client für Kodi sein. Die App ist open-source im Geiste von Kodi und sämtlicher Code ist auf GitHub verfügbar.</value>
+  </data>
+  <data name="AboutCodeIn.Text" xml:space="preserve">
+    <value>MITCODEN</value>
+  </data>
+  <data name="AboutCodeInNote.Text" xml:space="preserve">
+    <value>Etwas gefunden, das behoben oder verbessert werden kann? Fantastisch. Erstellen Sie einen Zweig der Repository und fangen Sie an zu coden. Wenn uns Ihr Code gefällt, werden wir ihn definitiv annehmen. Sie bekommen auch ein Dankeschön!</value>
+  </data>
+  <data name="AboutContributeNote.Text" xml:space="preserve">
+    <value>Diese App ist Teil eines Open-Source-Projekts auf GitHub. Es gibt verschiedene Möglichkeiten dazu beizutragen.</value>
+  </data>
+  <data name="AboutContributePivotHeader.Text" xml:space="preserve">
+    <value>BEITRAGEN</value>
+  </data>
+  <data name="AboutCreditsHeader.Text" xml:space="preserve">
+    <value>DANKSAGUNGEN</value>
+  </data>
+  <data name="AboutDeveloperHeader.Text" xml:space="preserve">
+    <value>ENTWICKLER</value>
+  </data>
+  <data name="AboutFeedbackPivotHeader.Text" xml:space="preserve">
+    <value>FEEDBACK</value>
+  </data>
+  <data name="AboutFeedbackTextBox.PlaceholderText" xml:space="preserve">
+    <value>Nachricht heir eingeben.</value>
+  </data>
+  <data name="AboutIconsAndFonts.Text" xml:space="preserve">
+    <value>Icons und Schriftart-Symbole von</value>
+  </data>
+  <data name="AboutProjectHeader.Text" xml:space="preserve">
+    <value>PROJEKT</value>
+  </data>
+  <data name="AboutProjectLink.Text" xml:space="preserve">
+    <value>auf GitHub ansehen</value>
+  </data>
+  <data name="AboutProjectText.Text" xml:space="preserve">
+    <value>Diese App ist Teil eines Open-Source-Projekts. Wenn Sie dazu beitragen möchten, klicken Sie auf die URL unten. Werft einen Blick in die Wiki.</value>
+  </data>
+  <data name="AboutReddit.Text" xml:space="preserve">
+    <value>Sehr Hilfreiches Feedback von der reddit-Community auf</value>
+  </data>
+  <data name="AboutReportIssues.Text" xml:space="preserve">
+    <value>PROBLEME MELDEN</value>
+  </data>
+  <data name="AboutSendGreetings.Text" xml:space="preserve">
+    <value>GRÜSSE SENDEN</value>
+  </data>
+  <data name="AboutSendGreetingsNote.Text" xml:space="preserve">
+    <value>Eine einfache Geste der Dankbarkeit kann in der Open-Source-Community Wunder bewirken. Sie können dazu beitragen, indem Sie einfach ein Dankeschön via Twitter, E-Mail, mit einer Bewertung im Store, oder auf irgendeine andere Weise sagen. Es bedeutet den Entwicklern viel.</value>
+  </data>
+  <data name="AboutTranslate.Text" xml:space="preserve">
+    <value>ÜBERSETZEN</value>
+  </data>
+  <data name="AboutTranslateLink.Text" xml:space="preserve">
+    <value>übersetzungen auf POEditor</value>
+  </data>
+  <data name="AboutTranslateNote.Text" xml:space="preserve">
+    <value>Beherrschen Sie mehrere Sprachen? Möchten Sie eine App in Ihrer Sprache? Sehen Sie etwas, das besser klingen könnte? Übersetzungen sind ebenfalls open-source.</value>
+  </data>
+  <data name="AboutTranslators.Text" xml:space="preserve">
+    <value>Alle Übersetzer, die hart arbeiten, um diese App zu ermöglichen.</value>
+  </data>
+  <data name="AboutViewApp.Text" xml:space="preserve">
+    <value>Jup, das ist der selbe Typ wie hinter unserem geliebten</value>
+  </data>
+  <data name="AppsFromDev.Content" xml:space="preserve">
+    <value>apps des entwicklers</value>
+  </data>
+  <data name="AppSupport.Content" xml:space="preserve">
+    <value>app-support</value>
+  </data>
+  <data name="ReportIssuesLink.Text" xml:space="preserve">
+    <value>Anfragen auf GitHub</value>
+  </data>
+  <data name="ReportIssuesNote.Text" xml:space="preserve">
+    <value>Etwas in der App gefunden, das nicht perfekt läuft? Einen Bug entdeckt? Könnte etwas verbessert werden? Erstelle eine Anfrage in der URI unten. Einer der Entwickler wird sich so schnell wie möglich melden.</value>
+  </data>
+  <data name="SendFeedbackButton.Content" xml:space="preserve">
+    <value>feedback senden</value>
+  </data>
+  <data name="AboutRateApp.Content" xml:space="preserve">
+    <value>app bewerten</value>
+  </data>
+  <data name="DeleteConnectionMenu.Text" xml:space="preserve">
+    <value>Verbindung löschen</value>
+  </data>
+  <data name="EditConnectionMenu.Text" xml:space="preserve">
+    <value>Verbindung bearbeiten</value>
+  </data>
+  <data name="WakeUpMenu.Text" xml:space="preserve">
+    <value>Aufwachen</value>
+    <comment>Context menu used to wake up sleeping computer using wake-on-lan</comment>
+  </data>
+  <data name="StoreDescription" xml:space="preserve">
+    <value>DIE Open-Source-Kodi (früher XBMC) Fernbedienung für Windows Phone.
+
+Gewinner des // Publish / für Windows auf globaler Ebene.
+
+Dies ist die perfekte Kodi Fernbedienung für Windows Phone. Die Funktionen umfassen unter anderem:
+- Einen schönen Musik- und Film- Bibliothek-Browser
+- Darstellung von Informationen zu Interpreten und Alben.
+- Detaillierte und schöne Darstellung für Filme und Fernsehsendungen
+- Einfache Bedienung
+- Vieles mehr ...
+
+Diese App ist eine Open Source Entwicklung. Du kannst dich an der Entwicklung beteiligen und so Einfluss auf Zukünfige Funktionen nehmen. Besuche uns auf: https://github.com/akshay2000/XBMCRemoteRT und werde ein Teil des Teams.
+</value>
+    <comment>Description for Windows Store</comment>
+  </data>
+  <data name="BePatient" xml:space="preserve">
+    <value>Es scheint eine Weile zu dauern...</value>
+  </data>
+  <data name="ConnectingTo" xml:space="preserve">
+    <value>Verbinde mit {0}...</value>
+    <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, &quot;Connecting to mediaserver&quot; Please use it in your translations.</comment>
+  </data>
+  <data name="IPErrorMessage" xml:space="preserve">
+    <value>Legen Sie eine IP-Adresse anstatt des Hostnamens fest, um die Aufweck-Funktion nutzen zu können.</value>
+  </data>
+  <data name="KeepTryingCommand" xml:space="preserve">
+    <value>weiter versuchen</value>
+  </data>
+  <data name="StopCommand" xml:space="preserve">
+    <value>abbrechen</value>
+  </data>
+  <data name="WakeUpFailed" xml:space="preserve">
+    <value>Das Aufwecken schlug fehl</value>
+  </data>
+  <data name="WakeupPatientMessage" xml:space="preserve">
+    <value>Das Aufwecken dauert gewöhnlich {0} bis {1} Sekunden. Es wird weiter versucht...</value>
+    <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes &quot;takes 5 to 10&quot; seconds&quot;. Use the same placeholders in translations.</comment>
+  </data>
+  <data name="WakingUp" xml:space="preserve">
+    <value>Wecke auf...</value>
+  </data>
+  <data name="WOLConnectionErrorHeader" xml:space="preserve">
+    <value>Der Server antwortet nicht</value>
+  </data>
+  <data name="WOLConnectionErrorMessage" xml:space="preserve">
+    <value>Es scheint, dass Kodi noch nicht bereit ist zu antworten. Was soll getan werden?</value>
+  </data>
+  <data name="WOLErrorMessage" xml:space="preserve">
+    <value>Das Signal zum Aufwecken konnte nicht gesendet werden. Die Broadcast-IP ist nicht verfügbar. Fehlercode</value>
+  </data>
+  <data name="WOLMacNotFoundHeader" xml:space="preserve">
+    <value>Es werden weitere Informationen benötigt</value>
+  </data>
+  <data name="WOLMacNotFoundMessage" xml:space="preserve">
+    <value>Legen Sie die MAC-Adresse und die Subnetzmaske fest, um diese Funktion nutzen zu können.</value>
+  </data>
+  <data name="PartyModeMenuItem.Label" xml:space="preserve">
+    <value></value>
+    <comment>Start music in party mode.</comment>
+  </data>
+  <data name="ShowCodecInfo" xml:space="preserve">
+    <value></value>
+  </data>
 
 </root>
