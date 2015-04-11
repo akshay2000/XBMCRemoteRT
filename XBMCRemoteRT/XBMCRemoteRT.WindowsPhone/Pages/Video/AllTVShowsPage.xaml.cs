@@ -131,7 +131,8 @@ namespace XBMCRemoteRT.Pages.Video
             var loadStartTime = DateTime.Now;
             JObject sort = new JObject(
                 new JProperty("method", "label"),
-                new JProperty("order", "ascending"));
+                new JProperty("order", "ascending"),
+                new JProperty("ignorearticle", true));
             ConnectionManager.ManageSystemTray(true);
             allTVShows = await VideoLibrary.GetTVShows(sort: sort);
             AllTVShowsListView.ItemsSource = allTVShows;
