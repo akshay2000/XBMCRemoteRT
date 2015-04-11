@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:element name="data">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
-        <xsd:sequence>
-          <xsd:element name="value" type="xsd:string" minOccurs="0"                     msdata:Ordinal="2" />
-        </xsd:sequence>
-        <xsd:attribute name="name" type="xsd:string" />
-        <xsd:attribute name="type" type="xsd:string" />
-        <xsd:attribute name="mimetype" type="xsd:string" />
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
       </xsd:complexType>
     </xsd:element>
   </xsd:schema>
@@ -19,219 +112,433 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-<data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>névjegy</value>
-</data>
-<data name="MoviesHubSectionHeader.Text" xml:space="preserve">
-	<value>FILMEK</value>
-</data>
-<data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
-	<value>az összes film</value>
-</data>
-<data name="MusicHubSectionHeader.Text" xml:space="preserve">
-	<value>ZENE</value>
-	<comment>Header of music section on cover page</comment>
-</data>
-<data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
-	<value>az összes zene</value>
-</data>
-<data name="NotAvailable" xml:space="preserve">
-	<value>nem elérhető</value>
-	<comment>When artists aren&apos;t available</comment>
-</data>
-<data name="NothingIsPlaying" xml:space="preserve">
-	<value>Nincs lejátszás folyamatban</value>
-</data>
-<data name="NowPlayingHeader.Text" xml:space="preserve">
-	<value>MOST JÁTSZOTT</value>
-	<comment>Header of now playing on cover page</comment>
-</data>
-<data name="NowPlayingSubHeader.Text" xml:space="preserve">
-	<value>távirányító</value>
-	<comment>Subheader of now playing on cover page</comment>
-</data>
-<data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>távirányító</value>
-	<comment>Appbar menu item</comment>
-</data>
-<data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>beállítások</value>
-</data>
-<data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
-	<value>SOROZATOK</value>
-</data>
-<data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
-	<value>az összes sorozat</value>
-</data>
-<data name="AboutAppBarMenu.Label" xml:space="preserve">
-	<value>névjegy</value>
-</data>
-<data name="AddConnectionPageTitle.Text" xml:space="preserve">
-	<value>KAPCSOLAT HOZZÁADÁSA</value>
-</data>
-<data name="AddServer.Label" xml:space="preserve">
-	<value>szerver hozzáadása</value>
-</data>
-<data name="AlbumPageTitle.Text" xml:space="preserve">
-	<value>SZÁMOK</value>
-</data>
-<data name="Albums.Header" xml:space="preserve">
-	<value>ALBUMOK</value>
-</data>
-<data name="AlbumsTitle.Text" xml:space="preserve">
-	<value>ALBUMOK</value>
-</data>
-<data name="AllMoviesTitle.Text" xml:space="preserve">
-	<value>MINDEN</value>
-</data>
-<data name="AllMusicPivotTitle.Text" xml:space="preserve">
-	<value>MINDEN ZENE</value>
-</data>
-<data name="ArtistsTitle.Text" xml:space="preserve">
-	<value>ELŐADÓK</value>
-</data>
-<data name="Bio.Text" xml:space="preserve">
-	<value>LEÍRÁS</value>
-</data>
-<data name="CancelAppBarMenu.Label" xml:space="preserve">
-	<value>mégsem</value>
-</data>
-<data name="Cast.Header" xml:space="preserve">
-	<value>SZEREPLŐK</value>
-</data>
-<data name="CleanAudioLibrary" xml:space="preserve">
-	<value>audio könyvtár törlése</value>
-</data>
-<data name="CleanVideoLibrary" xml:space="preserve">
-	<value>video könyvtár törlése</value>
-</data>
-<data name="ConnectionName.Header" xml:space="preserve">
-	<value>Név</value>
-</data>
-<data name="ConnectionsPageTitle.Text" xml:space="preserve">
-	<value>KAPCSOLATOK</value>
-</data>
-<data name="Director.Text" xml:space="preserve">
-	<value>RENDEZŐ</value>
-</data>
-<data name="DownloadSubtitles" xml:space="preserve">
-	<value>feliratok letöltése</value>
-</data>
-<data name="Genre.Text" xml:space="preserve">
-	<value>MŰFAJ</value>
-</data>
-<data name="Info.Header" xml:space="preserve">
-	<value>INFÓ</value>
-</data>
-<data name="Mood.Text" xml:space="preserve">
-	<value>HANGULAT</value>
-</data>
-<data name="Passowrd.Header" xml:space="preserve">
-	<value>Jelszó</value>
-</data>
-<data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
-	<value>album lejátszása</value>
-</data>
-<data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
-	<value>előadó lejátszása</value>
-</data>
-<data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
-	<value>film lejátszása</value>
-</data>
-<data name="Plot.Header" xml:space="preserve">
-	<value>TÖRTÉNET</value>
-</data>
-<data name="PlotText.Text" xml:space="preserve">
-	<value>TÖRTÉNET</value>
-</data>
-<data name="Port.Header" xml:space="preserve">
-	<value>Port</value>
-</data>
-<data name="Rating.Text" xml:space="preserve">
-	<value>ÉRTÉKELÉS</value>
-</data>
-<data name="RefreshAppBarMenu.Label" xml:space="preserve">
-	<value>frissítés</value>
-</data>
-<data name="RemoteAppBarMenu.Label" xml:space="preserve">
-	<value>távirányító</value>
-	<comment>Appbar menu item</comment>
-</data>
-<data name="Runtime.Text" xml:space="preserve">
-	<value>HOSSZ</value>
-</data>
-<data name="SaveAppBarMenu.Label" xml:space="preserve">
-	<value>mentés</value>
-</data>
-<data name="SearchAppBarMenu.Lable" xml:space="preserve">
-	<value>keresés</value>
-</data>
-<data name="SearchMoviesTitle.Text" xml:space="preserve">
-	<value>FILMEK KERESÉSE</value>
-</data>
-<data name="SearchTVShowsTitle.Text" xml:space="preserve">
-	<value>SOROZATOK KERESÉSE</value>
-</data>
-<data name="Seasons.Header" xml:space="preserve">
-	<value>ÉVADOK</value>
-</data>
-<data name="ServerAddress.Header" xml:space="preserve">
-	<value>Szerver címe</value>
-	<comment>Shouldn&apos;t this be in Title Case? Szerver Cime instead of cime?</comment>
-</data>
-<data name="SettingsAppBarMenu.Label" xml:space="preserve">
-	<value>beállítások</value>
-</data>
-<data name="Songs.Header" xml:space="preserve">
-	<value>SZÁMOK</value>
-</data>
-<data name="SongsTitle.Text" xml:space="preserve">
-	<value>SZÁMOK</value>
-</data>
-<data name="Studio.Text" xml:space="preserve">
-	<value>STÚDIÓ</value>
-</data>
-<data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
-	<value>szerverváltás</value>
-</data>
-<data name="Tagline.Text" xml:space="preserve">
-	<value>ALCÍM</value>
-</data>
-<data name="Track" xml:space="preserve">
-	<value>szám</value>
-</data>
-<data name="Tracks" xml:space="preserve">
-	<value>szám</value>
-</data>
-<data name="TVShowsPageTitle.Text" xml:space="preserve">
-	<value>SOROZATOK</value>
-</data>
-<data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
-	<value>ÚJ</value>
-</data>
-<data name="UpdateAudioLibrary" xml:space="preserve">
-	<value>audio könyvtár frissítése</value>
-</data>
-<data name="UpdateVideoLibrary" xml:space="preserve">
-	<value>video könyvtár frissítése</value>
-</data>
-<data name="Username.Header" xml:space="preserve">
-	<value>Felhasználónév</value>
-</data>
-<data name="WarningNote.Text" xml:space="preserve">
-	<value>Megjegyzés: A felhasználónevet és a jelszót egyszerű szövegként továbbítjuk. Ne használd ugyanazt a jelszót több helyen is.</value>
-	<comment>Not sure about rules of the language here. Should sentence start with &apos;a&apos; or &apos;A&apos;?</comment>
-</data>
-<data name="WatchedMovies.Text" xml:space="preserve">
-	<value>MEGNÉZVE</value>
-</data>
-<data name="Writer.Text" xml:space="preserve">
-	<value>ÍRÓ</value>
-</data>
+  <data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>névjegy</value>
+  </data>
+  <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
+    <value>FILMEK</value>
+  </data>
+  <data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
+    <value>az összes film</value>
+  </data>
+  <data name="MusicHubSectionHeader.Text" xml:space="preserve">
+    <value>ZENE</value>
+    <comment>Header of music section on cover page</comment>
+  </data>
+  <data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
+    <value>az összes zene</value>
+  </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>nem elérhető</value>
+    <comment>When artists aren&apos;t available</comment>
+  </data>
+  <data name="NothingIsPlaying" xml:space="preserve">
+    <value>Nincs lejátszás folyamatban</value>
+  </data>
+  <data name="NowPlayingHeader.Text" xml:space="preserve">
+    <value>MOST JÁTSZOTT</value>
+    <comment>Header of now playing on cover page</comment>
+  </data>
+  <data name="NowPlayingSubHeader.Text" xml:space="preserve">
+    <value>távirányító</value>
+    <comment>Subheader of now playing on cover page</comment>
+  </data>
+  <data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>távirányító</value>
+    <comment>Appbar menu item</comment>
+  </data>
+  <data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>beállítások</value>
+  </data>
+  <data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
+    <value>SOROZATOK</value>
+  </data>
+  <data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
+    <value>az összes sorozat</value>
+  </data>
+  <data name="AboutAppBarMenu.Label" xml:space="preserve">
+    <value>névjegy</value>
+  </data>
+  <data name="AddConnectionPageTitle.Text" xml:space="preserve">
+    <value>KAPCSOLAT HOZZÁADÁSA</value>
+  </data>
+  <data name="AddServer.Label" xml:space="preserve">
+    <value>szerver hozzáadása</value>
+  </data>
+  <data name="AlbumPageTitle.Text" xml:space="preserve">
+    <value>SZÁMOK</value>
+  </data>
+  <data name="Albums.Header" xml:space="preserve">
+    <value>ALBUMOK</value>
+  </data>
+  <data name="AlbumsTitle.Text" xml:space="preserve">
+    <value>ALBUMOK</value>
+  </data>
+  <data name="AllMoviesTitle.Text" xml:space="preserve">
+    <value>MINDEN</value>
+  </data>
+  <data name="AllMusicPivotTitle.Text" xml:space="preserve">
+    <value>MINDEN ZENE</value>
+  </data>
+  <data name="ArtistsTitle.Text" xml:space="preserve">
+    <value>ELŐADÓK</value>
+  </data>
+  <data name="Bio.Text" xml:space="preserve">
+    <value>LEÍRÁS</value>
+  </data>
+  <data name="CancelAppBarMenu.Label" xml:space="preserve">
+    <value>mégsem</value>
+  </data>
+  <data name="Cast.Header" xml:space="preserve">
+    <value>SZEREPLŐK</value>
+  </data>
+  <data name="CleanAudioLibrary" xml:space="preserve">
+    <value>audio könyvtár törlése</value>
+  </data>
+  <data name="CleanVideoLibrary" xml:space="preserve">
+    <value>video könyvtár törlése</value>
+  </data>
+  <data name="ConnectionName.Header" xml:space="preserve">
+    <value>Név</value>
+  </data>
+  <data name="ConnectionsPageTitle.Text" xml:space="preserve">
+    <value>KAPCSOLATOK</value>
+  </data>
+  <data name="Director.Text" xml:space="preserve">
+    <value>RENDEZŐ</value>
+  </data>
+  <data name="DownloadSubtitles" xml:space="preserve">
+    <value>feliratok letöltése</value>
+  </data>
+  <data name="Genre.Text" xml:space="preserve">
+    <value>MŰFAJ</value>
+  </data>
+  <data name="Info.Header" xml:space="preserve">
+    <value>INFÓ</value>
+  </data>
+  <data name="Mood.Text" xml:space="preserve">
+    <value>HANGULAT</value>
+  </data>
+  <data name="Passowrd.Header" xml:space="preserve">
+    <value>Jelszó</value>
+  </data>
+  <data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
+    <value>album lejátszása</value>
+  </data>
+  <data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
+    <value>előadó lejátszása</value>
+  </data>
+  <data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
+    <value>film lejátszása</value>
+  </data>
+  <data name="Plot.Header" xml:space="preserve">
+    <value>TÖRTÉNET</value>
+  </data>
+  <data name="PlotText.Text" xml:space="preserve">
+    <value>TÖRTÉNET</value>
+  </data>
+  <data name="Port.Header" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Rating.Text" xml:space="preserve">
+    <value>ÉRTÉKELÉS</value>
+  </data>
+  <data name="RefreshAppBarMenu.Label" xml:space="preserve">
+    <value>frissítés</value>
+  </data>
+  <data name="RemoteAppBarMenu.Label" xml:space="preserve">
+    <value>távirányító</value>
+    <comment>Appbar menu item</comment>
+  </data>
+  <data name="Runtime.Text" xml:space="preserve">
+    <value>HOSSZ</value>
+  </data>
+  <data name="SaveAppBarMenu.Label" xml:space="preserve">
+    <value>mentés</value>
+  </data>
+  <data name="SearchAppBarMenu.Lable" xml:space="preserve">
+    <value>keresés</value>
+  </data>
+  <data name="SearchMoviesTitle.Text" xml:space="preserve">
+    <value>FILMEK KERESÉSE</value>
+  </data>
+  <data name="SearchTVShowsTitle.Text" xml:space="preserve">
+    <value>SOROZATOK KERESÉSE</value>
+  </data>
+  <data name="Seasons.Header" xml:space="preserve">
+    <value>ÉVADOK</value>
+  </data>
+  <data name="ServerAddress.Header" xml:space="preserve">
+    <value>Szerver címe</value>
+    <comment>Shouldn&apos;t this be in Title Case? Szerver Cime instead of cime?</comment>
+  </data>
+  <data name="SettingsAppBarMenu.Label" xml:space="preserve">
+    <value>beállítások</value>
+  </data>
+  <data name="Songs.Header" xml:space="preserve">
+    <value>SZÁMOK</value>
+  </data>
+  <data name="SongsTitle.Text" xml:space="preserve">
+    <value>SZÁMOK</value>
+  </data>
+  <data name="Studio.Text" xml:space="preserve">
+    <value>STÚDIÓ</value>
+  </data>
+  <data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
+    <value>szerverváltás</value>
+  </data>
+  <data name="Tagline.Text" xml:space="preserve">
+    <value>ALCÍM</value>
+  </data>
+  <data name="Track" xml:space="preserve">
+    <value>szám</value>
+  </data>
+  <data name="Tracks" xml:space="preserve">
+    <value>szám</value>
+  </data>
+  <data name="TVShowsPageTitle.Text" xml:space="preserve">
+    <value>SOROZATOK</value>
+  </data>
+  <data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
+    <value>ÚJ</value>
+  </data>
+  <data name="UpdateAudioLibrary" xml:space="preserve">
+    <value>audio könyvtár frissítése</value>
+  </data>
+  <data name="UpdateVideoLibrary" xml:space="preserve">
+    <value>video könyvtár frissítése</value>
+  </data>
+  <data name="Username.Header" xml:space="preserve">
+    <value>Felhasználónév</value>
+  </data>
+  <data name="WarningNote.Text" xml:space="preserve">
+    <value>Megjegyzés: A felhasználónevet és a jelszót egyszerű szövegként továbbítjuk. Ne használd ugyanazt a jelszót több helyen is.</value>
+    <comment>Not sure about rules of the language here. Should sentence start with &apos;a&apos; or &apos;A&apos;?</comment>
+  </data>
+  <data name="WatchedMovies.Text" xml:space="preserve">
+    <value>MEGNÉZVE</value>
+  </data>
+  <data name="Writer.Text" xml:space="preserve">
+    <value>ÍRÓ</value>
+  </data>
+  <data name="QueueAlbumMenu.Label" xml:space="preserve">
+    <value>album sorba állítása</value>
+  </data>
+  <data name="QueueArtistMenu.Label" xml:space="preserve">
+    <value>előadó sorba állítása</value>
+  </data>
+  <data name="BackwardComboBox.Header" xml:space="preserve">
+    <value>mit csináljon a hátra</value>
+  </data>
+  <data name="ForwardComboBox.Header" xml:space="preserve">
+    <value>mit csináljon az előre</value>
+  </data>
+  <data name="SettingsButtons.Text" xml:space="preserve">
+    <value>GOMBOK</value>
+  </data>
+  <data name="SettingsButtonsSub.Text" xml:space="preserve">
+    <value>válaszd ki a megjelenítendő gombokat</value>
+  </data>
+  <data name="SettingsSkipJump.Text" xml:space="preserve">
+    <value>KIHAGYÁS + UGRÁS</value>
+  </data>
+  <data name="CacheNote.Text" xml:space="preserve">
+    <value>A Kodi Assist képeket ment a telefonodra, hogy így gyorsabban érhesd el a könyvtárad. Ha időközben változtak volnak az előadók képei vagy a filmek poszterei, frissítheted őket hogy azonnal lásd a változást.</value>
+  </data>
+  <data name="JustAMoment.Text" xml:space="preserve">
+    <value>Egy pillanat...</value>
+  </data>
+  <data name="SettingsAutoconnect.Text" xml:space="preserve">
+    <value>AUTO-CSATLAKOZÁS</value>
+  </data>
+  <data name="SettingsAutoconnectToggle.Header" xml:space="preserve">
+    <value>automatikus csatlakozás induláskor</value>
+  </data>
+  <data name="SettingsConnectionsPivotHeader.Text" xml:space="preserve">
+    <value>KAPCSOLATOK</value>
+  </data>
+  <data name="SettingsPageHeader.Text" xml:space="preserve">
+    <value>BEÁLLÍTÁSOK</value>
+  </data>
+  <data name="SettingsRefreshCacheButton.Content" xml:space="preserve">
+    <value>frissítés</value>
+  </data>
+  <data name="SettingsRemotePivotHeader.Text" xml:space="preserve">
+    <value>TÁVIRÁNYÍTÓ</value>
+  </data>
+  <data name="SettingsTempFiles.Text" xml:space="preserve">
+    <value>ÁTMENETI FÁJLOK</value>
+  </data>
+  <data name="AboutAboutPivotHeader.Text" xml:space="preserve">
+    <value>NÉVJEGY</value>
+  </data>
+  <data name="AboutAnagh.Text" xml:space="preserve">
+    <value>Kiváló tervezés:</value>
+  </data>
+  <data name="AboutAppHeader.Text" xml:space="preserve">
+    <value>ALKALMAZÁS</value>
+  </data>
+  <data name="AboutAppText.Text" xml:space="preserve">
+    <value>Azt szeretnénk, hogy ez az alkalmazás legyen a legjobb Kodi távirányító. A Kodi szellemét követve az alkalmazás forrását elérhetővé tettük a GitHubon.</value>
+  </data>
+  <data name="AboutCodeIn.Text" xml:space="preserve">
+    <value>KÓDOLJ</value>
+  </data>
+  <data name="AboutCodeInNote.Text" xml:space="preserve">
+    <value>Találtál valamit amit javítanál vagy jobbá tennél? Remek. Itt forkolhatod a forrást. Ha tetszik a kódod, biztosan el fogjuk fogadni. Még meg is köszönjük!</value>
+  </data>
+  <data name="AboutContributeNote.Text" xml:space="preserve">
+    <value>Ez az alkalmazás egy nyílt forrású projekt része a GitHubon. Többféle módon is hozzájárulhatsz a fejlesztéshez.</value>
+  </data>
+  <data name="AboutContributePivotHeader.Text" xml:space="preserve">
+    <value>HOZZÁJÁRULÁS</value>
+  </data>
+  <data name="AboutCreditsHeader.Text" xml:space="preserve">
+    <value>KÖSZÖNET</value>
+  </data>
+  <data name="AboutDeveloperHeader.Text" xml:space="preserve">
+    <value>FEJLESZTŐ</value>
+  </data>
+  <data name="AboutFeedbackPivotHeader.Text" xml:space="preserve">
+    <value>VISSZAJELZÉS</value>
+  </data>
+  <data name="AboutFeedbackTextBox.PlaceholderText" xml:space="preserve">
+    <value>Ide írd az üzeneted.</value>
+  </data>
+  <data name="AboutIconsAndFonts.Text" xml:space="preserve">
+    <value>Ikonok és szimbólumok forrása:</value>
+  </data>
+  <data name="AboutProjectHeader.Text" xml:space="preserve">
+    <value>PROJEKT</value>
+  </data>
+  <data name="AboutProjectLink.Text" xml:space="preserve">
+    <value>megtekintés GitHubon</value>
+  </data>
+  <data name="AboutProjectText.Text" xml:space="preserve">
+    <value>Ez az alkalmazás egy nyílt forrású projekt része. Ha hozzá szeretnél járulni, látogasd meg az alábbi címen. Ne feledd megnézni a projekt wikijét sem.</value>
+  </data>
+  <data name="AboutReddit.Text" xml:space="preserve">
+    <value>Hasznos visszajelzések:</value>
+  </data>
+  <data name="AboutReportIssues.Text" xml:space="preserve">
+    <value>JELENTSD A HIBÁKAT</value>
+  </data>
+  <data name="AboutSendGreetings.Text" xml:space="preserve">
+    <value>BILLENTS KALAPOT</value>
+  </data>
+  <data name="AboutSendGreetingsNote.Text" xml:space="preserve">
+    <value>A hála kifejezése fontos nyílt forráskódú közösségekben. Köszönetet mondhatsz emailben, twitteren, az áruházban értékelve alaklamzásunk, illetve bármilyen általad preferált módon. Sokat jelent a fejlesztőknek.</value>
+  </data>
+  <data name="AboutTranslate.Text" xml:space="preserve">
+    <value>FORDÍTÁS</value>
+  </data>
+  <data name="AboutTranslateLink.Text" xml:space="preserve">
+    <value>fordítás a POEditoron</value>
+  </data>
+  <data name="AboutTranslateNote.Text" xml:space="preserve">
+    <value>Több nyelven is beszélsz? Látni szeretnéd az alkalmazást saját nyelveden? Valamit jobban is meg tudnál fogalmazni? A fordítás is nyilt forrású.</value>
+  </data>
+  <data name="AboutTranslators.Text" xml:space="preserve">
+    <value>A fordítók akik ezt az alkalmazást lehetővé tették.</value>
+  </data>
+  <data name="AboutViewApp.Text" xml:space="preserve">
+    <value>Igen, ő ugyanaz a srác, aki ezt is tervezte:</value>
+  </data>
+  <data name="AppsFromDev.Content" xml:space="preserve">
+    <value>a fejlesztő többi alkalmazása</value>
+  </data>
+  <data name="AppSupport.Content" xml:space="preserve">
+    <value>alkalmazás támogatása</value>
+  </data>
+  <data name="ReportIssuesLink.Text" xml:space="preserve">
+    <value>hibák a GitHubon</value>
+  </data>
+  <data name="ReportIssuesNote.Text" xml:space="preserve">
+    <value>Találtál valamit, ami nem tökéletesen működik? Hibába futottál? Szerinted valami jobban is működhetne? Csak nyiss egy hibajegyet az alábbi hivatkozáson. A fejlesztők egyike hamarosan kapcsolatba lép veled.</value>
+  </data>
+  <data name="SendFeedbackButton.Content" xml:space="preserve">
+    <value>visszajelzés küldése</value>
+  </data>
+  <data name="AboutRateApp.Content" xml:space="preserve">
+    <value>alkalmazás értékelése</value>
+  </data>
+  <data name="DeleteConnectionMenu.Text" xml:space="preserve">
+    <value>kapcsolat törlése</value>
+  </data>
+  <data name="EditConnectionMenu.Text" xml:space="preserve">
+    <value>kapcsolat szerkesztése</value>
+  </data>
+  <data name="WakeUpMenu.Text" xml:space="preserve">
+    <value>felébresztés</value>
+    <comment>Context menu used to wake up sleeping computer using wake-on-lan</comment>
+  </data>
+  <data name="StoreDescription" xml:space="preserve">
+    <value>Az egyetlen igazi nyílt forráskódú Kodi (régi nevén XBMC) távirányító alkalmazás Windows Phone-ra.
+
+A globális //publish/ verseny nyertese.
+
+Ez az alkalmazás mindent tartalmaz, amire a Kodiban csak szükséged lehet. Elérhető funkciók:
+- Gyönyörű könyvtár-tallózó
+- Előadó és album információk
+- Részletes és szemet gyönyörködtető film- és sorozatlapok
+- Könnyen kezelhető távirányító
+- És még sok minden más
+
+Ráadásul az alkalmazás nyílt forráskódú. Az alkalmazás teljes egészét megnézheted és szerkesztheted ezen a címen: https://github.com/akshay2000/XBMCRemoteRT</value>
+    <comment>Description for Windows Store</comment>
+  </data>
+  <data name="BePatient" xml:space="preserve">
+    <value>Úgy tűnik ez eltart egy darabig...</value>
+  </data>
+  <data name="ConnectingTo" xml:space="preserve">
+    <value>Csatlakozás: {0}...</value>
+    <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, &quot;Connecting to mediaserver&quot; Please use it in your translations.</comment>
+  </data>
+  <data name="IPErrorMessage" xml:space="preserve">
+    <value>Ha használni szeretnéd a felébresztést, kiszolgálónév helyett IP címet adj meg.</value>
+  </data>
+  <data name="KeepTryingCommand" xml:space="preserve">
+    <value>próbálkozás</value>
+  </data>
+  <data name="StopCommand" xml:space="preserve">
+    <value>leállítás</value>
+  </data>
+  <data name="WakeUpFailed" xml:space="preserve">
+    <value>Felébresztés sikertelen</value>
+  </data>
+  <data name="WakeupPatientMessage" xml:space="preserve">
+    <value>A felébresztés általában {0}-{1} másodpercet vesz igénybe. Még próbálkozunk...</value>
+    <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes &quot;takes 5 to 10&quot; seconds&quot;. Use the same placeholders in translations.</comment>
+  </data>
+  <data name="WakingUp" xml:space="preserve">
+    <value>Felébresztés...</value>
+  </data>
+  <data name="WOLConnectionErrorHeader" xml:space="preserve">
+    <value>A szerver még mindig nem fut</value>
+  </data>
+  <data name="WOLConnectionErrorMessage" xml:space="preserve">
+    <value>Úgy tűnik a Kodi még nem áll készen. Mit szeretnél tenni?</value>
+  </data>
+  <data name="WOLErrorMessage" xml:space="preserve">
+    <value>A felébresztés nem küldhető el, mert nem elérhető a broadcast IP. Hibakód:</value>
+  </data>
+  <data name="WOLMacNotFoundHeader" xml:space="preserve">
+    <value>Több információra van szükség</value>
+  </data>
+  <data name="WOLMacNotFoundMessage" xml:space="preserve">
+    <value>A funkció használatához add meg a fizikai címet és az alhálózati maszkot.</value>
+  </data>
+  <data name="PartyModeMenuItem.Label" xml:space="preserve">
+    <value></value>
+    <comment>Start music in party mode.</comment>
+  </data>
+  <data name="ShowCodecInfo" xml:space="preserve">
+    <value></value>
+  </data>
 
 </root>
