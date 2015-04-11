@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:element name="data">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
-        <xsd:sequence>
-          <xsd:element name="value" type="xsd:string" minOccurs="0"                     msdata:Ordinal="2" />
-        </xsd:sequence>
-        <xsd:attribute name="name" type="xsd:string" />
-        <xsd:attribute name="type" type="xsd:string" />
-        <xsd:attribute name="mimetype" type="xsd:string" />
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
       </xsd:complexType>
     </xsd:element>
   </xsd:schema>
@@ -19,221 +112,437 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-<data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>o aplikaci</value>
-	<comment>&quot;about&quot; is literraly just a preposition translated to Czech like &quot;o&quot;. Despite the fact it&apos;s being used in software development solitary, it would have no real meaning if just translated &quot;o&quot; - so as this menu should display some info about the applciation itself, for Czech language it&apos;s better to add the word &quot;application&quot; to the translation as well</comment>
-</data>
-<data name="MoviesHubSectionHeader.Text" xml:space="preserve">
-	<value>FILMY</value>
-</data>
-<data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
-	<value>zobrazit všechny filmy</value>
-</data>
-<data name="MusicHubSectionHeader.Text" xml:space="preserve">
-	<value>HUDBA</value>
-	<comment>Header of music section on cover page</comment>
-</data>
-<data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
-	<value>zobrazit všechnu hudbu</value>
-</data>
-<data name="NotAvailable" xml:space="preserve">
-	<value>není k dispozici</value>
-	<comment>When artists aren&apos;t available</comment>
-</data>
-<data name="NothingIsPlaying" xml:space="preserve">
-	<value>Nic se nepřehrává</value>
-</data>
-<data name="NowPlayingHeader.Text" xml:space="preserve">
-	<value>NYNÍ HRAJE</value>
-	<comment>Header of now playing on cover page</comment>
-</data>
-<data name="NowPlayingSubHeader.Text" xml:space="preserve">
-	<value>otevřít ovladač</value>
-	<comment>Subheader of now playing on cover page</comment>
-</data>
-<data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>ovladač</value>
-	<comment>Appbar menu item</comment>
-</data>
-<data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-	<value>nastavení</value>
-</data>
-<data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
-	<value>TV SERIÁLY</value>
-</data>
-<data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
-	<value>zobrazit všechny seriály</value>
-</data>
-<data name="AboutAppBarMenu.Label" xml:space="preserve">
-	<value>o aplikaci</value>
-</data>
-<data name="AddConnectionPageTitle.Text" xml:space="preserve">
-	<value>PŘIDAT SPOJENÍ</value>
-</data>
-<data name="AddServer.Label" xml:space="preserve">
-	<value>přidat server</value>
-</data>
-<data name="AlbumPageTitle.Text" xml:space="preserve">
-	<value>PÍSNĚ</value>
-</data>
-<data name="Albums.Header" xml:space="preserve">
-	<value>ALBA</value>
-</data>
-<data name="AlbumsTitle.Text" xml:space="preserve">
-	<value>ALBA</value>
-</data>
-<data name="AllMoviesTitle.Text" xml:space="preserve">
-	<value>VŠE</value>
-</data>
-<data name="AllMusicPivotTitle.Text" xml:space="preserve">
-	<value>VŠECHNA HUDBA</value>
-</data>
-<data name="ArtistsTitle.Text" xml:space="preserve">
-	<value>UMĚLCI</value>
-</data>
-<data name="Bio.Text" xml:space="preserve">
-	<value>BIO</value>
-	<comment>What info would be displayed here? Is it biography of an author? E.g in case of director all the movies he/she directed are displayed, or is it more complete biography like date of birth, early years, schools etc? Is it used also for bands and artists?</comment>
-</data>
-<data name="CancelAppBarMenu.Label" xml:space="preserve">
-	<value>zrušit</value>
-</data>
-<data name="Cast.Header" xml:space="preserve">
-	<value>OBSAZENÍ</value>
-</data>
-<data name="CleanAudioLibrary" xml:space="preserve">
-	<value>vyčistit audio knihovnu</value>
-</data>
-<data name="CleanVideoLibrary" xml:space="preserve">
-	<value>vyčistit video knihovnu</value>
-</data>
-<data name="ConnectionName.Header" xml:space="preserve">
-	<value>Název</value>
-</data>
-<data name="ConnectionsPageTitle.Text" xml:space="preserve">
-	<value>SPOJENÍ</value>
-</data>
-<data name="Director.Text" xml:space="preserve">
-	<value>REŽIE</value>
-</data>
-<data name="DownloadSubtitles" xml:space="preserve">
-	<value>stáhnout titulky</value>
-</data>
-<data name="Genre.Text" xml:space="preserve">
-	<value>ŽÁNR</value>
-</data>
-<data name="Info.Header" xml:space="preserve">
-	<value>INFO</value>
-</data>
-<data name="Mood.Text" xml:space="preserve">
-	<value>NÁLADA</value>
-</data>
-<data name="Passowrd.Header" xml:space="preserve">
-	<value>Heslo</value>
-</data>
-<data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
-	<value>přehrát album</value>
-</data>
-<data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
-	<value>přehrát umělce</value>
-</data>
-<data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
-	<value>přehrát film</value>
-</data>
-<data name="Plot.Header" xml:space="preserve">
-	<value>DĚJ</value>
-</data>
-<data name="PlotText.Text" xml:space="preserve">
-	<value>DĚJ</value>
-</data>
-<data name="Port.Header" xml:space="preserve">
-	<value>Port</value>
-</data>
-<data name="Rating.Text" xml:space="preserve">
-	<value>HODNOCENÍ</value>
-</data>
-<data name="RefreshAppBarMenu.Label" xml:space="preserve">
-	<value>obnovit</value>
-</data>
-<data name="RemoteAppBarMenu.Label" xml:space="preserve">
-	<value>ovladač</value>
-	<comment>Appbar menu item</comment>
-</data>
-<data name="Runtime.Text" xml:space="preserve">
-	<value>DÉLKA</value>
-</data>
-<data name="SaveAppBarMenu.Label" xml:space="preserve">
-	<value>uložit</value>
-</data>
-<data name="SearchAppBarMenu.Lable" xml:space="preserve">
-	<value>hledat</value>
-</data>
-<data name="SearchMoviesTitle.Text" xml:space="preserve">
-	<value>VYHLEDAT FILMY</value>
-</data>
-<data name="SearchTVShowsTitle.Text" xml:space="preserve">
-	<value>VYHLEDAT TV SERIÁLY</value>
-</data>
-<data name="Seasons.Header" xml:space="preserve">
-	<value>SEZÓNA</value>
-</data>
-<data name="ServerAddress.Header" xml:space="preserve">
-	<value>Adresa Serveru</value>
-</data>
-<data name="SettingsAppBarMenu.Label" xml:space="preserve">
-	<value>nastavení</value>
-</data>
-<data name="Songs.Header" xml:space="preserve">
-	<value>PÍSNĚ</value>
-</data>
-<data name="SongsTitle.Text" xml:space="preserve">
-	<value>PÍSNĚ</value>
-</data>
-<data name="Studio.Text" xml:space="preserve">
-	<value>STUDIO</value>
-</data>
-<data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
-	<value>přepnout server</value>
-</data>
-<data name="Tagline.Text" xml:space="preserve">
-	<value>SLOGAN</value>
-</data>
-<data name="Track" xml:space="preserve">
-	<value>stopa</value>
-	<comment>Fuzzy</comment>
-</data>
-<data name="Tracks" xml:space="preserve">
-	<value>stopy</value>
-	<comment>All lowercase, please!</comment>
-</data>
-<data name="TVShowsPageTitle.Text" xml:space="preserve">
-	<value>TV SERIÁLY</value>
-</data>
-<data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
-	<value>NOVÉ</value>
-</data>
-<data name="UpdateAudioLibrary" xml:space="preserve">
-	<value>aktualizovat audio knihovnu</value>
-</data>
-<data name="UpdateVideoLibrary" xml:space="preserve">
-	<value>aktualizovat video knihovnu</value>
-</data>
-<data name="Username.Header" xml:space="preserve">
-	<value>Uživatelské jméno</value>
-</data>
-<data name="WarningNote.Text" xml:space="preserve">
-	<value>Poznámka: Uživatelská jména a hesla jsou ukládána a přenášena jako prostý text. Ujistěte se prosím, že stejné heslo nepoužíváte nikde jinde.</value>
-</data>
-<data name="WatchedMovies.Text" xml:space="preserve">
-	<value>ZHLÉDNUTÉ</value>
-</data>
-<data name="Writer.Text" xml:space="preserve">
-	<value>SCÉNÁŘ</value>
-</data>
+  <data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>o aplikaci</value>
+    <comment>&quot;about&quot; is literraly just a preposition translated to Czech like &quot;o&quot;. Despite the fact it&apos;s being used in software development solitary, it would have no real meaning if just translated &quot;o&quot; - so as this menu should display some info about the applciation itself, for Czech language it&apos;s better to add the word &quot;application&quot; to the translation as well</comment>
+  </data>
+  <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
+    <value>FILMY</value>
+  </data>
+  <data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
+    <value>zobrazit všechny filmy</value>
+  </data>
+  <data name="MusicHubSectionHeader.Text" xml:space="preserve">
+    <value>HUDBA</value>
+    <comment>Header of music section on cover page</comment>
+  </data>
+  <data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
+    <value>zobrazit všechnu hudbu</value>
+  </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>není k dispozici</value>
+    <comment>When artists aren&apos;t available</comment>
+  </data>
+  <data name="NothingIsPlaying" xml:space="preserve">
+    <value>Nic nehraje</value>
+  </data>
+  <data name="NowPlayingHeader.Text" xml:space="preserve">
+    <value>NYNÍ HRAJE</value>
+    <comment>Header of now playing on cover page</comment>
+  </data>
+  <data name="NowPlayingSubHeader.Text" xml:space="preserve">
+    <value>otevřít ovladač</value>
+    <comment>Subheader of now playing on cover page</comment>
+  </data>
+  <data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>ovladač</value>
+    <comment>Appbar menu item</comment>
+  </data>
+  <data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>nastavení</value>
+  </data>
+  <data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
+    <value>TV SERIÁLY</value>
+  </data>
+  <data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
+    <value>zobrazit všechny seriály</value>
+  </data>
+  <data name="AboutAppBarMenu.Label" xml:space="preserve">
+    <value>o aplikaci</value>
+  </data>
+  <data name="AddConnectionPageTitle.Text" xml:space="preserve">
+    <value>PŘIDAT PŘIPOJENÍ</value>
+  </data>
+  <data name="AddServer.Label" xml:space="preserve">
+    <value>přidat server</value>
+  </data>
+  <data name="AlbumPageTitle.Text" xml:space="preserve">
+    <value>PÍSNĚ</value>
+  </data>
+  <data name="Albums.Header" xml:space="preserve">
+    <value>ALBA</value>
+  </data>
+  <data name="AlbumsTitle.Text" xml:space="preserve">
+    <value>ALBA</value>
+  </data>
+  <data name="AllMoviesTitle.Text" xml:space="preserve">
+    <value>VŠE</value>
+  </data>
+  <data name="AllMusicPivotTitle.Text" xml:space="preserve">
+    <value>VŠECHNA HUDBA</value>
+  </data>
+  <data name="ArtistsTitle.Text" xml:space="preserve">
+    <value>UMĚLCI</value>
+  </data>
+  <data name="Bio.Text" xml:space="preserve">
+    <value>BIO</value>
+    <comment>What info would be displayed here? Is it biography of an author? E.g in case of director all the movies he/she directed are displayed, or is it more complete biography like date of birth, early years, schools etc? Is it used also for bands and artists?</comment>
+  </data>
+  <data name="CancelAppBarMenu.Label" xml:space="preserve">
+    <value>zrušit</value>
+  </data>
+  <data name="Cast.Header" xml:space="preserve">
+    <value>OBSAZENÍ</value>
+  </data>
+  <data name="CleanAudioLibrary" xml:space="preserve">
+    <value>vyčistit audio knihovnu</value>
+  </data>
+  <data name="CleanVideoLibrary" xml:space="preserve">
+    <value>vyčistit video knihovnu</value>
+  </data>
+  <data name="ConnectionName.Header" xml:space="preserve">
+    <value>Název</value>
+  </data>
+  <data name="ConnectionsPageTitle.Text" xml:space="preserve">
+    <value>PŘIPOJENÍ</value>
+  </data>
+  <data name="Director.Text" xml:space="preserve">
+    <value>REŽIE</value>
+  </data>
+  <data name="DownloadSubtitles" xml:space="preserve">
+    <value>stáhnout titulky</value>
+  </data>
+  <data name="Genre.Text" xml:space="preserve">
+    <value>ŽÁNR</value>
+  </data>
+  <data name="Info.Header" xml:space="preserve">
+    <value>INFO</value>
+  </data>
+  <data name="Mood.Text" xml:space="preserve">
+    <value>NÁLADA</value>
+  </data>
+  <data name="Passowrd.Header" xml:space="preserve">
+    <value>Heslo</value>
+  </data>
+  <data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
+    <value>přehrát album</value>
+  </data>
+  <data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
+    <value>přehrát umělce</value>
+  </data>
+  <data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
+    <value>přehrát film</value>
+  </data>
+  <data name="Plot.Header" xml:space="preserve">
+    <value>DĚJ</value>
+  </data>
+  <data name="PlotText.Text" xml:space="preserve">
+    <value>DĚJ</value>
+  </data>
+  <data name="Port.Header" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Rating.Text" xml:space="preserve">
+    <value>HODNOCENÍ</value>
+  </data>
+  <data name="RefreshAppBarMenu.Label" xml:space="preserve">
+    <value>obnovit</value>
+  </data>
+  <data name="RemoteAppBarMenu.Label" xml:space="preserve">
+    <value>ovladač</value>
+    <comment>Appbar menu item</comment>
+  </data>
+  <data name="Runtime.Text" xml:space="preserve">
+    <value>DÉLKA</value>
+  </data>
+  <data name="SaveAppBarMenu.Label" xml:space="preserve">
+    <value>uložit</value>
+  </data>
+  <data name="SearchAppBarMenu.Lable" xml:space="preserve">
+    <value>hledat</value>
+  </data>
+  <data name="SearchMoviesTitle.Text" xml:space="preserve">
+    <value>VYHLEDAT FILMY</value>
+  </data>
+  <data name="SearchTVShowsTitle.Text" xml:space="preserve">
+    <value>VYHLEDAT TV SERIÁLY</value>
+  </data>
+  <data name="Seasons.Header" xml:space="preserve">
+    <value>SEZÓNA</value>
+  </data>
+  <data name="ServerAddress.Header" xml:space="preserve">
+    <value>Adresa Serveru</value>
+  </data>
+  <data name="SettingsAppBarMenu.Label" xml:space="preserve">
+    <value>nastavení</value>
+  </data>
+  <data name="Songs.Header" xml:space="preserve">
+    <value>PÍSNĚ</value>
+  </data>
+  <data name="SongsTitle.Text" xml:space="preserve">
+    <value>PÍSNĚ</value>
+  </data>
+  <data name="Studio.Text" xml:space="preserve">
+    <value>STUDIO</value>
+  </data>
+  <data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
+    <value>přepnout server</value>
+  </data>
+  <data name="Tagline.Text" xml:space="preserve">
+    <value>SLOGAN</value>
+  </data>
+  <data name="Track" xml:space="preserve">
+    <value>stopa</value>
+  </data>
+  <data name="Tracks" xml:space="preserve">
+    <value>stopy</value>
+    <comment>All lowercase, please!</comment>
+  </data>
+  <data name="TVShowsPageTitle.Text" xml:space="preserve">
+    <value>TV SERIÁLY</value>
+  </data>
+  <data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
+    <value>NOVÉ</value>
+  </data>
+  <data name="UpdateAudioLibrary" xml:space="preserve">
+    <value>aktualizovat audio knihovnu</value>
+  </data>
+  <data name="UpdateVideoLibrary" xml:space="preserve">
+    <value>aktualizovat video knihovnu</value>
+  </data>
+  <data name="Username.Header" xml:space="preserve">
+    <value>Uživatelské jméno</value>
+  </data>
+  <data name="WarningNote.Text" xml:space="preserve">
+    <value>Poznámka: Uživatelská jména a hesla jsou ukládána a přenášena jako prostý text. Ujistěte se prosím, že stejné heslo nepoužíváte nikde jinde.</value>
+  </data>
+  <data name="WatchedMovies.Text" xml:space="preserve">
+    <value>ZHLÉDNUTÉ</value>
+  </data>
+  <data name="Writer.Text" xml:space="preserve">
+    <value>SCÉNÁŘ</value>
+  </data>
+  <data name="QueueAlbumMenu.Label" xml:space="preserve">
+    <value>album do fronty</value>
+  </data>
+  <data name="QueueArtistMenu.Label" xml:space="preserve">
+    <value>umělce do fronty</value>
+  </data>
+  <data name="BackwardComboBox.Header" xml:space="preserve">
+    <value>co provadí zpět</value>
+  </data>
+  <data name="ForwardComboBox.Header" xml:space="preserve">
+    <value>co provádí vpřed</value>
+  </data>
+  <data name="SettingsButtons.Text" xml:space="preserve">
+    <value>TLAČÍTKA</value>
+  </data>
+  <data name="SettingsButtonsSub.Text" xml:space="preserve">
+    <value>vyberte, která tlačítka se zobrazí na ovladači</value>
+  </data>
+  <data name="SettingsSkipJump.Text" xml:space="preserve">
+    <value>PŘESKOČIT + POSKOČIT</value>
+  </data>
+  <data name="CacheNote.Text" xml:space="preserve">
+    <value>Kodi Assist uládá některé obrázky ve vašem telefonu, abyste měli rychlejší přístup do knihovny. Pokud dojde ke změně přebalů desek nebo filmových plakátů, můžete je znovu načíst.</value>
+  </data>
+  <data name="JustAMoment.Text" xml:space="preserve">
+    <value>Chviličku strpení...</value>
+  </data>
+  <data name="SettingsAutoconnect.Text" xml:space="preserve">
+    <value>AUTOMATICKÉ PŘIPOJENÍ</value>
+  </data>
+  <data name="SettingsAutoconnectToggle.Header" xml:space="preserve">
+    <value>připojovat automaticky při spuštění</value>
+  </data>
+  <data name="SettingsConnectionsPivotHeader.Text" xml:space="preserve">
+    <value>PŘIPOJENÍ</value>
+  </data>
+  <data name="SettingsPageHeader.Text" xml:space="preserve">
+    <value>NASTAVENÍ</value>
+  </data>
+  <data name="SettingsRefreshCacheButton.Content" xml:space="preserve">
+    <value>obnovit</value>
+  </data>
+  <data name="SettingsRemotePivotHeader.Text" xml:space="preserve">
+    <value>OVLADAČ</value>
+  </data>
+  <data name="SettingsTempFiles.Text" xml:space="preserve">
+    <value>DOČASNÉ SOUBORY</value>
+  </data>
+  <data name="AboutAboutPivotHeader.Text" xml:space="preserve">
+    <value>O APLIKACI</value>
+  </data>
+  <data name="AboutAnagh.Text" xml:space="preserve">
+    <value>Znamenitý design od</value>
+  </data>
+  <data name="AboutAppHeader.Text" xml:space="preserve">
+    <value>APLIKACE</value>
+  </data>
+  <data name="AboutAppText.Text" xml:space="preserve">
+    <value>Tato aplikace si klade za cíl být tím nejlepším dálkovým ovladačem pro Kodi. V duchu Kodi ma tato aplikace otevřený zdrojový kód, který je k dispozici na serveru GitHub.</value>
+  </data>
+  <data name="AboutCodeIn.Text" xml:space="preserve">
+    <value>PŘISPĚJTE DO KÓDU</value>
+    <comment>Is this meant to be an appeal to contribute to the source code?</comment>
+  </data>
+  <data name="AboutCodeInNote.Text" xml:space="preserve">
+    <value>Našli jste něco, co byste uměli opravit a nebo vylepšit? Výborně! Zde si vytvořte vlastní odnož repozitáře a začněte kódovat. Když se nám budou vaše změny líbit, určitě je přijmeme. Navíc dostanete i poděkování!</value>
+  </data>
+  <data name="AboutContributeNote.Text" xml:space="preserve">
+    <value>Tato aplikace je součástí projektu s otevřeným kódem na serveru GitHub. Je spousta možností, jak můžete přispět.</value>
+  </data>
+  <data name="AboutContributePivotHeader.Text" xml:space="preserve">
+    <value>ZAPOJTE SE</value>
+  </data>
+  <data name="AboutCreditsHeader.Text" xml:space="preserve">
+    <value>ZÁSLUHY</value>
+  </data>
+  <data name="AboutDeveloperHeader.Text" xml:space="preserve">
+    <value>VÝVOJÁŘ</value>
+  </data>
+  <data name="AboutFeedbackPivotHeader.Text" xml:space="preserve">
+    <value>ZPĚTNÁ VAZBA</value>
+  </data>
+  <data name="AboutFeedbackTextBox.PlaceholderText" xml:space="preserve">
+    <value>Zde zadejte váš vzkaz.</value>
+  </data>
+  <data name="AboutIconsAndFonts.Text" xml:space="preserve">
+    <value>Ikony a písmo z</value>
+  </data>
+  <data name="AboutProjectHeader.Text" xml:space="preserve">
+    <value>PROJEKT</value>
+  </data>
+  <data name="AboutProjectLink.Text" xml:space="preserve">
+    <value>zobrazit na GitHub</value>
+  </data>
+  <data name="AboutProjectText.Text" xml:space="preserve">
+    <value>Tato aplikace je součástí projektu s otevřeným kódem. Pokud si do něj přejete přispět, učiňte tak bez zdráhání na webové adrese níže. Nezapomeňte se také podívat na wiki stránky projektu.</value>
+  </data>
+  <data name="AboutReddit.Text" xml:space="preserve">
+    <value>Velmi užitečná zpětná vazba reddit komunity na</value>
+  </data>
+  <data name="AboutReportIssues.Text" xml:space="preserve">
+    <value>NAHLÁSIT PROBLÉMY</value>
+  </data>
+  <data name="AboutSendGreetings.Text" xml:space="preserve">
+    <value>POSLAT POZDRAV</value>
+  </data>
+  <data name="AboutSendGreetingsNote.Text" xml:space="preserve">
+    <value>I jednoduchý projev díků může mít zázračný účinek v komunitě otevřeného softwaru. Můžete tak jednoduše učinit prostřednictvím tweetu,e-mailu, ohodnocením ve Store a nebo jakýmkoliv jiným, vámi preferovaným způsobem. Pro vývojáře to hodně znamená.</value>
+  </data>
+  <data name="AboutTranslate.Text" xml:space="preserve">
+    <value>PŘELOŽIT</value>
+  </data>
+  <data name="AboutTranslateLink.Text" xml:space="preserve">
+    <value>překlady na POEditor</value>
+  </data>
+  <data name="AboutTranslateNote.Text" xml:space="preserve">
+    <value>Znáte více jazyků? Chcete mít aplikaci ve vašem jazyce? Všimli jste si něčeho, co by se dalo přeložit lépe? Překlady mají rovněž otevřený kód.</value>
+  </data>
+  <data name="AboutTranslators.Text" xml:space="preserve">
+    <value>Všichni překladatelé neustále pracují na zdokonalení aplikace.</value>
+    <comment>Would here be the list of translators or is this not correctly phrased present continues tense stating the fact the translations are still in progress? (All the translators ARE working...)?</comment>
+  </data>
+  <data name="AboutViewApp.Text" xml:space="preserve">
+    <value>Jo, to je ten stejný chlápek jako u naší milované</value>
+  </data>
+  <data name="AppsFromDev.Content" xml:space="preserve">
+    <value>další aplikace vývojáře</value>
+  </data>
+  <data name="AppSupport.Content" xml:space="preserve">
+    <value>podpora aplikace</value>
+  </data>
+  <data name="ReportIssuesLink.Text" xml:space="preserve">
+    <value>chyby na GitHub</value>
+  </data>
+  <data name="ReportIssuesNote.Text" xml:space="preserve">
+    <value>Našli jste v aplikaci něco, co nefunguje úplně dokonale? Objevili jste chybu? Myslíte, že by se dalo něco vylepšit? Jednoduše nahlaste chybu na odkazu níže. Některý z vývojářu se vám co nejdříve ozve.</value>
+  </data>
+  <data name="SendFeedbackButton.Content" xml:space="preserve">
+    <value>odeslat zpětnou vazbu</value>
+  </data>
+  <data name="AboutRateApp.Content" xml:space="preserve">
+    <value>ohodnotit aplikaci</value>
+  </data>
+  <data name="DeleteConnectionMenu.Text" xml:space="preserve">
+    <value>smazat připojení</value>
+  </data>
+  <data name="EditConnectionMenu.Text" xml:space="preserve">
+    <value>upravit připojení</value>
+  </data>
+  <data name="WakeUpMenu.Text" xml:space="preserve">
+    <value>probudit</value>
+    <comment>Context menu used to wake up sleeping computer using wake-on-lan</comment>
+  </data>
+  <data name="StoreDescription" xml:space="preserve">
+    <value>Jedinečný dálkový ovladač s oteřeným zdrojovým kódem pro Kodi (dříve XBMC) na Windows Phone.
+
+Vítěz //publish/ pro Windows na globální úrovni.
+
+Tato aplikace je vše co potřebujete k dálkovému ovládání Kodi (XBMC) z Windows Phone. Jeho funkce zahrnují:
+- Nádherný prohlížeč knihovny
+- Poskytuje informace o umělci či albu
+- Detailní a pohodlný přehled filmů a TV Seriálů
+- Jednoduše použitelný dálkový ovladač
+- A mnohem více
+
+Aby toho nebylo málo, celá aplikace ma otevřený zdrojový kód. Můžete si ho prohlédnout, upravit nebo úplně změnit přímo zde:
+https://github.com/akshay2000/XBMCRemoteRT</value>
+    <comment>Description for Windows Store</comment>
+  </data>
+  <data name="BePatient" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ConnectingTo" xml:space="preserve">
+    <value></value>
+    <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, &quot;Connecting to mediaserver&quot; Please use it in your translations.</comment>
+  </data>
+  <data name="IPErrorMessage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="KeepTryingCommand" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="StopCommand" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WakeUpFailed" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WakeupPatientMessage" xml:space="preserve">
+    <value></value>
+    <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes &quot;takes 5 to 10&quot; seconds&quot;. Use the same placeholders in translations.</comment>
+  </data>
+  <data name="WakingUp" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WOLConnectionErrorHeader" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WOLConnectionErrorMessage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WOLErrorMessage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WOLMacNotFoundHeader" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WOLMacNotFoundMessage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PartyModeMenuItem.Label" xml:space="preserve">
+    <value></value>
+    <comment>Start music in party mode.</comment>
+  </data>
+  <data name="ShowCodecInfo" xml:space="preserve">
+    <value></value>
+  </data>
 
 </root>
