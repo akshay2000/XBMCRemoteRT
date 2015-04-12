@@ -67,6 +67,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Resume.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\StreamDetails.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\TVShow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Video\TVShowsCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Applikation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\AudioLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\GUI.cs" />

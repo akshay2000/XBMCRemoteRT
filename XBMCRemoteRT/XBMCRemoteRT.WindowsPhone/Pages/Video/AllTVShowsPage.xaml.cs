@@ -129,14 +129,14 @@ namespace XBMCRemoteRT.Pages.Video
         private async void LoadTVShows()
         {
             var loadStartTime = DateTime.Now;
-            JObject sort = new JObject(
-                new JProperty("method", "label"),
-                new JProperty("order", "ascending"),
-                new JProperty("ignorearticle", true));
-            ConnectionManager.ManageSystemTray(true);
-            allTVShows = await VideoLibrary.GetTVShows(sort: sort);
-            AllTVShowsListView.ItemsSource = allTVShows;
-            ConnectionManager.ManageSystemTray(false);
+            //JObject sort = new JObject(
+            //    new JProperty("method", "label"),
+            //    new JProperty("order", "ascending"),
+            //    new JProperty("ignorearticle", true));
+            //ConnectionManager.ManageSystemTray(true);
+            AllTVShowsListView.ItemsSource = new TVShowsCollection();
+
+            //ConnectionManager.ManageSystemTray(false);
 
             GlobalVariables.CurrentTracker.SendTiming(DateTime.Now.Subtract(loadStartTime), TimingCategories.LoadTime, "AllTVShows", "AllTVShows");
         }
