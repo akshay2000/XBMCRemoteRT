@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.RPCWrappers;
+using XBMCRemoteRT.Models.Common;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -31,8 +32,8 @@ namespace XBMCRemoteRT.Pages.Video
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        private List<TVShow> allTVShows;
-        private List<TVShow> filteredTVShows;
+        //private List<TVShow> allTVShows;
+        //private List<TVShow> filteredTVShows;
         private List<TVShow> emptyList = new List<TVShow>();
 
         public SearchTVShowsPage()
@@ -137,14 +138,12 @@ namespace XBMCRemoteRT.Pages.Video
             Frame.Navigate(typeof(TVShowDetailsHub));
         }
 
-        private async void SearchAndReload(string query)
+        private void SearchAndReload(string query)
         {
             ConnectionManager.ManageSystemTray(true);
-            if (allTVShows == null)
-                allTVShows = await VideoLibrary.GetTVShows();
+            Filter filter = new Filter { Field = "title", Operator = "contains", value = query };
 
-            filteredTVShows = allTVShows.Where(t => t.Title.ToLower().Contains(query.ToLower())).ToList();
-            SearchTVShowsListView.ItemsSource = filteredTVShows;
+            SearchTVShowsListView.ItemsSource = new TVShowsCollection(filter: filter);
             ConnectionManager.ManageSystemTray(false);
         }
 

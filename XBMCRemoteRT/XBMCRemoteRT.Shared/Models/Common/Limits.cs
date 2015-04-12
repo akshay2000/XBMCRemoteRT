@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,11 @@ namespace XBMCRemoteRT.Models.Common
             Start = start;
             End = end;
         }
+
+        [JsonProperty(PropertyName = "start")]
         public int Start { get; set; }
+
+        [JsonProperty(PropertyName = "end")]
         public int End { get; set; }
     }
 }

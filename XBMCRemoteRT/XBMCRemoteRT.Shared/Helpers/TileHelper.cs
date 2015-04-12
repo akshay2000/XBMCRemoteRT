@@ -32,9 +32,7 @@ namespace XBMCRemoteRT.Helpers
         public static async Task UpdateTile(SecondaryTile tile)
         {
             var currentShow = tvShows.FirstOrDefault(s => s.Title == tile.Arguments.Split(new char[]{'_'})[1]);
-            JObject sort = new JObject(
-                new JProperty("order", "ascending"),
-                new JProperty("method", "playcount"));
+            Sort sort = new Sort { Order = "ascending", IgnoreArticle = true, Method = "playcount" };
 
             Limits limits = new Limits(0, 3);
 

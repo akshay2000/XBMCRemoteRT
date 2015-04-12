@@ -22,6 +22,7 @@ using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.RPCWrappers;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using XBMCRemoteRT.Models.Common;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -141,14 +142,9 @@ namespace XBMCRemoteRT.Pages.Entry
             if (showId == null)
                 return;
 
-            JObject filter = new JObject(
-                new JProperty("field", "playcount"),
-                new JProperty("operator", "is"),
-                new JProperty("value", "0"));
+            Filter filter = new Filter { Field = "playcount", Operator = "is", value = "0" };
 
-            JObject sort = new JObject(
-                new JProperty("order", "ascending"),
-                new JProperty("method", "label"));
+            Sort sort = new Sort { Method = "label", IgnoreArticle = true, Order = "ascending" };
 
             List<Episode> newEpisodes = await VideoLibrary.GetEpisodes(filter: filter, sort: sort, tvShowID: showId);
 
@@ -158,7 +154,7 @@ namespace XBMCRemoteRT.Pages.Entry
                 NewWrapper.Visibility = Visibility.Visible;
             }
 
-            filter["operator"] = "greaterthan";
+            filter.Operator = "greaterthan";
 
             List<Episode> watchedEpisodes = await VideoLibrary.GetEpisodes(filter: filter, sort: sort, tvShowID: showId);
 

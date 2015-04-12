@@ -12,7 +12,7 @@ namespace XBMCRemoteRT.Models.Video
 {
     public class MoviesCollection: IncrementalCollection<Movie>
     {
-        private bool hasMoreItems = true;
+        private int? maxCount;
         private Filter filter;
         private Sort sort = new Sort { Method = "label", Order = "ascending", IgnoreArticle = true };
 
@@ -27,22 +27,23 @@ namespace XBMCRemoteRT.Models.Video
 
         protected override async Task<List<Movie>> LoadMoreItemsImplAsync(CancellationToken c, uint count)
         {
-            Limits limits = new Limits { Start = this.Count, End = this.Count + (int)count };
-            JObject sortJson = JObject.FromObject(sort);
-            JObject filterJson = null;
-            if (filter != null)
+            if (maxCount == null)
             {
-                filterJson = JObject.FromObject(filter);
+                maxCount = await VideoLibrary.GetMoviesCount(filter);
             }
 
-            List<Movie> moreMovies = await VideoLibrary.GetMovies(limits: limits, filter: filterJson, sort: sortJson);
-            hasMoreItems = !(moreMovies.Count < count);
+            Limits limits = new Limits { Start = this.Count, End = this.Count + (int)count };
+            
+            List<Movie> moreMovies = await VideoLibrary.GetMovies(limits: limits, filter: filter, sort: sort);            
             return moreMovies;
         }
 
         protected override bool HasMoreItemsImpl()
         {
-            return hasMoreItems;
+            if (maxCount != null)
+                return maxCount > Count;
+            else
+                return true;
         }
     }
 }

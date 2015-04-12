@@ -10,7 +10,7 @@ namespace XBMCRemoteRT.Models.Video
 {
     class TVShowsCollection : IncrementalCollection<TVShow>
     {
-        private bool hasMoreItems = true;
+        private int? maxCount;
         private Filter filter;
         private Sort sort = new Sort { Method = "label", Order = "ascending", IgnoreArticle = true };
 
@@ -22,19 +22,26 @@ namespace XBMCRemoteRT.Models.Video
             if (sort != null)
                 this.sort = sort;
         }
+
         protected override async Task<List<TVShow>> LoadMoreItemsImplAsync(System.Threading.CancellationToken c, uint count)
         {
-            Limits limits = new Limits { Start = this.Count, End = this.Count + (int)count };
-            JObject sortJson = JObject.FromObject(sort);
+            if (maxCount == null)
+            {
+                maxCount = await VideoLibrary.GetTVShowsCount(filter);
+            }
 
-            var moreShows = await VideoLibrary.GetTVShows(limits: limits, sort: sortJson);
-            hasMoreItems = !(moreShows.Count < count);
+            Limits limits = new Limits { Start = this.Count, End = this.Count + (int)count };
+
+            var moreShows = await VideoLibrary.GetTVShows(limits, filter, sort);            
             return moreShows;
         }
 
         protected override bool HasMoreItemsImpl()
         {
-            return hasMoreItems;
+            if (maxCount != null)
+                return maxCount > Count;
+            else
+                return true;
         }
     }
 }
