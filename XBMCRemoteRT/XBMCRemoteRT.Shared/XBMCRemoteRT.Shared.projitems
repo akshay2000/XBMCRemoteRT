@@ -50,10 +50,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Album.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Artist.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Song.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Common\Filter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\FilteType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\GroupedList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\IncrementalCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\Limits.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Common\Sort.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Network\ConnectionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Network\IPAddress.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Network\MacAddress.cs" />
