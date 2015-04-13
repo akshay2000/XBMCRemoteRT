@@ -132,12 +132,12 @@ namespace XBMCRemoteRT.Pages.Audio
             var groupedAllArtists = GroupingHelper.GroupList(allArtists, (Artist a) => { return a.Label; }, true);
             ArtistsCVS.Source = groupedAllArtists;
 
-            JObject sortWith = new JObject(new JProperty("method", "label"));
-            allAlbums = await AudioLibrary.GetAlbums(sort: sortWith);
+            //JObject sortWith = new JObject(new JProperty("method", "label"));
+            allAlbums = await AudioLibrary.GetAlbums();
             var groupedAllAlbums = GroupingHelper.GroupList(allAlbums, (Album a) => { return a.Label; }, true);
             AlbumsCVS.Source = groupedAllAlbums;
 
-            allSongs = await AudioLibrary.GetSongs(sort: sortWith);
+            allSongs = await AudioLibrary.GetSongs();
             var groupedAllSongs = GroupingHelper.GroupList(allSongs, (Song s) => { return s.Label; }, true);
             SongsCVS.Source = groupedAllSongs;
             ConnectionManager.ManageSystemTray(false);
