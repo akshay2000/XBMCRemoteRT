@@ -26,7 +26,6 @@
         </TransitionCollection>
     </Page.Transitions>
 
-
     <Grid x:Name="LayoutRoot">
         <Pivot>
             <Pivot.Title>
