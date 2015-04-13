@@ -64,6 +64,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Art.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Cast.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Episode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Video\EpisodesCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Movie.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\MoviesCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\Resume.cs" />

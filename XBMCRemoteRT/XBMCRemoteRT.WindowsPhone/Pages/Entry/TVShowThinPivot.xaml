@@ -1,0 +1,49 @@
+﻿<Page
+    x:Class="XBMCRemoteRT.Pages.Entry.TVShowThinPivot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XBMCRemoteRT.Pages.Entry"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Page.Resources>
+        <DataTemplate x:Key="EpisodeItemTemplate">
+            <StackPanel x:Name="EpisodeWrapper" Orientation="Horizontal" Tapped="EpisodeWrapper_Tapped" CommonNavigationTransitionInfo.IsStaggerElement="True">
+                <TextBlock Text="{Binding Label}" FontSize="25" Margin="0" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+
+    <Grid x:Name="LayoutRoot">
+        <Pivot>
+            <Pivot.Title>
+                <TextBlock x:Name="ShowNameTextBlock" Text="ARROW" Style="{StaticResource PageTitleTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+            </Pivot.Title>
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="NEW" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True" x:Uid="UnwatchedMoviesTitle"/>
+                </PivotItem.Header>
+                <ListView x:Name="NewEpisodesListView" ItemTemplate="{StaticResource EpisodeItemTemplate}"/>
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="WATCHED" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True" x:Uid="WatchedMoviesTitle"/>
+                </PivotItem.Header>
+                <ListView x:Name="WatchedEpisodesListView" ItemTemplate="{StaticResource EpisodeItemTemplate}"/>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>

@@ -181,6 +181,24 @@ namespace XBMCRemoteRT.RPCWrappers
             return listToReturn;
         }
 
+        public static async Task<int> GetEpisodesCount(Filter filter = null, int? tvShowID = null)
+        {
+            JObject parameters = new JObject();
+            Limits limits = new Limits { Start = 0, End = 1 };
+            if (filter != null)
+            {
+                parameters["filter"] = JObject.FromObject(filter);
+            }
+            if (tvShowID != null)
+            {
+                parameters["tvshowid"] = tvShowID;
+            }
+            parameters["limits"] = JObject.FromObject(limits);
+
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.GetEpisodes", parameters);
+            return (int)responseObject["result"]["limits"]["total"];
+        }
+
         public static async void Scan()
         {
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.Scan");
@@ -189,6 +207,6 @@ namespace XBMCRemoteRT.RPCWrappers
         public static async void Clean()
         {
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.Clean");
-        }
+        }        
     }
 }

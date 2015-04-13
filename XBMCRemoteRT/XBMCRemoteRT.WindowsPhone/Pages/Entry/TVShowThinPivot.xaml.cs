@@ -31,12 +31,12 @@ namespace XBMCRemoteRT.Pages.Entry
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class TVShowThinPage : Page
+    public sealed partial class TVShowThinPivot : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public TVShowThinPage()
+        public TVShowThinPivot()
         {
             this.InitializeComponent();
 
@@ -134,7 +134,7 @@ namespace XBMCRemoteRT.Pages.Entry
         private async Task PopulatePage(string navigationArgs)
         {
             string showName = navigationArgs.Split("_".ToArray())[1];
-            PageTitleTextBlock.Text = showName;
+            ShowNameTextBlock.Text = showName;
 
             var shows = await VideoLibrary.GetTVShows();
             int showId = shows.Where(show => show.Title == showName).FirstOrDefault().TvShowId;
@@ -142,27 +142,19 @@ namespace XBMCRemoteRT.Pages.Entry
             if (showId == null)
                 return;
 
-            Filter filter = new Filter { Field = "playcount", Operator = "is", value = "0" };
+            Filter newFilter = new Filter { Field = "playcount", Operator = "is", value = "0" };
 
             Sort sort = new Sort { Method = "label", IgnoreArticle = true, Order = "ascending" };
 
-            List<Episode> newEpisodes = await VideoLibrary.GetEpisodes(filter: filter, sort: sort, tvShowID: showId);
+            var newEpisodes = new EpisodesCollection(newFilter, sort, showId);
+            NewEpisodesListView.ItemsSource = newEpisodes;
 
-            if (newEpisodes.Count > 0)
-            {
-                NewEpisodesListView.ItemsSource = newEpisodes;
-                NewWrapper.Visibility = Visibility.Visible;
-            }
+            Filter watchedFilter = new Filter { Field = "playcount", Operator = "greaterthan", value = "0" };
 
-            filter.Operator = "greaterthan";
+            var watchedEpisodes = new EpisodesCollection(watchedFilter, sort, showId);
+            WatchedEpisodesListView.ItemsSource = watchedEpisodes;
 
-            List<Episode> watchedEpisodes = await VideoLibrary.GetEpisodes(filter: filter, sort: sort, tvShowID: showId);
-
-            if (watchedEpisodes.Count > 0)
-            {
-                WatchedEpisodesListView.ItemsSource = watchedEpisodes;
-                WatchedWrapper.Visibility = Visibility.Visible;
-            }
+            await Task.Delay(1000);
 
             if (newEpisodes.Count + watchedEpisodes.Count == 0)
             {

@@ -114,7 +114,7 @@ namespace XBMCRemoteRT
             EnsureRootFrame(e.PreviousExecutionState);
             if (e.TileId.StartsWith("tvShow"))
             {
-                rootFrame.Navigate(typeof(TVShowThinPage), e.Arguments);
+                rootFrame.Navigate(typeof(TVShowThinPivot), e.Arguments);
             }
 
             if (rootFrame.Content == null)

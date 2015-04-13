@@ -116,7 +116,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Entry\TVShowThinPage.xaml">
+    <Page Include="Pages\Entry\TVShowThinPivot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,8 +187,8 @@
     <Compile Include="Pages\EditConnectionPage.xaml.cs">
       <DependentUpon>EditConnectionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Entry\TVShowThinPage.xaml.cs">
-      <DependentUpon>TVShowThinPage.xaml</DependentUpon>
+    <Compile Include="Pages\Entry\TVShowThinPivot.xaml.cs">
+      <DependentUpon>TVShowThinPivot.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\InputPage.xaml.cs">
       <DependentUpon>InputPage.xaml</DependentUpon>
