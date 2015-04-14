@@ -45,7 +45,7 @@
                     <TextBlock Text="ALL" x:Uid="AllMoviesTitle" Style="{StaticResource PageHeaderTextStyle}" />
                 </PivotItem.Header>
                 <Grid>
-                    <GridView x:Name="AllMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}" Margin="0,0,0,0" DataFetchSize="50"/>
+                    <GridView x:Name="AllMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}" Margin="0,0,0,0" DataFetchSize="2"/>
                 </Grid>
             </PivotItem>
 
@@ -54,7 +54,7 @@
                     <TextBlock Text="NEW" x:Uid="UnwatchedMoviesTitle" Style="{StaticResource PageHeaderTextStyle}" />
                 </PivotItem.Header>
                 <Grid>
-                    <GridView x:Name="UnwatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}" Margin="0,0,0,0" DataFetchSize="50"/>
+                    <GridView x:Name="UnwatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}" Margin="0,0,0,0" DataFetchSize="2"/>
                 </Grid>
             </PivotItem>
 
@@ -63,7 +63,7 @@
                     <TextBlock Text="WATCHED" x:Uid="WatchedMoviesTitle" Style="{StaticResource PageHeaderTextStyle}" />
                 </PivotItem.Header>
                 <Grid>
-                    <GridView x:Name="WatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}" Margin="0,0,0,0" DataFetchSize="50"/>
+                    <GridView x:Name="WatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}" Margin="0,0,0,0" DataFetchSize="2"/>
                 </Grid>
             </PivotItem>
         </Pivot>

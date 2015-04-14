@@ -30,7 +30,7 @@
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
             <!--<ScrollViewer>-->
-                <ListView x:Name="SearchMoviesListView" Margin="0,0,0,0" DataFetchSize="20">
+                <ListView x:Name="SearchMoviesListView" Margin="0,0,0,0" DataFetchSize="2">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid x:Name="MovieWrapper" Height="144" Margin="0,0,0,12" Tapped="MovieWrapper_Tapped" >

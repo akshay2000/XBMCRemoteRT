@@ -135,11 +135,11 @@ namespace XBMCRemoteRT.Pages.Video
             ConnectionManager.ManageSystemTray(true);
             AllMoviesListView.ItemsSource = new MoviesCollection();
 
-            Filter filter = new Filter { Field = "playcount", Operator = "is", value = "0" };
-            UnwatchedMoviesListView.ItemsSource = new MoviesCollection(filter: filter);
+            Filter newFilter = new Filter { Field = "playcount", Operator = "is", value = "0" };
+            UnwatchedMoviesListView.ItemsSource = new MoviesCollection(filter: newFilter);
 
-            filter.Operator = "greaterthan";
-            WatchedMoviesListView.ItemsSource = new MoviesCollection(filter: filter);
+            Filter watchedFilter = new Filter { Field = "playcount", Operator = "greaterthan", value = "0" };
+            WatchedMoviesListView.ItemsSource = new MoviesCollection(filter: watchedFilter);
             ConnectionManager.ManageSystemTray(false);
 
             GlobalVariables.CurrentTracker.SendTiming(DateTime.Now.Subtract(loadStartTime), TimingCategories.LoadTime, "AllMovies", "AllMovies");

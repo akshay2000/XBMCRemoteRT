@@ -30,7 +30,7 @@
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,15,12,0">
             <Grid>
-                <ListView x:Name="AllTVShowsListView" Margin="0,0,0,0" DataFetchSize="50">
+                <ListView x:Name="AllTVShowsListView" Margin="0,0,0,0" DataFetchSize="3">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid x:Name="TVShowWrapper" Tapped="TVShowWrapper_Tapped" Margin="0,0,0,24" Background="{StaticResource PhoneChromeBrush}" >
