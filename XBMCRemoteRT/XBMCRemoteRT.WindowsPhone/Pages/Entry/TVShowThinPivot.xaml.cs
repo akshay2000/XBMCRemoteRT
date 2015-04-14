@@ -153,10 +153,8 @@ namespace XBMCRemoteRT.Pages.Entry
 
             var watchedEpisodes = new EpisodesCollection(watchedFilter, sort, showId);
             WatchedEpisodesListView.ItemsSource = watchedEpisodes;
-
-            await Task.Delay(1000);
-
-            if (newEpisodes.Count + watchedEpisodes.Count == 0)
+            
+            if (await VideoLibrary.GetEpisodesCount(tvShowID: showId) == 0)
             {
                 string message = String.Format("No episodes were found in {0}. We will take you to the library now.", showName);
                 string messageHeader = "Nothing Here!";
