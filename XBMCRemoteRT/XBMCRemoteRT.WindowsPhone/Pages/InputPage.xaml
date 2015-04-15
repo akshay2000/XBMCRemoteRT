@@ -387,7 +387,7 @@
             <Border Height="34" Width="34" Background="{StaticResource PhoneAccentBrush}" VerticalAlignment="Top" CornerRadius="25"  Grid.Column="2">
                 <TextBlock Text="100" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe WP"/>
             </Border>
-            <Slider Minimum="0" Value="30" Maximum="100" StepFrequency="5" x:Name="VolumeSlider" ValueChanged="VolumeSlider_ValueChanged" Loaded="VolumeSlider_Loaded" VerticalAlignment="Top" Style="{StaticResource RemoteSlider}" Grid.ColumnSpan="3"/>
+            <Slider Minimum="0" Value="30" Maximum="100" StepFrequency="5" x:Name="VolumeSlider" Loaded="VolumeSlider_Loaded" VerticalAlignment="Top" Style="{StaticResource RemoteSlider}" Grid.ColumnSpan="3"/>
             <Grid x:Name="VolumeDownWrapper" Height="60" Width="34" Background="Transparent" VerticalAlignment="Top" Tapped="VolumeDownWrapper_Tapped" >
                 <SymbolIcon Symbol="Mute" VerticalAlignment="Bottom"/>
             </Grid>

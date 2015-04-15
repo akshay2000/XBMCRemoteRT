@@ -251,42 +251,20 @@ namespace XBMCRemoteRT.Pages
             await PlayerHelper.RefreshPlayerState();
         }
 
+        Slider slider;
         private async void VolumeSlider_Loaded(object sender, RoutedEventArgs e)
         {
             int volume = await Applikation.GetVolume();
             SetVolumeSliderValue(volume);
-        }        
-
-        private DispatcherTimer timer;
-        private void VolumeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
-        {
-            if (isVolumeSetProgrammatically)
-            {
-                isVolumeSetProgrammatically = false;
-                return;
-            }
-            else
-            {
-                if (timer != null)
-                    timer.Stop();
-
-                timer = new DispatcherTimer();
-
-                timer.Interval = new TimeSpan(0, 0, 1);
-                timer.Tick += timer_Tick;
-
-                timer.Start();
-            }
+            slider = sender as Slider;
+            slider.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(slider_PointerReleased), true);
         }
 
-        void timer_Tick(object sender, object e)
+        private void slider_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             int value = (int)Math.Round(VolumeSlider.Value);
             Applikation.SetVolume(value);
-
-            timer.Stop();
-            timer.Tick -= timer_Tick;
-        }
+        }        
 
         private async void VolumeDownWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
