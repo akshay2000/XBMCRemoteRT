@@ -355,185 +355,187 @@
             </NavigationThemeTransition>
         </TransitionCollection>
     </Page.Transitions>
-    
-    <Grid x:Name="LayoutRoot">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+    <Viewbox >
+        <Grid x:Name="LayoutRoot" MinHeight="640">
 
-        <TextBox x:Name="SendTextBox" Grid.Row="0" Margin="10,0" VerticalAlignment="Center" KeyUp="SendTextBox_KeyUp" LostFocus="SendTextBox_LostFocus" Visibility="Collapsed" >
-        	<TextBox.Projection>
-        		<PlaneProjection RotationX="-90" CenterOfRotationZ="-20"/>
-        	</TextBox.Projection>
-        </TextBox>       
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="11*"/>
+            </Grid.RowDefinitions>
 
-        <!--Volume slider-->
-        <Grid Grid.Row="1" Margin="10,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <Border Height="34" Width="34" Background="{StaticResource PhoneAccentBrush}" VerticalAlignment="Top" CornerRadius="25" >
-                <TextBlock Text="0" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe WP"/>
-            </Border>
-            <Border Height="34" Width="34" Background="{StaticResource PhoneAccentBrush}" VerticalAlignment="Top" CornerRadius="25"  Grid.Column="2">
-                <TextBlock Text="100" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe WP"/>
-            </Border>
-            <Slider Minimum="0" Value="30" Maximum="100" StepFrequency="5" x:Name="VolumeSlider" Loaded="VolumeSlider_Loaded" VerticalAlignment="Top" Style="{StaticResource RemoteSlider}" Grid.ColumnSpan="3"/>
-            <Grid x:Name="VolumeDownWrapper" Height="60" Width="34" Background="Transparent" VerticalAlignment="Top" Tapped="VolumeDownWrapper_Tapped" >
-                <SymbolIcon Symbol="Mute" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="SendTextBox" Grid.Row="0" Margin="10,0" VerticalAlignment="Center" KeyUp="SendTextBox_KeyUp" LostFocus="SendTextBox_LostFocus" Visibility="Collapsed" >
+                <TextBox.Projection>
+                    <PlaneProjection RotationX="-90" CenterOfRotationZ="-20"/>
+                </TextBox.Projection>
+            </TextBox>
+
+            <!--Volume slider-->
+            <Grid Grid.Row="1" Margin="10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Border Height="34" Width="34" Background="{StaticResource PhoneAccentBrush}" VerticalAlignment="Top" CornerRadius="25" >
+                    <TextBlock Text="0" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe WP"/>
+                </Border>
+                <Border Height="34" Width="34" Background="{StaticResource PhoneAccentBrush}" VerticalAlignment="Top" CornerRadius="25"  Grid.Column="2">
+                    <TextBlock Text="100" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe WP"/>
+                </Border>
+                <Slider Minimum="0" Value="30" Maximum="100" StepFrequency="5" x:Name="VolumeSlider" Loaded="VolumeSlider_Loaded" VerticalAlignment="Top" Style="{StaticResource RemoteSlider}" Grid.ColumnSpan="3"/>
+                <Grid x:Name="VolumeDownWrapper" Height="60" Width="34" Background="Transparent" VerticalAlignment="Top" Tapped="VolumeDownWrapper_Tapped" >
+                    <SymbolIcon Symbol="Mute" VerticalAlignment="Bottom"/>
+                </Grid>
+                <Grid x:Name="VolumeUpWrapper" Height="60" Width="34" Background="Transparent" VerticalAlignment="Top" Grid.Column="2" Tapped="VolumeUpWrapper_Tapped">
+                    <SymbolIcon Symbol="Volume" Margin="0,16,0,0" VerticalAlignment="Bottom"/>
+                </Grid>
             </Grid>
-            <Grid x:Name="VolumeUpWrapper" Height="60" Width="34" Background="Transparent" VerticalAlignment="Top" Grid.Column="2" Tapped="VolumeUpWrapper_Tapped">
-                <SymbolIcon Symbol="Volume" Margin="0,16,0,0" VerticalAlignment="Bottom"/>
+
+            <!--Secondary commands-->
+            <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <AppBarButton x:Name="HomeButton" Click="HomeButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="0" Visibility="Visible">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Home"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="OSDButton" Click="OSDButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="1" Visibility="Collapsed">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Page2"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="TextInputButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="2" Click="TextInputButton_Click" Visibility="Visible">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Rename"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="SubtitlesButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="SubtitlesButton_Click" Visibility="Collapsed">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="ClosedCaption"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="InfoButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="4" Click="InfoButton_Click" Visibility="Collapsed">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="DockBottom"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="AdvancedButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="5" Click="AdvancedButton_Click" Visibility="Visible">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="List"/>
+                    </AppBarButton.Icon>
+                    <AppBarButton.Flyout>
+                        <ListPickerFlyout x:Name="AdvancedMenuFlyout" Placement="Full" ItemsPicked="AdvancedMenuFlyout_ItemsPicked" />
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+            </Grid>
+
+            <!--Dpad and big buttons-->
+            <Grid Grid.Row="3">
+                <Grid Margin="0,0,0,18" Height="255" Width="260" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Button x:Name="UpButton" Click="UpButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Center" VerticalAlignment="Top" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                        <Button.RenderTransform>
+                            <CompositeTransform Rotation="45"/>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="RightButton" Click="RightButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Right" VerticalAlignment="Center" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                        <Button.RenderTransform>
+                            <CompositeTransform Rotation="135"/>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="DownButton" Click="DownButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                        <Button.RenderTransform>
+                            <CompositeTransform Rotation="225"/>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="LeftButton" Click="LeftButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Left" VerticalAlignment="Center" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                        <Button.RenderTransform>
+                            <CompositeTransform Rotation="-45"/>
+                        </Button.RenderTransform>
+                    </Button>
+
+                    <Ellipse Fill="{StaticResource PhoneBackgroundBrush}" Height="135" Width="135"/>
+                    <AppBarButton x:Name="EnterButton" Click="EnterButton_Click" Icon="Remote" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource HugeRoundButton}"/>
+                </Grid>
+                <AppBarButton x:Name="GoBackButton" Click="GoBackButton_Click" Margin="24,0,0,10" Style="{StaticResource ExtraLargeRoundButton}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Undo"  RenderTransformOrigin="0.5,0.5">
+                            <SymbolIcon.RenderTransform>
+                                <CompositeTransform ScaleX="1.6" ScaleY="1.6" Rotation="45"/>
+                            </SymbolIcon.RenderTransform>
+                        </SymbolIcon>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+
+                <AppBarButton x:Name="MenuButton" Click="MenuButton_Click" Margin="0,0,24,10" Style="{StaticResource ExtraLargeRoundButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="45" Margin="0,5,0,0"  Glyph="&#57605;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </Grid>
+
+            <!--Primary commands-->
+            <Grid Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <AppBarButton x:Name="PreviousButton" Click="PreviousButton_Click" Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Previous"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="SpeedDownButton" Click="SpeedDownButton_Click" Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center" Grid.Column="1">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Glyph="&#57769;" Margin="0,1,3,0"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="PlayPauseButton" Click="PlayPauseButton_Click" Style="{StaticResource ExtraLargeRoundButton}" Grid.Column="2" VerticalAlignment="Center">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="{Binding Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" RenderTransformOrigin="0.5,0.5" >
+                            <SymbolIcon.RenderTransform>
+                                <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
+                            </SymbolIcon.RenderTransform>
+                        </SymbolIcon>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="StopButton" Click="StopButton_Click" Style="{StaticResource ExtraLargeRoundButton}" Grid.Column="3">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Stop" RenderTransformOrigin="0.5,0.5" >
+                            <SymbolIcon.RenderTransform>
+                                <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
+                            </SymbolIcon.RenderTransform>
+                        </SymbolIcon>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="SpeedUpButton" Click="SpeedUpButton_Click" Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center" Grid.Column="4">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Margin="3,1,0,0" Glyph="&#57768;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="NextButton" Click="NextButton_Click" Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center" Grid.Column="5">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Next"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </Grid>
         </Grid>
+    </Viewbox>
 
-        <!--Secondary commands-->
-        <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <AppBarButton x:Name="HomeButton" Click="HomeButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="0" Visibility="Visible">
-                <AppBarButton.Icon>
-                    <SymbolIcon Symbol="Home"/>
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="OSDButton" Click="OSDButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="1" Visibility="Collapsed">
-                <AppBarButton.Icon>
-                    <SymbolIcon Symbol="Page2"/>                        
-                </AppBarButton.Icon>
-            </AppBarButton>            
-            <AppBarButton x:Name="TextInputButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="2" Click="TextInputButton_Click" Visibility="Visible">
-                <AppBarButton.Icon>
-                    <SymbolIcon Symbol="Rename"/>
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="SubtitlesButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="SubtitlesButton_Click" Visibility="Collapsed">
-                <AppBarButton.Icon>
-                    <SymbolIcon Symbol="ClosedCaption"/>
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="InfoButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="4" Click="InfoButton_Click" Visibility="Collapsed">
-                <AppBarButton.Icon>
-                    <SymbolIcon Symbol="DockBottom"/>
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="AdvancedButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="5" Click="AdvancedButton_Click" Visibility="Visible">
-                <AppBarButton.Icon>
-                    <SymbolIcon Symbol="List"/>
-                </AppBarButton.Icon>
-                <AppBarButton.Flyout>
-                    <ListPickerFlyout x:Name="AdvancedMenuFlyout" Placement="Full" ItemsPicked="AdvancedMenuFlyout_ItemsPicked" />
-                </AppBarButton.Flyout>
-            </AppBarButton>
-        </Grid> 
-
-        <!--Dpad and big buttons-->
-        <Grid Grid.Row="3">
-            <Grid Margin="0,0,0,18" Height="255" Width="260" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                <Button x:Name="UpButton" Click="UpButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Center" VerticalAlignment="Top" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                    <Button.RenderTransform>
-                        <CompositeTransform Rotation="45"/>
-                    </Button.RenderTransform>
-                </Button>
-                <Button x:Name="RightButton" Click="RightButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Right" VerticalAlignment="Center" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                    <Button.RenderTransform>
-                        <CompositeTransform Rotation="135"/>
-                    </Button.RenderTransform>
-                </Button>
-                <Button x:Name="DownButton" Click="DownButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                    <Button.RenderTransform>
-                        <CompositeTransform Rotation="225"/>
-                    </Button.RenderTransform>
-                </Button>
-                <Button x:Name="LeftButton" Click="LeftButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Left" VerticalAlignment="Center" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                    <Button.RenderTransform>
-                        <CompositeTransform Rotation="-45"/>
-                    </Button.RenderTransform>
-                </Button>
-
-                <Ellipse Fill="{StaticResource PhoneBackgroundBrush}" Height="135" Width="135"/>
-                <AppBarButton x:Name="EnterButton" Click="EnterButton_Click" Icon="Remote" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource HugeRoundButton}"/>
-            </Grid>
-            <AppBarButton x:Name="GoBackButton" Click="GoBackButton_Click" Margin="24,0,0,10" Style="{StaticResource ExtraLargeRoundButton}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                <AppBarButton.Icon>
-                    <SymbolIcon Symbol="Undo"  RenderTransformOrigin="0.5,0.5">
-                        <SymbolIcon.RenderTransform>
-                            <CompositeTransform ScaleX="1.6" ScaleY="1.6" Rotation="45"/>
-                        </SymbolIcon.RenderTransform>
-                    </SymbolIcon>
-                </AppBarButton.Icon>
-            </AppBarButton>
-
-            <AppBarButton x:Name="MenuButton" Click="MenuButton_Click" Margin="0,0,24,10" Style="{StaticResource ExtraLargeRoundButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                <AppBarButton.Icon>
-                    <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="45" Margin="0,5,0,0"  Glyph="&#57605;"/>
-                </AppBarButton.Icon>
-            </AppBarButton>
-        </Grid>
-
-        <!--Primary commands-->
-        <Grid Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,12">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="1.5*"/>
-                <ColumnDefinition Width="1.5*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <AppBarButton x:Name="PreviousButton" Click="PreviousButton_Click" Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center">
-                <AppBarButton.Icon>
-                    <SymbolIcon Symbol="Previous"/>
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="SpeedDownButton" Click="SpeedDownButton_Click" Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center" Grid.Column="1">
-                <AppBarButton.Icon>
-                    <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Glyph="&#57769;" Margin="0,1,3,0"/>
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="PlayPauseButton" Click="PlayPauseButton_Click" Style="{StaticResource ExtraLargeRoundButton}" Grid.Column="2" VerticalAlignment="Center">
-                <AppBarButton.Icon>
-                    <SymbolIcon Symbol="{Binding Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" RenderTransformOrigin="0.5,0.5" >
-                        <SymbolIcon.RenderTransform>
-                            <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
-                        </SymbolIcon.RenderTransform>
-                    </SymbolIcon>
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="StopButton" Click="StopButton_Click" Style="{StaticResource ExtraLargeRoundButton}" Grid.Column="3">
-                <AppBarButton.Icon>
-                    <SymbolIcon Symbol="Stop" RenderTransformOrigin="0.5,0.5" >
-                        <SymbolIcon.RenderTransform>
-                            <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
-                        </SymbolIcon.RenderTransform>
-                    </SymbolIcon>
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="SpeedUpButton" Click="SpeedUpButton_Click" Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center" Grid.Column="4">
-                <AppBarButton.Icon>
-                    <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Margin="3,1,0,0" Glyph="&#57768;"/>
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="NextButton" Click="NextButton_Click" Style="{StaticResource LargeRoundButton}" VerticalAlignment="Center" Grid.Column="5">
-                <AppBarButton.Icon>
-                    <SymbolIcon Symbol="Next"/>
-                </AppBarButton.Icon>
-            </AppBarButton>
-        </Grid>
-    </Grid>
-    
 </Page>
