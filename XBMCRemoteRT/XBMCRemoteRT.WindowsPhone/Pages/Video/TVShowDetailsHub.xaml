@@ -118,7 +118,7 @@
     <Page.BottomAppBar>
         <CommandBar ClosedDisplayMode="Minimal" Opacity="0.5">
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="PinUnpinAppBarButton" Label="pin to start" Click="PinUnpinAppBarButton_Click" />
+                <AppBarButton x:Name="PinUnpinAppBarButton" Label="pin to start" Click="PinUnpinAppBarButton_Click" x:Uid="PinToStartAppBarMenu" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

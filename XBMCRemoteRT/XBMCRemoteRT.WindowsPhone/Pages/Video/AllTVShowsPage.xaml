@@ -61,8 +61,8 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RefreshTVShowsAppBarButton" x:Uid="RefreshMenuItem" Click="RefreshTVShowsAppBarButton_Click" Label="refresh" Icon="Refresh"/>
-                <AppBarButton x:Name="SearchTVShowsAppBarButton" x:Uid="SearchMenuItem" Click="SearchTVShowsAppBarButton_Click" Label="search" Icon="Find"/>
+                <AppBarButton x:Name="RefreshTVShowsAppBarButton" x:Uid="RefreshAppBarMenu" Click="RefreshTVShowsAppBarButton_Click" Label="refresh" Icon="Refresh"/>
+                <AppBarButton x:Name="SearchTVShowsAppBarButton" x:Uid="SearchAppBarMenu" Click="SearchTVShowsAppBarButton_Click" Label="search" Icon="Find"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

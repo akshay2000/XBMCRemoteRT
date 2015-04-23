@@ -48,7 +48,7 @@
                                 <Run x:Uid="AboutAnagh" Text="Excellent designs by"/>
                                 <Run Text=" "/>
                                 <Hyperlink NavigateUri="http://www.twitter.com/AnaghSharma" Foreground="{StaticResource PhoneAccentBrush}">@AnaghSharma</Hyperlink>.
-                                <Run Text="Yup, that's the same guy behind our beloved"/>
+                                <Run x:Uid="AboutAnagh2" Text="Yup, that's the same guy behind our beloved"/>
                                 <Run Text=" "/>
                                 <Hyperlink NavigateUri="www.windowsphone.com/s?appid=4eff5c6e-67a9-45fd-b7ab-344edc8a10c3" Foreground="{StaticResource PhoneAccentBrush}">View for Behance</Hyperlink>.
                             </Paragraph>
@@ -80,7 +80,7 @@
             
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="FEEDBACK" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock Text="FEEDBACK" x:Uid="AboutFeedbackPivotHeader" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
                     <StackPanel Margin="0,0,0,36">

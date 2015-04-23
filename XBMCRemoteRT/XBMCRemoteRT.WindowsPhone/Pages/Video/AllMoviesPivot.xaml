@@ -60,7 +60,7 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="WATCHED" x:Uid="WatchedMoviesTitle" Style="{StaticResource PageHeaderTextStyle}" />
+                    <TextBlock Text="WATCHED" x:Uid="WatchedMovies" Style="{StaticResource PageHeaderTextStyle}" />
                 </PivotItem.Header>
                 <Grid>
                     <GridView x:Name="WatchedMoviesListView" ItemTemplate="{StaticResource MovieItemTemplate}" Margin="0,0,0,0" DataFetchSize="2"/>
@@ -72,8 +72,8 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RefreshMoviesAppBarButton" x:Uid="RefreshMenuItem" Click="RefreshMoviesAppBarButton_Click" Label="refresh" Icon="Refresh"/>
-                <AppBarButton x:Name="SeachMoviesAppBarButton" x:Uid="SearchMenuItem" Click="SeachMoviesAppBarButton_Click" Label="search" Icon="Find" />
+                <AppBarButton x:Name="RefreshMoviesAppBarButton" x:Uid="RefreshAppBarMenu" Click="RefreshMoviesAppBarButton_Click" Label="refresh" Icon="Refresh"/>
+                <AppBarButton x:Name="SeachMoviesAppBarButton" x:Uid="SearchAppBarMenu" Click="SeachMoviesAppBarButton_Click" Label="search" Icon="Find" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
