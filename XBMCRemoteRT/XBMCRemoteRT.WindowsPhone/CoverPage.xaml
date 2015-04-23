@@ -201,7 +201,7 @@
                             <RowDefinition Height="253"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
-                            <RowDefinition Height="90"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="253"/>
@@ -234,7 +234,7 @@
                                 <TextBlock Text="{Binding ShowTitle}" FontSize="18" Opacity="0.7" TextTrimming="WordEllipsis"/>
                             </Grid>
                         </StackPanel>
-                        <Grid Grid.Row="3">
+                        <Grid Grid.Row="3" VerticalAlignment="Bottom">
                             <AppBarButton x:Name="PlayPauseButton" Margin="0,-7,0,0" Click="PlayPauseButton_Click" Style="{StaticResource ExtraLargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}">
                                 <AppBarButton.Icon>
                                     <SymbolIcon Symbol="{Binding Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" RenderTransformOrigin="0.5,0.5" >
