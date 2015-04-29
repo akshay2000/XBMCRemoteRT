@@ -15,11 +15,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Helpers;
+using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.RPCWrappers;
-using Newtonsoft.Json.Linq;
-using System.Diagnostics;
 using XBMCRemoteRT.Models.Common;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
@@ -29,16 +27,12 @@ namespace XBMCRemoteRT.Pages.Audio
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AllMusicPivot : Page
+    public sealed partial class SearchMusicPivot : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        private List<Artist> allArtists;
-        private List<Album> allAlbums;
-        private List<Song> allSongs;
-
-        public AllMusicPivot()
+        public SearchMusicPivot()
         {
             this.InitializeComponent();
 
@@ -47,8 +41,6 @@ namespace XBMCRemoteRT.Pages.Audio
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
-
-            ReloadAll();
         }
 
         /// <summary>
@@ -112,7 +104,6 @@ namespace XBMCRemoteRT.Pages.Audio
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            GlobalVariables.CurrentTracker.SendView("AllMusicPage");
             this.navigationHelper.OnNavigatedTo(e);
         }
 
@@ -122,28 +113,6 @@ namespace XBMCRemoteRT.Pages.Audio
         }
 
         #endregion
-
-        private async void ReloadAll()
-        {
-            var loadSartTime = DateTime.Now;
-
-            ConnectionManager.ManageSystemTray(true);
-            allArtists = await AudioLibrary.GetArtists();
-            var groupedAllArtists = GroupingHelper.GroupList(allArtists, (Artist a) => { return a.Label; }, true);
-            ArtistsCVS.Source = groupedAllArtists;
-
-            //JObject sortWith = new JObject(new JProperty("method", "label"));
-            allAlbums = await AudioLibrary.GetAlbums();
-            var groupedAllAlbums = GroupingHelper.GroupList(allAlbums, (Album a) => { return a.Label; }, true);
-            AlbumsCVS.Source = groupedAllAlbums;
-
-            allSongs = await AudioLibrary.GetAllSongs();
-            var groupedAllSongs = GroupingHelper.GroupList(allSongs, (Song s) => { return s.Label; }, true);
-            SongsCVS.Source = groupedAllSongs;
-            ConnectionManager.ManageSystemTray(false);
-
-            GlobalVariables.CurrentTracker.SendTiming((DateTime.Now.Subtract(loadSartTime)), TimingCategories.LoadTime, "AllMusic", "AllMusic");
-        }
 
         private void AlbumArtWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -175,19 +144,44 @@ namespace XBMCRemoteRT.Pages.Audio
             Frame.Navigate(typeof(ArtistDetailsHub));
         }
 
-        private void RefreshMusicAppBarButton_Click(object sender, RoutedEventArgs e)
+        private void SearchMusicTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            ReloadAll();
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                LoseFocus(sender);
+                SearchAndReload(SearchMusicTextBox.Text);
+            }
         }
 
-        private async void PartyModeAppBarButton_Click(object sender, RoutedEventArgs e)
+        private async void SearchAndReload(string query)
         {
-            await Player.PlayPartyMode();
+            ConnectionManager.ManageSystemTray(true);
+
+            Filter artistFilter = new Filter { Field = "artist", Operator = "contains", value = query };
+            ArtistSearchListView.ItemsSource = await AudioLibrary.GetArtists(artistFilter);
+
+            Filter albumFilter = new Filter { Field = "album", Operator = "contains", value = query };
+            AlbumSearchGridView.ItemsSource = await AudioLibrary.GetAlbums(albumFilter);
+
+            Filter songFilter = new Filter { Field = "title", Operator = "contains", value = query };
+            SongsSearchListView.ItemsSource = await AudioLibrary.GetSongs(songFilter);
+
+            ConnectionManager.ManageSystemTray(false);
         }
 
-        private void SearchMusicAppBarButton_Click(object sender, RoutedEventArgs e)
+        private void SearchMusicTextBox_Loaded(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SearchMusicPivot));
+            SearchMusicTextBox.Focus(FocusState.Keyboard);
+        }
+
+        private void LoseFocus(object sender)
+        {
+            var control = sender as Control;
+            var isTabStop = control.IsTabStop;
+            control.IsTabStop = false;
+            control.IsEnabled = false;
+            control.IsEnabled = true;
+            control.IsTabStop = isTabStop;
         }
     }
 }

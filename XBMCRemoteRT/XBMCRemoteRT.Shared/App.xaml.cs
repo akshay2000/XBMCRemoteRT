@@ -17,7 +17,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Common;
+#if WINDOWS_PHONE_APP
 using XBMCRemoteRT.Pages.Entry;
+#endif
 using XBMCRemoteRT.ViewModels;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227

@@ -73,7 +73,7 @@
         <CommandBar>
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshMoviesAppBarButton" x:Uid="RefreshAppBarMenu" Click="RefreshMoviesAppBarButton_Click" Label="refresh" Icon="Refresh"/>
-                <AppBarButton x:Name="SeachMoviesAppBarButton" x:Uid="SearchAppBarMenu" Click="SeachMoviesAppBarButton_Click" Label="search" Icon="Find" />
+                <AppBarButton x:Name="SeachMoviesAppBarButton" x:Uid="SearchAppBarButton" Click="SeachMoviesAppBarButton_Click" Label="search" Icon="Find" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

@@ -261,9 +261,6 @@
   <data name="SaveAppBarMenu.Label" xml:space="preserve">
     <value>save</value>
   </data>
-  <data name="SearchAppBarMenu.Lable" xml:space="preserve">
-    <value>search</value>
-  </data>
   <data name="SearchMoviesTitle.Text" xml:space="preserve">
     <value>SEARCH MOVIES</value>
   </data>
@@ -579,5 +576,8 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   </data>
   <data name="WOLToggle.Header" xml:space="preserve">
     <value>Enable wake on LAN for this server</value>
+  </data>
+  <data name="SearchAppBarButton.Label" xml:space="preserve">
+    <value>search</value>
   </data>
 </root>

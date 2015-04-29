@@ -149,6 +149,7 @@
                         <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Margin="3,1,0,0" Glyph="&#57449;"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
+                <AppBarButton x:Name="SearchMusicAppBarButton" x:Uid="SearchAppBarButton" Click="SearchMusicAppBarButton_Click" Label="search" Icon="Find"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

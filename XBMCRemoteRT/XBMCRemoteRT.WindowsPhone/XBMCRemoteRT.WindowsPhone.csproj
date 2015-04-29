@@ -112,6 +112,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Audio\SearchMusicPivot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\EditConnectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -183,6 +187,9 @@
     </Compile>
     <Compile Include="Pages\Audio\ArtistDetailsHub.xaml.cs">
       <DependentUpon>ArtistDetailsHub.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Audio\SearchMusicPivot.xaml.cs">
+      <DependentUpon>SearchMusicPivot.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EditConnectionPage.xaml.cs">
       <DependentUpon>EditConnectionPage.xaml</DependentUpon>
