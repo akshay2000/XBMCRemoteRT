@@ -143,6 +143,23 @@ namespace XBMCRemoteRT.RPCWrappers
             return listToReturn;
         }
 
+        public static async Task<List<Song>> GetAllSongs()
+        {
+            int stepSize = 50;
+            List<Song> toReturn = new List<Song>();
+            int returnedStep = stepSize;
+            Limits limits = new Limits { Start = 0, End = stepSize };
+            while (returnedStep == stepSize)
+            {
+                List<Song> currentList = await GetSongs(limits: limits);
+                returnedStep = currentList.Count;
+                toReturn.AddRange(currentList);
+                limits.Start += stepSize;
+                limits.End += stepSize;
+            }
+            return toReturn;
+        }
+
         public static async void Scan()
         {
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("AudioLibrary.Scan");

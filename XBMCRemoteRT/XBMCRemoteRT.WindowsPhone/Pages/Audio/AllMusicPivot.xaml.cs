@@ -137,7 +137,7 @@ namespace XBMCRemoteRT.Pages.Audio
             var groupedAllAlbums = GroupingHelper.GroupList(allAlbums, (Album a) => { return a.Label; }, true);
             AlbumsCVS.Source = groupedAllAlbums;
 
-            allSongs = await AudioLibrary.GetSongs();
+            allSongs = await AudioLibrary.GetAllSongs();
             var groupedAllSongs = GroupingHelper.GroupList(allSongs, (Song s) => { return s.Label; }, true);
             SongsCVS.Source = groupedAllSongs;
             ConnectionManager.ManageSystemTray(false);
