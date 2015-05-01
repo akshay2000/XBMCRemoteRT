@@ -528,5 +528,71 @@
   <data name="ShowCodecInfo" xml:space="preserve">
     <value></value>
   </data>
+  <data name="PinToStartAppBarMenu.Label" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BigJumpBackward.Content" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BigJumpForward.Content" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DecreaseSpeed.Content" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EditConnectionHeader.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="IncreaseSpeed.Content" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SmallJumpBackward.Content" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SmallJumpForward.Content" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WakeOnLan.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AboutAnagh2.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AutoWakeToggle.Header" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MAC.Header" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SubnetMask.Header" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WOLToggle.Header" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SearchAppBarButton.Label" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SettingsAudioAutoSearchToggle.Header" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SettingsAutoSearch.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SettingsMiscellaneousPivotHeader.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LargeLibrary" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LargeMusicMessage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageOptionNo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageOptionYes" xml:space="preserve">
+    <value></value>
+  </data>
 
 </root>
