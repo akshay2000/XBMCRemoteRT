@@ -176,7 +176,7 @@ namespace XBMCRemoteRT.RPCWrappers
 
         public static async Task<bool> IsLarge()
         {
-            return await GetSongsCount() > 10;
+            return await GetSongsCount() > 1000;
         }
 
         public static async void Scan()

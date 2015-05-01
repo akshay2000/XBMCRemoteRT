@@ -158,13 +158,16 @@ namespace XBMCRemoteRT.Pages.Audio
             ConnectionManager.ManageSystemTray(true);
 
             Filter artistFilter = new Filter { Field = "artist", Operator = "contains", value = query };
-            ArtistSearchListView.ItemsSource = await AudioLibrary.GetArtists(artistFilter);
+            Sort artistSort = new Sort { Method = "artist", Order = "ascending", IgnoreArticle = true };
+            ArtistSearchListView.ItemsSource = await AudioLibrary.GetArtists(artistFilter, sort: artistSort);
 
             Filter albumFilter = new Filter { Field = "album", Operator = "contains", value = query };
-            AlbumSearchGridView.ItemsSource = await AudioLibrary.GetAlbums(albumFilter);
+            Sort albumSort = new Sort { Method = "album", Order = "ascending", IgnoreArticle = true };
+            AlbumSearchGridView.ItemsSource = await AudioLibrary.GetAlbums(albumFilter, sort: albumSort);
 
             Filter songFilter = new Filter { Field = "title", Operator = "contains", value = query };
-            SongsSearchListView.ItemsSource = await AudioLibrary.GetSongs(songFilter);
+            Sort songSort = new Sort { Method = "title", Order = "ascending", IgnoreArticle = true };
+            SongsSearchListView.ItemsSource = await AudioLibrary.GetSongs(songFilter, sort: songSort);
 
             ConnectionManager.ManageSystemTray(false);
         }
