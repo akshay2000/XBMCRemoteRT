@@ -83,6 +83,20 @@ namespace XBMCRemoteRT.RPCWrappers
             return listToReturn;
         }
 
+        public static async Task<int> GetSongsCount(Filter filter = null)
+        {
+            JObject parameters = new JObject();
+            Limits limits = new Limits { Start = 0, End = 1 };
+            if (filter != null)
+            {
+                parameters["filter"] = JObject.FromObject(filter);
+            }
+            parameters["limits"] = JObject.FromObject(limits);
+
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("AudioLibrary.GetSongs", parameters);
+            return (int)responseObject["result"]["limits"]["total"];
+        }
+
         public static async Task<List<Artist>> GetArtists(Filter filter = null, Limits limits = null, Sort sort = null)
         {
             JObject parameters = new JObject(
@@ -158,6 +172,11 @@ namespace XBMCRemoteRT.RPCWrappers
                 limits.End += stepSize;
             }
             return toReturn;
+        }
+
+        public static async Task<bool> IsLarge()
+        {
+            return await GetSongsCount() > 10;
         }
 
         public static async void Scan()
