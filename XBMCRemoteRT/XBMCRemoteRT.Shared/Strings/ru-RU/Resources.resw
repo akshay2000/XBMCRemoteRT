@@ -121,10 +121,11 @@
     <value>о программе</value>
   </data>
   <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
-    <value>ВИДЕО</value>
+    <value>ФИЛЬМЫ</value>
+    <comment>brought into compliance with Kodi desktop</comment>
   </data>
   <data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
-    <value>смотреть все видео</value>
+    <value>смотреть все фильмы</value>
   </data>
   <data name="MusicHubSectionHeader.Text" xml:space="preserve">
     <value>МУЗЫКА</value>
@@ -234,7 +235,7 @@
     <value>слушать исполнителя</value>
   </data>
   <data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
-    <value>смотреть видео</value>
+    <value>смотреть фильм</value>
   </data>
   <data name="Plot.Header" xml:space="preserve">
     <value>СЮЖЕТ</value>
@@ -265,7 +266,8 @@
     <value>поиск</value>
   </data>
   <data name="SearchMoviesTitle.Text" xml:space="preserve">
-    <value>ПОИСК ВИДЕО</value>
+    <value>ПОИСК ФИЛЬМОВ</value>
+    <comment>brought into compliance with Kodi desktop</comment>
   </data>
   <data name="SearchTVShowsTitle.Text" xml:space="preserve">
     <value>ПОИСК СЕРИАЛОВ</value>
@@ -540,6 +542,73 @@
   </data>
   <data name="ShowCodecInfo" xml:space="preserve">
     <value>показать информацию о кодеке</value>
+  </data>
+  <data name="PinToStartAppBarMenu.Label" xml:space="preserve">
+    <value>на рабочий стол</value>
+  </data>
+  <data name="BigJumpBackward.Content" xml:space="preserve">
+    <value>большой переход назад</value>
+  </data>
+  <data name="BigJumpForward.Content" xml:space="preserve">
+    <value>большой переход вперед</value>
+  </data>
+  <data name="DecreaseSpeed.Content" xml:space="preserve">
+    <value>замедлить</value>
+  </data>
+  <data name="EditConnectionHeader.Text" xml:space="preserve">
+    <value>РЕДАКТИРОВАТЬ ПОДКЛЮЧЕНИЕ</value>
+  </data>
+  <data name="IncreaseSpeed.Content" xml:space="preserve">
+    <value>ускорить</value>
+  </data>
+  <data name="SmallJumpBackward.Content" xml:space="preserve">
+    <value>небольшой переход назад</value>
+  </data>
+  <data name="SmallJumpForward.Content" xml:space="preserve">
+    <value>небольшой переход вперед</value>
+  </data>
+  <data name="WakeOnLan.Text" xml:space="preserve">
+    <value>ПРОБУЖДЕНИЕ ПО СЕТИ</value>
+  </data>
+  <data name="AboutAnagh2.Text" xml:space="preserve">
+    <value>Да, это тот же самый парень, который стоит за любимым нами</value>
+    <comment>It is the same as AboutViewApp.Text</comment>
+  </data>
+  <data name="AutoWakeToggle.Header" xml:space="preserve">
+    <value>Применять автоматическое пробуждение</value>
+  </data>
+  <data name="MAC.Header" xml:space="preserve">
+    <value>MAC-адрес</value>
+  </data>
+  <data name="SubnetMask.Header" xml:space="preserve">
+    <value>Маска подсети</value>
+  </data>
+  <data name="WOLToggle.Header" xml:space="preserve">
+    <value>Включить для этого сервера пробуждение по сети</value>
+  </data>
+  <data name="SearchAppBarButton.Label" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SettingsAudioAutoSearchToggle.Header" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SettingsAutoSearch.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SettingsMiscellaneousPivotHeader.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LargeLibrary" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LargeMusicMessage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageOptionNo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageOptionYes" xml:space="preserve">
+    <value></value>
   </data>
 
 </root>
