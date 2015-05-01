@@ -122,7 +122,7 @@ namespace XBMCRemoteRT.Pages.Audio
             bool isLargeLibrary = await AudioLibrary.IsLarge();
             if (isLargeLibrary)
             {
-                string redirectionStatus = (string)SettingsHelper.GetValue("AudioRedirect", "Unset");
+                string redirectionStatus = (string)SettingsHelper.GetValue("AudioAutoRedirect", "Unset");
                 if (redirectionStatus == "Unset")
                 {
                     string messageHeader = "Large library";
@@ -135,13 +135,13 @@ namespace XBMCRemoteRT.Pages.Audio
                     var result = await dialog.ShowAsync();
                     if (result.Label == yes)
                     {
-                        SettingsHelper.SetValue("AudioRedirect", "Yes");
+                        SettingsHelper.SetValue("AudioAutoRedirect", "Yes");
                         Frame.Navigate(typeof(SearchMusicPivot));
                         return;
                     }
                     else
                     {
-                        SettingsHelper.SetValue("AudioRedirect", "No");
+                        SettingsHelper.SetValue("AudioAutoRedirect", "No");
                     }
                 }
             }

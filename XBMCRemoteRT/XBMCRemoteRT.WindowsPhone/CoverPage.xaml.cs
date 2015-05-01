@@ -192,7 +192,15 @@ namespace XBMCRemoteRT
 
         private void MusicHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Frame.Navigate(typeof(AllMusicPivot));
+            bool isAutoRedirectEnabled = (string)SettingsHelper.GetValue("AudioAutoRedirect", "Unset") == "Yes";
+            if (isAutoRedirectEnabled)
+            {
+                Frame.Navigate(typeof(SearchMusicPivot));
+            }
+            else
+            {
+                Frame.Navigate(typeof(AllMusicPivot));
+            }
         }
 
         private void TVShowsHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)

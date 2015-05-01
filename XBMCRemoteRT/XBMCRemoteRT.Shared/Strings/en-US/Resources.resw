@@ -580,4 +580,13 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   <data name="SearchAppBarButton.Label" xml:space="preserve">
     <value>search</value>
   </data>
+  <data name="SettingsAudioAutoSearchToggle.Header" xml:space="preserve">
+    <value>go directly to music search</value>
+  </data>
+  <data name="SettingsAutoSearch.Text" xml:space="preserve">
+    <value>SEARCH</value>
+  </data>
+  <data name="SettingsMiscellaneousPivotHeader.Text" xml:space="preserve">
+    <value>MISCELLANEOUS</value>
+  </data>
 </root>

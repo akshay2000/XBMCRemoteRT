@@ -196,12 +196,15 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock x:Uid="SettingsConnectionsPivotHeader" Text="CONNECTIONS" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock x:Uid="SettingsMiscellaneousPivotHeader" Text="MISCELLANEOUS" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
                     <StackPanel Margin="0,0,0,36">
                         <TextBlock x:Uid="SettingsAutoconnect" Text="AUTOCONNECT" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <ToggleSwitch x:Uid="SettingsAutoconnectToggle" x:Name="AutoconnectToggle" Header="connect automatically on startup" Margin="0,6,0,0" Pivot.SlideInAnimationGroup="GroupTwo" />
+                        <ToggleSwitch x:Uid="SettingsAutoconnectToggle" x:Name="AutoconnectToggle" Header="connect automatically on startup" Margin="0,6,0,12" Pivot.SlideInAnimationGroup="GroupTwo" />
+
+                        <TextBlock x:Uid="SettingsAutoSearch" Text="SEARCH" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <ToggleSwitch x:Uid="SettingsAudioAutoSearchToggle" x:Name="AudioSearchToggle" Header="go directly to music search" Margin="0,6,0,12" Pivot.SlideInAnimationGroup="GroupTwo" />
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
