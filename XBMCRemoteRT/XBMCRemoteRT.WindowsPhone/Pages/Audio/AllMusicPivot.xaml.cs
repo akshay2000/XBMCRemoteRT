@@ -125,10 +125,12 @@ namespace XBMCRemoteRT.Pages.Audio
                 string redirectionStatus = (string)SettingsHelper.GetValue("AudioAutoRedirect", "Unset");
                 if (redirectionStatus == "Unset")
                 {
-                    string messageHeader = "Large library";
-                    string messageContent = "There seems to be a lot of music here. Would you like us to help you search for the music instead?";
-                    string yes = "yes";
-                    string no = "no";
+                    var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+
+                    string messageHeader = loader.GetString("LargeLibrary"); //"Large library";
+                    string messageContent = loader.GetString("LargeMusicMessage"); //"There seems to be a lot of music here. Would you like us to help you search for the music instead?";
+                    string yes = loader.GetString("MessageOptionYes"); // "yes";
+                    string no = loader.GetString("MessageOptionNo"); //"no";
                     MessageDialog dialog = new MessageDialog(messageContent, messageHeader);
                     dialog.Commands.Add(new UICommand(yes));
                     dialog.Commands.Add(new UICommand(no));

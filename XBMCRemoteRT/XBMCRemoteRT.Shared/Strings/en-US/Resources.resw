@@ -589,4 +589,16 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   <data name="SettingsMiscellaneousPivotHeader.Text" xml:space="preserve">
     <value>MISCELLANEOUS</value>
   </data>
+  <data name="LargeLibrary" xml:space="preserve">
+    <value>Large library</value>
+  </data>
+  <data name="LargeMusicMessage" xml:space="preserve">
+    <value>There seems to be a lot of music here. Would you like us to help you search for the music instead?</value>
+  </data>
+  <data name="MessageOptionNo" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="MessageOptionYes" xml:space="preserve">
+    <value>yes</value>
+  </data>
 </root>
