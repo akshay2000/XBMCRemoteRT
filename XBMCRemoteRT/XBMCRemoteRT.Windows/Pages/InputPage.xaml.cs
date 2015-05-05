@@ -166,7 +166,7 @@ namespace XBMCRemoteRT.Pages
 
         private async void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
-            await Player.GoTo(GlobalVariables.CurrentPlayerState.PlayerType, GoTo.Next);
+            await Player.GoTo(GlobalVariables.CurrentPlayerState.PlayerType, GoTo.Previous);
             await PlayerHelper.RefreshPlayerState();
         }
 
