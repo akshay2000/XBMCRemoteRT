@@ -56,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\IncrementalCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\Limits.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\Sort.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Files\File.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Network\ConnectionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Network\IPAddress.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Network\MacAddress.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Video\TVShowsCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Applikation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\AudioLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Files.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\GUI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\Input.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RPCWrappers\JSONRPC.cs" />
