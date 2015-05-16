@@ -1,6 +1,8 @@
 ﻿using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
@@ -15,21 +17,24 @@ namespace XBMCRemoteRT.Pages.Files
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AllSourcesPage : Page
+    public sealed partial class SourceFilesPage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        private List<Source> allVideoSources;
-        private List<Source> allMusicSources; 
+        private List<File> allFiles;
+        private ObservableCollection<FileBase> previousDirectories;
 
-        public AllSourcesPage()
+        public SourceFilesPage()
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            DataContext = GlobalVariables.CurrentFile;
+            previousDirectories = new ObservableCollection<FileBase>();
         }
 
         /// <summary>
@@ -93,7 +98,7 @@ namespace XBMCRemoteRT.Pages.Files
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            GlobalVariables.CurrentTracker.SendView("AllSourcesPage");
+            GlobalVariables.CurrentTracker.SendView("SourceFilesPage");
             this.navigationHelper.OnNavigatedTo(e);
             init();
 
@@ -109,27 +114,38 @@ namespace XBMCRemoteRT.Pages.Files
         }
 
         #endregion
-        private async void ReloadAll()
+        private void ReloadAll()
+        {
+            LoadDirectory(GlobalVariables.CurrentFile);
+        }
+
+        private async void LoadDirectory(FileBase file)
         {
             ConnectionManager.ManageSystemTray(true);
-            allVideoSources = await RPCWrappers.Files.GetSources("video");
-            VideoFilesListView.ItemsSource = allVideoSources;
-
-            allMusicSources = await RPCWrappers.Files.GetSources("music");
-            MusicFilesListView.ItemsSource = allMusicSources;
+            if (file.Label == "...")
+            {
+                previousDirectories.RemoveAt(previousDirectories.Count - 1);
+                file = previousDirectories[previousDirectories.Count - 1];
+                GlobalVariables.CurrentFile = file;
+            }
+            else
+            {
+                previousDirectories.Add(file);
+            }
+            allFiles = await RPCWrappers.Files.GetDirectory(file.Path);
+            if (previousDirectories.Count > 1)
+                allFiles.Insert(0, new File() { Label = "...", Path = "...", FileType = "directory" });
+            FilesListView.ItemsSource = allFiles;
             ConnectionManager.ManageSystemTray(false);
         }
 
-        private void VideoItemWrapper_OnTappedItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private void FileItemWrapper_OnTappedItemWrapper_OnTappedItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            GlobalVariables.CurrentFile = (Source)((StackPanel)sender).DataContext;
-            Frame.Navigate(typeof(SourceFilesPage));
-        }
-
-        private void MusicItemWrapper_OnTappedItemWrapper_OnTappedItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            GlobalVariables.CurrentFile = (Source)((StackPanel)sender).DataContext;
-            Frame.Navigate(typeof(SourceFilesPage));
+            var file = (File)((StackPanel)sender).DataContext;
+            if (file.FileType == "directory")
+            {
+                LoadDirectory(file);
+            }
         }
     }
 }

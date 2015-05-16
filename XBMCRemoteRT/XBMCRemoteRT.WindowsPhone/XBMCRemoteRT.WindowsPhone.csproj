@@ -124,6 +124,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Files\SourceFilesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Files\AllSourcesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -200,6 +204,9 @@
     </Compile>
     <Compile Include="Pages\Entry\TVShowThinPivot.xaml.cs">
       <DependentUpon>TVShowThinPivot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Files\SourceFilesPage.xaml.cs">
+      <DependentUpon>SourceFilesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Files\AllSourcesPage.xaml.cs">
       <DependentUpon>AllSourcesPage.xaml</DependentUpon>

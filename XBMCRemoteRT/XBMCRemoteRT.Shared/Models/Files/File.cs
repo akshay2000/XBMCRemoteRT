@@ -6,14 +6,9 @@ using Newtonsoft.Json;
 
 namespace XBMCRemoteRT.Models.Files
 {
-    public class File
+    public class File : FileBase
     {
-        [JsonProperty(PropertyName = "file")]
-        public string Name { get; set; }
-
         public string FileType { get; set; }
-
-        public int Size { get; set; }
 
         public string MimeType { get; set; }
 
