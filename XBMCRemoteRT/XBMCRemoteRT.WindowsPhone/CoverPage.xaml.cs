@@ -28,6 +28,7 @@ using GoogleAnalytics.Core;
 using GoogleAnalytics;
 using Windows.UI.Xaml.Media.Animation;
 using Newtonsoft.Json.Linq;
+using XBMCRemoteRT.Pages.Files;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -262,6 +263,12 @@ namespace XBMCRemoteRT
         {
             var percentage = (slider.Value * 100) / slider.Maximum;
             Player.Seek(GlobalVariables.CurrentPlayerState.PlayerType, percentage);
+        }
+
+        private void FilesAppBarButton_OnClickAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationTransitionInfo transitionInfo = new SlideNavigationTransitionInfo();
+            Frame.Navigate(typeof(AllSourcesPage), false, transitionInfo);
         }
     }
 }
