@@ -38,7 +38,7 @@ namespace XBMCRemoteRT.RPCWrappers
         {
             JObject parameters = new JObject(
                                 new JProperty("properties",
-                                    new JArray("size", "mimetype", "file", "lastmodified")
+                                    new JArray("mimetype", "file", "lastmodified")
                                     ));
 
             parameters["directory"] = directory;
@@ -59,13 +59,14 @@ namespace XBMCRemoteRT.RPCWrappers
         {
             JObject parameters = new JObject(
                                 new JProperty("properties",
-                                    new JArray("filetype", "size", "mimetype", "file", "lastmodified")
+                                    new JArray("mimetype", "file", "lastmodified")
                                     ));
 
             parameters["file"] = file;
+            parameters["media"] = media;
 
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("Files.GetFileDetails", parameters);
-            JArray fileDetailsObject = (JArray)responseObject["result"]["filedetails"];
+            JObject fileDetailsObject = (JObject)responseObject["result"]["filedetails"];
             File fileToReturn = fileDetailsObject != null ? fileDetailsObject.ToObject<File>() : new File();
             return fileToReturn;
         }

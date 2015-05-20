@@ -24,7 +24,9 @@ namespace XBMCRemoteRT.Helpers
 
         public static PlayerState CurrentPlayerState { get; set; }
 
-        public static FileBase CurrentFile { get; set; }
+        public static Source CurrentSource { get; set; }
+
+        public static File CurrentFile { get; set; }
 
         public static Tracker CurrentTracker = EasyTracker.GetTracker();
     }

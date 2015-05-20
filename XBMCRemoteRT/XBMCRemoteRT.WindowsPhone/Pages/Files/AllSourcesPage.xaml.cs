@@ -122,13 +122,15 @@ namespace XBMCRemoteRT.Pages.Files
 
         private void VideoItemWrapper_OnTappedItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            GlobalVariables.CurrentFile = (Source)((StackPanel)sender).DataContext;
+            GlobalVariables.CurrentSource = (Source)((StackPanel)sender).DataContext;
+            GlobalVariables.CurrentSource.Media = "video";
             Frame.Navigate(typeof(SourceFilesPage));
         }
 
         private void MusicItemWrapper_OnTappedItemWrapper_OnTappedItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            GlobalVariables.CurrentFile = (Source)((StackPanel)sender).DataContext;
+            GlobalVariables.CurrentSource = (Source)((StackPanel)sender).DataContext;
+            GlobalVariables.CurrentSource.Media = "music";
             Frame.Navigate(typeof(SourceFilesPage));
         }
     }

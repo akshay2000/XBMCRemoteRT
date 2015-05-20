@@ -6,9 +6,13 @@ using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Helpers;
+using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Models.Files;
+using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.RPCWrappers;
+using Windows.Phone.UI.Input;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -23,7 +27,7 @@ namespace XBMCRemoteRT.Pages.Files
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
         private List<File> allFiles;
-        private ObservableCollection<FileBase> previousDirectories;
+        private ObservableCollection<File> previousDirectories;
 
         public SourceFilesPage()
         {
@@ -32,9 +36,19 @@ namespace XBMCRemoteRT.Pages.Files
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+            HardwareButtons.BackPressed += OnBackPressed;
 
-            DataContext = GlobalVariables.CurrentFile;
-            previousDirectories = new ObservableCollection<FileBase>();
+            DataContext = GlobalVariables.CurrentSource;
+            previousDirectories = new ObservableCollection<File>();
+        }
+
+        private void OnBackPressed(object sender, BackPressedEventArgs e)
+        {
+            if (previousDirectories.Count > 1)
+            {
+                LoadDirectory(new File { Label = "..." });
+                e.Handled = true;
+            }
         }
 
         /// <summary>
@@ -116,16 +130,28 @@ namespace XBMCRemoteRT.Pages.Files
         #endregion
         private void ReloadAll()
         {
-            LoadDirectory(GlobalVariables.CurrentFile);
+            if (GlobalVariables.CurrentFile != null)
+                LoadDirectory(GlobalVariables.CurrentFile);
+            else
+                LoadSource(GlobalVariables.CurrentSource);
         }
 
-        private async void LoadDirectory(FileBase file)
+        private async void LoadSource(Source source)
+        {
+            ConnectionManager.ManageSystemTray(true);
+            previousDirectories.Add(new File{ Path = source.Path, Label = source.Label });
+            allFiles = await RPCWrappers.Files.GetDirectory(source.Path);
+            FilesListView.ItemsSource = allFiles;
+            ConnectionManager.ManageSystemTray(false);
+        }
+
+        private async void LoadDirectory(File file)
         {
             ConnectionManager.ManageSystemTray(true);
             if (file.Label == "...")
             {
-                previousDirectories.RemoveAt(previousDirectories.Count - 1);
-                file = previousDirectories[previousDirectories.Count - 1];
+                previousDirectories.Remove(previousDirectories.Last());
+                file = previousDirectories.Last();
                 GlobalVariables.CurrentFile = file;
             }
             else
@@ -139,12 +165,32 @@ namespace XBMCRemoteRT.Pages.Files
             ConnectionManager.ManageSystemTray(false);
         }
 
-        private void FileItemWrapper_OnTappedItemWrapper_OnTappedItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void FileItemWrapper_OnTappedItemWrapper_OnTappedItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var file = (File)((StackPanel)sender).DataContext;
             if (file.FileType == "directory")
             {
                 LoadDirectory(file);
+            }
+            else
+            {
+                var fileDetails = await RPCWrappers.Files.GetFileDetails(file.Path, GlobalVariables.CurrentSource.Media);
+
+                switch (fileDetails.Type)
+                {
+                    case "music":
+                        var song = new Song { SongId = fileDetails.Id };
+                        await Player.PlaySong(song);
+                        break;
+                    case "movie":
+                        var movie = new Movie { MovieId = fileDetails.Id };
+                        Player.PlayMovie(movie);
+                        break;
+                    case "episode":
+                        var episode = new Episode { EpisodeId = fileDetails.Id };
+                        Player.PlayEpidose(episode);
+                        break;
+                }
             }
         }
     }
