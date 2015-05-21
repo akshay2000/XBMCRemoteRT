@@ -41,7 +41,7 @@
             <ListView x:Name="FilesListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel x:Name="FileItemWrapper" Orientation="Horizontal" Margin="0,10" CommonNavigationTransitionInfo.IsStaggerElement="True" Tapped="FileItemWrapper_OnTappedItemWrapper_OnTappedItemWrapper_Tapped">
+                        <StackPanel x:Name="FileItemWrapper" Orientation="Horizontal" Margin="0,10" CommonNavigationTransitionInfo.IsStaggerElement="True" Tapped="FileItemWrapper_Tapped">
                             <TextBlock Text="{Binding Label}" FontSize="28" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold" TextWrapping="Wrap"/>
                         </StackPanel>
                     </DataTemplate>

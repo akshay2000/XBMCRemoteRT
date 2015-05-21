@@ -120,14 +120,14 @@ namespace XBMCRemoteRT.Pages.Files
             ConnectionManager.ManageSystemTray(false);
         }
 
-        private void VideoItemWrapper_OnTappedItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private void VideoItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             GlobalVariables.CurrentSource = (Source)((StackPanel)sender).DataContext;
             GlobalVariables.CurrentSource.Media = "video";
             Frame.Navigate(typeof(SourceFilesPage));
         }
 
-        private void MusicItemWrapper_OnTappedItemWrapper_OnTappedItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private void MusicItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             GlobalVariables.CurrentSource = (Source)((StackPanel)sender).DataContext;
             GlobalVariables.CurrentSource.Media = "music";

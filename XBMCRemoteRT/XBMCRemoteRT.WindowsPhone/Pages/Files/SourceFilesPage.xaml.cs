@@ -165,7 +165,7 @@ namespace XBMCRemoteRT.Pages.Files
             ConnectionManager.ManageSystemTray(false);
         }
 
-        private async void FileItemWrapper_OnTappedItemWrapper_OnTappedItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void FileItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var file = (File)((StackPanel)sender).DataContext;
             if (file.FileType == "directory")

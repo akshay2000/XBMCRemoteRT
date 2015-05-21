@@ -45,7 +45,7 @@
                 <ListView x:Name="VideoFilesListView">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel x:Name="VideoItemWrapper" Orientation="Horizontal" Margin="0,10" CommonNavigationTransitionInfo.IsStaggerElement="True" Tapped="VideoItemWrapper_OnTappedItemWrapper_Tapped">
+                            <StackPanel x:Name="VideoItemWrapper" Orientation="Horizontal" Margin="0,10" CommonNavigationTransitionInfo.IsStaggerElement="True" Tapped="VideoItemWrapper_Tapped">
                                 <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                     <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/movie.png" Foreground="{StaticResource PhoneForegroundBrush}" />
                                 </Border>
@@ -63,7 +63,7 @@
                 <ListView x:Name="MusicFilesListView">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel x:Name="MusicItemWrapper" Orientation="Horizontal" Margin="0,10" CommonNavigationTransitionInfo.IsStaggerElement="True" Tapped="MusicItemWrapper_OnTappedItemWrapper_OnTappedItemWrapper_Tapped">
+                            <StackPanel x:Name="MusicItemWrapper" Orientation="Horizontal" Margin="0,10" CommonNavigationTransitionInfo.IsStaggerElement="True" Tapped="MusicItemWrapper_Tapped">
                                 <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
                                     <BitmapIcon  Margin="12" UriSource="ms-appx:///Assets/Icons/musicnote.png" Foreground="{StaticResource PhoneForegroundBrush}" />
                                 </Border>
