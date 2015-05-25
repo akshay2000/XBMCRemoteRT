@@ -56,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\IncrementalCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\Limits.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\Sort.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Files\Source.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Files\File.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Network\ConnectionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Network\IPAddress.cs" />
