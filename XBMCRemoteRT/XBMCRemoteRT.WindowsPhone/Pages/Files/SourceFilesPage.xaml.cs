@@ -13,6 +13,7 @@ using XBMCRemoteRT.Models.Files;
 using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.RPCWrappers;
 using Windows.Phone.UI.Input;
+using Windows.UI.Xaml;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -167,7 +168,7 @@ namespace XBMCRemoteRT.Pages.Files
 
         private async void FileItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var file = (File)((StackPanel)sender).DataContext;
+            var file = (File)((FrameworkElement)sender).DataContext;
             if (file.FileType == "directory")
             {
                 LoadDirectory(file);

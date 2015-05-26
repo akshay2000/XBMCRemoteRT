@@ -12,32 +12,17 @@
         <TransitionCollection>
             <NavigationThemeTransition>
                 <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <CommonNavigationTransitionInfo/>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
                 </NavigationThemeTransition.DefaultNavigationTransitionInfo>
             </NavigationThemeTransition>
         </TransitionCollection>
     </Page.Transitions>
     
     <Grid x:Name="LayoutRoot">
-
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="12,0,0,0">
-            <TextBlock Text="KODI ASSIST" Margin="3,12,0,-8"  Style="{StaticResource PageTitleTextStyle}"/>
-            <TextBlock Text="MEDIA SOURCES" x:Uid="SourcesPageTitle" Style="{StaticResource PageHeaderTextStyle}"/>
-        </StackPanel>
-
         <Pivot Grid.Row="1">
+            <Pivot.Title>
+                <TextBlock Style="{StaticResource PageTitleTextStyle}" Text="MEDIA SOURCES" x:Uid="SourcesPageTitle" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+            </Pivot.Title>
             <PivotItem>
                 <PivotItem.Header>
                     <TextBlock Text="VIDEOS" x:Uid="VideosTitle" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
