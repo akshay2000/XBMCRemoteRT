@@ -601,4 +601,7 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   <data name="MessageOptionYes" xml:space="preserve">
     <value>yes</value>
   </data>
+  <data name="ShutDown" xml:space="preserve">
+    <value>shut down</value>
+  </data>
 </root>
