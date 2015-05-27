@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.RPCWrappers;
+using XBMCRemoteRT.Models.Common;
 
 namespace XBMCRemoteRT.Pages.Audio
 {
@@ -122,13 +123,13 @@ namespace XBMCRemoteRT.Pages.Audio
             ArtistsCVS.Source = groupedAllArtists;
             (ArtistsSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = ArtistsCVS.View.CollectionGroups;
 
-            JObject sortWith = new JObject(new JProperty("method", "label"));
-            allAlbums = await AudioLibrary.GetAlbums(sort: sortWith);
+            Sort sort = new Sort { Method = "label", Order = "ascending", IgnoreArticle = true };
+            allAlbums = await AudioLibrary.GetAlbums(sort: sort);
             var groupedAllAlbums = GroupingHelper.GroupList(allAlbums, (Album a) => a.Label, true);
             AlbumsCVS.Source = groupedAllAlbums;
             (AlbumsSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = AlbumsCVS.View.CollectionGroups;
 
-            allSongs = await AudioLibrary.GetSongs(sort: sortWith);
+            allSongs = await AudioLibrary.GetSongs(sort: sort);
             var groupedAllSongs = GroupingHelper.GroupList(allSongs, (Song s) => s.Label, true);
             SongsCVS.Source = groupedAllSongs;
             (SongsSemanticZoom.ZoomedOutView as ListViewBase).ItemsSource = SongsCVS.View.CollectionGroups;

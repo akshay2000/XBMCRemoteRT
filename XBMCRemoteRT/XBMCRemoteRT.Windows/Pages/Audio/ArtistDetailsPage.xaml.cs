@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.RPCWrappers;
+using XBMCRemoteRT.Models.Common;
 
 namespace XBMCRemoteRT.Pages.Audio
 {
@@ -114,7 +115,7 @@ namespace XBMCRemoteRT.Pages.Audio
 
         private async void ReloadAll()
         {
-            JObject filter = new JObject(new JProperty("artistid", GlobalVariables.CurrentArtist.ArtistId));
+            Filter filter = new Filter { Field = "artist", Operator = "is", value = GlobalVariables.CurrentArtist.ArtistName };
             songsList = await AudioLibrary.GetSongs(filter);
             SongsHubSection.DataContext = songsList;
             albumsList = await AudioLibrary.GetAlbums(filter);

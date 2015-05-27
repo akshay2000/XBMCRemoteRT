@@ -116,7 +116,9 @@ namespace XBMCRemoteRT
             EnsureRootFrame(e.PreviousExecutionState);
             if (e.TileId.StartsWith("tvShow"))
             {
+#if WINDOWS_PHONE_APP
                 rootFrame.Navigate(typeof(TVShowThinPivot), e.Arguments);
+#endif
             }
 
             if (rootFrame.Content == null)

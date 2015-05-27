@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.RPCWrappers;
+using XBMCRemoteRT.Models.Common;
 
 namespace XBMCRemoteRT.Pages.Audio
 {
@@ -64,8 +65,9 @@ namespace XBMCRemoteRT.Pages.Audio
         async void AlbumPage_Loaded(object sender, RoutedEventArgs e)
         {
             ConnectionManager.ManageSystemTray(true);
-            JObject filter = new JObject(new JProperty("albumid", GlobalVariables.CurrentAlbum.AlbumId));
-            songsInAlbum = await AudioLibrary.GetSongs(filter);
+            Filter filter = new Filter { Field = "album", Operator = "is", value = GlobalVariables.CurrentAlbum.Title };
+            Sort sort = new Sort { Method = "track", Order = "ascending", IgnoreArticle = true };
+            songsInAlbum = await AudioLibrary.GetSongs(filter: filter, sort: sort);
             SongsListView.ItemsSource = songsInAlbum;
 
             currentAlbum = await AudioLibrary.GetAlbumDetails(GlobalVariables.CurrentAlbum.AlbumId);

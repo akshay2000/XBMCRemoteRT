@@ -172,7 +172,7 @@ namespace XBMCRemoteRT.Pages
 
         private async void SpeedDownButton_Click(object sender, RoutedEventArgs e)
         {
-            int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+            int speed = GlobalVariables.CurrentPlayerState.Speed;
 
             if (speed != 0 && speed != -32)
             {
@@ -197,7 +197,7 @@ namespace XBMCRemoteRT.Pages
 
         private async void SpeedUpButton_Click(object sender, RoutedEventArgs e)
         {
-            int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+            int speed = GlobalVariables.CurrentPlayerState.Speed;
 
             if (speed != 0 && speed != 32)
             {
