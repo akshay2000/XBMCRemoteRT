@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.RPCWrappers;
+using Newtonsoft.Json.Linq;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -128,11 +129,14 @@ namespace XBMCRemoteRT.Pages.Video
         private async void LoadTVShows()
         {
             var loadStartTime = DateTime.Now;
+            //JObject sort = new JObject(
+            //    new JProperty("method", "label"),
+            //    new JProperty("order", "ascending"),
+            //    new JProperty("ignorearticle", true));
+            //ConnectionManager.ManageSystemTray(true);
+            AllTVShowsListView.ItemsSource = new TVShowsCollection();
 
-            ConnectionManager.ManageSystemTray(true);
-            allTVShows = await VideoLibrary.GetTVShows();
-            AllTVShowsListView.ItemsSource = allTVShows;
-            ConnectionManager.ManageSystemTray(false);
+            //ConnectionManager.ManageSystemTray(false);
 
             GlobalVariables.CurrentTracker.SendTiming(DateTime.Now.Subtract(loadStartTime), TimingCategories.LoadTime, "AllTVShows", "AllTVShows");
         }

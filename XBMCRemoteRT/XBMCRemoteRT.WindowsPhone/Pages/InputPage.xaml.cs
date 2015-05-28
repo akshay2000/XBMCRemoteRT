@@ -187,7 +187,7 @@ namespace XBMCRemoteRT.Pages
 
         private async void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
-            await Player.GoTo(GlobalVariables.CurrentPlayerState.PlayerType, GoTo.Next);
+            await Player.GoTo(GlobalVariables.CurrentPlayerState.PlayerType, GoTo.Previous);
             await PlayerHelper.RefreshPlayerState();
         }
 
@@ -196,7 +196,7 @@ namespace XBMCRemoteRT.Pages
             string backwardCommand = (string)SettingsHelper.GetValue("BackwardButtonCommand", "SmallBackward");
             if (backwardCommand == "DecreaseSpeed")
             {
-                int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+                int speed = GlobalVariables.CurrentPlayerState.Speed;
 
                 if (speed != 0 && speed != -32)
                 {
@@ -229,7 +229,7 @@ namespace XBMCRemoteRT.Pages
             string forwardCommand = (string)SettingsHelper.GetValue("ForwardButtonCommand", "SmallForward");
             if (forwardCommand == "IncreaseSpeed")
             {
-                int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+                int speed = GlobalVariables.CurrentPlayerState.Speed;
 
                 if (speed != 0 && speed != 32)
                 {
@@ -251,47 +251,20 @@ namespace XBMCRemoteRT.Pages
             await PlayerHelper.RefreshPlayerState();
         }
 
+        Slider slider;
         private async void VolumeSlider_Loaded(object sender, RoutedEventArgs e)
         {
             int volume = await Applikation.GetVolume();
             SetVolumeSliderValue(volume);
+            slider = sender as Slider;
+            slider.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(slider_PointerReleased), true);
         }
 
-        private void QuitButton_Click(object sender, RoutedEventArgs e)
-        {
-            Applikation.Quit();
-        }
-
-        private DispatcherTimer timer;
-        private void VolumeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
-        {
-            if (isVolumeSetProgrammatically)
-            {
-                isVolumeSetProgrammatically = false;
-                return;
-            }
-            else
-            {
-                if (timer != null)
-                    timer.Stop();
-
-                timer = new DispatcherTimer();
-
-                timer.Interval = new TimeSpan(0, 0, 1);
-                timer.Tick += timer_Tick;
-
-                timer.Start();
-            }
-        }
-
-        void timer_Tick(object sender, object e)
+        private void slider_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             int value = (int)Math.Round(VolumeSlider.Value);
             Applikation.SetVolume(value);
-
-            timer.Stop();
-            timer.Tick -= timer_Tick;
-        }
+        }        
 
         private async void VolumeDownWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -361,6 +334,7 @@ namespace XBMCRemoteRT.Pages
         private string videoLibClean;// ="clean video library";
         private string showSubtitleSerach;// = "download subtitles";
         private string showVideoInfo;// = "show codec info";
+        private string shutDown;// = "shut down";
 
         private void PopulateFlyout()
         {
@@ -371,8 +345,9 @@ namespace XBMCRemoteRT.Pages
             videoLibClean = loader.GetString("CleanVideoLibrary");
             showSubtitleSerach = loader.GetString("DownloadSubtitles");
             showVideoInfo = loader.GetString("ShowCodecInfo");
+            shutDown = loader.GetString("ShutDown");
 
-            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo };
+            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo, shutDown };
         }
 
         private void AdvancedMenuFlyout_ItemsPicked(ListPickerFlyout sender, ItemsPickedEventArgs args)
@@ -391,6 +366,53 @@ namespace XBMCRemoteRT.Pages
                 GUI.ShowSubtitleSearch();
             else if (pickedCommand == showVideoInfo)
                 Input.ExecuteAction("codecinfo");
+            else if (pickedCommand == shutDown)
+            {
+                Applikation.Quit();
+                NavigationTransitionInfo transitionInfo = new SlideNavigationTransitionInfo();
+                Frame.Navigate(typeof(MainPage), false, transitionInfo);
+            }
+        }
+
+        //private InputCommands heldCommand;
+        private bool isHolding = false;
+
+        private void ArrowButton_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            if (e.HoldingState == Windows.UI.Input.HoldingState.Started)
+            {
+                isHolding = true;
+                string buttonName = ((Button)sender).Name;
+                switch (buttonName)
+                {
+                    case "UpButton":
+                        fire(InputCommands.Up);
+                        break;
+                    case "RightButton":
+                        fire(InputCommands.Right);
+                        break;
+                    case "DownButton":
+                        fire(InputCommands.Down);
+                        break;
+                    case "LeftButton":
+                        fire(InputCommands.Left);
+                        break;
+                }
+            }
+
+            if (e.HoldingState == Windows.UI.Input.HoldingState.Completed)
+            {
+                isHolding = false;
+            }
+        }
+
+        private async void fire(InputCommands command)
+        {
+            while (isHolding)
+            {
+                await Input.ExecuteAction(command);
+                await Task.Delay(250);
+            }
         }
     }
 }

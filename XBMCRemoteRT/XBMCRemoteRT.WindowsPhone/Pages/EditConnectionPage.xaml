@@ -23,7 +23,7 @@
 
         <StackPanel Grid.Row="0" Margin="12,0,0,0">
             <TextBlock Text="{StaticResource AppName}" Margin="3,12,0,-8" Style="{StaticResource PageTitleTextStyle}" />
-            <TextBlock Text="EDIT CONNECTION" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Uid="EditConnectionHeader" Text="EDIT CONNECTION" Style="{StaticResource PageHeaderTextStyle}"/>
         </StackPanel>
 
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,0">
@@ -34,11 +34,11 @@
                     <TextBox x:Name="PortTextBox" x:Uid="Port" InputScope="Number" Header="Port" Text="{Binding Port}"/>
                     <TextBox x:Name="UsernameTextBox" x:Uid="Username" Header="Username" Text="{Binding Username}"/>
                     <TextBox x:Name="PasswordTextBox" x:Uid="Password" Header="Password" Text="{Binding Password}"/>                    
-                    <TextBlock Text="WAKE ON LAN" Style="{StaticResource ResourceKey=ParagraphHeaderTextStyle}" Margin="0,12,0,0"/>
-                    <ToggleSwitch x:Name="WOLEnabledToggle" IsOn="{Binding IsWakable}" Header="Enable wake on LAN for this server"/>
+                    <TextBlock x:Uid="WakeOnLan" Text="WAKE ON LAN" Style="{StaticResource ResourceKey=ParagraphHeaderTextStyle}" Margin="0,12,0,0"/>
+                    <ToggleSwitch x:Name="WOLEnabledToggle" IsOn="{Binding IsWakable}" x:Uid="WOLToggle" Header="Enable wake on LAN for this server"/>
                     <TextBox x:Name="MACAddressTextBox" x:Uid="MAC" Header="MAC address" Text="{Binding MACAddress, Converter={StaticResource MACAddressConverter}}" PlaceholderText="11:22:33:44:55:66" IsEnabled="{Binding IsOn, ElementName=WOLEnabledToggle}" />
                     <TextBox x:Name="SubnetMaskTextBox" x:Uid="SubnetMask" Header="Subnet mask" Text="{Binding SubnetMask, Converter={StaticResource IPAddressConverter}}" PlaceholderText="255.255.255.0" IsEnabled="{Binding IsOn, ElementName=WOLEnabledToggle}" />
-                    <ToggleSwitch x:Name="AutoWakeToggle" IsOn="{Binding AutoWake}" Header="Try automatic wakeup" IsEnabled="{Binding IsOn, ElementName=WOLEnabledToggle}" />
+                    <ToggleSwitch x:Name="AutoWakeToggle" x:Uid="AutoWakeToggle" IsOn="{Binding AutoWake}" Header="Try automatic wakeup" IsEnabled="{Binding IsOn, ElementName=WOLEnabledToggle}" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>

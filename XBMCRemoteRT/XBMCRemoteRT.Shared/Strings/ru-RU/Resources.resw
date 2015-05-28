@@ -121,10 +121,11 @@
     <value>о программе</value>
   </data>
   <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
-    <value>ВИДЕО</value>
+    <value>ФИЛЬМЫ</value>
+    <comment>brought into compliance with Kodi desktop</comment>
   </data>
   <data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
-    <value>смотреть все видео</value>
+    <value>смотреть все фильмы</value>
   </data>
   <data name="MusicHubSectionHeader.Text" xml:space="preserve">
     <value>МУЗЫКА</value>
@@ -156,10 +157,10 @@
     <value>настройки</value>
   </data>
   <data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
-    <value>ТЕЛЕШОУ</value>
+    <value>СЕРИАЛЫ</value>
   </data>
   <data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
-    <value>смотреть все телешоу</value>
+    <value>смотреть все сериалы</value>
   </data>
   <data name="AboutAppBarMenu.Label" xml:space="preserve">
     <value>о программе</value>
@@ -234,7 +235,7 @@
     <value>слушать исполнителя</value>
   </data>
   <data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
-    <value>смотреть видео</value>
+    <value>смотреть фильм</value>
   </data>
   <data name="Plot.Header" xml:space="preserve">
     <value>СЮЖЕТ</value>
@@ -265,10 +266,11 @@
     <value>поиск</value>
   </data>
   <data name="SearchMoviesTitle.Text" xml:space="preserve">
-    <value>ПОИСК ВИДЕО</value>
+    <value>ПОИСК ФИЛЬМОВ</value>
+    <comment>brought into compliance with Kodi desktop</comment>
   </data>
   <data name="SearchTVShowsTitle.Text" xml:space="preserve">
-    <value>ПОИСК ТВ-ШОУ</value>
+    <value>ПОИСК СЕРИАЛОВ</value>
   </data>
   <data name="Seasons.Header" xml:space="preserve">
     <value>СЕЗОНЫ</value>
@@ -301,7 +303,7 @@
     <value>дорожки</value>
   </data>
   <data name="TVShowsPageTitle.Text" xml:space="preserve">
-    <value>ТВ-ШОУ</value>
+    <value>СЕРИАЛЫ</value>
   </data>
   <data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
     <value>НОВЫЕ</value>
@@ -316,7 +318,7 @@
     <value>Имя пользователя</value>
   </data>
   <data name="WarningNote.Text" xml:space="preserve">
-    <value>Примечание: Имя пользователя и пароль хранятся и предаются в открытом виде. Не используй этот пароль где-либо еще.</value>
+    <value>Примечание: Имя пользователя и пароль хранятся и предаются открытым текстом. Не используй этот пароль где-либо еще.</value>
   </data>
   <data name="WatchedMovies.Text" xml:space="preserve">
     <value>ПРОСМОТРЕННЫЕ</value>
@@ -346,7 +348,7 @@
     <value>ПРОПУСК + ПЕРМОТКА</value>
   </data>
   <data name="CacheNote.Text" xml:space="preserve">
-    <value>Kodi Assist сохраняет некоторые изображения на телефоне, так чтобы  иметь более быстрый доступ к библиотеке . Если такие изображения, как обложка альбома или постеры фильма изменились, можно выполнить обновление, чтобы увидеть их прямо сейчас.</value>
+    <value>Kodi Assist сохраняет некоторые изображения на телефоне так, чтобы  иметь более быстрый доступ к библиотеке . Если такие изображения, как обложка альбома или постеры фильма изменились, можно выполнить обновление, чтобы увидеть их прямо сейчас.</value>
   </data>
   <data name="JustAMoment.Text" xml:space="preserve">
     <value>Один момент...</value>
@@ -355,7 +357,7 @@
     <value>АВТОПОДКЛЮЧНИЕ</value>
   </data>
   <data name="SettingsAutoconnectToggle.Header" xml:space="preserve">
-    <value>автоматически подключать при старте</value>
+    <value>автоподключать при старте</value>
   </data>
   <data name="SettingsConnectionsPivotHeader.Text" xml:space="preserve">
     <value>ПОДКЛЮЧЕНИЯ</value>
@@ -382,7 +384,7 @@
     <value>ПРИЛОЖЕНИЕ</value>
   </data>
   <data name="AboutAppText.Text" xml:space="preserve">
-    <value>Приложение стремится быть лучшим в мире пультом дистанционного управления для Kodi. Приложение сделано в духе открытого кода Kodi и весь исходный код доступен на GitHub.</value>
+    <value>Приложение стремится быть лучшим в мире пультом дистанционного управления для Kodi. Приложение выполнено в духе открытого кода Kodi, и весь исходный код доступен на GitHub.</value>
   </data>
   <data name="AboutCodeIn.Text" xml:space="preserve">
     <value>ПРОГРАММИРУЙ</value>
@@ -427,10 +429,10 @@
     <value>СООБЩИ О ПРОБЛЕМЕ</value>
   </data>
   <data name="AboutSendGreetings.Text" xml:space="preserve">
-    <value>ОТПРАВЬ ПРИВЕТ</value>
+    <value>ШЛИ ПРИВЕТЫ</value>
   </data>
   <data name="AboutSendGreetingsNote.Text" xml:space="preserve">
-    <value>Простой жест признательности может творить чудеса в сообществе открытого кода. Можно внести свой вклад просто отправив спасибо через твит, эл.почту, оценку в Магазине или любым другим предпочтительным способом. Для разработчиков это много значит.</value>
+    <value>Простой жест признательности может творить чудеса в сообществе открытого кода. Можно внести свой вклад, просто отправив благодарность через твит, эл.почту, оценку в Магазине или любым другим предпочтительным способом. Для разработчиков это много значит.</value>
   </data>
   <data name="AboutTranslate.Text" xml:space="preserve">
     <value>ПЕРЕВОДИ</value>
@@ -458,13 +460,155 @@
     <value>проблемы на GitHub</value>
   </data>
   <data name="ReportIssuesNote.Text" xml:space="preserve">
-    <value>Нашел, что что-то в приложении работает небезупречно? Выявил ошибку? Думаешь что-то можно улучшить? Просто создай запрос по ссылке ниже. Один из разработчиков свяжется с тобой как только представится время.</value>
+    <value>Нашел, что в приложении что-то работает небезупречно? Выявил ошибку? Думаешь что-то можно улучшить? Просто создай запрос по ссылке ниже. Один из разработчиков свяжется с тобой, как только представится время.</value>
   </data>
   <data name="SendFeedbackButton.Content" xml:space="preserve">
     <value>отправить отзыв</value>
   </data>
   <data name="AboutRateApp.Content" xml:space="preserve">
     <value>оценить приложение</value>
+  </data>
+  <data name="DeleteConnectionMenu.Text" xml:space="preserve">
+    <value>удалить подключение</value>
+  </data>
+  <data name="EditConnectionMenu.Text" xml:space="preserve">
+    <value>редактировать подключение</value>
+  </data>
+  <data name="WakeUpMenu.Text" xml:space="preserve">
+    <value>разбудить ПК</value>
+    <comment>Context menu used to wake up sleeping computer using wake-on-lan</comment>
+  </data>
+  <data name="StoreDescription" xml:space="preserve">
+    <value>Единственный пульт для Kodi (ранее XBMC) на Windows Phone с открытым исходным кодом.
+
+Победитель всемирного конкурса //publish/ для Windows.
+
+Решение &quot;все в одном&quot; для пульта XBMC на Windows Phone. 
+Среди особенностей:
+- Красивый браузер библиотеки;
+- Предоставляет информацию об исполнителях, альбомах;
+- Подробное и приятное представление информации о фильмах и телешоу;
+- Простой в использовании пульт;
+- Многое другое.
+
+И в дополнение к этому у приложения полностью открыт исходный код. Вот здесь https://github.com/akshay2000/XBMCRemoteRT вы можете все смотреть, править и модифицировать.
+</value>
+    <comment>Description for Windows Store</comment>
+  </data>
+  <data name="BePatient" xml:space="preserve">
+    <value>Похоже, это займет некоторое время...</value>
+  </data>
+  <data name="ConnectingTo" xml:space="preserve">
+    <value>Подсоединяюсь к {0}...</value>
+    <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, &quot;Connecting to mediaserver&quot; Please use it in your translations.</comment>
+  </data>
+  <data name="IPErrorMessage" xml:space="preserve">
+    <value>Для использования возможности пробуждения укажи IP-адрес, а не имя компьютера</value>
+  </data>
+  <data name="KeepTryingCommand" xml:space="preserve">
+    <value>пытаться еще</value>
+  </data>
+  <data name="StopCommand" xml:space="preserve">
+    <value>стоп</value>
+  </data>
+  <data name="WakeUpFailed" xml:space="preserve">
+    <value>Пробудить не получилось</value>
+  </data>
+  <data name="WakeupPatientMessage" xml:space="preserve">
+    <value>Пробуждение обычно занимает от {0} до {1} секунд. Мы все еще пытаемся...</value>
+    <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes &quot;takes 5 to 10&quot; seconds&quot;. Use the same placeholders in translations.</comment>
+  </data>
+  <data name="WakingUp" xml:space="preserve">
+    <value>Пробуждаем...</value>
+  </data>
+  <data name="WOLConnectionErrorHeader" xml:space="preserve">
+    <value>Сервер до сих пор не включился</value>
+  </data>
+  <data name="WOLConnectionErrorMessage" xml:space="preserve">
+    <value>Похоже, что Kodi еще не готов отвечать. Что будем делать?</value>
+  </data>
+  <data name="WOLErrorMessage" xml:space="preserve">
+    <value>Не могу отправить запрос на пробуждение: широковещательный IP не доступен. Код ошибки</value>
+  </data>
+  <data name="WOLMacNotFoundHeader" xml:space="preserve">
+    <value>Нужна дополнительная информация</value>
+  </data>
+  <data name="WOLMacNotFoundMessage" xml:space="preserve">
+    <value>Для использования этой возможности, пожалуйста, укажи MAC-адрес и маску подсети.</value>
+  </data>
+  <data name="PartyModeMenuItem.Label" xml:space="preserve">
+    <value>режим вечеринки</value>
+    <comment>Start music in party mode.</comment>
+  </data>
+  <data name="ShowCodecInfo" xml:space="preserve">
+    <value>показать информацию о кодеке</value>
+  </data>
+  <data name="PinToStartAppBarMenu.Label" xml:space="preserve">
+    <value>на рабочий стол</value>
+  </data>
+  <data name="BigJumpBackward.Content" xml:space="preserve">
+    <value>большой переход назад</value>
+  </data>
+  <data name="BigJumpForward.Content" xml:space="preserve">
+    <value>большой переход вперед</value>
+  </data>
+  <data name="DecreaseSpeed.Content" xml:space="preserve">
+    <value>замедлить</value>
+  </data>
+  <data name="EditConnectionHeader.Text" xml:space="preserve">
+    <value>РЕДАКТИРОВАТЬ ПОДКЛЮЧЕНИЕ</value>
+  </data>
+  <data name="IncreaseSpeed.Content" xml:space="preserve">
+    <value>ускорить</value>
+  </data>
+  <data name="SmallJumpBackward.Content" xml:space="preserve">
+    <value>небольшой переход назад</value>
+  </data>
+  <data name="SmallJumpForward.Content" xml:space="preserve">
+    <value>небольшой переход вперед</value>
+  </data>
+  <data name="WakeOnLan.Text" xml:space="preserve">
+    <value>ПРОБУЖДЕНИЕ ПО СЕТИ</value>
+  </data>
+  <data name="AboutAnagh2.Text" xml:space="preserve">
+    <value>Да, это тот же самый парень, который стоит за любимым нами</value>
+    <comment>It is the same as AboutViewApp.Text</comment>
+  </data>
+  <data name="AutoWakeToggle.Header" xml:space="preserve">
+    <value>Применять автоматическое пробуждение</value>
+  </data>
+  <data name="MAC.Header" xml:space="preserve">
+    <value>MAC-адрес</value>
+  </data>
+  <data name="SubnetMask.Header" xml:space="preserve">
+    <value>Маска подсети</value>
+  </data>
+  <data name="WOLToggle.Header" xml:space="preserve">
+    <value>Включить для этого сервера пробуждение по сети</value>
+  </data>
+  <data name="SearchAppBarButton.Label" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SettingsAudioAutoSearchToggle.Header" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SettingsAutoSearch.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SettingsMiscellaneousPivotHeader.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LargeLibrary" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LargeMusicMessage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageOptionNo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageOptionYes" xml:space="preserve">
+    <value></value>
   </data>
 
 </root>

@@ -166,13 +166,13 @@ namespace XBMCRemoteRT.Pages
 
         private async void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
-            await Player.GoTo(GlobalVariables.CurrentPlayerState.PlayerType, GoTo.Next);
+            await Player.GoTo(GlobalVariables.CurrentPlayerState.PlayerType, GoTo.Previous);
             await PlayerHelper.RefreshPlayerState();
         }
 
         private async void SpeedDownButton_Click(object sender, RoutedEventArgs e)
         {
-            int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+            int speed = GlobalVariables.CurrentPlayerState.Speed;
 
             if (speed != 0 && speed != -32)
             {
@@ -197,7 +197,7 @@ namespace XBMCRemoteRT.Pages
 
         private async void SpeedUpButton_Click(object sender, RoutedEventArgs e)
         {
-            int speed = GlobalVariables.CurrentPlayerState.CurrentPlayerProperties.Speed;
+            int speed = GlobalVariables.CurrentPlayerState.Speed;
 
             if (speed != 0 && speed != 32)
             {

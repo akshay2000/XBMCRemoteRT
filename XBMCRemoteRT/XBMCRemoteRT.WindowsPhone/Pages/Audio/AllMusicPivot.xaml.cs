@@ -21,6 +21,7 @@ using XBMCRemoteRT.RPCWrappers;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using XBMCRemoteRT.Models.Common;
+using Windows.UI.Popups;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -46,9 +47,7 @@ namespace XBMCRemoteRT.Pages.Audio
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
-
-            ReloadAll();
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;            
         }
 
         /// <summary>
@@ -114,6 +113,44 @@ namespace XBMCRemoteRT.Pages.Audio
         {
             GlobalVariables.CurrentTracker.SendView("AllMusicPage");
             this.navigationHelper.OnNavigatedTo(e);
+            init();
+            
+        }
+
+        private async void init()
+        {
+            bool isLargeLibrary = await AudioLibrary.IsLarge();
+            if (isLargeLibrary)
+            {
+                string redirectionStatus = (string)SettingsHelper.GetValue("AudioAutoRedirect", "Unset");
+                if (redirectionStatus == "Unset")
+                {
+                    var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+
+                    string messageHeader = loader.GetString("LargeLibrary"); //"Large library";
+                    string messageContent = loader.GetString("LargeMusicMessage"); //"There seems to be a lot of music here. Would you like us to help you search for the music instead?";
+                    string yes = loader.GetString("MessageOptionYes"); // "yes";
+                    string no = loader.GetString("MessageOptionNo"); //"no";
+                    MessageDialog dialog = new MessageDialog(messageContent, messageHeader);
+                    dialog.Commands.Add(new UICommand(yes));
+                    dialog.Commands.Add(new UICommand(no));
+                    var result = await dialog.ShowAsync();
+                    if (result.Label == yes)
+                    {
+                        SettingsHelper.SetValue("AudioAutoRedirect", "Yes");
+                        Frame.Navigate(typeof(SearchMusicPivot));
+                        return;
+                    }
+                    else
+                    {
+                        SettingsHelper.SetValue("AudioAutoRedirect", "No");
+                    }
+                }
+            }
+            if (allAlbums == null || allSongs == null || allArtists == null)
+            {
+                ReloadAll();
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -132,12 +169,11 @@ namespace XBMCRemoteRT.Pages.Audio
             var groupedAllArtists = GroupingHelper.GroupList(allArtists, (Artist a) => { return a.Label; }, true);
             ArtistsCVS.Source = groupedAllArtists;
 
-            JObject sortWith = new JObject(new JProperty("method", "label"));
-            allAlbums = await AudioLibrary.GetAlbums(sort: sortWith);
+            allAlbums = await AudioLibrary.GetAlbums();
             var groupedAllAlbums = GroupingHelper.GroupList(allAlbums, (Album a) => { return a.Label; }, true);
             AlbumsCVS.Source = groupedAllAlbums;
 
-            allSongs = await AudioLibrary.GetSongs(sort: sortWith);
+            allSongs = await AudioLibrary.GetAllSongs();
             var groupedAllSongs = GroupingHelper.GroupList(allSongs, (Song s) => { return s.Label; }, true);
             SongsCVS.Source = groupedAllSongs;
             ConnectionManager.ManageSystemTray(false);
@@ -183,6 +219,11 @@ namespace XBMCRemoteRT.Pages.Audio
         private async void PartyModeAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             await Player.PlayPartyMode();
+        }
+
+        private void SearchMusicAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SearchMusicPivot));
         }
     }
 }

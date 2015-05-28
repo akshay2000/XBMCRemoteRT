@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.RPCWrappers;
+using XBMCRemoteRT.Models.Common;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -31,8 +32,8 @@ namespace XBMCRemoteRT.Pages.Video
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        private List<Movie> allMovies;
-        private List<Movie> filteredMovies;
+        //private List<Movie> allMovies;
+        //private List<Movie> filteredMovies;
         private List<Movie> emptyList = new List<Movie>();
 
         public SearchMoviesPage()
@@ -128,11 +129,10 @@ namespace XBMCRemoteRT.Pages.Video
         private async void SearchAndReload(string query)
         {
             ConnectionManager.ManageSystemTray(true);
-            if (allMovies == null)
-                allMovies = await VideoLibrary.GetMovies();
 
-            filteredMovies = allMovies.Where(t => t.Title.ToLower().Contains(query.ToLower())).ToList();
-            SearchMoviesListView.ItemsSource = filteredMovies;
+            Filter filter = new Filter { Field = "title", Operator = "contains", value = query };
+            SearchMoviesListView.ItemsSource = new MoviesCollection(filter: filter);
+
             ConnectionManager.ManageSystemTray(false);
         }
 

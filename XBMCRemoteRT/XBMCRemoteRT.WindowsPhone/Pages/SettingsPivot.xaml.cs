@@ -190,6 +190,33 @@ namespace XBMCRemoteRT.Pages
             SettingsHelper.SetValue("AutoConnect", AutoconnectToggle.IsOn);
         }
 
+        private void LoadAutoRedirectStates()
+        {
+            bool audioAutoRedirect = AutoRedirectStateToBool((string)SettingsHelper.GetValue("AudioAutoRedirect", "No"));
+            AudioSearchToggle.IsOn = audioAutoRedirect;
+        }
+
+        private void SaveAutoRedirectStates()
+        {
+            SettingsHelper.SetValue("AudioAutoRedirect", BoolToAutoRedirectState(AudioSearchToggle.IsOn));
+        }
+
+        private bool AutoRedirectStateToBool(string state)
+        {
+            switch (state)
+            {
+                case "Yes":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        private string BoolToAutoRedirectState(bool flag)
+        {
+            return flag ? "Yes" : "No";
+        }
+
         #region NavigationHelper registration
 
         /// <summary>
@@ -210,7 +237,8 @@ namespace XBMCRemoteRT.Pages
             this.navigationHelper.OnNavigatedTo(e);
             LoadButtonCheckedStates();
             LoadSkipJumpState();
-            LoadAutoConnectState();          
+            LoadAutoConnectState();
+            LoadAutoRedirectStates();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -219,6 +247,7 @@ namespace XBMCRemoteRT.Pages
             SaveButtonCheckedStates();
             SaveSkipJumpState();
             SaveAutoConnectState();
+            SaveAutoRedirectStates();
         }
 
         #endregion

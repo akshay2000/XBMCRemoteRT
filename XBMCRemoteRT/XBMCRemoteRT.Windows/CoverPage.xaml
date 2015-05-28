@@ -219,4 +219,5 @@
             <AppBarButton x:Name="RemoteAppBarButton" Label="Remote" Icon="Remote" Click="RemoteAppBarButton_OnClick"/>
         </CommandBar>
     </Page.BottomAppBar>
+    
 </Page>

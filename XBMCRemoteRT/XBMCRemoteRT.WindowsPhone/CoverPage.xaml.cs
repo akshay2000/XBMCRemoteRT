@@ -27,6 +27,8 @@ using XBMCRemoteRT.Models;
 using GoogleAnalytics.Core;
 using GoogleAnalytics;
 using Windows.UI.Xaml.Media.Animation;
+using Newtonsoft.Json.Linq;
+using XBMCRemoteRT.Pages.Files;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -40,7 +42,8 @@ namespace XBMCRemoteRT
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        private DispatcherTimer timer;
+        //private DispatcherTimer timer;
+        
 
         public CoverPage()
         {
@@ -52,23 +55,13 @@ namespace XBMCRemoteRT
 
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
 
-            //this.TempImage.DataContext = new { ImageUri = "http://10.0.0.2:8080/image/image://http%253a%252f%252fthetvdb.com%252fbanners%252fposters%252f121361-27.jpg" };
-
             if (GlobalVariables.CurrentPlayerState == null)
                 GlobalVariables.CurrentPlayerState = new PlayerState();
             DataContext = GlobalVariables.CurrentPlayerState;
             PlayerHelper.RefreshPlayerState();
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(10);
-            timer.Start();
-            timer.Tick += timer_Tick;
-        }
-
-        private void timer_Tick(object sender, object e)
-        {
-            PlayerHelper.RefreshPlayerState();
-        }
-
+            PlayerHelper.StartAutoRefresh(1);            
+        }   
+       
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
         /// </summary>
@@ -135,6 +128,7 @@ namespace XBMCRemoteRT
             RefreshListsIfNull();
             ServerNameTextBlock.Text = ConnectionManager.CurrentConnection.ConnectionName;
             Frame.BackStack.Clear();
+            TileHelper.UpdateAllTiles();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -155,7 +149,7 @@ namespace XBMCRemoteRT
             CommonNavigationTransitionInfo infoOverride = new CommonNavigationTransitionInfo();
             Frame.Navigate(typeof(AlbumPage), null, infoOverride);
         }
-
+        
         private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             GlobalVariables.CurrentTracker.SendEvent(EventCategories.UIInteraction, EventActions.Click, "CoverPageEpisodeWrapper", 0);
@@ -199,7 +193,15 @@ namespace XBMCRemoteRT
 
         private void MusicHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Frame.Navigate(typeof(AllMusicPivot));
+            bool isAutoRedirectEnabled = (string)SettingsHelper.GetValue("AudioAutoRedirect", "Unset") == "Yes";
+            if (isAutoRedirectEnabled)
+            {
+                Frame.Navigate(typeof(SearchMusicPivot));
+            }
+            else
+            {
+                Frame.Navigate(typeof(AllMusicPivot));
+            }
         }
 
         private void TVShowsHeaderWrapper_Tapped(object sender, TappedRoutedEventArgs e)
@@ -248,6 +250,25 @@ namespace XBMCRemoteRT
         {
             NavigationTransitionInfo transitionInfo = new SlideNavigationTransitionInfo();
             Frame.Navigate(typeof(MainPage), false, transitionInfo);
+        }
+
+        Slider slider;
+        private void ProgressSlider_Loaded(object sender, RoutedEventArgs e)
+        {
+            slider = sender as Slider;
+            slider.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(slider_PointerReleased), true);
+        }
+
+        void slider_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            var percentage = (slider.Value * 100) / slider.Maximum;
+            Player.Seek(GlobalVariables.CurrentPlayerState.PlayerType, percentage);
+        }
+
+        private void FilesAppBarButton_OnClickAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationTransitionInfo transitionInfo = new SlideNavigationTransitionInfo();
+            Frame.Navigate(typeof(AllSourcesPage), false, transitionInfo);
         }
     }
 }

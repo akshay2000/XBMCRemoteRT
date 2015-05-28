@@ -30,7 +30,7 @@ namespace XBMCRemoteRT.RPCWrappers
 
         }
 
-        public static async Task<List<Album>> GetRecentlyAddedAlbums(Limits limits = null, JObject sort = null)
+        public static async Task<List<Album>> GetRecentlyAddedAlbums(Limits limits = null, Sort sort = null)
         {
             JObject parameters = new JObject(
                                 new JProperty("properties",
@@ -39,14 +39,12 @@ namespace XBMCRemoteRT.RPCWrappers
 
             if (limits != null)
             {
-                parameters["limits"] = new JObject(
-                                            new JProperty("start", limits.Start),
-                                            new JProperty("end", limits.End));
+                parameters["limits"] = JObject.FromObject(limits);
             }
 
             if (sort != null)
             {
-                parameters["sort"] = sort;
+                parameters["sort"] = JObject.FromObject(sort);
             }
 
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("AudioLibrary.GetRecentlyAddedAlbums", parameters);
@@ -56,7 +54,7 @@ namespace XBMCRemoteRT.RPCWrappers
             return listToReturn;
         }
 
-        public static async Task<List<Song>> GetSongs(JObject filter = null, Limits limits = null, JObject sort = null)
+        public static async Task<List<Song>> GetSongs(Filter filter = null, Limits limits = null, Sort sort = null)
         {
             JObject parameters = new JObject(
                                      new JProperty("properties",
@@ -65,19 +63,17 @@ namespace XBMCRemoteRT.RPCWrappers
 
             if (limits != null)
             {
-                parameters["limits"] = new JObject(
-                                            new JProperty("start", limits.Start),
-                                            new JProperty("end", limits.End));
+                parameters["limits"] = JObject.FromObject(limits);
             }
 
             if (filter != null)
             {
-                parameters["filter"] = filter;
+                parameters["filter"] = JObject.FromObject(filter);
             }
 
             if (sort != null)
             {
-                parameters["sort"] = sort;
+                parameters["sort"] = JObject.FromObject(sort);
             }
 
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("AudioLibrary.GetSongs", parameters);
@@ -87,7 +83,21 @@ namespace XBMCRemoteRT.RPCWrappers
             return listToReturn;
         }
 
-        public static async Task<List<Artist>> GetArtists(JObject filter = null, Limits limits = null, JObject sort = null)
+        public static async Task<int> GetSongsCount(Filter filter = null)
+        {
+            JObject parameters = new JObject();
+            Limits limits = new Limits { Start = 0, End = 1 };
+            if (filter != null)
+            {
+                parameters["filter"] = JObject.FromObject(filter);
+            }
+            parameters["limits"] = JObject.FromObject(limits);
+
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("AudioLibrary.GetSongs", parameters);
+            return (int)responseObject["result"]["limits"]["total"];
+        }
+
+        public static async Task<List<Artist>> GetArtists(Filter filter = null, Limits limits = null, Sort sort = null)
         {
             JObject parameters = new JObject(
                                      new JProperty("properties",
@@ -96,19 +106,17 @@ namespace XBMCRemoteRT.RPCWrappers
 
             if (limits != null)
             {
-                parameters["limits"] = new JObject(
-                                            new JProperty("start", limits.Start),
-                                            new JProperty("end", limits.End));
+                parameters["limits"] = JObject.FromObject(limits);
             }
 
             if (filter != null)
             {
-                parameters["filter"] = filter;
+                parameters["filter"] = JObject.FromObject(filter);
             }
 
             if (sort != null)
             {
-                parameters["sort"] = sort;
+                parameters["sort"] = JObject.FromObject(sort);
             }
 
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("AudioLibrary.GetArtists", parameters);
@@ -118,7 +126,7 @@ namespace XBMCRemoteRT.RPCWrappers
             return listToReturn;
         }
 
-        public static async Task<List<Album>> GetAlbums(JObject filter = null, Limits limits = null, JObject sort = null)
+        public static async Task<List<Album>> GetAlbums(Filter filter = null, Limits limits = null, Sort sort = null)
         {
             JObject parameters =
                                 new JObject(
@@ -128,19 +136,17 @@ namespace XBMCRemoteRT.RPCWrappers
 
             if (limits != null)
             {
-                parameters["limits"] = new JObject(
-                                            new JProperty("start", limits.Start),
-                                            new JProperty("end", limits.End));
+                parameters["limits"] = JObject.FromObject(limits);
             }
 
             if (filter != null)
             {
-                parameters["filter"] = filter;
+                parameters["filter"] = JObject.FromObject(filter);
             }
 
             if (sort != null)
             {
-                parameters["sort"] = sort;
+                parameters["sort"] = JObject.FromObject(sort);
             }
 
 
@@ -149,6 +155,28 @@ namespace XBMCRemoteRT.RPCWrappers
             JArray albumListObject = (JArray)responseObject["result"]["albums"];
             List<Album> listToReturn = albumListObject != null ? albumListObject.ToObject<List<Album>>() : new List<Album>();
             return listToReturn;
+        }
+
+        public static async Task<List<Song>> GetAllSongs()
+        {
+            int stepSize = 50;
+            List<Song> toReturn = new List<Song>();
+            int returnedStep = stepSize;
+            Limits limits = new Limits { Start = 0, End = stepSize };
+            while (returnedStep == stepSize)
+            {
+                List<Song> currentList = await GetSongs(limits: limits);
+                returnedStep = currentList.Count;
+                toReturn.AddRange(currentList);
+                limits.Start += stepSize;
+                limits.End += stepSize;
+            }
+            return toReturn;
+        }
+
+        public static async Task<bool> IsLarge()
+        {
+            return await GetSongsCount() > 1000;
         }
 
         public static async void Scan()

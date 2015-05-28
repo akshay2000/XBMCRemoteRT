@@ -19,6 +19,7 @@ using XBMCRemoteRT.Helpers;
 using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.RPCWrappers;
 using XBMCRemoteRT.Models.Audio;
+using XBMCRemoteRT.Models.Common;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -53,9 +54,9 @@ namespace XBMCRemoteRT.Pages.Audio
             string tracks = loader.GetString("Tracks");
 
             ConnectionManager.ManageSystemTray(true);
-            JObject filter = new JObject(new JProperty("albumid", GlobalVariables.CurrentAlbum.AlbumId));
-            JObject sort = new JObject(new JProperty("method", "track"));
-            songsInAlbum = await AudioLibrary.GetSongs(filter, null, sort);
+            Filter filter = new Filter { Field = "album", Operator = "is", value = GlobalVariables.CurrentAlbum.Title };
+            Sort sort = new Sort { Method = "track", Order = "ascending", IgnoreArticle = true };
+            songsInAlbum = await AudioLibrary.GetSongs(filter: filter, sort: sort);
             SongsListView.ItemsSource = songsInAlbum;
 
             TrackCountTextBlock.Text = songsInAlbum.Count.ToString();

@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.RPCWrappers;
+using XBMCRemoteRT.Models.Common;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -127,19 +128,18 @@ namespace XBMCRemoteRT.Pages.Video
             Frame.Navigate(typeof(MovieDetailsHub));
         }
 
-        private async void LoadMovies()
+        private void LoadMovies()
         {
             var loadStartTime = DateTime.Now;
 
             ConnectionManager.ManageSystemTray(true);
-            allMovies = await VideoLibrary.GetMovies();
-            AllMoviesListView.ItemsSource = allMovies;
+            AllMoviesListView.ItemsSource = new MoviesCollection();
 
-            unwatchedMovies = allMovies.Where(movie => movie.PlayCount == 0).ToList<Movie>();
-            UnwatchedMoviesListView.ItemsSource = unwatchedMovies;
+            Filter newFilter = new Filter { Field = "playcount", Operator = "is", value = "0" };
+            UnwatchedMoviesListView.ItemsSource = new MoviesCollection(filter: newFilter);
 
-            watchedMovies = allMovies.Where(movie => movie.PlayCount > 0).ToList<Movie>();
-            WatchedMoviesListView.ItemsSource = watchedMovies;
+            Filter watchedFilter = new Filter { Field = "playcount", Operator = "greaterthan", value = "0" };
+            WatchedMoviesListView.ItemsSource = new MoviesCollection(filter: watchedFilter);
             ConnectionManager.ManageSystemTray(false);
 
             GlobalVariables.CurrentTracker.SendTiming(DateTime.Now.Subtract(loadStartTime), TimingCategories.LoadTime, "AllMovies", "AllMovies");

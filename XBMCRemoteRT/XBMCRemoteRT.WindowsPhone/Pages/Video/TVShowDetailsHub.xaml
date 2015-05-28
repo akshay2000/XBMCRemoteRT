@@ -89,29 +89,37 @@
             <HubSection Header="SEASONS" x:Uid="Seasons" x:Name="SeasonsHubSection">
                 <DataTemplate>
                     <SemanticZoom>
-                            <SemanticZoom.ZoomedInView>
-                                <ListView ItemsSource="{Binding Source={StaticResource SeasonsCVS}}">
-                                    <ListView.GroupStyle>
-                                        <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource PhoneGroupHeaderTemplate}"/>
-                                    </ListView.GroupStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel x:Name="EpisodeWrapper" Orientation="Horizontal" Margin="0,10" Tapped="EpisodeWrapper_Tapped" Opacity="{Binding PlayCount, Converter={StaticResource CountToOpacityConverter}}">
-                                                <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
-                                                    <BitmapIcon Margin="12" UriSource="/Assets/Icons/tv.png" Foreground="{StaticResource PhoneForegroundBrush}" />
-                                                </Border>
-                                                <TextBlock Text="{Binding Label}" FontSize="25" Margin="10,-2,0,0" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </SemanticZoom.ZoomedInView>
-                            <SemanticZoom.ZoomedOutView>
-                                <GridView ItemsSource="{Binding Source={StaticResource SeasonsCVS}, Path=CollectionGroups}" ItemTemplate="{StaticResource JumpListTemplate}"/>
-                            </SemanticZoom.ZoomedOutView>
-                        </SemanticZoom>
+                        <SemanticZoom.ZoomedInView>
+                            <ListView ItemsSource="{Binding Source={StaticResource SeasonsCVS}}">
+                                <ListView.GroupStyle>
+                                    <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource PhoneGroupHeaderTemplate}"/>
+                                </ListView.GroupStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel x:Name="EpisodeWrapper" Orientation="Horizontal" Margin="0,10" Tapped="EpisodeWrapper_Tapped" Opacity="{Binding PlayCount, Converter={StaticResource CountToOpacityConverter}}">
+                                            <Border BorderThickness="2" BorderBrush="{StaticResource PhoneForegroundBrush}" Background="Transparent" CornerRadius="25" Width="50" Height="50">
+                                                <BitmapIcon Margin="12" UriSource="/Assets/Icons/tv.png" Foreground="{StaticResource PhoneForegroundBrush}" />
+                                            </Border>
+                                            <TextBlock Text="{Binding Label}" FontSize="25" Margin="10,-2,0,0" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </SemanticZoom.ZoomedInView>
+                        <SemanticZoom.ZoomedOutView>
+                            <GridView ItemsSource="{Binding Source={StaticResource SeasonsCVS}, Path=CollectionGroups}" ItemTemplate="{StaticResource JumpListTemplate}"/>
+                        </SemanticZoom.ZoomedOutView>
+                    </SemanticZoom>
                 </DataTemplate>
             </HubSection>
-        </Hub>       
+        </Hub>      
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal" Opacity="0.5">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="PinUnpinAppBarButton" Label="pin to start" Click="PinUnpinAppBarButton_Click" x:Uid="PinToStartAppBarMenu" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

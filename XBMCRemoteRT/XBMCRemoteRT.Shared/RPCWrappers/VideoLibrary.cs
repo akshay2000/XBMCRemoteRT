@@ -13,7 +13,7 @@ namespace XBMCRemoteRT.RPCWrappers
 {
     public class VideoLibrary
     {
-        public static async Task<List<Episode>> GetRecentlyAddedEpisodes(Limits limits = null, JObject sort = null)
+        public static async Task<List<Episode>> GetRecentlyAddedEpisodes(Limits limits = null, Sort sort = null)
         {
             JObject parameters = new JObject(
                                 new JProperty("properties",
@@ -22,14 +22,12 @@ namespace XBMCRemoteRT.RPCWrappers
 
             if (limits != null)
             {
-                parameters["limits"] = new JObject(
-                                            new JProperty("start", limits.Start),
-                                            new JProperty("end", limits.End));
+                parameters["limits"] = JObject.FromObject(limits);
             }
 
             if (sort != null)
             {
-                parameters["sort"] = sort;
+                parameters["sort"] = JObject.FromObject(sort);
             }
 
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.GetRecentlyAddedEpisodes", parameters);
@@ -38,7 +36,7 @@ namespace XBMCRemoteRT.RPCWrappers
             return listToReturn;
         }
 
-        public static async Task<List<Movie>> GetRecentlyAddedMovies(Limits limits = null, JObject sort = null)
+        public static async Task<List<Movie>> GetRecentlyAddedMovies(Limits limits = null, Sort sort = null)
         {
             JObject parameters = new JObject(
                                 new JProperty("properties",
@@ -47,14 +45,12 @@ namespace XBMCRemoteRT.RPCWrappers
 
             if (limits != null)
             {
-                parameters["limits"] = new JObject(
-                                            new JProperty("start", limits.Start),
-                                            new JProperty("end", limits.End));
+                parameters["limits"] = JObject.FromObject(limits);
             }
 
             if (sort != null)
             {
-                parameters["sort"] = sort;
+                parameters["sort"] = JObject.FromObject(sort);
             }
 
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.GetRecentlyAddedMovies", parameters);
@@ -63,7 +59,7 @@ namespace XBMCRemoteRT.RPCWrappers
             return listToReturn;
         }
 
-        public static async Task<List<TVShow>> GetTVShows(Limits limits = null, JObject filter = null, JObject sort = null)
+        public static async Task<List<TVShow>> GetTVShows(Limits limits = null, Filter filter = null, Sort sort = null)
         {
             JObject parameters = new JObject(
                                 new JProperty("properties",
@@ -72,29 +68,41 @@ namespace XBMCRemoteRT.RPCWrappers
 
             if (limits != null)
             {
-                parameters["limits"] = new JObject(
-                                            new JProperty("start", limits.Start),
-                                            new JProperty("end", limits.End));
+                parameters["limits"] = JObject.FromObject(limits);
             }
 
             if (filter != null)
             {
-                parameters["filter"] = filter;
+                parameters["filter"] = JObject.FromObject(filter);
             }
 
             if (sort != null)
             {
-                parameters["sort"] = sort;
+                parameters["sort"] = JObject.FromObject(sort);
             }
 
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.GetTVShows", parameters);
             JArray tvShowsListObject = (JArray)responseObject["result"]["tvshows"];
-
+            
             List<TVShow> listToReturn = tvShowsListObject != null ? tvShowsListObject.ToObject<List<TVShow>>() : new List<TVShow>();
             return listToReturn;
         }
 
-        public static async Task<List<Movie>> GetMovies(Limits limits = null, JObject filter = null, JObject sort = null)
+        public static async Task<int> GetTVShowsCount(Filter filter = null)
+        {
+            JObject parameters = new JObject();
+            Limits limits = new Limits { Start = 0, End = 1 };
+            if (filter != null)
+            {
+                parameters["filter"] = JObject.FromObject(filter);
+            }
+            parameters["limits"] = JObject.FromObject(limits);
+
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.GetTVShows", parameters);
+            return (int)responseObject["result"]["limits"]["total"];
+        }
+
+        public static async Task<List<Movie>> GetMovies(Limits limits = null, Filter filter = null, Sort sort = null)
         {
             JObject parameters = new JObject(
                                 new JProperty("properties",
@@ -103,19 +111,17 @@ namespace XBMCRemoteRT.RPCWrappers
 
             if (limits != null)
             {
-                parameters["limits"] = new JObject(
-                                            new JProperty("start", limits.Start),
-                                            new JProperty("end", limits.End));
+                parameters["limits"] = JObject.FromObject(limits);
             }
 
             if (filter != null)
             {
-                parameters["filter"] = filter;
+                parameters["filter"] = JObject.FromObject(filter);
             }
 
             if (sort != null)
             {
-                parameters["sort"] = sort;
+                parameters["sort"] = JObject.FromObject(sort);
             }
 
 
@@ -126,7 +132,21 @@ namespace XBMCRemoteRT.RPCWrappers
             return listToReturn;
         }
 
-        public static async Task<List<Episode>> GetEpisodes(Limits limits = null, JObject filter = null, JObject sort = null, int? tvShowID = null)
+        public static async Task<int> GetMoviesCount(Filter filter = null)
+        {
+            JObject parameters = new JObject();
+            Limits limits = new Limits { Start = 0, End = 1 };
+            if (filter != null)
+            {
+                parameters["filter"] = JObject.FromObject(filter);
+            }
+            parameters["limits"] = JObject.FromObject(limits);
+
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.GetMovies", parameters);
+            return (int)responseObject["result"]["limits"]["total"];
+        }
+
+        public static async Task<List<Episode>> GetEpisodes(Limits limits = null, Filter filter = null, Sort sort = null, int? tvShowID = null)
         {
             JObject parameters = new JObject(
                                new JProperty("properties",
@@ -140,19 +160,17 @@ namespace XBMCRemoteRT.RPCWrappers
 
             if (limits != null)
             {
-                parameters["limits"] = new JObject(
-                                            new JProperty("start", limits.Start),
-                                            new JProperty("end", limits.End));
+                parameters["limits"] = JObject.FromObject(limits);
             }
 
             if (filter != null)
             {
-                parameters["filter"] = filter;
+                parameters["filter"] = JObject.FromObject(filter);
             }
 
             if (sort != null)
             {
-                parameters["sort"] = sort;
+                parameters["sort"] = JObject.FromObject(sort);
             }
 
 
@@ -163,6 +181,24 @@ namespace XBMCRemoteRT.RPCWrappers
             return listToReturn;
         }
 
+        public static async Task<int> GetEpisodesCount(Filter filter = null, int? tvShowID = null)
+        {
+            JObject parameters = new JObject();
+            Limits limits = new Limits { Start = 0, End = 1 };
+            if (filter != null)
+            {
+                parameters["filter"] = JObject.FromObject(filter);
+            }
+            if (tvShowID != null)
+            {
+                parameters["tvshowid"] = tvShowID;
+            }
+            parameters["limits"] = JObject.FromObject(limits);
+
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.GetEpisodes", parameters);
+            return (int)responseObject["result"]["limits"]["total"];
+        }
+
         public static async void Scan()
         {
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.Scan");
@@ -171,6 +207,6 @@ namespace XBMCRemoteRT.RPCWrappers
         public static async void Clean()
         {
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("VideoLibrary.Clean");
-        }
+        }        
     }
 }

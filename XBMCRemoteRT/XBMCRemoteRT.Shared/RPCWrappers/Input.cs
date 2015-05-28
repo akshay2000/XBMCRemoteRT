@@ -12,7 +12,7 @@ namespace XBMCRemoteRT.RPCWrappers
     public enum InputCommands { Home, Back, Select, Left, Up, Right, Down, ShowOSD, ShowCodec, Info, ContextMenu};
     public class Input
     {
-        public static async void ExecuteAction(InputCommands command)
+        public static async Task ExecuteAction(InputCommands command)
         {           
             await ConnectionManager.ExecuteRPCRequest("Input." + command.ToString());
         }

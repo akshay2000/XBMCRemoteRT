@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -16,6 +17,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Common;
+#if WINDOWS_PHONE_APP
+using XBMCRemoteRT.Pages.Entry;
+#endif
 using XBMCRemoteRT.ViewModels;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
@@ -101,6 +105,7 @@ namespace XBMCRemoteRT
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+            Debug.WriteLine("Launched with tile id " + e.TileId);            
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -109,6 +114,12 @@ namespace XBMCRemoteRT
 #endif
 
             EnsureRootFrame(e.PreviousExecutionState);
+            if (e.TileId.StartsWith("tvShow"))
+            {
+#if WINDOWS_PHONE_APP
+                rootFrame.Navigate(typeof(TVShowThinPivot), e.Arguments);
+#endif
+            }
 
             if (rootFrame.Content == null)
             {
@@ -129,19 +140,28 @@ namespace XBMCRemoteRT
 
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
-                // parameter
+                // parameter                
                 if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
             }
+                
+            
 
             // Ensure the current window is active
             Window.Current.Activate();
 
 #if WINDOWS_PHONE_APP
-            var storageFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///VCD.xml"));
-            await Windows.Media.SpeechRecognition.VoiceCommandManager.InstallCommandSetsFromStorageFileAsync(storageFile);
+            try
+            {
+                var storageFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///VCD.xml"));
+                await Windows.Media.SpeechRecognition.VoiceCommandManager.InstallCommandSetsFromStorageFileAsync(storageFile);
+            }
+            catch (FileNotFoundException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
 #endif
         }
 

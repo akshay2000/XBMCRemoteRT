@@ -13,7 +13,7 @@
         <CollectionViewSource x:Name="AlbumsCVS" IsSourceGrouped="True"/>
         <CollectionViewSource x:Name="SongsCVS" IsSourceGrouped="True"/>
     </Page.Resources>
-    
+
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition>
@@ -23,15 +23,15 @@
             </NavigationThemeTransition>
         </TransitionCollection>
     </Page.Transitions>
-    
+
     <Grid x:Name="LayoutRoot">
         <Pivot>
             <Pivot.Title>
-                <TextBlock Text="ALL MUSIC" Style="{StaticResource PageTitleTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+                <TextBlock Text="ALL MUSIC" x:Uid="AllMusicPivotTitle" Style="{StaticResource PageTitleTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
             </Pivot.Title>
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="ARTISTS" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+                    <TextBlock Text="ARTISTS" x:Uid="ArtistsTitle" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
                 </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
@@ -61,8 +61,8 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                            <TextBlock Text="ALBUMS" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
-                        </PivotItem.Header>
+                    <TextBlock Text="ALBUMS" x:Uid="AlbumsTitle" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+                </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
                         <GridView ItemsSource="{Binding Source={StaticResource AlbumsCVS}}" Margin="0,-20,0,0" ContinuumNavigationTransitionInfo.ExitElementContainer="True">
@@ -103,7 +103,7 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                            <TextBlock Text="SONGS" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+                    <TextBlock Text="SONGS" x:Uid="SongsTitle" Style="{StaticResource PageHeaderTextStyle}" CommonNavigationTransitionInfo.IsStaggerElement="True"/>
                 </PivotItem.Header>
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
@@ -136,19 +136,20 @@
                     </SemanticZoom.ZoomedOutView>
                 </SemanticZoom>
             </PivotItem>
-            
+
         </Pivot>
-                
+
     </Grid>
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RefreshMusicAppBarButton" x:Uid="RefreshMenuItem" Click="RefreshMusicAppBarButton_Click" Label="refresh" Icon="Refresh"/>
+                <AppBarButton x:Name="RefreshMusicAppBarButton" x:Uid="RefreshAppBarMenu" Click="RefreshMusicAppBarButton_Click" Label="refresh" Icon="Refresh"/>
                 <AppBarButton x:Name="PartyModeAppBarButton" x:Uid="PartyModeMenuItem" Click="PartyModeAppBarButton_Click" Label="party mode">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="23" Margin="3,1,0,0" Glyph="&#57449;"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
+                <AppBarButton x:Name="SearchMusicAppBarButton" x:Uid="SearchAppBarButton" Click="SearchMusicAppBarButton_Click" Label="search" Icon="Find"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

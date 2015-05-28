@@ -19,6 +19,7 @@ using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.RPCWrappers;
 using XBMCRemoteRT.Helpers;
+using Windows.UI.StartScreen;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -31,6 +32,7 @@ namespace XBMCRemoteRT.Pages.Video
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private string tileId = "tvShow_" + GlobalVariables.CurrentTVShow.TvShowId;
 
         public TVShowDetailsHub()
         {
@@ -42,7 +44,7 @@ namespace XBMCRemoteRT.Pages.Video
 
             DataContext = GlobalVariables.CurrentTVShow;
 
-            LoadEpisodes();
+            LoadEpisodes();            
         }
 
         /// <summary>
@@ -107,6 +109,7 @@ namespace XBMCRemoteRT.Pages.Video
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             GlobalVariables.CurrentTracker.SendView("TVShowDetailsPage");
+            ToggleAppBarButton(!SecondaryTile.Exists(tileId));
             this.navigationHelper.OnNavigatedTo(e);
         }
 
@@ -150,6 +153,41 @@ namespace XBMCRemoteRT.Pages.Video
                 this.Key = key;
             }
             public int Key { get; private set; }
+        }
+
+        private async void PinUnpinAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (SecondaryTile.Exists(tileId))
+            {
+                SecondaryTile secondaryTile = new SecondaryTile(tileId);
+                bool isUnpinned = await secondaryTile.RequestDeleteAsync();
+                ToggleAppBarButton(isUnpinned);
+            }
+            else
+            {
+                string displayName = GlobalVariables.CurrentTVShow.Label;
+                string activationArgs = "tvShow_" + GlobalVariables.CurrentTVShow.Title;
+                Uri logoUri = new Uri("ms-appx:///Assets/Square71x71Logo.scale-240.png");
+
+                SecondaryTile tvShowTile = new SecondaryTile(tileId, displayName, activationArgs, logoUri, TileSize.Wide310x150);
+                tvShowTile.VisualElements.Wide310x150Logo = new Uri("ms-appx:///Assets/WideLogo.scale-240.png");
+
+                ToggleAppBarButton(false);
+                bool pinned = await tvShowTile.RequestCreateAsync();
+            }
+        }
+
+        private void ToggleAppBarButton(bool showPinButton)
+        {
+            if (showPinButton)
+            {
+                PinUnpinAppBarButton.Label = "pin to start";
+            }
+            else
+            {
+                PinUnpinAppBarButton.Label = "unpin from start";                
+            }
+            PinUnpinAppBarButton.UpdateLayout();
         }
     }
 }

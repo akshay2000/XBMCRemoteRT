@@ -179,15 +179,15 @@
 
                         <TextBlock x:Uid="SettingsSkipJump" Text="SKIP + JUMP" Style="{StaticResource ParagraphHeaderTextStyle}" Margin="0,24,0,0" Pivot.SlideInAnimationGroup="GroupOne" />
                         <ComboBox x:Uid="ForwardComboBox" x:Name="ForwardComboBox" Header="what does forward do" Margin="0,12,0,0" Pivot.SlideInAnimationGroup="GroupTwo">
-                            <ComboBoxItem Content="increase speed"/>
-                            <ComboBoxItem Content="small jump forward"/>
-                            <ComboBoxItem Content="big jump forward"/>
+                            <ComboBoxItem x:Uid="IncreaseSpeed" Content="increase speed"/>
+                            <ComboBoxItem x:Uid="SmallJumpForward" Content="small jump forward"/>
+                            <ComboBoxItem x:Uid="BigJumpForward" Content="big jump forward"/>
                         </ComboBox>
 
                         <ComboBox x:Uid="BackwardComboBox" x:Name="BackwardComboBox" Header="what does backward do" Margin="0,12,0,0" Pivot.SlideInAnimationGroup="GroupTwo">
-                            <ComboBoxItem Content="decrease speed"/>
-                            <ComboBoxItem Content="small jump backward"/>
-                            <ComboBoxItem Content="big jump backward"/>
+                            <ComboBoxItem x:Uid="DecreaseSpeed" Content="decrease speed"/>
+                            <ComboBoxItem x:Uid="SmallJumpBackward" Content="small jump backward"/>
+                            <ComboBoxItem x:Uid="BigJumpBackward" Content="big jump backward"/>
                         </ComboBox>
 
                     </StackPanel>
@@ -196,12 +196,15 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock x:Uid="SettingsConnectionsPivotHeader" Text="CONNECTIONS" Style="{StaticResource PageHeaderTextStyle}"/>
+                    <TextBlock x:Uid="SettingsMiscellaneousPivotHeader" Text="MISCELLANEOUS" Style="{StaticResource PageHeaderTextStyle}"/>
                 </PivotItem.Header>
                 <ScrollViewer>
                     <StackPanel Margin="0,0,0,36">
                         <TextBlock x:Uid="SettingsAutoconnect" Text="AUTOCONNECT" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
-                        <ToggleSwitch x:Uid="SettingsAutoconnectToggle" x:Name="AutoconnectToggle" Header="connect automatically on startup" Margin="0,6,0,0" Pivot.SlideInAnimationGroup="GroupTwo" />
+                        <ToggleSwitch x:Uid="SettingsAutoconnectToggle" x:Name="AutoconnectToggle" Header="connect automatically on startup" Margin="0,6,0,12" Pivot.SlideInAnimationGroup="GroupTwo" />
+
+                        <TextBlock x:Uid="SettingsAutoSearch" Text="SEARCH" Style="{StaticResource ParagraphHeaderTextStyle}" Pivot.SlideInAnimationGroup="GroupOne"/>
+                        <ToggleSwitch x:Uid="SettingsAudioAutoSearchToggle" x:Name="AudioSearchToggle" Header="go directly to music search" Margin="0,6,0,12" Pivot.SlideInAnimationGroup="GroupTwo" />
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
