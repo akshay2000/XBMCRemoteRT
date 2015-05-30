@@ -50,6 +50,8 @@ namespace XBMCRemoteRT.Pages.Files
                 LoadDirectory(new File { Label = "..." });
                 e.Handled = true;
             }
+            else
+                GlobalVariables.CurrentFile = null;
         }
 
         /// <summary>
