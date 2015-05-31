@@ -355,7 +355,7 @@
     <value>התחבר אוטומטית</value>
   </data>
   <data name="SettingsAutoconnectToggle.Header" xml:space="preserve">
-    <value>נתחבר אוטומטית בכניסה לאפליקציה</value>
+    <value>התחבר אוטומטית בכניסה לאפליקציה</value>
   </data>
   <data name="SettingsConnectionsPivotHeader.Text" xml:space="preserve">
     <value>חיבורים</value>
@@ -490,7 +490,7 @@
 - שלט רחוק קל לתפעול.
  והרבה יותר
 
-ומעל הכל, האפליקציה כתובה בקוד פתוח לגמרי. היתן לצפות, לערוך ולשנות הכל באפליקציה בקישור הזה:
+ומעל הכל, האפליקציה כתובה בקוד פתוח לגמרי. ניתן לצפות, לערוך ולשנות הכל באפליקציה בקישור הזה:
 https://github.com/akshay2000/XBMCRemoteRT
 </value>
     <comment>Description for Windows Store</comment>
@@ -499,7 +499,7 @@ https://github.com/akshay2000/XBMCRemoteRT
     <value>נראה שזה יקח קצת זמן...</value>
   </data>
   <data name="ConnectingTo" xml:space="preserve">
-    <value>מתחבר ל-(0)</value>
+    <value>מתחבר ל-{0}...</value>
     <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, &quot;Connecting to mediaserver&quot; Please use it in your translations.</comment>
   </data>
   <data name="IPErrorMessage" xml:space="preserve">
@@ -515,7 +515,7 @@ https://github.com/akshay2000/XBMCRemoteRT
     <value>השכמה נכשלה</value>
   </data>
   <data name="WakeupPatientMessage" xml:space="preserve">
-    <value>השכמה בדרך כלל לוקחת בין (0) ל-(1) שניות, אנחנו ממשיכים לנסות</value>
+    <value>השכמה בדרך כלל לוקחת בין {0} ל-{1} שניות, אנחנו ממשיכים לנסות</value>
     <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes &quot;takes 5 to 10&quot; seconds&quot;. Use the same placeholders in translations.</comment>
   </data>
   <data name="WakingUp" xml:space="preserve">
@@ -528,7 +528,7 @@ https://github.com/akshay2000/XBMCRemoteRT
     <value>נראה שקודי לא מגיב, כיצד להמשיך?</value>
   </data>
   <data name="WOLErrorMessage" xml:space="preserve">
-    <value>לא ניתן לשלוח בקשת השכמה, השרת לא זמין.שגיאה:</value>
+    <value>לא ניתן לשלוח בקשת השכמה, השרת לא זמין. שגיאה:</value>
     <comment>Errorcode is not a place holder, right?</comment>
   </data>
   <data name="WOLMacNotFoundHeader" xml:space="preserve">
@@ -545,70 +545,70 @@ https://github.com/akshay2000/XBMCRemoteRT
     <value>הצג פרטי קידוד</value>
   </data>
   <data name="PinToStartAppBarMenu.Label" xml:space="preserve">
-    <value></value>
+    <value>הצמד למסך התחלה</value>
   </data>
   <data name="BigJumpBackward.Content" xml:space="preserve">
-    <value></value>
+    <value>קפציה גדולה אחורה</value>
   </data>
   <data name="BigJumpForward.Content" xml:space="preserve">
-    <value></value>
+    <value>קפציה גדולה קדימה</value>
   </data>
   <data name="DecreaseSpeed.Content" xml:space="preserve">
-    <value></value>
+    <value>האט מהירות</value>
   </data>
   <data name="EditConnectionHeader.Text" xml:space="preserve">
-    <value></value>
+    <value>ערוך חיבור</value>
   </data>
   <data name="IncreaseSpeed.Content" xml:space="preserve">
-    <value></value>
+    <value>הגבר מהירות</value>
   </data>
   <data name="SmallJumpBackward.Content" xml:space="preserve">
-    <value></value>
+    <value>קפיצה קטנה אחורה</value>
   </data>
   <data name="SmallJumpForward.Content" xml:space="preserve">
-    <value></value>
+    <value>קפיצה קטנה קדימה</value>
   </data>
   <data name="WakeOnLan.Text" xml:space="preserve">
-    <value></value>
+    <value>השכמה דרך LAN</value>
   </data>
   <data name="AboutAnagh2.Text" xml:space="preserve">
-    <value></value>
+    <value>כן, זה אותו בחור שמאחורי</value>
   </data>
   <data name="AutoWakeToggle.Header" xml:space="preserve">
-    <value></value>
+    <value>נסה השכמה אוטומטית</value>
   </data>
   <data name="MAC.Header" xml:space="preserve">
-    <value></value>
+    <value>MAC Address</value>
   </data>
   <data name="SubnetMask.Header" xml:space="preserve">
-    <value></value>
+    <value>Subnet mask</value>
   </data>
   <data name="WOLToggle.Header" xml:space="preserve">
-    <value></value>
+    <value>אפשר השכמה דרך LAN בשרת זה</value>
   </data>
   <data name="SearchAppBarButton.Label" xml:space="preserve">
-    <value></value>
+    <value>חיפוש</value>
   </data>
   <data name="SettingsAudioAutoSearchToggle.Header" xml:space="preserve">
-    <value></value>
+    <value>עבור הישר לחיפוש מוסיקה</value>
   </data>
   <data name="SettingsAutoSearch.Text" xml:space="preserve">
-    <value></value>
+    <value>חיפוש</value>
   </data>
   <data name="SettingsMiscellaneousPivotHeader.Text" xml:space="preserve">
-    <value></value>
+    <value>הגדרות נוספות</value>
   </data>
   <data name="LargeLibrary" xml:space="preserve">
-    <value></value>
+    <value>ספריה גדולה</value>
   </data>
   <data name="LargeMusicMessage" xml:space="preserve">
-    <value></value>
+    <value>נראה שיש כאן הרבה מוסיקה, האם ברצונך שנעזור לחפש את המוסיקה במקום?</value>
   </data>
   <data name="MessageOptionNo" xml:space="preserve">
-    <value></value>
+    <value>לא</value>
   </data>
   <data name="MessageOptionYes" xml:space="preserve">
-    <value></value>
+    <value>כן</value>
   </data>
 
 </root>
