@@ -1,42 +1,607 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<root>	
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>1.3</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>инфо</value>
+  </data>
+  <data name="MoviesHubSectionHeader.Text" xml:space="preserve">
+    <value>ФИЛМОВИ</value>
+  </data>
+  <data name="MoviesHubSectionSubHeader.Text" xml:space="preserve">
+    <value>сви филмови</value>
+  </data>
+  <data name="MusicHubSectionHeader.Text" xml:space="preserve">
+    <value>МУЗИКА</value>
+    <comment>Header of music section on cover page</comment>
+  </data>
+  <data name="MusicHubSectionSubHeader.Text" xml:space="preserve">
+    <value>сва музика</value>
+  </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>нема</value>
+    <comment>When artists aren&apos;t available</comment>
+  </data>
+  <data name="NothingIsPlaying" xml:space="preserve">
+    <value>нема репродукције</value>
+  </data>
+  <data name="NowPlayingHeader.Text" xml:space="preserve">
+    <value>ПУШТА СЕ</value>
+    <comment>Header of now playing on cover page</comment>
+  </data>
+  <data name="NowPlayingSubHeader.Text" xml:space="preserve">
+    <value>прикажи даљински</value>
+    <comment>Subheader of now playing on cover page</comment>
+  </data>
+  <data name="RemoteMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>даљински</value>
+    <comment>Appbar menu item</comment>
+  </data>
+  <data name="SettingsMenu.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>подешавања</value>
+  </data>
+  <data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
+    <value>ТВ ЕМИСИЈЕ</value>
+  </data>
+  <data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
+    <value>све емисије</value>
+  </data>
+  <data name="AboutAppBarMenu.Label" xml:space="preserve">
+    <value>инфо</value>
+  </data>
+  <data name="AddConnectionPageTitle.Text" xml:space="preserve">
+    <value>ДОДАЈ КОДИ СЕРВЕР</value>
+  </data>
+  <data name="AddServer.Label" xml:space="preserve">
+    <value>додај сервер</value>
+  </data>
+  <data name="AlbumPageTitle.Text" xml:space="preserve">
+    <value>ПЈЕСМЕ</value>
+  </data>
+  <data name="Albums.Header" xml:space="preserve">
+    <value>АЛБУМИ</value>
+  </data>
+  <data name="AlbumsTitle.Text" xml:space="preserve">
+    <value>АЛБУМИ</value>
+  </data>
+  <data name="AllMoviesTitle.Text" xml:space="preserve">
+    <value>СВЕ</value>
+  </data>
+  <data name="AllMusicPivotTitle.Text" xml:space="preserve">
+    <value>СВА МУЗИКА</value>
+  </data>
+  <data name="ArtistsTitle.Text" xml:space="preserve">
+    <value>ИЗВОЂАЧИ</value>
+  </data>
+  <data name="Bio.Text" xml:space="preserve">
+    <value>БИОГРАФИЈА</value>
+  </data>
+  <data name="CancelAppBarMenu.Label" xml:space="preserve">
+    <value>откажи</value>
+  </data>
+  <data name="Cast.Header" xml:space="preserve">
+    <value>ГЛУМЦИ</value>
+  </data>
+  <data name="CleanAudioLibrary" xml:space="preserve">
+    <value>обриши аудио библиотеку</value>
+  </data>
+  <data name="CleanVideoLibrary" xml:space="preserve">
+    <value>обриши видео библиотеку</value>
+  </data>
+  <data name="ConnectionName.Header" xml:space="preserve">
+    <value>Назив</value>
+  </data>
+  <data name="ConnectionsPageTitle.Text" xml:space="preserve">
+    <value>КОНЕКЦИЈЕ</value>
+  </data>
+  <data name="Director.Text" xml:space="preserve">
+    <value>РЕЖИСЕР</value>
+  </data>
+  <data name="DownloadSubtitles" xml:space="preserve">
+    <value>нађи титлове</value>
+  </data>
+  <data name="Genre.Text" xml:space="preserve">
+    <value>ЖАНР</value>
+  </data>
+  <data name="Info.Header" xml:space="preserve">
+    <value>ИНФО</value>
+  </data>
+  <data name="Mood.Text" xml:space="preserve">
+    <value>РАСПОЛОЖЕЊЕ</value>
+  </data>
+  <data name="Passowrd.Header" xml:space="preserve">
+    <value>Лозинка</value>
+  </data>
+  <data name="PlayAlbumAppBarMenu.Label" xml:space="preserve">
+    <value>пусти албум</value>
+  </data>
+  <data name="PlayArtistAppBarMenu.Label" xml:space="preserve">
+    <value>пусти извођача</value>
+  </data>
+  <data name="PlayMovieAppBarMenu.Label" xml:space="preserve">
+    <value>прикажи филм</value>
+  </data>
+  <data name="Plot.Header" xml:space="preserve">
+    <value>ЗАПЛЕТ</value>
+  </data>
+  <data name="PlotText.Text" xml:space="preserve">
+    <value>ЗАПЛЕТ</value>
+  </data>
+  <data name="Port.Header" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="Rating.Text" xml:space="preserve">
+    <value>ОЦЈЕНА</value>
+  </data>
+  <data name="RefreshAppBarMenu.Label" xml:space="preserve">
+    <value>освјежи</value>
+  </data>
+  <data name="RemoteAppBarMenu.Label" xml:space="preserve">
+    <value>даљински</value>
+    <comment>Appbar menu item</comment>
+  </data>
+  <data name="Runtime.Text" xml:space="preserve">
+    <value>ТРАЈАЊЕ</value>
+  </data>
+  <data name="SaveAppBarMenu.Label" xml:space="preserve">
+    <value>сачувај</value>
+  </data>
+  <data name="SearchAppBarMenu.Lable" xml:space="preserve">
+    <value>тражи</value>
+  </data>
+  <data name="SearchMoviesTitle.Text" xml:space="preserve">
+    <value>ПРЕТРАЖИ ФИЛМОВЕ</value>
+  </data>
+  <data name="SearchTVShowsTitle.Text" xml:space="preserve">
+    <value>ПРЕТРАЖИ ТВ ЕМИСИЈЕ</value>
+  </data>
+  <data name="Seasons.Header" xml:space="preserve">
+    <value>СЕЗОНЕ</value>
+  </data>
+  <data name="ServerAddress.Header" xml:space="preserve">
+    <value>Адреса сервера</value>
+  </data>
+  <data name="SettingsAppBarMenu.Label" xml:space="preserve">
+    <value>подешавања</value>
+  </data>
+  <data name="Songs.Header" xml:space="preserve">
+    <value>ПЈЕСМЕ</value>
+  </data>
+  <data name="SongsTitle.Text" xml:space="preserve">
+    <value>ПЈЕСМЕ</value>
+  </data>
+  <data name="Studio.Text" xml:space="preserve">
+    <value>СТУДИО</value>
+  </data>
+  <data name="SwitchServerAppBarMenu.Label" xml:space="preserve">
+    <value>промијени сервер</value>
+  </data>
+  <data name="Tagline.Text" xml:space="preserve">
+    <value>КРАТАК ОПИС</value>
+  </data>
+  <data name="Track" xml:space="preserve">
+    <value>пјесма</value>
+  </data>
+  <data name="Tracks" xml:space="preserve">
+    <value>пјесме</value>
+  </data>
+  <data name="TVShowsPageTitle.Text" xml:space="preserve">
+    <value>ТВ ЕМИСИЈЕ</value>
+  </data>
+  <data name="UnwatchedMoviesTitle.Text" xml:space="preserve">
+    <value>НОВИ</value>
+  </data>
+  <data name="UpdateAudioLibrary" xml:space="preserve">
+    <value>ажурирај аудио библиотеку</value>
+  </data>
+  <data name="UpdateVideoLibrary" xml:space="preserve">
+    <value>ажурирај видео библиотеку</value>
+  </data>
+  <data name="Username.Header" xml:space="preserve">
+    <value>Корисничко име</value>
+  </data>
+  <data name="WarningNote.Text" xml:space="preserve">
+    <value>Упозорење: корисничко име и лозинка се чувају незаштићени. Побрините се да не користите исту лозинку на неком другом мјесту.</value>
+  </data>
+  <data name="WatchedMovies.Text" xml:space="preserve">
+    <value>ВЕЋ СТЕ ГЛЕДАЛИ</value>
+  </data>
+  <data name="Writer.Text" xml:space="preserve">
+    <value>ПИСАЦ</value>
+  </data>
+  <data name="QueueAlbumMenu.Label" xml:space="preserve">
+    <value>додај албум на листу за свирку</value>
+  </data>
+  <data name="QueueArtistMenu.Label" xml:space="preserve">
+    <value>додај извођача на листу за свирку</value>
+  </data>
+  <data name="BackwardComboBox.Header" xml:space="preserve">
+    <value>шта дугме за назад ради</value>
+  </data>
+  <data name="ForwardComboBox.Header" xml:space="preserve">
+    <value>шта дугме за напријед ради</value>
+  </data>
+  <data name="SettingsButtons.Text" xml:space="preserve">
+    <value>ДУГМИЋИ</value>
+  </data>
+  <data name="SettingsButtonsSub.Text" xml:space="preserve">
+    <value>које дугмиће да ставим на даљински</value>
+  </data>
+  <data name="SettingsSkipJump.Text" xml:space="preserve">
+    <value>ПРЕСКОЧИ + ИДИ ДАЉЕ</value>
+  </data>
+  <data name="CacheNote.Text" xml:space="preserve">
+    <value>&quot;Kodi Assist&quot; чува неке слике на телефону тако да се може брже приступити библиотеци. Ако су се постери промијенили, можете их одмах освјежити.</value>
+  </data>
+  <data name="JustAMoment.Text" xml:space="preserve">
+    <value>Само тренутак...</value>
+  </data>
+  <data name="SettingsAutoconnect.Text" xml:space="preserve">
+    <value>СПОЈИ СЕ АУТОМАТСКИ</value>
+  </data>
+  <data name="SettingsAutoconnectToggle.Header" xml:space="preserve">
+    <value>споји се аутоматски при покретању апликације</value>
+  </data>
+  <data name="SettingsConnectionsPivotHeader.Text" xml:space="preserve">
+    <value>КОДИ СЕРВЕРИ</value>
+  </data>
+  <data name="SettingsPageHeader.Text" xml:space="preserve">
+    <value>ПОДЕШАВАЊА</value>
+  </data>
+  <data name="SettingsRefreshCacheButton.Content" xml:space="preserve">
+    <value>освјежи</value>
+  </data>
+  <data name="SettingsRemotePivotHeader.Text" xml:space="preserve">
+    <value>ДАЉИНСКИ</value>
+  </data>
+  <data name="SettingsTempFiles.Text" xml:space="preserve">
+    <value>ПРИВРЕМЕНИ ФАЈЛОВИ</value>
+  </data>
+  <data name="AboutAboutPivotHeader.Text" xml:space="preserve">
+    <value>ИНФО</value>
+  </data>
+  <data name="AboutAnagh.Text" xml:space="preserve">
+    <value>Дизајнирао...</value>
+  </data>
+  <data name="AboutAppHeader.Text" xml:space="preserve">
+    <value>АПЛИК.</value>
+  </data>
+  <data name="AboutAppText.Text" xml:space="preserve">
+    <value>Ова апликација тежи да буде најбољи даљински за Коди. Направљена је на принципу отвореног кода у духу Кодија и комплетан изворни код је доступан на &quot;GitHub&quot;-у.</value>
+  </data>
+  <data name="AboutCodeIn.Text" xml:space="preserve">
+    <value>ПРОГРАМИРАТЕ?</value>
+  </data>
+  <data name="AboutCodeInNote.Text" xml:space="preserve">
+    <value>Пронашли сте нешто да поправите или да побољшате? Креирајте репозиторијум овдје и почните да програмирате. Ако нам се свиди, сигурно ћемо га прихватити. Добићете и поруку захвалницу!</value>
+  </data>
+  <data name="AboutContributeNote.Text" xml:space="preserve">
+    <value>Ова апликација је дио пројекта отвореног кода на &quot;GitHub&quot;-у. И ви можете допринијети развоју апликације.</value>
+  </data>
+  <data name="AboutContributePivotHeader.Text" xml:space="preserve">
+    <value>ДОПРИНЕСИТЕ</value>
+  </data>
+  <data name="AboutCreditsHeader.Text" xml:space="preserve">
+    <value>ДОПРИНОСИ</value>
+  </data>
+  <data name="AboutDeveloperHeader.Text" xml:space="preserve">
+    <value>ПРОГРАМЕР</value>
+  </data>
+  <data name="AboutFeedbackPivotHeader.Text" xml:space="preserve">
+    <value>МИШЉЕЊЕ</value>
+  </data>
+  <data name="AboutFeedbackTextBox.PlaceholderText" xml:space="preserve">
+    <value>Унесите своју поруку</value>
+  </data>
+  <data name="AboutIconsAndFonts.Text" xml:space="preserve">
+    <value>Иконе и симболе направио</value>
+  </data>
+  <data name="AboutProjectHeader.Text" xml:space="preserve">
+    <value>ПРОЈЕКТ</value>
+  </data>
+  <data name="AboutProjectLink.Text" xml:space="preserve">
+    <value>погледај на &quot;GitHub&quot;-у</value>
+  </data>
+  <data name="AboutProjectText.Text" xml:space="preserve">
+    <value>Ова апликација је дио пројекта отвореног кода. Ако желите да дате свој допринос, идите на линк испод. Прије тога провјерите пројектну вики страну.</value>
+  </data>
+  <data name="AboutReddit.Text" xml:space="preserve">
+    <value>Веома корисна мишљења са заједнице &quot;reddit&quot; </value>
+  </data>
+  <data name="AboutReportIssues.Text" xml:space="preserve">
+    <value>ПРИЈАВИТЕ ПРОБЛЕМ</value>
+  </data>
+  <data name="AboutSendGreetings.Text" xml:space="preserve">
+    <value>ПОШАЉИТЕ ПОЗДРАВ</value>
+  </data>
+  <data name="AboutSendGreetingsNote.Text" xml:space="preserve">
+    <value>Мали гест захвалности пуно значи у нашој заједници. Пошаљите нам поруку захвалности преко твита, мејла, оцијените нас на продавници (Store), или на други начин, како вам одговара. То пуно значи програмерима.</value>
+  </data>
+  <data name="AboutTranslate.Text" xml:space="preserve">
+    <value>ПРЕВЕДИ</value>
+  </data>
+  <data name="AboutTranslateLink.Text" xml:space="preserve">
+    <value>преводи на &quot;POEditor&quot;-у</value>
+  </data>
+  <data name="AboutTranslateNote.Text" xml:space="preserve">
+    <value>Знате ли језике? Желите апликацију на свом језику? Примијетили сте нешто што би могло бити боље речено? Преводи су такође дио отвореног кода.</value>
+  </data>
+  <data name="AboutTranslators.Text" xml:space="preserve">
+    <value>Преводиоци непрестано раде да људима омогуће ову апликацију.</value>
+  </data>
+  <data name="AboutViewApp.Text" xml:space="preserve">
+    <value>Јесте, то је тај момак иза нашег омиљеног</value>
+  </data>
+  <data name="AppsFromDev.Content" xml:space="preserve">
+    <value>апликације истог програмера</value>
+  </data>
+  <data name="AppSupport.Content" xml:space="preserve">
+    <value>подршка за апликацију</value>
+  </data>
+  <data name="ReportIssuesLink.Text" xml:space="preserve">
+    <value>багови на &quot;GitHub&quot;-у</value>
+  </data>
+  <data name="ReportIssuesNote.Text" xml:space="preserve">
+    <value>Нашли сте нешто што не ради савршено у апликацији? Открили баг? Мислите да би могло боље? Довољно је да пријавите на линку испод. Неко од програмера ће вам се јавити.</value>
+  </data>
+  <data name="SendFeedbackButton.Content" xml:space="preserve">
+    <value>пошаљите своје мишљење</value>
+  </data>
+  <data name="AboutRateApp.Content" xml:space="preserve">
+    <value>оцијените апликацију</value>
+  </data>
+  <data name="DeleteConnectionMenu.Text" xml:space="preserve">
+    <value>обриши сервер</value>
+  </data>
+  <data name="EditConnectionMenu.Text" xml:space="preserve">
+    <value>измијени податке</value>
+  </data>
+  <data name="WakeUpMenu.Text" xml:space="preserve">
+    <value>пробуди</value>
+    <comment>Context menu used to wake up sleeping computer using wake-on-lan</comment>
+  </data>
+  <data name="StoreDescription" xml:space="preserve">
+    <value>Једини даљински за &quot;Kodi&quot; (бивши &quot;XBMC&quot;) са отвореним кодом за &quot;Windows Phone&quot;.
+Побједник такмичења //publish за Виндоуз.
+Ово је ваше &quot;XBMC&quot; рјешење за даљински на телефону.
+Неке од могућности
+- предиван претраживач библиотеке
+- информације о извођачима, албумима
+- детаљне информације о филмовима и ТВ емисијама
+- даљински управљач лак за употребу
+- и још много више
+И поврх свега, апликација је са потпуно отвореним кодом. Можете погледати, поправљати мијењати све овдје:
+https://github.com/akshay2000/XBMCRemoteRT </value>
+    <comment>Description for Windows Store</comment>
+  </data>
+  <data name="BePatient" xml:space="preserve">
+    <value>изгледа да ће да потраје...</value>
+  </data>
+  <data name="ConnectingTo" xml:space="preserve">
+    <value>Спајам се на {0}...</value>
+    <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, &quot;Connecting to mediaserver&quot; Please use it in your translations.</comment>
+  </data>
+  <data name="IPErrorMessage" xml:space="preserve">
+    <value>Унесите радије &quot;IP&quot; адресу него име рачунара да би могли да користите могућност буђења.</value>
+  </data>
+  <data name="KeepTryingCommand" xml:space="preserve">
+    <value>настави да покушаваш</value>
+  </data>
+  <data name="StopCommand" xml:space="preserve">
+    <value>заустави</value>
+  </data>
+  <data name="WakeUpFailed" xml:space="preserve">
+    <value>Буђење није успјело</value>
+  </data>
+  <data name="WakeupPatientMessage" xml:space="preserve">
+    <value>Буђење обично траје {0} до {1} сек. И даље покушавам...</value>
+    <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes &quot;takes 5 to 10&quot; seconds&quot;. Use the same placeholders in translations.</comment>
+  </data>
+  <data name="WakingUp" xml:space="preserve">
+    <value>Буди се...</value>
+  </data>
+  <data name="WOLConnectionErrorHeader" xml:space="preserve">
+    <value>Сервер још није укључен</value>
+  </data>
+  <data name="WOLConnectionErrorMessage" xml:space="preserve">
+    <value>Изгледа да се Коди не одазива. Шта да урадимо?</value>
+  </data>
+  <data name="WOLErrorMessage" xml:space="preserve">
+    <value>Није могуће послати захтјев за буђење: &quot;broadcast IP&quot; није доступна. Код грешке </value>
+  </data>
+  <data name="WOLMacNotFoundHeader" xml:space="preserve">
+    <value>Недовољно информација</value>
+  </data>
+  <data name="WOLMacNotFoundMessage" xml:space="preserve">
+    <value>Унесите &quot;MAC&quot; адресу и мрежну маску да би користили ову могућност.</value>
+  </data>
+  <data name="PartyModeMenuItem.Label" xml:space="preserve">
+    <value>мод за журку</value>
+    <comment>Start music in party mode.</comment>
+  </data>
+  <data name="ShowCodecInfo" xml:space="preserve">
+    <value>инф. о кодеку</value>
+  </data>
+  <data name="PinToStartAppBarMenu.Label" xml:space="preserve">
+    <value>закачи за Старт</value>
+  </data>
+  <data name="BigJumpBackward.Content" xml:space="preserve">
+    <value>велики скок уназад</value>
+  </data>
+  <data name="BigJumpForward.Content" xml:space="preserve">
+    <value>велики скок напријед</value>
+  </data>
+  <data name="DecreaseSpeed.Content" xml:space="preserve">
+    <value>успори</value>
+  </data>
+  <data name="EditConnectionHeader.Text" xml:space="preserve">
+    <value>ПРОМИЈЕНИ КОНЕКЦИЈУ</value>
+  </data>
+  <data name="IncreaseSpeed.Content" xml:space="preserve">
+    <value>убрзај</value>
+  </data>
+  <data name="SmallJumpBackward.Content" xml:space="preserve">
+    <value>мали скок назад</value>
+  </data>
+  <data name="SmallJumpForward.Content" xml:space="preserve">
+    <value>мали скок напријед</value>
+  </data>
+  <data name="WakeOnLan.Text" xml:space="preserve">
+    <value>ПРОБУДИ СЕРВЕР</value>
+  </data>
+  <data name="AboutAnagh2.Text" xml:space="preserve">
+    <value>Тако је, то је тај момак иза омиљеног </value>
+  </data>
+  <data name="AutoWakeToggle.Header" xml:space="preserve">
+    <value>Покушај да аутоматски пробудиш</value>
+  </data>
+  <data name="MAC.Header" xml:space="preserve">
+    <value>&quot;MAC&quot; адреса</value>
+  </data>
+  <data name="SubnetMask.Header" xml:space="preserve">
+    <value>Мрежна маска</value>
+  </data>
+  <data name="WOLToggle.Header" xml:space="preserve">
+    <value>Омогући буђење за овај сервер</value>
+  </data>
+  <data name="SearchAppBarButton.Label" xml:space="preserve">
+    <value>тражи</value>
+  </data>
+  <data name="SettingsAudioAutoSearchToggle.Header" xml:space="preserve">
+    <value>иди директно на претрагу музике</value>
+  </data>
+  <data name="SettingsAutoSearch.Text" xml:space="preserve">
+    <value>ТРАЖИ</value>
+  </data>
+  <data name="SettingsMiscellaneousPivotHeader.Text" xml:space="preserve">
+    <value>РАЗНО</value>
+  </data>
+  <data name="LargeLibrary" xml:space="preserve">
+    <value>Велика библиотека</value>
+  </data>
+  <data name="LargeMusicMessage" xml:space="preserve">
+    <value>Изгледа да има доста музике овдје. Да ли желите да претражујете музику?</value>
+  </data>
+  <data name="MessageOptionNo" xml:space="preserve">
+    <value>не</value>
+  </data>
+  <data name="MessageOptionYes" xml:space="preserve">
+    <value>да</value>
+  </data>
+
 </root>
