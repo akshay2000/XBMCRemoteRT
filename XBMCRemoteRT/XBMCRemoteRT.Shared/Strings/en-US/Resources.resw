@@ -604,4 +604,16 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   <data name="ShutDown" xml:space="preserve">
     <value>shut down</value>
   </data>
+  <data name="VideosTitle.Text" xml:space="preserve">
+    <value>VIDEOS</value>
+    <comment>Goes in file browser section</comment>
+  </data>
+  <data name="MusicTitle.Text" xml:space="preserve">
+    <value>MUSIC</value>
+    <comment>Goes in file browser section</comment>
+  </data>
+  <data name="SourcesPageTitle.Text" xml:space="preserve">
+    <value>MEDIA SOURCES</value>
+    <comment>Goes in file browser section</comment>
+  </data>
 </root>
