@@ -96,6 +96,7 @@
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\hu-HU\Resources.resw" />
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\pt\Resources.resw" />
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ru-RU\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\sr-Latn-CS\Resources.resw" />
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\sv-SE\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
