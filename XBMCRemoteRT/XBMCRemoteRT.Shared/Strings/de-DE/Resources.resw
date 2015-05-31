@@ -156,11 +156,11 @@
     <value>einstellungen</value>
   </data>
   <data name="TVShowsHubSectionHeader.Text" xml:space="preserve">
-    <value>TV-SENDUNGEN</value>
+    <value>SERIEN</value>
     <comment>Why was the hyphen (-) being used here? Why not just TV SENDUNGEN.</comment>
   </data>
   <data name="TVShowsHubSectionSubHeader.Text" xml:space="preserve">
-    <value>alle sendungen anzeigen</value>
+    <value>alle serien anzeigen</value>
   </data>
   <data name="AboutAppBarMenu.Label" xml:space="preserve">
     <value>über</value>
@@ -538,77 +538,77 @@ Diese App ist eine Open Source Entwicklung. Du kannst dich an der Entwicklung be
     <value>Legen Sie die MAC-Adresse und die Subnetzmaske fest, um diese Funktion nutzen zu können.</value>
   </data>
   <data name="PartyModeMenuItem.Label" xml:space="preserve">
-    <value></value>
+    <value>party modus</value>
     <comment>Start music in party mode.</comment>
   </data>
   <data name="ShowCodecInfo" xml:space="preserve">
-    <value></value>
+    <value>codec info anzeigen</value>
   </data>
   <data name="PinToStartAppBarMenu.Label" xml:space="preserve">
-    <value></value>
+    <value>an Start anpinnen</value>
   </data>
   <data name="BigJumpBackward.Content" xml:space="preserve">
-    <value></value>
+    <value>großer Sprung zurück</value>
   </data>
   <data name="BigJumpForward.Content" xml:space="preserve">
-    <value></value>
+    <value>großer Sprung vorwärts</value>
   </data>
   <data name="DecreaseSpeed.Content" xml:space="preserve">
-    <value></value>
+    <value>Geschwindigkeit verringern</value>
   </data>
   <data name="EditConnectionHeader.Text" xml:space="preserve">
-    <value></value>
+    <value>VERBINDUNG BEARBEITEN</value>
   </data>
   <data name="IncreaseSpeed.Content" xml:space="preserve">
-    <value></value>
+    <value>Geschwindigkeit erhöhen</value>
   </data>
   <data name="SmallJumpBackward.Content" xml:space="preserve">
-    <value></value>
+    <value>kleiner Sprung zurück</value>
   </data>
   <data name="SmallJumpForward.Content" xml:space="preserve">
-    <value></value>
+    <value>kleiner Sprung vorwärts</value>
   </data>
   <data name="WakeOnLan.Text" xml:space="preserve">
-    <value></value>
+    <value>WAKE ON LAN</value>
   </data>
   <data name="AboutAnagh2.Text" xml:space="preserve">
-    <value></value>
+    <value>Jup, der selbe Typ steht hinter unserem geliebten</value>
   </data>
   <data name="AutoWakeToggle.Header" xml:space="preserve">
-    <value></value>
+    <value>Automatisches Aufwecken versuchen</value>
   </data>
   <data name="MAC.Header" xml:space="preserve">
-    <value></value>
+    <value>MAC-Adresse</value>
   </data>
   <data name="SubnetMask.Header" xml:space="preserve">
-    <value></value>
+    <value>Subnetzmaske</value>
   </data>
   <data name="WOLToggle.Header" xml:space="preserve">
-    <value></value>
+    <value>Wake on LAN für diesen Server aktivieren</value>
   </data>
   <data name="SearchAppBarButton.Label" xml:space="preserve">
-    <value></value>
+    <value>suchen</value>
   </data>
   <data name="SettingsAudioAutoSearchToggle.Header" xml:space="preserve">
-    <value></value>
+    <value>direkt zur Musiksuche gehen</value>
   </data>
   <data name="SettingsAutoSearch.Text" xml:space="preserve">
-    <value></value>
+    <value>SUCHE</value>
   </data>
   <data name="SettingsMiscellaneousPivotHeader.Text" xml:space="preserve">
-    <value></value>
+    <value>SONSTIGES</value>
   </data>
   <data name="LargeLibrary" xml:space="preserve">
-    <value></value>
+    <value>Große Bibliothek</value>
   </data>
   <data name="LargeMusicMessage" xml:space="preserve">
-    <value></value>
+    <value>Hier scheint ziemlich viel Musik zu sein. Sollen wir dir stattdessen bei der Suche nach Musik helfen?</value>
   </data>
   <data name="MessageOptionNo" xml:space="preserve">
-    <value></value>
+    <value>nein</value>
   </data>
   <data name="MessageOptionYes" xml:space="preserve">
-    <value></value>
+    <value>ja</value>
   </data>
 
 </root>
