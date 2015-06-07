@@ -117,5 +117,10 @@ namespace XBMCRemoteRT.Pages.Video
         {
             Player.PlayMovie(GlobalVariables.CurrentMovie);
         }
+
+        private void QueueMoiveAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Playlist.AddMovie(GlobalVariables.CurrentMovie);
+        }
     }
 }

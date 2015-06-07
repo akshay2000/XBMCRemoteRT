@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models.Audio;
+using XBMCRemoteRT.Models.Video;
 
 namespace XBMCRemoteRT.RPCWrappers
 {
@@ -67,6 +68,12 @@ namespace XBMCRemoteRT.RPCWrappers
         {
             JObject songItem = new JObject(new JProperty("songid", song.SongId));
             await Playlist.Add(PlayelistType.Audio, songItem);
+        }
+
+        public static async void AddMovie(Movie movie)
+        {
+            JObject movieItem = new JObject(new JProperty("movieid", movie.MovieId));
+            await Playlist.Add(PlayelistType.Video, movieItem);
         }
     }
 }
