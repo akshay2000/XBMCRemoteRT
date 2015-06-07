@@ -20,6 +20,7 @@ using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Helpers;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.Phone.Devices.Notification;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -135,26 +136,31 @@ namespace XBMCRemoteRT.Pages
         #region Remote Keys
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
+            vibrate();
             Input.ExecuteAction(InputCommands.Left);
         }
 
         private void UpButton_Click(object sender, RoutedEventArgs e)
         {
+            vibrate();
             Input.ExecuteAction(InputCommands.Up);
         }
 
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
+            vibrate();
             Input.ExecuteAction(InputCommands.Right);
         }
 
         private void DownButton_Click(object sender, RoutedEventArgs e)
         {
+            vibrate();
             Input.ExecuteAction(InputCommands.Down);
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
+            vibrate();
             Input.ExecuteAction(InputCommands.Home);
         }
 
@@ -378,9 +384,10 @@ namespace XBMCRemoteRT.Pages
         private bool isHolding = false;
 
         private void ArrowButton_Holding(object sender, HoldingRoutedEventArgs e)
-        {
+        {            
             if (e.HoldingState == Windows.UI.Input.HoldingState.Started)
             {
+                vibrate();
                 isHolding = true;
                 string buttonName = ((Button)sender).Name;
                 switch (buttonName)
@@ -413,6 +420,12 @@ namespace XBMCRemoteRT.Pages
                 await Input.ExecuteAction(command);
                 await Task.Delay(250);
             }
+        }
+
+        private void vibrate()
+        {
+            VibrationDevice vibrationDevice = VibrationDevice.GetDefault();
+            vibrationDevice.Vibrate(TimeSpan.FromMilliseconds(50));
         }
     }
 }
