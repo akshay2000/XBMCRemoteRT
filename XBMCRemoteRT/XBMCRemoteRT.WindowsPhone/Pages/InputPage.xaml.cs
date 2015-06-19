@@ -113,6 +113,7 @@ namespace XBMCRemoteRT.Pages
             GlobalVariables.CurrentTracker.SendView("InputPage");
             this.navigationHelper.OnNavigatedTo(e);
             ShowButtons();
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.PortraitFlipped | DisplayOrientations.Portrait;
         }
 
         private void ShowButtons()
@@ -129,6 +130,7 @@ namespace XBMCRemoteRT.Pages
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedFrom(e);
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
         }
 
         #endregion
