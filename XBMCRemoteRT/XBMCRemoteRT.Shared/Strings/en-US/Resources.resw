@@ -607,4 +607,10 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   <data name="QueueMovieMenu.Label" xml:space="preserve">
     <value>queue movie</value>
   </data>
+  <data name="SettingsVibration.Text" xml:space="preserve">
+    <value>VIBRATION</value>
+  </data>
+  <data name="SettingsVibrationToggle.Header" xml:space="preserve">
+    <value>vibrate while pressing buttons</value>
+  </data>
 </root>

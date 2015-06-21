@@ -37,6 +37,8 @@ namespace XBMCRemoteRT.Pages
         private bool isVolumeSetProgrammatically;
         int[] Speeds = { -32, -16, -8, -4, -2, -1, 1, 2, 4, 8, 16, 32 };
 
+        private bool isVibrationOn;
+
         public InputPage()
         {
             this.InitializeComponent();
@@ -47,6 +49,7 @@ namespace XBMCRemoteRT.Pages
 
             DataContext = GlobalVariables.CurrentPlayerState;
             PopulateFlyout();
+            isVibrationOn = (bool)SettingsHelper.GetValue("Vibrate", false);
         }
 
         /// <summary>
@@ -138,31 +141,34 @@ namespace XBMCRemoteRT.Pages
         #region Remote Keys
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
-            vibrate();
+            if(isVibrationOn)
+                vibrate();
             Input.ExecuteAction(InputCommands.Left);
         }
 
         private void UpButton_Click(object sender, RoutedEventArgs e)
         {
-            vibrate();
+            if (isVibrationOn)
+                vibrate();
             Input.ExecuteAction(InputCommands.Up);
         }
 
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
-            vibrate();
+            if (isVibrationOn)
+                vibrate();
             Input.ExecuteAction(InputCommands.Right);
         }
 
         private void DownButton_Click(object sender, RoutedEventArgs e)
         {
-            vibrate();
+            if (isVibrationOn)
+                vibrate();
             Input.ExecuteAction(InputCommands.Down);
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
-        {
-            vibrate();
+        {            
             Input.ExecuteAction(InputCommands.Home);
         }
 

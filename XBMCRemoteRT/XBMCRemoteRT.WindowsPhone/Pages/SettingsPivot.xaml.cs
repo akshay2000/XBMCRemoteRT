@@ -100,16 +100,10 @@ namespace XBMCRemoteRT.Pages
             string buttons = string.Empty;
             if ((bool)OSDCheckBox.IsChecked)
                 buttons = buttons + "OSD";
-            //if ((bool)HomeCheckBox.IsChecked)
-            //    buttons = buttons + "," + "Home";
-            //if ((bool)TextInputCheckBox.IsChecked)
-            //    buttons = buttons + "," + "TextInput";
             if ((bool)SubtitlesCheckBox.IsChecked)
                 buttons = buttons + "," + "Subtitles";
             if ((bool)InfoCheckBox.IsChecked)
                 buttons = buttons + "," + "Info";
-            //if ((bool)AdvancedCheckBox.IsChecked)
-            //    buttons = buttons + "," + "Advanced";
             SettingsHelper.SetValue("ButtonsToShow", buttons);
         }
 
@@ -201,6 +195,17 @@ namespace XBMCRemoteRT.Pages
             SettingsHelper.SetValue("AudioAutoRedirect", BoolToAutoRedirectState(AudioSearchToggle.IsOn));
         }
 
+        private void LoadVibrateState()
+        {
+            bool vibrate = (bool)SettingsHelper.GetValue("Vibrate", true);
+            VibrationToggle.IsOn = vibrate;
+        }
+
+        private void SaveVibrateState()
+        {
+            SettingsHelper.SetValue("Vibrate", VibrationToggle.IsOn);
+        }
+
         private bool AutoRedirectStateToBool(string state)
         {
             switch (state)
@@ -239,6 +244,7 @@ namespace XBMCRemoteRT.Pages
             LoadSkipJumpState();
             LoadAutoConnectState();
             LoadAutoRedirectStates();
+            LoadVibrateState();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -248,19 +254,11 @@ namespace XBMCRemoteRT.Pages
             SaveSkipJumpState();
             SaveAutoConnectState();
             SaveAutoRedirectStates();
+            SaveVibrateState();
         }
 
         #endregion
-
-        private void AudioLibraryUpdateWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            
-        }
-
-        private void VideoLibraryUpdateWrapper_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            
-        }
+              
 
     }
 }
