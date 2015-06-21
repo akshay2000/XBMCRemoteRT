@@ -117,5 +117,20 @@ namespace XBMCRemoteRT.Pages.Video
         {
             Player.PlayMovie(GlobalVariables.CurrentMovie);
         }
+
+        private void QueueMoiveAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Playlist.AddMovie(GlobalVariables.CurrentMovie);
+        }
+
+        private void BottomBar_Opened(object sender, object e)
+        {
+            (sender as CommandBar).Opacity = 0.8;
+        }
+
+        private void BottomBar_Closed(object sender, object e)
+        {
+            (sender as CommandBar).Opacity = 0.5;
+        }
     }
 }

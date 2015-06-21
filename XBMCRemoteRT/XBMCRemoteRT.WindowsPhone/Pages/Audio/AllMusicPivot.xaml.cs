@@ -113,6 +113,7 @@ namespace XBMCRemoteRT.Pages.Audio
         {
             GlobalVariables.CurrentTracker.SendView("AllMusicPage");
             this.navigationHelper.OnNavigatedTo(e);
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.LandscapeFlipped | DisplayOrientations.Landscape | DisplayOrientations.Portrait;  
             init();
             
         }
@@ -156,6 +157,7 @@ namespace XBMCRemoteRT.Pages.Audio
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedFrom(e);
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
         }
 
         #endregion

@@ -135,7 +135,7 @@
   </data>
   <data name="NotAvailable" xml:space="preserve">
     <value>not available</value>
-    <comment>When artists aren&apos;t available</comment>
+    <comment>When artists aren't available</comment>
   </data>
   <data name="NothingIsPlaying" xml:space="preserve">
     <value>Nothing is playing</value>
@@ -445,7 +445,7 @@
     <value>All the translators working constantly to make this app possible.</value>
   </data>
   <data name="AboutViewApp.Text" xml:space="preserve">
-    <value>Yup, that&apos;s the same guy behind our beloved</value>
+    <value>Yup, that's the same guy behind our beloved</value>
   </data>
   <data name="AppsFromDev.Content" xml:space="preserve">
     <value>apps from the developer</value>
@@ -495,7 +495,7 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   </data>
   <data name="ConnectingTo" xml:space="preserve">
     <value>Connecting to {0}...</value>
-    <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, &quot;Connecting to mediaserver&quot; Please use it in your translations.</comment>
+    <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, "Connecting to mediaserver" Please use it in your translations.</comment>
   </data>
   <data name="IPErrorMessage" xml:space="preserve">
     <value>Please specify an IP address rather than a hostname to use the wake feature.</value>
@@ -510,8 +510,8 @@ And to top it all, the app is fully open source. You can view, edit and modify e
     <value>Wake up failed</value>
   </data>
   <data name="WakeupPatientMessage" xml:space="preserve">
-    <value>Wake up usually takes {0} to {1} seconds. We&apos;re still trying...</value>
-    <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes &quot;takes 5 to 10&quot; seconds&quot;. Use the same placeholders in translations.</comment>
+    <value>Wake up usually takes {0} to {1} seconds. We're still trying...</value>
+    <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes "takes 5 to 10" seconds". Use the same placeholders in translations.</comment>
   </data>
   <data name="WakingUp" xml:space="preserve">
     <value>Waking up...</value>
@@ -566,7 +566,7 @@ And to top it all, the app is fully open source. You can view, edit and modify e
     <value>WAKE ON LAN</value>
   </data>
   <data name="AboutAnagh2.Text" xml:space="preserve">
-    <value>Yup, that&apos;s the same guy behind our beloved</value>
+    <value>Yup, that's the same guy behind our beloved</value>
   </data>
   <data name="AutoWakeToggle.Header" xml:space="preserve">
     <value>Try automatic wakeup</value>
@@ -604,5 +604,13 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   <data name="MessageOptionYes" xml:space="preserve">
     <value>yes</value>
   </data>
-
+  <data name="QueueMovieMenu.Label" xml:space="preserve">
+    <value>queue movie</value>
+  </data>
+  <data name="SettingsVibration.Text" xml:space="preserve">
+    <value>VIBRATION</value>
+  </data>
+  <data name="SettingsVibrationToggle.Header" xml:space="preserve">
+    <value>vibrate while pressing buttons</value>
+  </data>
 </root>
