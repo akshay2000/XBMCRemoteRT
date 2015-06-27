@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Helpers;
 using Windows.System;
 using Windows.ApplicationModel.Store;
+using Windows.ApplicationModel.DataTransfer;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -103,6 +104,13 @@ namespace XBMCRemoteRT.Pages
         {
             GlobalVariables.CurrentTracker.SendView("AboutPage");
             this.navigationHelper.OnNavigatedTo(e);
+            RegisterForShare();
+        }
+
+        private void RegisterForShare()
+        {
+            DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
+            dataTransferManager.DataRequested += new TypedEventHandler<DataTransferManager, DataRequestedEventArgs>(this.ShareTextHandler);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -130,6 +138,20 @@ namespace XBMCRemoteRT.Pages
         private void AppSupportButton_Click(object sender, RoutedEventArgs e)
         {
             AboutDetailsPivot.SelectedIndex = 1;
+        }
+
+        private void ShareAppLink_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
+        }
+
+        private void ShareTextHandler(DataTransferManager sender, DataRequestedEventArgs e)
+        {
+            DataRequest request = e.Request;
+            // The Title is mandatory
+            request.Data.Properties.Title = "Kodi Assist for Windows Phone";
+            request.Data.Properties.Description = "The unique Windows Phone Kodi remote.";
+            request.Data.SetText("I'm using #KodiAssit for Windows Phone. Get it for free: http://www.windowsphone.com/s?appid=3897b459-b11b-41eb-9cea-dd9e53c55b78");
         }
     }
 }
