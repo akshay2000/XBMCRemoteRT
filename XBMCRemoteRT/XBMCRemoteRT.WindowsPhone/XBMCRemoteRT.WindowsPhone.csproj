@@ -136,6 +136,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\NowPlaying.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\SettingsPivot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +217,9 @@
     </Compile>
     <Compile Include="Pages\InputPage.xaml.cs">
       <DependentUpon>InputPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NowPlaying.xaml.cs">
+      <DependentUpon>NowPlaying.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SettingsPivot.xaml.cs">
       <DependentUpon>SettingsPivot.xaml</DependentUpon>

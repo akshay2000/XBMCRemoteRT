@@ -236,6 +236,11 @@ namespace XBMCRemoteRT
             await PlayerHelper.RefreshPlayerState();
         }
 
+        private void CurrentPlaylistButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (NowPlaying));
+        }
+
         private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(AboutPivot));

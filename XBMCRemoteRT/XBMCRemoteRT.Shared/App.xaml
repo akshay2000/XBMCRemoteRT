@@ -29,7 +29,7 @@
                     <converters:PlayerTypeToBoolConverter x:Key="PlayerTypeToBoolConverter"/>
                     <converters:SecondsToStringConverter x:Key="SecondsToStringConverter"/>
                     <converters:DurationToStringConverter x:Key="DurationToStringConverter"/>
-
+                    
                 </ResourceDictionary>
 
                 <ResourceDictionary Source="PlatformSpecificStyles.xaml"/>

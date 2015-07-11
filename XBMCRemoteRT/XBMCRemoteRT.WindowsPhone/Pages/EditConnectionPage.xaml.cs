@@ -116,12 +116,30 @@ namespace XBMCRemoteRT.Pages
                 return;
             }
 
-            if (NameTextBox.Text.Equals(string.Empty) || IPTextBox.Text.Equals(string.Empty))
+            String ipAddress = IPTextBox.Text;
+            if (NameTextBox.Text.Equals(string.Empty) || ipAddress.Equals(string.Empty))
             {
                 MessageDialog msg = new MessageDialog("Please enter valid name and server address", "Invalid Details");
                 await msg.ShowAsync();
                 return;
             }
+
+            // ********************************************************************************************* //
+            // Michele Mischitelli (11/07/2015) :
+            // We should check for ip addresses starting with http:// in case people use dynamic DNS to always 
+            // be able to connect to their kodi at home. Https:// is not supported for now.
+            const String httpsPrefix = "https://";
+            if (ipAddress.ToLower().StartsWith(httpsPrefix))
+            {
+                var md = new MessageDialog("Https protocol is not currently supported.", "Invalid protocol");
+                await md.ShowAsync();
+                return;
+            }
+
+            const String httpPrefix = "http://";
+            if (ipAddress.ToLower().StartsWith(httpPrefix))
+                ipAddress = ipAddress.Substring(httpPrefix.Length);
+            // ********************************************************************************************* //
 
             if (WOLEnabledToggle.IsOn)
             {
@@ -141,7 +159,7 @@ namespace XBMCRemoteRT.Pages
             }
 
             currentConnection.ConnectionName = NameTextBox.Text;
-            currentConnection.IpAddress = IPTextBox.Text;
+            currentConnection.IpAddress = ipAddress;
             currentConnection.Port = port;
             currentConnection.Username = UsernameTextBox.Text;
             currentConnection.Password = PasswordTextBox.Text;

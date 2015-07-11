@@ -16,6 +16,20 @@ namespace XBMCRemoteRT.Models
 
         #region PLAYER ITEMS
 
+        private int itemId;
+        public int ItemId
+        {
+            get { return itemId; }
+            set
+            {
+                if (itemId != value)
+                {
+                    itemId = value;
+                    NotifyPropertyChanged("ItemId");
+                }
+            }
+        }
+
         private string thumbnail;
         public string Thumbnail
         {
@@ -173,6 +187,7 @@ namespace XBMCRemoteRT.Models
             Speed = -1;
             TimeSeconds = 0;
             TotalTimeSeconds = 0;
+            ItemId = -1;
 
             PlayerType = Players.None;
         }

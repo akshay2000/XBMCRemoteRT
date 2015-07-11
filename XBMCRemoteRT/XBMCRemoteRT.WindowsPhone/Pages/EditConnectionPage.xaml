@@ -29,11 +29,11 @@
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,0">
             <ScrollViewer>
                 <StackPanel Margin="0,0,0,36">
-                    <TextBox x:Name="NameTextBox" x:Uid="ConnectionName" InputScope="NameOrPhoneNumber" Header="Name" Text="{Binding ConnectionName}"/>
-                    <TextBox x:Name="IPTextBox" x:Uid="ServerAddress" Header="Server address" Text="{Binding IpAddress}"/>
-                    <TextBox x:Name="PortTextBox" x:Uid="Port" InputScope="Number" Header="Port" Text="{Binding Port}"/>
-                    <TextBox x:Name="UsernameTextBox" x:Uid="Username" Header="Username" Text="{Binding Username}"/>
-                    <TextBox x:Name="PasswordTextBox" x:Uid="Password" Header="Password" Text="{Binding Password}"/>                    
+                    <TextBox x:Name="NameTextBox" x:Uid="ConnectionName" Header="Name" Text="{Binding ConnectionName}"/>
+                    <TextBox x:Name="IPTextBox" x:Uid="ServerAddress" Header="Server address" Text="{Binding IpAddress}" InputScope="Url" />
+                    <TextBox x:Name="PortTextBox" x:Uid="Port" Header="Port" Text="{Binding Port}" InputScope="Number" />
+                    <TextBox x:Name="UsernameTextBox" x:Uid="Username" Header="Username" Text="{Binding Username}" InputScope="NameOrPhoneNumber" />
+                    <TextBox x:Name="PasswordTextBox" x:Uid="Password" Header="Password" Text="{Binding Password}" InputScope="NameOrPhoneNumber" />                    
                     <TextBlock x:Uid="WakeOnLan" Text="WAKE ON LAN" Style="{StaticResource ResourceKey=ParagraphHeaderTextStyle}" Margin="0,12,0,0"/>
                     <ToggleSwitch x:Name="WOLEnabledToggle" IsOn="{Binding IsWakable}" x:Uid="WOLToggle" Header="Enable wake on LAN for this server"/>
                     <TextBox x:Name="MACAddressTextBox" x:Uid="MAC" Header="MAC address" Text="{Binding MACAddress, Converter={StaticResource MACAddressConverter}}" PlaceholderText="11:22:33:44:55:66" IsEnabled="{Binding IsOn, ElementName=WOLEnabledToggle}" />
