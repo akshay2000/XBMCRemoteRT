@@ -32,7 +32,13 @@ namespace XBMCRemoteRT.Converters
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var currentAccentColorHex = (SolidColorBrush)Application.Current.Resources["PhoneAccentBrush"];
+            var currentAccentColorHex = new SolidColorBrush();
+            try
+            {
+                currentAccentColorHex = (SolidColorBrush) Application.Current.Resources["PhoneAccentBrush"];
+            }
+            catch (Exception) { }
+
             var normalColorHex = new SolidColorBrush(Colors.Transparent);
 
             return ((int) value) == CurrentItemId ? currentAccentColorHex : normalColorHex;

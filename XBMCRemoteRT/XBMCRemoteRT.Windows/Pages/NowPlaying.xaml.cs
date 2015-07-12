@@ -17,10 +17,9 @@ using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Common;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models.Audio;
-using XBMCRemoteRT.Models.Common;
 using XBMCRemoteRT.RPCWrappers;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace XBMCRemoteRT.Pages
 {
@@ -50,6 +49,12 @@ namespace XBMCRemoteRT.Pages
             navigationHelper = new NavigationHelper(this);
             navigationHelper.LoadState += this.NavigationHelper_LoadState;
             navigationHelper.SaveState += this.NavigationHelper_SaveState;
+            navigationHelper.GoBackCommand = new RelayCommand(() =>
+            {
+                navigationHelper.GoBack();
+            });
+
+            defaultViewModel["NavigationHelper"] = NavigationHelper;
 
             Loaded += NowPlaying_OnLoaded;
 
@@ -62,7 +67,7 @@ namespace XBMCRemoteRT.Pages
              * All this little piece of code does is just refreshing the
              * collection bound to the list of songs.
              ***************************************************************/
-            GlobalVariables.CurrentPlayerState.PropertyChanged += async (sender, args) => 
+            GlobalVariables.CurrentPlayerState.PropertyChanged += async (sender, args) =>
             {
                 if (args.PropertyName.Equals("ItemId"))
                 {
@@ -70,6 +75,7 @@ namespace XBMCRemoteRT.Pages
                 }
             };
         }
+
 
         private async void NowPlaying_OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
@@ -104,7 +110,7 @@ namespace XBMCRemoteRT.Pages
                     if (tmpList.Any())
                         defaultViewModel["SongsInPlaylist"] = new ObservableCollection<Song>(tmpList);
                 }
-                catch(Exception){}
+                catch (Exception) { }
 
                 ConnectionManager.ManageSystemTray(false);
             }
@@ -145,7 +151,7 @@ namespace XBMCRemoteRT.Pages
             }
 
         }
-        
+
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
         /// </summary>
@@ -223,7 +229,7 @@ namespace XBMCRemoteRT.Pages
             if (stackPanel == null)
                 return;
 
-            var songs = ((ObservableCollection<Song>) defaultViewModel["SongsInPlaylist"]);
+            var songs = ((ObservableCollection<Song>)defaultViewModel["SongsInPlaylist"]);
 
             var tappedSong = stackPanel.DataContext as Song;
             await Playlist.Remove(PlayelistType.Audio, songs.IndexOf(tappedSong));
@@ -231,11 +237,6 @@ namespace XBMCRemoteRT.Pages
             songs.Remove(tappedSong);
 
             RefreshMetadata();
-        }
-
-        private void SongItemWrapper_OnHolding(object sender, HoldingRoutedEventArgs e)
-        {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
         }
 
         private async void SongItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
@@ -248,6 +249,11 @@ namespace XBMCRemoteRT.Pages
 
             var tappedSong = stackPanel.DataContext as Song;
             await Player.GoTo(Players.Audio, songs.IndexOf(tappedSong));
+        }
+
+        private void SongItemWrapper_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
         }
     }
 }

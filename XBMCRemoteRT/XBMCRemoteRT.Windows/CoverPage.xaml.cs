@@ -205,5 +205,10 @@ namespace XBMCRemoteRT
             GlobalVariables.CurrentMovie = tappedMovie;
             Frame.Navigate(typeof(MovieDetailsHub));
         }
+
+        private void PlaylistButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (NowPlaying));
+        }
     }
 }
