@@ -110,6 +110,11 @@
                                         <SymbolIcon Symbol="Next"/>
                                     </controls:RoundButton.Content>
                                 </controls:RoundButton>
+                                <controls:RoundButton x:Name="PlaylistButton" Click="PlaylistButton_Click">
+                                    <controls:RoundButton.Content>
+                                        <SymbolIcon Symbol="List"/>
+                                    </controls:RoundButton.Content>
+                                </controls:RoundButton>
                             </StackPanel>
                         </Grid>
                     </Grid>

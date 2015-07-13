@@ -33,6 +33,7 @@ namespace XBMCRemoteRT.Helpers
             JObject result = await Player.GetItem(player, properties);
             JObject item = (JObject)result["item"];
 
+            GlobalVariables.CurrentPlayerState.ItemId = (int)item["id"];
             GlobalVariables.CurrentPlayerState.Title = (string)item["title"];
             GlobalVariables.CurrentPlayerState.Artist = ((JArray)item["artist"]).ToObject<List<string>>();
             GlobalVariables.CurrentPlayerState.Fanart = (string)item["fanart"];

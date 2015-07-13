@@ -56,6 +56,17 @@ namespace XBMCRemoteRT.RPCWrappers
             await ConnectionManager.ExecuteRPCRequest("Player.GoTo", parameters);
         }
 
+        public async static Task GoTo(Players player, int position)
+        {
+            if (player == Players.None)
+                return;
+            int playerId = getIdFromPlayers(player);
+            JObject parameters = new JObject(
+                new JProperty("playerid", playerId),
+                new JProperty("to", position));
+            await ConnectionManager.ExecuteRPCRequest("Player.GoTo", parameters);
+        }
+
         public async static Task<List<Players>> GetActivePlayers()
         {
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("Player.GetActivePlayers");

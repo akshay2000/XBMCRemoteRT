@@ -127,6 +127,9 @@
     <Compile Include="Pages\InputPage.xaml.cs">
       <DependentUpon>InputPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\NowPlaying.xaml.cs">
+      <DependentUpon>NowPlaying.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Video\AllMoviesPage.xaml.cs">
       <DependentUpon>AllMoviesPage.xaml</DependentUpon>
     </Compile>
@@ -243,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\InputPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NowPlaying.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -24,12 +25,63 @@ namespace XBMCRemoteRT.RPCWrappers
             await ConnectionManager.ExecuteRPCRequest("Playlist.Add", parameters);
         }
 
+        public async static Task Remove(PlayelistType playlistType, int position)
+        {
+            int playlistId = GetPlaylistId(playlistType);
+            JObject parameters = new JObject(
+                               new JProperty("position", position),
+                               new JProperty("playlistid", playlistId));
+
+            await ConnectionManager.ExecuteRPCRequest("Playlist.Remove", parameters);
+        }
+
         public async static Task Clear(PlayelistType playlistType)
         {
             int playlistId = GetPlaylistId(playlistType);
             JObject parameters = new JObject(
                                 new JProperty("playlistid", playlistId));
             await ConnectionManager.ExecuteRPCRequest("Playlist.Clear", parameters);
+        }
+
+        // Returns the current playlist for video/audio
+        public async static Task<IEnumerable<Object>> GetItems(PlayelistType playlistType)
+        {
+            int playlistId = GetPlaylistId(playlistType);
+            JObject parameters = new JObject(new JProperty("playlistid", playlistId));
+
+            if (playlistType == PlayelistType.Audio)
+                parameters.Add(new JProperty("properties", new JArray("album", "artist", "duration")));
+            else if (playlistType == PlayelistType.Video)
+                parameters.Add(new JProperty("properties", new JArray("runtime", "showtitle", "season", "title", "artist")));
+
+            JObject res = await ConnectionManager.ExecuteRPCRequest("Playlist.GetItems", parameters);
+            JArray itemsListObject = (JArray)res["result"]["items"];
+
+            if (itemsListObject == null)
+                return new List<Object>();
+
+            if (playlistType == PlayelistType.Audio)
+            {
+                var songs = itemsListObject.Select(i => new Song()
+                {
+                    SongId = i["id"].ToObject<int>(),
+                    Album = i["album"].ToString(),
+                    AlbumArtist = i["artist"].ToObject<List<String>>(),
+                    Label = i["label"].ToString(),
+                    Duration = i["duration"].ToObject<int>()
+                }).ToList();
+
+                return songs;
+            }
+
+            //TODO: check the video return output -- currently in the app this is not used but should it be in the future, this will have to be checked
+            if (playlistType == PlayelistType.Video)
+            {
+                List<Movie> listToReturn = itemsListObject.ToObject<List<Movie>>();
+                return listToReturn;
+            }
+
+            return new List<Object>();
         }
 
         private static int GetPlaylistId(PlayelistType playlistType)

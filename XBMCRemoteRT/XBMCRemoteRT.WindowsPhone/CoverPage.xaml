@@ -235,19 +235,24 @@
                             </Grid>
                         </StackPanel>
                         <Grid Grid.Row="3" VerticalAlignment="Bottom">
-                            <AppBarButton x:Name="PlayPauseButton" Margin="0,-7,0,0" Click="PlayPauseButton_Click" Style="{StaticResource ExtraLargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}">
-                                <AppBarButton.Icon>
-                                    <SymbolIcon Symbol="{Binding Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" RenderTransformOrigin="0.5,0.5" >
-                                        <SymbolIcon.RenderTransform>
-                                            <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
-                                        </SymbolIcon.RenderTransform>
-                                    </SymbolIcon>
-                                </AppBarButton.Icon>
-                            </AppBarButton>
+                            <StackPanel Orientation="Horizontal" >
+                                <AppBarButton x:Name="PlayPauseButton" Click="PlayPauseButton_Click" Style="{StaticResource ExtraLargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}">
+                                    <AppBarButton.Icon>
+                                        <SymbolIcon Symbol="{Binding Speed, Converter={StaticResource SpeedToSymbolIconConverter}}" RenderTransformOrigin="0.5,0.5" >
+                                            <SymbolIcon.RenderTransform>
+                                                <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
+                                            </SymbolIcon.RenderTransform>
+                                        </SymbolIcon>
+                                    </AppBarButton.Icon>
+                                </AppBarButton>
 
-                            <AppBarButton x:Name="PreviousButton" Margin="80,9,0,0" Click="PreviousButton_Click" Icon="Previous" Style="{StaticResource LargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}"/>
+                                <AppBarButton x:Name="PreviousButton" VerticalAlignment="Center" Click="PreviousButton_Click" Icon="Previous" Style="{StaticResource LargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}"/>
 
-                            <AppBarButton x:Name="NextButton" Margin="135,9,0,0" Click="NextButton_Click" Icon="Next" Style="{StaticResource LargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}"/>
+                                <AppBarButton x:Name="NextButton" VerticalAlignment="Center" Click="NextButton_Click" Icon="Next" Style="{StaticResource LargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}"/>
+
+                                <AppBarButton x:Name="CurrentPlaylistButton" VerticalAlignment="Center" Click="CurrentPlaylistButton_Click" Icon="List" Style="{StaticResource LargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}"/>
+
+                            </StackPanel>
 
                         </Grid>
                     </Grid>

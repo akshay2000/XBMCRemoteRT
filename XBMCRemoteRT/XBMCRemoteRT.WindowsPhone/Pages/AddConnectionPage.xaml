@@ -29,11 +29,11 @@
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="12,0">
             <ScrollViewer>
                 <StackPanel Margin="0,0,0,36">
-                    <TextBox x:Name="NameTextBox" x:Uid="ConnectionName" InputScope="NameOrPhoneNumber" Header="Name"/>
-                    <TextBox x:Name="IPTextBox" x:Uid="ServerAddress" Header="Server address"/>
-                    <TextBox x:Name="PortTextBox" x:Uid="Port" InputScope="Number" Text="80" Header="Port"/>
-                    <TextBox x:Name="UsernameTextBox" x:Uid="Username" Text="xbmc" Header="Username"/>
-                    <TextBox x:Name="PasswordTextBox" x:Uid="Password" Header="Password"/>
+                    <TextBox x:Name="NameTextBox" x:Uid="ConnectionName" Header="Name"/>
+                    <TextBox x:Name="IPTextBox" x:Uid="ServerAddress" Header="Server address" InputScope="Url" />
+                    <TextBox x:Name="PortTextBox" x:Uid="Port" Text="80" Header="Port" InputScope="Number" />
+                    <TextBox x:Name="UsernameTextBox" x:Uid="Username" Header="Username" Text="xbmc" InputScope="NameOrPhoneNumber"/>
+                    <TextBox x:Name="PasswordTextBox" x:Uid="Password" Header="Password" InputScope="NameOrPhoneNumber"/>
                     <TextBlock x:Uid="WarningNote" Style="{StaticResource ParagraphTextStyle}" />
                 </StackPanel>
             </ScrollViewer>
