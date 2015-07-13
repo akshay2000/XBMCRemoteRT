@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="XBMCRemoteRT.Pages.SupportPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XBMCRemoteRT.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="KODI ASSIST" Style="{StaticResource PageTitleTextStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="SUPPORT DEVELOPMENT" Margin="0,-6.5,0,26.5" Style="{StaticResource PageHeaderTextStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <StackPanel>
+                <TextBlock x:Uid="AboutAppText" Text="The development of this app has been stopped due to lack of funds. A crwodfunding campaign has been launched to help support the app. You may follow the link below to know more." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                <HyperlinkButton Content="view the campaign" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" NavigateUri="http://igg.me/at/KodiAssist/x/11391141"/>
+                <TextBlock x:Uid="AboutAppText" Text="Alternatively, please enter your email address below and we will send you an email with all the details." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                <TextBlock x:Uid="AboutAppText" Text="Don't worry, your email address is not shared with anyone. Not even with the developers." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                
+                <TextBox x:Name="EmailTextBox" Header="Email"/>
+                <Button x:Name="SubmitButton" Content="submit" Click="SubmitButton_Click"/>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Page>
