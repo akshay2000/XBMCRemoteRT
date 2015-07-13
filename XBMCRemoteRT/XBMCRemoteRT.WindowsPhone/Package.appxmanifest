@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="51231akshay2000.XBMCAssistRemote" Publisher="CN=7852A096-2C96-409A-ADB9-A5DB5C0144D3" Version="2.0.1.10" />
+  <Identity Name="51231akshay2000.XBMCAssistRemote" Publisher="CN=7852A096-2C96-409A-ADB9-A5DB5C0144D3" Version="2.0.1.12" />
   <mp:PhoneIdentity PhoneProductId="9f1e4a20-4909-403b-a31b-cc85c99de84b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>XBMC Assist (Remote)</DisplayName>

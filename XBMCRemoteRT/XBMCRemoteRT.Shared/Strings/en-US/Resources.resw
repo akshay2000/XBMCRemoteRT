@@ -613,4 +613,7 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   <data name="SettingsVibrationToggle.Header" xml:space="preserve">
     <value>vibrate while pressing buttons</value>
   </data>
+  <data name="AboutShareLink.Text" xml:space="preserve">
+    <value>spread the love</value>
+  </data>
 </root>
