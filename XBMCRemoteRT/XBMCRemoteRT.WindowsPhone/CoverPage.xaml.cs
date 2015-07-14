@@ -29,6 +29,7 @@ using GoogleAnalytics;
 using Windows.UI.Xaml.Media.Animation;
 using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Pages.Files;
+using Windows.UI.Popups;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -59,7 +60,8 @@ namespace XBMCRemoteRT
                 GlobalVariables.CurrentPlayerState = new PlayerState();
             DataContext = GlobalVariables.CurrentPlayerState;
             PlayerHelper.RefreshPlayerState();
-            PlayerHelper.StartAutoRefresh(1);            
+            PlayerHelper.StartAutoRefresh(1);
+            HandleSupportDialog();
         }   
        
         /// <summary>
@@ -289,6 +291,28 @@ namespace XBMCRemoteRT
         private void SupportAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SupportPage));
+        }
+
+        private async void HandleSupportDialog()
+        {
+            String noOfLaunchesKey = "NoOfLaunches";
+            int noOfLaunches = Int16.Parse(SettingsHelper.GetValue(noOfLaunchesKey, 0).ToString());
+            noOfLaunches++;
+            SettingsHelper.SetValue(noOfLaunchesKey, noOfLaunches);
+
+            if (noOfLaunches < 30 && noOfLaunches % 5 == 0)
+            {
+                GlobalVariables.CurrentTracker.SendEvent("Donation", "MessageLaunched", "Message Launched", 1);
+                MessageDialog messageDialog = new MessageDialog("App development is discontinued. Click okay to learn more.", "Development has stopped!");
+                messageDialog.Commands.Add(new UICommand("okay"));
+                messageDialog.Commands.Add(new UICommand("later"));
+                var command = await messageDialog.ShowAsync();
+                if (command.Label == "okay")
+                {
+                    Frame.Navigate(typeof(SupportPage));
+                    GlobalVariables.CurrentTracker.SendEvent("Donation", "ClickedOkay", "Clicked Okay", 1);
+                }
+            }
         }
     }
 }
