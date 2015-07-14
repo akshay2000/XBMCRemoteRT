@@ -285,5 +285,10 @@ namespace XBMCRemoteRT
         {
             (sender as CommandBar).Opacity = 0.5;
         }
+
+        private void SupportAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SupportPage));
+        }
     }
 }
