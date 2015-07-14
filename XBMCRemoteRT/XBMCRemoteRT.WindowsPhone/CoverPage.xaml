@@ -250,7 +250,7 @@
 
                                 <AppBarButton x:Name="NextButton" VerticalAlignment="Center" Click="NextButton_Click" Icon="Next" Style="{StaticResource LargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}"/>
 
-                                <AppBarButton x:Name="CurrentPlaylistButton" VerticalAlignment="Center" Click="CurrentPlaylistButton_Click" Icon="List" Style="{StaticResource LargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}"/>
+                                <AppBarButton x:Name="CurrentPlaylistButton" VerticalAlignment="Center" Click="CurrentPlaylistButton_Click" Icon="List" Style="{StaticResource LargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}, ConverterParameter=playlist}"/>
 
                             </StackPanel>
 
