@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.System;
+using XBMCRemoteRT.Helpers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -116,6 +117,7 @@ namespace XBMCRemoteRT.Pages
             string subject = "Support Kodi Assist Development";
             var uri = new Uri("mailto:?to=" + emailId + "&subject=" + subject + "&body=" + message);
             await Launcher.LaunchUriAsync(uri);
+            GlobalVariables.CurrentTracker.SendEvent("Donation", "ClickedEmailSubmit", "Clicked Email Submit", 1);
         }
     }
 }

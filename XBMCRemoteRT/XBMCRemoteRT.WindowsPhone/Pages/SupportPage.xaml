@@ -31,10 +31,10 @@
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <ScrollViewer>
                 <StackPanel>
-                    <TextBlock x:Uid="AboutAppText" Text="The development of this app has been stopped due to lack of funds. A crwodfunding campaign has been launched to help support the app. You may follow the link below to know more." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                    <TextBlock Text="The development of this app has been stopped due to lack of funds. A crwodfunding campaign has been launched to help support the app. You may follow the link below to know more." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
                     <HyperlinkButton Content="view the campaign" Foreground="{StaticResource PhoneAccentBrush}" FontSize="20" NavigateUri="http://igg.me/at/KodiAssist/x/11391141"/>
-                    <TextBlock x:Uid="AboutAppText" Text="Alternatively, please enter your email address below and we will send you an email with all the details." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
-                    <TextBlock x:Uid="AboutAppText" Text="Don't worry, your email address is not shared with anyone. Not even with the developers." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                    <TextBlock Text="Alternatively, please enter your email address below and we will send you an email with all the details." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
+                    <TextBlock Text="Don't worry, your email address is not shared with anyone. Not even with the developers." Margin="0,5,0,0" Style="{StaticResource ParagraphTextStyle}"/>
 
                     <TextBox x:Name="EmailTextBox" InputScope="EmailSmtpAddress" Header="Email"/>
                     <Button x:Name="SubmitButton" Content="submit" Click="SubmitButton_Click"/>
