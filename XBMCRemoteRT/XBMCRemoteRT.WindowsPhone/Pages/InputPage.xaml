@@ -411,24 +411,9 @@
                         <SymbolIcon Symbol="Home"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
-                <AppBarButton x:Name="OSDButton" Click="OSDButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="1" Visibility="Collapsed">
-                    <AppBarButton.Icon>
-                        <SymbolIcon Symbol="Page2"/>
-                    </AppBarButton.Icon>
-                </AppBarButton>
                 <AppBarButton x:Name="TextInputButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="2" Click="TextInputButton_Click" Visibility="Visible">
                     <AppBarButton.Icon>
                         <SymbolIcon Symbol="Rename"/>
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton x:Name="SubtitlesButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="SubtitlesButton_Click" Visibility="Collapsed">
-                    <AppBarButton.Icon>
-                        <SymbolIcon Symbol="ClosedCaption"/>
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton x:Name="InfoButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="4" Click="InfoButton_Click" Visibility="Collapsed">
-                    <AppBarButton.Icon>
-                        <SymbolIcon Symbol="DockBottom"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <AppBarButton x:Name="AdvancedButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="5" Click="AdvancedButton_Click" Visibility="Visible">
@@ -438,6 +423,21 @@
                     <AppBarButton.Flyout>
                         <ListPickerFlyout x:Name="AdvancedMenuFlyout" Placement="Full" ItemsPicked="AdvancedMenuFlyout_ItemsPicked" />
                     </AppBarButton.Flyout>
+                </AppBarButton>
+                <AppBarButton x:Name="SubtitlesButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="SubtitlesButton_Click" Visibility="Collapsed">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="ClosedCaption"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="OSDButton" Click="OSDButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="1" Visibility="Collapsed">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Page2"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="InfoButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="4" Click="InfoButton_Click" Visibility="Collapsed">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="i" FontFamily="Segoe WP Black" FontStyle="Italic" FontSize="14"/>
+                    </AppBarButton.Icon>
                 </AppBarButton>
             </Grid>
 
@@ -481,12 +481,6 @@
                 <AppBarButton x:Name="MenuButton" Click="MenuButton_Click" Margin="0,0,24,10" Style="{StaticResource ExtraLargeRoundButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="ms-appx:///Assets/iconFont.ttf#iconFont" FontSize="45" Margin="0,5,0,0"  Glyph="&#57605;"/>
-                    </AppBarButton.Icon>
-                </AppBarButton>
-
-                <AppBarButton x:Name="ShowInfoButton" Click="ShowInfoButton_Click" Margin="0,0,24,245" Style="{StaticResource ExtraLargeRoundButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" RenderTransformOrigin="0.489,-2.075">
-                    <AppBarButton.Icon>
-                        <FontIcon FontFamily="Segoe WP Black" FontSize="45" Margin="0,5,0,0"  Glyph="i" FontStyle="Italic"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
 
