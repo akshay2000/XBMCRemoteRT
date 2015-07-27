@@ -250,7 +250,7 @@
 
                                 <AppBarButton x:Name="NextButton" VerticalAlignment="Center" Click="NextButton_Click" Icon="Next" Style="{StaticResource LargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}"/>
 
-                                <AppBarButton x:Name="CurrentPlaylistButton" VerticalAlignment="Center" Click="CurrentPlaylistButton_Click" Icon="List" Style="{StaticResource LargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}}"/>
+                                <AppBarButton x:Name="CurrentPlaylistButton" VerticalAlignment="Center" Click="CurrentPlaylistButton_Click" Icon="List" Style="{StaticResource LargeRoundButton}" IsEnabled="{Binding PlayerType, Converter={StaticResource PlayerTypeToBoolConverter}, ConverterParameter=playlist}"/>
 
                             </StackPanel>
 
@@ -386,6 +386,7 @@
     <Page.BottomAppBar>
         <CommandBar x:Name="BottomBar" ClosedDisplayMode="Minimal" Opacity="0.5" Opened="BottomBar_Opened" Closed="BottomBar_Closed">
             <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="SupportAppBarButton" Label="support app" Click="SupportAppBarButton_Click"/>
                 <AppBarButton x:Name="SettingsAppBarButton" x:Uid="SettingsAppBarMenu" Label="settings" Click="SettingsAppBarButton_Click" />
                 <AppBarButton x:Name="SwitchServerAppBarButton" x:Uid="SwitchServerAppBarMenu" Label="switch server" Click="SwitchServerAppBarButton_Click" />
                 <AppBarButton x:Name="RemoteAppBarButton" x:Uid="RemoteAppBarMenu" Label="remote" Click="RemoteAppBarButton_Click" />
