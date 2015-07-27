@@ -197,6 +197,11 @@ namespace XBMCRemoteRT.Pages
             Input.ExecuteAction(InputCommands.Back);
         }
 
+        private void ShowInfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            Input.ExecuteAction(InputCommands.Info);
+        }
+
         #endregion
 
         private async void PreviousButton_Click(object sender, RoutedEventArgs e)
