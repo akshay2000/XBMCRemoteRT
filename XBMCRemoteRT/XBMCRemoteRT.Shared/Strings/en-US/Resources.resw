@@ -616,4 +616,7 @@ And to top it all, the app is fully open source. You can view, edit and modify e
   <data name="AboutShareLink.Text" xml:space="preserve">
     <value>spread the love</value>
   </data>
+  <data name="Suspend" xml:space="preserve">
+    <value>suspend Kodi</value>
+  </data>
 </root>

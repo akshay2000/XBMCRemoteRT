@@ -157,7 +157,7 @@
                             </CheckBox>
                             <CheckBox x:Name="InfoCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}" >
                                 <CheckBox.Content>
-                                    <SymbolIcon Symbol="DockBottom"/>
+                                    <FontIcon Glyph="i" FontFamily="Segoe WP Black" FontStyle="Italic" FontSize="14"/>
                                 </CheckBox.Content>
                             </CheckBox>
                         </StackPanel>

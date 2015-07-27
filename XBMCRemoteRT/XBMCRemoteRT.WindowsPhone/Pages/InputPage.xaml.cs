@@ -349,6 +349,7 @@ namespace XBMCRemoteRT.Pages
         private string showSubtitleSerach;// = "download subtitles";
         private string showVideoInfo;// = "show codec info";
         private string shutDown;// = "shut down";
+        private string suspendServer;// = "suspend"
 
         private void PopulateFlyout()
         {
@@ -359,9 +360,10 @@ namespace XBMCRemoteRT.Pages
             videoLibClean = loader.GetString("CleanVideoLibrary");
             showSubtitleSerach = loader.GetString("DownloadSubtitles");
             showVideoInfo = loader.GetString("ShowCodecInfo");
-            shutDown = loader.GetString("ShutDown");
+            shutDown = loader.GetString("ShutDown"); // this string is missing in Resources.resw so it doesn't work, altough this function is not usable since it is better invoked from Kodi menu
+            suspendServer = loader.GetString("Suspend"); //string Suspend is added to Resources.resw, translations should be updated
 
-            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo, shutDown };
+            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo, shutDown, suspendServer};
         }
 
         private void AdvancedMenuFlyout_ItemsPicked(ListPickerFlyout sender, ItemsPickedEventArgs args)
@@ -380,6 +382,8 @@ namespace XBMCRemoteRT.Pages
                 GUI.ShowSubtitleSearch();
             else if (pickedCommand == showVideoInfo)
                 Input.ExecuteAction("codecinfo");
+            else if (pickedCommand == suspendServer)
+                Input.ExecuteAction(SystemCommands.Suspend);  // send command System.Suspend to Kodi server - sleep
             else if (pickedCommand == shutDown)
             {
                 Applikation.Quit();
