@@ -349,7 +349,6 @@ namespace XBMCRemoteRT.Pages
         private string showSubtitleSerach;// = "download subtitles";
         private string showVideoInfo;// = "show codec info";
         private string shutDown;// = "shut down";
-        private string suspend;// = "suspend";
 
         private void PopulateFlyout()
         {
@@ -361,9 +360,8 @@ namespace XBMCRemoteRT.Pages
             showSubtitleSerach = loader.GetString("DownloadSubtitles");
             showVideoInfo = loader.GetString("ShowCodecInfo");
             shutDown = loader.GetString("ShutDown");
-            suspend = loader.GetString("suspend");
 
-            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo, suspend, shutDown };
+            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo, shutDown };
         }
 
         private void AdvancedMenuFlyout_ItemsPicked(ListPickerFlyout sender, ItemsPickedEventArgs args)
@@ -382,10 +380,12 @@ namespace XBMCRemoteRT.Pages
                 GUI.ShowSubtitleSearch();
             else if (pickedCommand == showVideoInfo)
                 Input.ExecuteAction("codecinfo");
-            else if (pickedCommand == suspend)
-                Input.ExecuteAction(SystemCommands.Suspend);  // send command System.Suspend to Kodi server - sleep
             else if (pickedCommand == shutDown)
-                Input.ExecuteAction(SystemCommands.Shutdown);  // send command System.Shutdown to Kodi - restart Kodi server
+            {
+                Applikation.Quit();
+                NavigationTransitionInfo transitionInfo = new SlideNavigationTransitionInfo();
+                Frame.Navigate(typeof(MainPage), false, transitionInfo);
+            }
         }
 
         //private InputCommands heldCommand;
