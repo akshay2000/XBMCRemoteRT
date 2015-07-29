@@ -360,8 +360,8 @@ namespace XBMCRemoteRT.Pages
             videoLibClean = loader.GetString("CleanVideoLibrary");
             showSubtitleSerach = loader.GetString("DownloadSubtitles");
             showVideoInfo = loader.GetString("ShowCodecInfo");
-            shutDown = loader.GetString("shutdown");
-            suspend = loader.GetString("suspend");
+            shutDown = loader.GetString("ShutDown");
+            suspend = loader.GetString("Suspend");
 
             AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo, suspend, shutDown };
         }
