@@ -349,6 +349,7 @@ namespace XBMCRemoteRT.Pages
         private string showSubtitleSerach;// = "download subtitles";
         private string showVideoInfo;// = "show codec info";
         private string shutDown;// = "shut down";
+        private string suspend;// = "suspend";
 
         private void PopulateFlyout()
         {
@@ -359,9 +360,10 @@ namespace XBMCRemoteRT.Pages
             videoLibClean = loader.GetString("CleanVideoLibrary");
             showSubtitleSerach = loader.GetString("DownloadSubtitles");
             showVideoInfo = loader.GetString("ShowCodecInfo");
-            shutDown = loader.GetString("ShutDown");
+            shutDown = loader.GetString("shutdown");
+            suspend = loader.GetString("suspend");
 
-            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo, shutDown };
+            AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo, suspend, shutDown };
         }
 
         private void AdvancedMenuFlyout_ItemsPicked(ListPickerFlyout sender, ItemsPickedEventArgs args)
@@ -380,12 +382,10 @@ namespace XBMCRemoteRT.Pages
                 GUI.ShowSubtitleSearch();
             else if (pickedCommand == showVideoInfo)
                 Input.ExecuteAction("codecinfo");
+            else if (pickedCommand == suspend)
+                Input.ExecuteAction(SystemCommands.Suspend);  // send command System.Suspend to Kodi server - sleep
             else if (pickedCommand == shutDown)
-            {
-                Applikation.Quit();
-                NavigationTransitionInfo transitionInfo = new SlideNavigationTransitionInfo();
-                Frame.Navigate(typeof(MainPage), false, transitionInfo);
-            }
+                Input.ExecuteAction(SystemCommands.Shutdown);  // send command System.Shutdown to Kodi - restart Kodi server
         }
 
         //private InputCommands heldCommand;
