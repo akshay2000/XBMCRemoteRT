@@ -2,8 +2,6 @@
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using XBMCRemoteRT.Models.Network;
 
@@ -49,24 +47,10 @@ namespace XBMCRemoteRT.Helpers
         private static async Task<Stream> GetImageStreamAsync(Uri imageUri)
         {
             Stream imageStream = null;
-                        
-            HttpClient client = new HttpClient();
-            ConnectionItem con = ConnectionManager.CurrentConnection;
-            if (con != null && con.HasCredentials())
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
-                    "Basic",
-                    System.Convert.ToBase64String(Encoding.UTF8.GetBytes(
-                        String.Format("{0}:{1}",
-                        con.Username,
-                        con.Password)
-                    ))
-                );
-            }
-            client.BaseAddress = new Uri(imageUri.Scheme + "://" + imageUri.Authority);
+
             HttpRequestMessage req = new HttpRequestMessage(HttpMethod.Get, imageUri.AbsolutePath);
 
-            HttpResponseMessage res = await client.SendAsync(req);
+            HttpResponseMessage res = await ConnectionManager.CurrentConnection.HttpClient.SendAsync(req, HttpCompletionOption.ResponseHeadersRead);
             if (res.IsSuccessStatusCode)
             {
                 imageStream = await res.Content.ReadAsStreamAsync();

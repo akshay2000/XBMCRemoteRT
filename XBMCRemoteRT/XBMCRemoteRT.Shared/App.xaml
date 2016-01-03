@@ -29,7 +29,9 @@
                     <converters:PlayerTypeToBoolConverter x:Key="PlayerTypeToBoolConverter"/>
                     <converters:SecondsToStringConverter x:Key="SecondsToStringConverter"/>
                     <converters:DurationToStringConverter x:Key="DurationToStringConverter"/>
-                    
+                    <converters:MimeTypeToGlyphConverter x:Key="MimeTypeToGlyphConverter"/>
+                    <converters:StringToWrappableStringConverter x:Key="StringToWrappableStringConverter"/>
+                    <converters:BooleanToVisibilityConverter2 x:Key="BooleanToVisibilityConverter2"/>
                 </ResourceDictionary>
 
                 <ResourceDictionary Source="PlatformSpecificStyles.xaml"/>

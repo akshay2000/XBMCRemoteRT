@@ -1,26 +1,18 @@
 ﻿using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.RPCWrappers;
-using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Helpers;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.Phone.Devices.Notification;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Popups;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -139,62 +131,62 @@ namespace XBMCRemoteRT.Pages
         #endregion
 
         #region Remote Keys
-        private void LeftButton_Click(object sender, RoutedEventArgs e)
+        private async void LeftButton_Click(object sender, RoutedEventArgs e)
         {
             if(isVibrationOn)
                 vibrate();
-            Input.ExecuteAction(InputCommands.Left);
+            await Input.ExecuteAction(InputCommands.Left);
         }
 
-        private void UpButton_Click(object sender, RoutedEventArgs e)
+        private async void UpButton_Click(object sender, RoutedEventArgs e)
         {
             if (isVibrationOn)
                 vibrate();
-            Input.ExecuteAction(InputCommands.Up);
+            await Input.ExecuteAction(InputCommands.Up);
         }
 
-        private void RightButton_Click(object sender, RoutedEventArgs e)
+        private async void RightButton_Click(object sender, RoutedEventArgs e)
         {
             if (isVibrationOn)
                 vibrate();
-            Input.ExecuteAction(InputCommands.Right);
+            await Input.ExecuteAction(InputCommands.Right);
         }
 
-        private void DownButton_Click(object sender, RoutedEventArgs e)
+        private async void DownButton_Click(object sender, RoutedEventArgs e)
         {
             if (isVibrationOn)
                 vibrate();
-            Input.ExecuteAction(InputCommands.Down);
+            await Input.ExecuteAction(InputCommands.Down);
         }
 
-        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        private async void HomeButton_Click(object sender, RoutedEventArgs e)
         {            
-            Input.ExecuteAction(InputCommands.Home);
+            await Input.ExecuteAction(InputCommands.Home);
         }
 
-        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        private async void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.ContextMenu);
+            await Input.ExecuteAction(InputCommands.ContextMenu);
         }
 
-        private void OSDButton_Click(object sender, RoutedEventArgs e)
+        private async void OSDButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.ShowOSD);
+            await Input.ExecuteAction(InputCommands.ShowOSD);
         }
 
-        private void InfoButton_Click(object sender, RoutedEventArgs e)
+        private async void InfoButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.Info);
+            await Input.ExecuteAction(InputCommands.Info);
         }
 
-        private void EnterButton_Click(object sender, RoutedEventArgs e)
+        private async void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.Select);
+            await Input.ExecuteAction(InputCommands.Select);
         }
 
-        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        private async void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.Back);
+            await Input.ExecuteAction(InputCommands.Back);
         }
 
         #endregion
@@ -274,23 +266,23 @@ namespace XBMCRemoteRT.Pages
             slider.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(slider_PointerReleased), true);
         }
 
-        private void slider_PointerReleased(object sender, PointerRoutedEventArgs e)
+        private async void slider_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             int value = (int)Math.Round(VolumeSlider.Value);
-            Applikation.SetVolume(value);
+            await Applikation.SetVolume(value);
         }        
 
         private async void VolumeDownWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             int currentVolume = await Applikation.GetVolume();
-            Applikation.SetVolume(--currentVolume);
+            await Applikation.SetVolume(--currentVolume);
             SetVolumeSliderValue(currentVolume);
         }
 
         private async void VolumeUpWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             int currentVolume = await Applikation.GetVolume();
-            Applikation.SetVolume(++currentVolume);
+            await Applikation.SetVolume(++currentVolume);
             SetVolumeSliderValue(currentVolume);
         }
 
@@ -332,11 +324,6 @@ namespace XBMCRemoteRT.Pages
             ((this.Resources["HideSendTextBox"]) as Storyboard).Begin();
         }
 
-        private void SubtitlesButton_Click(object sender, RoutedEventArgs e)
-        {
-            Input.ExecuteAction("nextsubtitle");
-        }
-
         private void AdvancedButton_Click(object sender, RoutedEventArgs e)
         {
             AdvancedMenuFlyout.SelectedItem = null;
@@ -366,7 +353,7 @@ namespace XBMCRemoteRT.Pages
             AdvancedMenuFlyout.ItemsSource = new List<string> { audioLibUpdate, videoLibUpdate, audioLibClean, videoLibClean, showSubtitleSerach, showVideoInfo, suspend, shutDown };
         }
 
-        private void AdvancedMenuFlyout_ItemsPicked(ListPickerFlyout sender, ItemsPickedEventArgs args)
+        private async void AdvancedMenuFlyout_ItemsPicked(ListPickerFlyout sender, ItemsPickedEventArgs args)
         {
             string pickedCommand = (string)AdvancedMenuFlyout.SelectedItem;
 
@@ -383,57 +370,87 @@ namespace XBMCRemoteRT.Pages
             else if (pickedCommand == showVideoInfo)
                 Input.ExecuteAction("codecinfo");
             else if (pickedCommand == suspend)
-                Input.ExecuteAction(SystemCommands.Suspend);  // send command System.Suspend to Kodi server - sleep
+                await Input.ExecuteAction(SystemCommands.Suspend);  // send command System.Suspend to Kodi server - sleep
             else if (pickedCommand == shutDown)
-                Input.ExecuteAction(SystemCommands.Shutdown);  // send command System.Shutdown to Kodi - restart Kodi server
-        }
-
-        //private InputCommands heldCommand;
-        private bool isHolding = false;
-
-        private void ArrowButton_Holding(object sender, HoldingRoutedEventArgs e)
-        {            
-            if (e.HoldingState == Windows.UI.Input.HoldingState.Started)
-            {
-                vibrate();
-                isHolding = true;
-                string buttonName = ((Button)sender).Name;
-                switch (buttonName)
-                {
-                    case "UpButton":
-                        fire(InputCommands.Up);
-                        break;
-                    case "RightButton":
-                        fire(InputCommands.Right);
-                        break;
-                    case "DownButton":
-                        fire(InputCommands.Down);
-                        break;
-                    case "LeftButton":
-                        fire(InputCommands.Left);
-                        break;
-                }
-            }
-
-            if (e.HoldingState == Windows.UI.Input.HoldingState.Completed)
-            {
-                isHolding = false;
-            }
-        }
-
-        private async void fire(InputCommands command)
-        {
-            while (isHolding)
-            {
-                await Input.ExecuteAction(command);
-                await Task.Delay(250);
-            }
+                await Input.ExecuteAction(SystemCommands.Shutdown);  // send command System.Shutdown to Kodi - restart Kodi server
         }
 
         private void vibrate()
         {
             VibrationDevice vibrationDevice = VibrationDevice.GetDefault();
             vibrationDevice.Vibrate(TimeSpan.FromMilliseconds(50));
+        }
+
+        private async void SubtitleFlyout_Closed(object sender, object e)
+        {
+            ListPickerFlyout f = (ListPickerFlyout)sender;
+
+            object result = f.SelectedValue;
+            if (result != null)
+            {
+                Player.SubtitleExtended st = (Player.SubtitleExtended)result;
+
+                if (st.index == -1)
+                    await Player.DisableSubtitle(GlobalVariables.CurrentPlayerState.PlayerType);
+                else
+                    await Player.SetAndEnableSubtitle(GlobalVariables.CurrentPlayerState.PlayerType, st.index);
+            }
+        }
+
+        private async void SubtitlesButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            AppBarButton btn = sender as AppBarButton;
+            FlyoutBase f = btn.Flyout;
+
+            List<Player.SubtitleExtended> subtitles = await PlayerHelper.GetSubtitles();
+
+            if (subtitles == null)
+            {
+                e.Handled = true;
+                MessageDialog md = new MessageDialog("No subtitles available", "Change subtitle");
+                await md.ShowAsync();
+            }
+            else
+            {
+                Player.SubtitleExtended disabledst = new Player.SubtitleExtended();
+                disabledst.index = -1;
+                disabledst.name = "Disabled";
+                disabledst.isInUse = !subtitles.Exists((s) => s.isInUse == true);
+
+                subtitles.Add(disabledst);
+
+                SubtitlesFlyout.ItemsSource = subtitles;
+            }
+        }
+
+        private async void AudioStreamsFlyout_Closed(object sender, object e)
+        {
+            ListPickerFlyout f = (ListPickerFlyout)sender;
+
+            object result = f.SelectedValue;
+            if (result != null)
+            {
+                Player.AudioStreamExtended ase = (Player.AudioStreamExtended)result;
+
+                await Player.SetAudioStream(GlobalVariables.CurrentPlayerState.PlayerType, ase.index);
+            }
+        }
+
+        private async void AudioStreamsButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            AppBarButton btn = sender as AppBarButton;
+            FlyoutBase f = btn.Flyout;
+
+            List<Player.AudioStreamExtended> audiostreams = await PlayerHelper.GetAudioStreams();
+
+            if (audiostreams == null)
+            {
+                e.Handled = true;
+                MessageDialog md = new MessageDialog("No audio streams available", "Change audio stream");
+                await md.ShowAsync();
+            }
+            else
+                AudioStreamsFlyout.ItemsSource = audiostreams;
         }
     }
 }

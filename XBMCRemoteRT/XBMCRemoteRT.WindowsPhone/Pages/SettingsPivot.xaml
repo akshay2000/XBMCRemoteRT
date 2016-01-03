@@ -155,6 +155,11 @@
                                     <SymbolIcon Symbol="ClosedCaption"/>
                                 </CheckBox.Content>
                             </CheckBox>
+                            <CheckBox x:Name="AudioStreamsCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}">
+                                <CheckBox.Content>
+                                    <SymbolIcon Symbol="Audio"/>
+                                </CheckBox.Content>
+                            </CheckBox>
                             <CheckBox x:Name="InfoCheckBox" Style="{StaticResource RoundButtonCheckBoxStyle}" >
                                 <CheckBox.Content>
                                     <SymbolIcon Symbol="DockBottom"/>

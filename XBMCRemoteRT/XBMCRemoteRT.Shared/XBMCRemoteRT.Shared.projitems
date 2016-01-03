@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AuthBitmapConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToOpacityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToOpacityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IdToThicknessConverter.cs" />
@@ -29,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IPAddressConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MacAddressConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DurationToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\MimeTypeToGlyphConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MinutesToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PlayerTypeToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RatingConverter.cs" />
@@ -36,8 +38,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SecondsToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SpeedToSymbolIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToImageBrushConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToWrappableStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DownloadHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\JsonRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MathExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProxyManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\BitmapImageExtension.cs" />
@@ -48,6 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GroupingHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlayerHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SettingsHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\TemplateSelectors.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\TileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\WOLHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Audio\Album.cs" />

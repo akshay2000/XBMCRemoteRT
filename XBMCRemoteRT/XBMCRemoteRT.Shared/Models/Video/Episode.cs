@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace XBMCRemoteRT.Models.Video
-{ 
+{
     public class Uniqueid
     {
         public string Unknown { get; set; }

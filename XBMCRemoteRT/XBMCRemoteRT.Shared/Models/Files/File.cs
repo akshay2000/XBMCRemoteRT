@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
-using Newtonsoft.Json;
 
 namespace XBMCRemoteRT.Models.Files
 {
+    public class FileList : List<File>
+    { }
+
     public class File
     {
         [JsonProperty(PropertyName = "file")]

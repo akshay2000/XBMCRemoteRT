@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Windows.ApplicationModel.Resources;
-using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
-using XBMCRemoteRT.RPCWrappers;
 
 namespace XBMCRemoteRT.Converters
 {

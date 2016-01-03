@@ -15,7 +15,7 @@ namespace XBMCRemoteRT.Converters
             string proxyScheme = "image://";
             if (imagePath.StartsWith(proxyScheme))
             {
-                image.SetProxySourceAsync(imagePath);
+                System.Threading.Tasks.Task<bool> t = image.SetProxySourceAsync(imagePath);
             }
 
             ImageBrush imageBrush = new ImageBrush();

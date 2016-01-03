@@ -135,7 +135,7 @@
   </data>
   <data name="NotAvailable" xml:space="preserve">
     <value>nem elérhető</value>
-    <comment>When artists aren&apos;t available</comment>
+    <comment>When artists aren't available</comment>
   </data>
   <data name="NothingIsPlaying" xml:space="preserve">
     <value>Nincs lejátszás folyamatban</value>
@@ -275,7 +275,7 @@
   </data>
   <data name="ServerAddress.Header" xml:space="preserve">
     <value>Szerver címe</value>
-    <comment>Shouldn&apos;t this be in Title Case? Szerver Cime instead of cime?</comment>
+    <comment>Shouldn't this be in Title Case? Szerver Cime instead of cime?</comment>
   </data>
   <data name="SettingsAppBarMenu.Label" xml:space="preserve">
     <value>beállítások</value>
@@ -318,7 +318,7 @@
   </data>
   <data name="WarningNote.Text" xml:space="preserve">
     <value>Megjegyzés: A felhasználónevet és a jelszót egyszerű szövegként továbbítjuk. Ne használd ugyanazt a jelszót több helyen is.</value>
-    <comment>Not sure about rules of the language here. Should sentence start with &apos;a&apos; or &apos;A&apos;?</comment>
+    <comment>Not sure about rules of the language here. Should sentence start with 'a' or 'A'?</comment>
   </data>
   <data name="WatchedMovies.Text" xml:space="preserve">
     <value>MEGNÉZVE</value>
@@ -497,7 +497,7 @@ Ráadásul az alkalmazás nyílt forráskódú. Az alkalmazás teljes egészét 
   </data>
   <data name="ConnectingTo" xml:space="preserve">
     <value>Csatlakozás: {0}...</value>
-    <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, &quot;Connecting to mediaserver&quot; Please use it in your translations.</comment>
+    <comment>{0} is a placeholder for server name. It will be replaced AUTOMATICALLY. (For example, "Connecting to mediaserver" Please use it in your translations.</comment>
   </data>
   <data name="IPErrorMessage" xml:space="preserve">
     <value>Ha használni szeretnéd a felébresztést, kiszolgálónév helyett IP címet adj meg.</value>
@@ -513,7 +513,7 @@ Ráadásul az alkalmazás nyílt forráskódú. Az alkalmazás teljes egészét 
   </data>
   <data name="WakeupPatientMessage" xml:space="preserve">
     <value>A felébresztés általában {0}-{1} másodpercet vesz igénybe. Még próbálkozunk...</value>
-    <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes &quot;takes 5 to 10&quot; seconds&quot;. Use the same placeholders in translations.</comment>
+    <comment>{0} and {1} are placeholders for lower and upper limit respectively. Sentence automatically becomes "takes 5 to 10" seconds". Use the same placeholders in translations.</comment>
   </data>
   <data name="WakingUp" xml:space="preserve">
     <value>Felébresztés...</value>
@@ -534,77 +534,76 @@ Ráadásul az alkalmazás nyílt forráskódú. Az alkalmazás teljes egészét 
     <value>A funkció használatához add meg a fizikai címet és az alhálózati maszkot.</value>
   </data>
   <data name="PartyModeMenuItem.Label" xml:space="preserve">
-    <value></value>
+    <value>Party mód</value>
     <comment>Start music in party mode.</comment>
   </data>
   <data name="ShowCodecInfo" xml:space="preserve">
-    <value></value>
+    <value>kodek információk megjelenítése</value>
   </data>
   <data name="PinToStartAppBarMenu.Label" xml:space="preserve">
-    <value></value>
+    <value>kitűzés a start menübe</value>
   </data>
   <data name="BigJumpBackward.Content" xml:space="preserve">
-    <value></value>
+    <value>nagy ugrás vissza</value>
   </data>
   <data name="BigJumpForward.Content" xml:space="preserve">
-    <value></value>
+    <value>nagy ugrás előre</value>
   </data>
   <data name="DecreaseSpeed.Content" xml:space="preserve">
-    <value></value>
+    <value>sebessség csökkentése</value>
   </data>
   <data name="EditConnectionHeader.Text" xml:space="preserve">
-    <value></value>
+    <value>KAPCSOLAT SZERKESZTÉSE</value>
   </data>
   <data name="IncreaseSpeed.Content" xml:space="preserve">
-    <value></value>
+    <value>sebesség növelése</value>
   </data>
   <data name="SmallJumpBackward.Content" xml:space="preserve">
-    <value></value>
+    <value>kis ugrás vissza</value>
   </data>
   <data name="SmallJumpForward.Content" xml:space="preserve">
-    <value></value>
+    <value>kis ugrás előre</value>
   </data>
   <data name="WakeOnLan.Text" xml:space="preserve">
-    <value></value>
+    <value>FELÉBRESZTÉS</value>
   </data>
   <data name="AboutAnagh2.Text" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="AutoWakeToggle.Header" xml:space="preserve">
-    <value></value>
+    <value>Próbálja meg automatikusan felébreszteni</value>
   </data>
   <data name="MAC.Header" xml:space="preserve">
-    <value></value>
+    <value>MAC cím</value>
   </data>
   <data name="SubnetMask.Header" xml:space="preserve">
-    <value></value>
+    <value>Hálózati maszk</value>
   </data>
   <data name="WOLToggle.Header" xml:space="preserve">
-    <value></value>
+    <value>Felébresztés használata ezen a szerveren</value>
   </data>
   <data name="SearchAppBarButton.Label" xml:space="preserve">
-    <value></value>
+    <value>keresés</value>
   </data>
   <data name="SettingsAudioAutoSearchToggle.Header" xml:space="preserve">
-    <value></value>
+    <value>közvetlenül a zene kereséséhez</value>
   </data>
   <data name="SettingsAutoSearch.Text" xml:space="preserve">
-    <value></value>
+    <value>KERESÉS</value>
   </data>
   <data name="SettingsMiscellaneousPivotHeader.Text" xml:space="preserve">
-    <value></value>
+    <value>EGYÉB</value>
   </data>
   <data name="LargeLibrary" xml:space="preserve">
-    <value></value>
+    <value>Nagy könyvtár</value>
   </data>
   <data name="LargeMusicMessage" xml:space="preserve">
-    <value></value>
+    <value>Úgy tűnik, itt rengeteg zene van. Szeretnél inkább zenéket keresni?</value>
   </data>
   <data name="MessageOptionNo" xml:space="preserve">
-    <value></value>
+    <value>nem</value>
   </data>
   <data name="MessageOptionYes" xml:space="preserve">
-    <value></value>
+    <value>igen</value>
   </data>
-
 </root>

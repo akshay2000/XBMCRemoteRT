@@ -1,10 +1,5 @@
 ﻿using GoogleAnalytics;
 using GoogleAnalytics.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XBMCRemoteRT.Models;
 using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Models.Files;

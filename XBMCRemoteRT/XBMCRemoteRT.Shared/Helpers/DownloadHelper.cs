@@ -89,7 +89,7 @@ namespace XBMCRemoteRT.Helpers
                 {
                     if (fileStream != null)
                     {
-                        fileStream.FlushAsync();
+                        await fileStream.FlushAsync();
                     }
                 }
                 inStream.Dispose();
@@ -105,37 +105,39 @@ namespace XBMCRemoteRT.Helpers
         public async static Task<string> DownloadFile(string uriString)
         {
             Uri imageUri = new Uri(GetRemoteUri(uriString));
-            var stream = await GetImageStreamAsync(imageUri);
-            await WriteFileAsync(stream, "tempFile");
+            using (Stream stream = await GetImageStreamAsync(imageUri))
+                await WriteFileAsync(stream, "tempFile");
             return Path.Combine(GetCacheFolder().Path, "tempfile");
         }
 
         public async static Task<string> DownloadImageForTile(string uriString)
         {
             Uri imageUri = new Uri(GetRemoteUri(uriString));
-            var stream = await GetImageStreamAsync(imageUri);
-            IRandomAccessStream inStream = stream.AsRandomAccessStream();
-           // BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream.AsRandomAccessStream());
-
-            var ras = await ResizeImage(inStream, 1024, 1024);
-            //BitmapEncoder encoder = await BitmapEncoder.CreateForTranscodingAsync(ras, decoder);
-
-            //encoder.BitmapTransform.ScaledWidth = 1024;
-            //encoder.BitmapTransform.sc
-            //await encoder.FlushAsync();
-
-
-
-            string fileName = "tile.tmp";
-            var file = await (await ApplicationData.Current.LocalFolder.CreateFolderAsync("Tiles", CreationCollisionOption.OpenIfExists)).CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
-            using (var reader = new DataReader(ras))
+            using (Stream stream = await GetImageStreamAsync(imageUri))
             {
-                await reader.LoadAsync((uint)ras.Size);
-                var buffer = new byte[(int)ras.Size];
-                reader.ReadBytes(buffer);
-                await Windows.Storage.FileIO.WriteBytesAsync(file, buffer);
+                using (IRandomAccessStream inStream = stream.AsRandomAccessStream())
+                {
+                    // BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream.AsRandomAccessStream());
+
+                    var ras = await ResizeImage(inStream, 1024, 1024);
+                    //BitmapEncoder encoder = await BitmapEncoder.CreateForTranscodingAsync(ras, decoder);
+
+                    //encoder.BitmapTransform.ScaledWidth = 1024;
+                    //encoder.BitmapTransform.sc
+                    //await encoder.FlushAsync();
+
+                    string fileName = "tile.tmp";
+                    var file = await (await ApplicationData.Current.LocalFolder.CreateFolderAsync("Tiles", CreationCollisionOption.OpenIfExists)).CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
+                    using (var reader = new DataReader(ras))
+                    {
+                        await reader.LoadAsync((uint)ras.Size);
+                        var buffer = new byte[(int)ras.Size];
+                        reader.ReadBytes(buffer);
+                        await Windows.Storage.FileIO.WriteBytesAsync(file, buffer);
+                    }
+                    return file.Path;
+                }
             }
-            return file.Path;
         }
 
         /// <summary> 

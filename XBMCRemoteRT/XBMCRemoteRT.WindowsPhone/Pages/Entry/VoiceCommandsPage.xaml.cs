@@ -1,29 +1,16 @@
-﻿using XBMCRemoteRT.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Graphics.Display;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.ApplicationModel.Activation;
 using Windows.Media.SpeechRecognition;
 using XBMCRemoteRT.RPCWrappers;
-using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Helpers;
-using XBMCRemoteRT.Models;
 using Windows.UI.Popups;
 using System.Threading.Tasks;
-using Windows.Phone.UI.Input;
 using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Models.Video;
 
@@ -263,11 +250,11 @@ namespace XBMCRemoteRT.Pages.Entry
             }
         }
 
-        private void NoButton_Click(object sender, RoutedEventArgs e)
+        private async void NoButton_Click(object sender, RoutedEventArgs e)
         {
             GlobalVariables.CurrentTracker.SendEvent(EventCategories.VoiceCommand, EventActions.Click, "VoiceCommandNo", 0);
             if (searchHitState == SearchHitState.Single)
-                Player.Stop(GlobalVariables.CurrentPlayerState.PlayerType);
+                await Player.Stop(GlobalVariables.CurrentPlayerState.PlayerType);
 
             Frame.Navigate(typeof(CoverPage));
         }

@@ -6,7 +6,6 @@ using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Models.Files;
@@ -27,7 +26,7 @@ namespace XBMCRemoteRT.Pages.Files
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        private List<File> allFiles;
+        private FileList allFiles;
         private ObservableCollection<File> previousDirectories;
 
         public SourceFilesPage()

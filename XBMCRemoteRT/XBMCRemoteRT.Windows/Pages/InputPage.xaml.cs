@@ -112,54 +112,54 @@ namespace XBMCRemoteRT.Pages
         #endregion
 
         #region Remote Keys
-        private void LeftButton_Click(object sender, RoutedEventArgs e)
+        private async void LeftButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.Left);
+            await Input.ExecuteAction(InputCommands.Left);
         }
 
-        private void UpButton_Click(object sender, RoutedEventArgs e)
+        private async void UpButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.Up);
+            await Input.ExecuteAction(InputCommands.Up);
         }
 
-        private void RightButton_Click(object sender, RoutedEventArgs e)
+        private async void RightButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.Right);
+            await Input.ExecuteAction(InputCommands.Right);
         }
 
-        private void DownButton_Click(object sender, RoutedEventArgs e)
+        private async void DownButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.Down);
+            await Input.ExecuteAction(InputCommands.Down);
         }
 
-        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        private async void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.Home);
+            await Input.ExecuteAction(InputCommands.Home);
         }
 
-        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        private async void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.ContextMenu);
+            await Input.ExecuteAction(InputCommands.ContextMenu);
         }
 
-        private void OSDButton_Click(object sender, RoutedEventArgs e)
+        private async void OSDButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.ShowOSD);
+            await Input.ExecuteAction(InputCommands.ShowOSD);
         }
 
-        private void InfoButton_Click(object sender, RoutedEventArgs e)
+        private async void InfoButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.Info);
+            await Input.ExecuteAction(InputCommands.Info);
         }
 
-        private void EnterButton_Click(object sender, RoutedEventArgs e)
+        private async void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.Select);
+            await Input.ExecuteAction(InputCommands.Select);
         }
 
-        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        private async void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            Input.ExecuteAction(InputCommands.Back);
+            await Input.ExecuteAction(InputCommands.Back);
         }
 
         #endregion
@@ -220,9 +220,9 @@ namespace XBMCRemoteRT.Pages
             SetVolumeSliderValue(volume);
         }
 
-        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        private async void QuitButton_Click(object sender, RoutedEventArgs e)
         {
-            Applikation.Quit();
+            await Applikation.Quit();
         }
 
         private DispatcherTimer timer;
@@ -247,10 +247,10 @@ namespace XBMCRemoteRT.Pages
             }
         }
 
-        void timer_Tick(object sender, object e)
+        async void timer_Tick(object sender, object e)
         {
             int value = (int)Math.Round(VolumeSlider.Value);
-            Applikation.SetVolume(value);
+            await Applikation.SetVolume(value);
 
             timer.Stop();
             timer.Tick -= timer_Tick;
@@ -259,14 +259,14 @@ namespace XBMCRemoteRT.Pages
         private async void VolumeDownWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             int currentVolume = await Applikation.GetVolume();
-            Applikation.SetVolume(--currentVolume);
+            await Applikation.SetVolume(--currentVolume);
             SetVolumeSliderValue(currentVolume);
         }
 
         private async void VolumeUpWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             int currentVolume = await Applikation.GetVolume();
-            Applikation.SetVolume(++currentVolume);
+            await Applikation.SetVolume(++currentVolume);
             SetVolumeSliderValue(currentVolume);
         }
 

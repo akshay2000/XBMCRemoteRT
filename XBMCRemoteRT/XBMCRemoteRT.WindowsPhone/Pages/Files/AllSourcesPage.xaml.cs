@@ -1,12 +1,10 @@
 ﻿using XBMCRemoteRT.Common;
-using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models.Files;
-using XBMCRemoteRT.RPCWrappers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
