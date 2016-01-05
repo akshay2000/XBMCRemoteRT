@@ -179,7 +179,7 @@ namespace XBMCRemoteRT.Pages.Entry
         private void EpisodeWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var tappedEpisode = (sender as StackPanel).DataContext as Episode;
-            Player.PlayEpidose(tappedEpisode);
+            Player.PlayEpisode(tappedEpisode);
             Frame.Navigate(typeof(CoverPage));
         }
     }

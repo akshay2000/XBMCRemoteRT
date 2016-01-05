@@ -124,6 +124,8 @@ namespace XBMCRemoteRT.Helpers
         {
             JObject requestObject = ConstructRequestObject(methodName, parameters);
 
+            System.Diagnostics.Debug.WriteLine(requestObject.ToString());
+
             return JsonRequestQueue.Add(requestObject);
         }
 

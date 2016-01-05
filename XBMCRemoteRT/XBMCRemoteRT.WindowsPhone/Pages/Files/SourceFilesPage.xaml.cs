@@ -176,23 +176,7 @@ namespace XBMCRemoteRT.Pages.Files
             }
             else
             {
-                var fileDetails = await RPCWrappers.Files.GetFileDetails(file.Path, GlobalVariables.CurrentSource.Media);
-
-                switch (fileDetails.Type)
-                {
-                    case "music":
-                        var song = new Song { SongId = fileDetails.Id };
-                        await Player.PlaySong(song);
-                        break;
-                    case "movie":
-                        var movie = new Movie { MovieId = fileDetails.Id };
-                        Player.PlayMovie(movie);
-                        break;
-                    case "episode":
-                        var episode = new Episode { EpisodeId = fileDetails.Id };
-                        Player.PlayEpidose(episode);
-                        break;
-                }
+                await Player.PlayFile(file.Path);
             }
         }
     }

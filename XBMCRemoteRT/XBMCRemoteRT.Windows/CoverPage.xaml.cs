@@ -196,7 +196,7 @@ namespace XBMCRemoteRT
         private void EpisodeGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var tappedEpisode = e.ClickedItem as Episode;
-            Player.PlayEpidose(tappedEpisode);
+            Player.PlayEpisode(tappedEpisode);
         }
 
         private void MovieGridView_ItemClick(object sender, ItemClickEventArgs e)

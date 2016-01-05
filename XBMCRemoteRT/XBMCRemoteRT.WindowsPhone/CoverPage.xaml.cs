@@ -143,7 +143,7 @@ namespace XBMCRemoteRT
         {
             GlobalVariables.CurrentTracker.SendEvent(EventCategories.UIInteraction, EventActions.Click, "CoverPageEpisodeWrapper", 0);
             var tappedEpisode = (sender as Grid).DataContext as Episode;
-            Player.PlayEpidose(tappedEpisode);
+            Player.PlayEpisode(tappedEpisode);
         }
 
         private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)

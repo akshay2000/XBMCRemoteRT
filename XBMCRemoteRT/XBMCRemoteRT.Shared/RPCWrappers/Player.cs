@@ -244,7 +244,7 @@ namespace XBMCRemoteRT.RPCWrappers
             await Player.Open(playerItem);
         }
 
-        public static async void PlayEpidose(Episode episode)
+        public static async void PlayEpisode(Episode episode)
         {
             GlobalVariables.CurrentTracker.SendEvent(EventCategories.Programmatic, EventActions.Play, EventNames.PlayEpisode, 0);
             JObject episodeToOpen = new JObject(new JProperty("episodeid", episode.EpisodeId));
@@ -269,6 +269,13 @@ namespace XBMCRemoteRT.RPCWrappers
             }
             await SetPartyMode(Players.Audio, true);
         }
+
+        public static async Task PlayFile(string path)
+        {
+            JObject fileToOpen = new JObject(new JProperty("file", path));
+            await Player.Open(fileToOpen);
+        }
+
         #endregion
     }
 }
