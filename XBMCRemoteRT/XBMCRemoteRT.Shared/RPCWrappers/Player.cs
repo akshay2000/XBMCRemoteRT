@@ -272,6 +272,7 @@ namespace XBMCRemoteRT.RPCWrappers
 
         public static async Task PlayFile(string path)
         {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.Programmatic, EventActions.Play, EventNames.PlayFile, 0);
             JObject fileToOpen = new JObject(new JProperty("file", path));
             await Player.Open(fileToOpen);
         }

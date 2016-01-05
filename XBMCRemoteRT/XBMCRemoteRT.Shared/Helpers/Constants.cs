@@ -25,6 +25,7 @@ namespace XBMCRemoteRT.Helpers
         public const string PlayArtist = "PlayArtist";
         public const string PlayAlbum = "PlayAlbum";
         public const string PlaySong = "PlaySong";
+        public const string PlayFile = "PlayFile";
     }
 
     public static class TimingCategories
