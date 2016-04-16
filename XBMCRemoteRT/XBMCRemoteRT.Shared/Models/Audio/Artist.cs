@@ -20,7 +20,7 @@ namespace XBMCRemoteRT.Models.Audio
         public List<string> Instrument { get; set; }
         public string Label { get; set; }
         public List<string> Mood { get; set; }
-        public string MusicbrainzArtistId { get; set; }
+        public string Musicbrainz_ArtistId { get; set; }
         public List<string> Style { get; set; }
         public List<string> YearsActive { get; set; }
         public string Thumbnail { get; set; }
