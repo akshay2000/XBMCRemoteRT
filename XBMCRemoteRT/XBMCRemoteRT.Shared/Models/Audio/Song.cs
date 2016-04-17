@@ -19,8 +19,6 @@ namespace XBMCRemoteRT.Models.Audio
         public string Label { get; set; }
         public string LastPlayed { get; set; }
         public string Lyrics { get; set; }
-        public string MusicbrainzArtistId { get; set; }
-        public string MusicbrainztrackId { get; set; }
         public int PlayCount { get; set; }
         public int SongId { get; set; }
         public int Track { get; set; }
