@@ -124,7 +124,7 @@ namespace XBMCRemoteRT
 
         }
 
-        private void ConnnectRecent()
+        private async void ConnnectRecent()
         {
             //await App.ConnectionsVM.ReloadConnections();
             //DataContext = App.ConnectionsVM;
@@ -133,7 +133,7 @@ namespace XBMCRemoteRT
             {
                 var connectionItem = App.ConnectionsVM.ConnectionItems.FirstOrDefault(item => item.IpAddress == ip);
                 if (connectionItem != null)
-                    ConnectToServer(connectionItem);
+                    await ConnectToServer(connectionItem);
             }
         }
 
@@ -144,10 +144,10 @@ namespace XBMCRemoteRT
 
         #endregion
 
-        private void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             ConnectionItem selectedConnection = (ConnectionItem)(sender as StackPanel).DataContext;
-            ConnectToServer(selectedConnection);
+            await ConnectToServer(selectedConnection);
         }
 
         private void AddConnectionAppBarButton_Click(object sender, RoutedEventArgs e)

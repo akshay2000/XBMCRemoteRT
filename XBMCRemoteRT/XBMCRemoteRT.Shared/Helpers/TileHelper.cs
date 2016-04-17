@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using System.Xml;
-using System.Xml.Linq;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.RPCWrappers;
-using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Models.Common;
 using System.Threading.Tasks;
 

@@ -1,24 +1,12 @@
 ﻿using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Graphics.Display;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Models.Video;
 using XBMCRemoteRT.Helpers;
-using XBMCRemoteRT.RPCWrappers;
-using Newtonsoft.Json.Linq;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -126,7 +114,7 @@ namespace XBMCRemoteRT.Pages.Video
             Frame.Navigate(typeof(TVShowDetailsHub));
         }
 
-        private async void LoadTVShows()
+        private void LoadTVShows()
         {
             var loadStartTime = DateTime.Now;
             //JObject sort = new JObject(

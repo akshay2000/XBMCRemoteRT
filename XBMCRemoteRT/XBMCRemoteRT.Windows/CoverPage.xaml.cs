@@ -64,7 +64,7 @@ namespace XBMCRemoteRT
                 GlobalVariables.CurrentPlayerState = new PlayerState();
             DataContext = GlobalVariables.CurrentPlayerState;
 
-            PlayerHelper.RefreshPlayerState();
+            PlayerHelper.RefreshPlayerState().Wait(200);
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(10);
@@ -72,9 +72,9 @@ namespace XBMCRemoteRT
             timer.Tick += timer_Tick;
         }
 
-        void timer_Tick(object sender, object o)
+        async void timer_Tick(object sender, object o)
         {
-            PlayerHelper.RefreshPlayerState();
+            await PlayerHelper.RefreshPlayerState();
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace XBMCRemoteRT
         private void EpisodeGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var tappedEpisode = e.ClickedItem as Episode;
-            Player.PlayEpidose(tappedEpisode);
+            Player.PlayEpisode(tappedEpisode);
         }
 
         private void MovieGridView_ItemClick(object sender, ItemClickEventArgs e)

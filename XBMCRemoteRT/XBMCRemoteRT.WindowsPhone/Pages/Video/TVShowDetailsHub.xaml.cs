@@ -1,19 +1,10 @@
 ﻿using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Graphics.Display;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Models.Video;
@@ -124,7 +115,7 @@ namespace XBMCRemoteRT.Pages.Video
         {
             GlobalVariables.CurrentTracker.SendEvent(EventCategories.UIInteraction, EventActions.Click, "TVShowDetailsHubEpisodeWrapper", 0);
             var tappedEpisode = (sender as StackPanel).DataContext as Episode;
-            Player.PlayEpidose(tappedEpisode);
+            Player.PlayEpisode(tappedEpisode);
         }
 
         private async void LoadEpisodes()

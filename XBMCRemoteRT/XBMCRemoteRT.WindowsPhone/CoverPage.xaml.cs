@@ -1,19 +1,9 @@
 ﻿using XBMCRemoteRT.Common;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Graphics.Display;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Models.Video;
@@ -24,10 +14,7 @@ using XBMCRemoteRT.Pages.Video;
 using XBMCRemoteRT.Pages;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models;
-using GoogleAnalytics.Core;
-using GoogleAnalytics;
 using Windows.UI.Xaml.Media.Animation;
-using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Pages.Files;
 using Windows.UI.Popups;
 
@@ -59,7 +46,7 @@ namespace XBMCRemoteRT
             if (GlobalVariables.CurrentPlayerState == null)
                 GlobalVariables.CurrentPlayerState = new PlayerState();
             DataContext = GlobalVariables.CurrentPlayerState;
-            PlayerHelper.RefreshPlayerState();
+            PlayerHelper.RefreshPlayerState().Wait(200);
             PlayerHelper.StartAutoRefresh(1);
             HandleSupportDialog();
         }   
@@ -156,7 +143,7 @@ namespace XBMCRemoteRT
         {
             GlobalVariables.CurrentTracker.SendEvent(EventCategories.UIInteraction, EventActions.Click, "CoverPageEpisodeWrapper", 0);
             var tappedEpisode = (sender as Grid).DataContext as Episode;
-            Player.PlayEpidose(tappedEpisode);
+            Player.PlayEpisode(tappedEpisode);
         }
 
         private void MovieWrapper_Tapped(object sender, TappedRoutedEventArgs e)

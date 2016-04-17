@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using XBMCRemoteRT.Models.Common;
 using XBMCRemoteRT.RPCWrappers;
 

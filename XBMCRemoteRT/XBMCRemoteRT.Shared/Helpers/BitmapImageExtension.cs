@@ -13,20 +13,22 @@ namespace XBMCRemoteRT.Helpers
     {
         public static async Task<bool> SetProxySourceAsync(this BitmapImage image, string imagePath)
         {
-            var stream = await ProxyManager.GetStream(imagePath);
-            if (stream != null)
-            {
-                MemoryStream ms = new MemoryStream();
-                stream.CopyTo(ms);
-                //This convulated way of dealing with streams gives a lot better performance
-                var randomAccessStream = await ConvertToRandomAccessStream(ms);
-                await image.SetSourceAsync(randomAccessStream);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            using (Stream stream = await ProxyManager.GetStream(imagePath))
+                if (stream != null)
+                {
+                    MemoryStream ms = new MemoryStream();
+                    stream.CopyTo(ms);
+//                    await image.SetSourceAsync(ms.AsRandomAccessStream());
+                    //This convulated way of dealing with streams gives a lot better performance
+                                        using (IRandomAccessStream randomAccessStream = await ConvertToRandomAccessStream(ms))
+                                            await image.SetSourceAsync(randomAccessStream);
+                    
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
         }
 
         private static async Task<IRandomAccessStream> ConvertToRandomAccessStream(MemoryStream memoryStream)

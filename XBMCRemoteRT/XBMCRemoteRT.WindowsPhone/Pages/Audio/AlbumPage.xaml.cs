@@ -1,22 +1,11 @@
 ﻿using XBMCRemoteRT.Common;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Graphics.Display;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XBMCRemoteRT.Helpers;
-using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.RPCWrappers;
 using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Models.Common;
@@ -139,10 +128,10 @@ namespace XBMCRemoteRT.Pages.Audio
 
         #endregion
 
-        private void SongItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void SongItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var tappedSong = (sender as StackPanel).DataContext as Song;
-            Player.PlaySong(tappedSong);
+            await Player.PlaySong(tappedSong);
         }
 
         private void PlayAlbumButton_Click(object sender, RoutedEventArgs e)

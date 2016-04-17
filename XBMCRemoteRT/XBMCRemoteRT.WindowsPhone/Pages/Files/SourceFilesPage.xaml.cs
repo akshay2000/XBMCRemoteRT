@@ -6,7 +6,6 @@ using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Models.Files;
@@ -27,7 +26,7 @@ namespace XBMCRemoteRT.Pages.Files
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        private List<File> allFiles;
+        private FileList allFiles;
         private ObservableCollection<File> previousDirectories;
 
         public SourceFilesPage()
@@ -177,23 +176,7 @@ namespace XBMCRemoteRT.Pages.Files
             }
             else
             {
-                var fileDetails = await RPCWrappers.Files.GetFileDetails(file.Path, GlobalVariables.CurrentSource.Media);
-
-                switch (fileDetails.Type)
-                {
-                    case "music":
-                        var song = new Song { SongId = fileDetails.Id };
-                        await Player.PlaySong(song);
-                        break;
-                    case "movie":
-                        var movie = new Movie { MovieId = fileDetails.Id };
-                        Player.PlayMovie(movie);
-                        break;
-                    case "episode":
-                        var episode = new Episode { EpisodeId = fileDetails.Id };
-                        Player.PlayEpidose(episode);
-                        break;
-                }
+                await Player.PlayFile(file.Path);
             }
         }
     }

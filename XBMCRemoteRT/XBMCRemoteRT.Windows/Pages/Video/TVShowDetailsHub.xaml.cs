@@ -115,7 +115,7 @@ namespace XBMCRemoteRT.Pages.Video
         {
             GlobalVariables.CurrentTracker.SendEvent(EventCategories.UIInteraction, EventActions.Click, "TVShowDetailsHubEpisodeWrapper", 0);
             var tappedEpisode = (sender as StackPanel).DataContext as Episode;
-            Player.PlayEpidose(tappedEpisode);
+            Player.PlayEpisode(tappedEpisode);
         }
 
         private async void LoadEpisodes()

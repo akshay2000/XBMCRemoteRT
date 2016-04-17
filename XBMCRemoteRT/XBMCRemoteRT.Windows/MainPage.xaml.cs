@@ -177,10 +177,10 @@ namespace XBMCRemoteRT
             }
         }
 
-        private void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void ConnectionItemWrapper_Tapped(object sender, TappedRoutedEventArgs e)
         {
             ConnectionItem selectedConnection = (ConnectionItem)(sender as StackPanel).DataContext;
-            ConnectToServer(selectedConnection);
+            await ConnectToServer(selectedConnection);
         }
 
         private void AddConnectionAppBarButton_Click(object sender, RoutedEventArgs e)

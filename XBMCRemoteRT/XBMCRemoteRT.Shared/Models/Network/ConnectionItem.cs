@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace XBMCRemoteRT.Models.Network
 {
@@ -12,8 +9,9 @@ namespace XBMCRemoteRT.Models.Network
         public int ConnectionId
         {
             get { return connectionId; }
-            set { 
-                if( connectionId != value)
+            set
+            {
+                if (connectionId != value)
                 {
                     connectionId = value;
                     NotifyPropertyChanged("ConnectionId");
@@ -34,17 +32,19 @@ namespace XBMCRemoteRT.Models.Network
                 }
             }
         }
-        
 
-        
+
+
         private string ipAddress;
         public string IpAddress
         {
             get { return ipAddress; }
-            set {
+            set
+            {
                 if (ipAddress != value)
                 {
                     ipAddress = value;
+                    ResetHttpClient();
                     NotifyPropertyChanged("IpAddress");
                 }
             }
@@ -59,8 +59,8 @@ namespace XBMCRemoteRT.Models.Network
                 if (port != value)
                 {
                     port = value;
+                    ResetHttpClient();
                     NotifyPropertyChanged("Port");
-
                 }
             }
         }
@@ -74,6 +74,7 @@ namespace XBMCRemoteRT.Models.Network
                 if (username != value)
                 {
                     username = value;
+                    ResetHttpClient();
                     NotifyPropertyChanged("Username");
                 }
             }
@@ -88,6 +89,7 @@ namespace XBMCRemoteRT.Models.Network
                 if (password != value)
                 {
                     password = value;
+                    ResetHttpClient();
                     NotifyPropertyChanged("Password");
                 }
             }
@@ -150,7 +152,7 @@ namespace XBMCRemoteRT.Models.Network
                 }
             }
         }
-        
+
 
         public int WakeUpTime { get; set; }
 
@@ -158,6 +160,26 @@ namespace XBMCRemoteRT.Models.Network
         {
             return password != null
                 && password != string.Empty;
+        }
+
+        public System.Net.Http.HttpClient HttpClient { get; private set; }
+
+        public void ResetHttpClient()
+        {
+            this.HttpClient = new System.Net.Http.HttpClient();
+            this.HttpClient.BaseAddress = new Uri("http://" + IpAddress + ":" + Port.ToString());
+
+            if (HasCredentials())
+            {
+                this.HttpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(
+                    "Basic",
+                    System.Convert.ToBase64String(Encoding.UTF8.GetBytes(
+                        String.Format("{0}:{1}",
+                        Username,
+                        Password)
+                    ))
+                );
+            }
         }
     }
 }

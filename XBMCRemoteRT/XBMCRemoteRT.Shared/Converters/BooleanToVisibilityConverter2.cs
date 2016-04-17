@@ -1,15 +1,15 @@
 ﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
 namespace XBMCRemoteRT.Converters
 {
-    public class CountToOpacityConverter : IValueConverter
+    class BooleanToVisibilityConverter2 : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            //if the list is empty return a faded opacity
-            int count = (int)value;
-            return count == 0 ? 0.6 : 1;
+            return ((bool?)value == true) ? Visibility.Visible : Visibility.Collapsed;
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

@@ -1,13 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using XBMCRemoteRT.Helpers;
-using XBMCRemoteRT.Models;
 using XBMCRemoteRT.Models.Audio;
 using XBMCRemoteRT.Models.Common;
 using XBMCRemoteRT.Models.Video;
@@ -16,8 +10,36 @@ namespace XBMCRemoteRT.RPCWrappers
 {
     public enum Players { Audio, Video, Picture, None}
     public enum GoTo { Previous, Next}
+
     public class Player
     {
+        public class Subtitle
+        {
+            public int index { get; set; } = -1;
+            public string language { get; set; } = null;
+            public string name { get; set; } = null;
+        }
+
+        public class SubtitleExtended : Subtitle
+        {
+            public bool? isInUse { get; set; } = null;
+        }
+
+        public class AudioStream
+        {
+            public int index { get; set; } = -1;
+            public string language { get; set; } = null;
+            public string name { get; set; } = null;
+        }
+
+        public class AudioStreamExtended : AudioStream
+        {
+            public bool? isInUse { get; set; } = null;
+            public int? channels { get; set; } = null;
+            public string codec { get; set; } = null;
+            public int? bitrate { get; set; } = null;
+        }
+
         private static JObject defaultPlayerOptions = new JObject(
             new JProperty("repeat", null),
             new JProperty("resume", false),
@@ -141,6 +163,31 @@ namespace XBMCRemoteRT.RPCWrappers
             await ConnectionManager.ExecuteRPCRequest("Player.Seek", parameters);
         }
 
+        public static async Task SetAndEnableSubtitle(Players player, int index)
+        {
+            JObject parameters = new JObject(
+                new JProperty("playerid", getIdFromPlayers(player)),
+                new JProperty("subtitle", index),
+                new JProperty("enable", true));
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("Player.SetSubtitle", parameters);
+        }
+
+        public static async Task SetAudioStream(Players player, int index)
+        {
+            JObject parameters = new JObject(
+                new JProperty("playerid", getIdFromPlayers(player)),
+                new JProperty("stream", index));
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("Player.SetAudioStream", parameters);
+        }
+
+        public static async Task DisableSubtitle(Players player)
+        {
+            JObject parameters = new JObject(
+                new JProperty("playerid", getIdFromPlayers(player)),
+                new JProperty("subtitle", "off"));
+            JObject responseObject = await ConnectionManager.ExecuteRPCRequest("Player.SetSubtitle", parameters);
+        }
+
         private static int getIdFromPlayers(Players player)
         {
             switch (player)
@@ -197,7 +244,7 @@ namespace XBMCRemoteRT.RPCWrappers
             await Player.Open(playerItem);
         }
 
-        public static async void PlayEpidose(Episode episode)
+        public static async void PlayEpisode(Episode episode)
         {
             GlobalVariables.CurrentTracker.SendEvent(EventCategories.Programmatic, EventActions.Play, EventNames.PlayEpisode, 0);
             JObject episodeToOpen = new JObject(new JProperty("episodeid", episode.EpisodeId));
@@ -221,6 +268,13 @@ namespace XBMCRemoteRT.RPCWrappers
                 await Player.PlaySong(oneSong[0]);
             }
             await SetPartyMode(Players.Audio, true);
+        }
+
+        public static async Task PlayFile(string path)
+        {
+            GlobalVariables.CurrentTracker.SendEvent(EventCategories.Programmatic, EventActions.Play, EventNames.PlayFile, 0);
+            JObject fileToOpen = new JObject(new JProperty("file", path));
+            await Player.Open(fileToOpen);
         }
 
         #endregion

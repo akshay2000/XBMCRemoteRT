@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using XBMCRemoteRT.Helpers;
 using XBMCRemoteRT.Models.Common;
 using XBMCRemoteRT.Models.Files;
-using XBMCRemoteRT.Models.Video;
 
 namespace XBMCRemoteRT.RPCWrappers
 {
@@ -34,7 +31,7 @@ namespace XBMCRemoteRT.RPCWrappers
             return listToReturn;
         }
 
-        public static async Task<List<File>> GetDirectory(string directory, string media = "files", Sort sort = null)
+        public static async Task<FileList> GetDirectory(string directory, string media = "files", Sort sort = null)
         {
             JObject parameters = new JObject(
                                 new JProperty("properties",
@@ -51,7 +48,7 @@ namespace XBMCRemoteRT.RPCWrappers
 
             JObject responseObject = await ConnectionManager.ExecuteRPCRequest("Files.GetDirectory", parameters);
             JArray fileListObject = (JArray)responseObject["result"]["files"];
-            List<File> listToReturn = fileListObject != null ? fileListObject.ToObject<List<File>>() : new List<File>();
+            FileList listToReturn = fileListObject != null ? fileListObject.ToObject<FileList>() : new FileList();
             return listToReturn;
         }
 

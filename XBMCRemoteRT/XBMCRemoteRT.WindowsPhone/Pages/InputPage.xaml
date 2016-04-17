@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:XBMCRemoteRT.Pages"
+    xmlns:h="using:XBMCRemoteRT.Helpers"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -167,7 +168,7 @@
         <x:Double x:Key="PhoneButtonMinWidth">109</x:Double>
         <Thickness x:Key="PhoneTouchTargetOverhang">0,9.5</Thickness>
         <SolidColorBrush x:Key="ButtonDisabledBackgroundThemeBrush" Color="Transparent"/>
-        <Style x:Key="PizzaPieButton" TargetType="Button">
+        <Style x:Key="PizzaPieButton" TargetType="RepeatButton">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="{ThemeResource PhoneForegroundBrush}"/>
             <Setter Property="Foreground" Value="{ThemeResource PhoneForegroundBrush}"/>
@@ -182,7 +183,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
+                    <ControlTemplate TargetType="RepeatButton">
                         <Grid x:Name="Grid" Background="Transparent" Width="104" Height="104">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
@@ -313,36 +314,36 @@
             </Setter>
         </Style>
         <Storyboard x:Name="ShowSendTextBox">
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="SendTextBox">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="-90"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
-        			<EasingDoubleKeyFrame.EasingFunction>
-        				<QuarticEase EasingMode="EaseOut"/>
-        			</EasingDoubleKeyFrame.EasingFunction>
-        		</EasingDoubleKeyFrame>
-        	</DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="SendTextBox">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuarticEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="HideSendTextBox">
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="SendTextBox">
-        		<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-90">
-        			<EasingDoubleKeyFrame.EasingFunction>
-        				<QuinticEase EasingMode="EaseIn"/>
-        			</EasingDoubleKeyFrame.EasingFunction>
-        		</EasingDoubleKeyFrame>
-        	</DoubleAnimationUsingKeyFrames>
-        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="SendTextBox">
-        		<DiscreteObjectKeyFrame KeyTime="0">
-        			<DiscreteObjectKeyFrame.Value>
-        				<Visibility>Visible</Visibility>
-        			</DiscreteObjectKeyFrame.Value>
-        		</DiscreteObjectKeyFrame>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:0.2">
-        			<DiscreteObjectKeyFrame.Value>
-        				<Visibility>Collapsed</Visibility>
-        			</DiscreteObjectKeyFrame.Value>
-        		</DiscreteObjectKeyFrame>
-        	</ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="SendTextBox">
+                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-90">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuinticEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="SendTextBox">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
 
@@ -404,6 +405,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <AppBarButton x:Name="HomeButton" Click="HomeButton_Click" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="0" Visibility="Visible">
@@ -421,17 +423,81 @@
                         <SymbolIcon Symbol="Rename"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
-                <AppBarButton x:Name="SubtitlesButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Click="SubtitlesButton_Click" Visibility="Collapsed">
+                <AppBarButton x:Name="SubtitlesButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="3" Visibility="Collapsed" Tapped="SubtitlesButton_Tapped">
                     <AppBarButton.Icon>
                         <SymbolIcon Symbol="ClosedCaption"/>
                     </AppBarButton.Icon>
+                    <AppBarButton.Flyout>
+                        <ListPickerFlyout
+                            x:Name="SubtitlesFlyout"
+                            Placement="Full"
+                            Closed="SubtitleFlyout_Closed"
+                            >
+                            <ListPickerFlyout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40" />
+                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon
+                                            Grid.Column="0"
+                                            Glyph="&#xE10B;" 
+                                            Visibility="{Binding isInUse, Converter={StaticResource BooleanToVisibilityConverter2}}"/>
+                                        <TextBlock
+                                            Style="{StaticResource ListViewItemTextBlockStyle}"
+                                            Grid.Column="1"
+                                            Text="{Binding language}" />
+                                        <TextBlock
+                                            Style="{StaticResource ListViewItemTextBlockStyle}"
+                                            Grid.Column="2"
+                                            Text="{Binding name}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListPickerFlyout.ItemTemplate>
+                        </ListPickerFlyout>
+                    </AppBarButton.Flyout>
                 </AppBarButton>
-                <AppBarButton x:Name="InfoButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="4" Click="InfoButton_Click" Visibility="Collapsed">
+                <AppBarButton x:Name="AudioStreamsButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="4" Visibility="Collapsed" Tapped="AudioStreamsButton_Tapped" Icon="Audio">
+                    <AppBarButton.Flyout>
+                        <ListPickerFlyout
+                            x:Name="AudioStreamsFlyout"
+                            Placement="Full"
+                            Closed="AudioStreamsFlyout_Closed"
+                            >
+                            <ListPickerFlyout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40" />
+                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon
+                                            Grid.Column="0"
+                                            Glyph="&#xE10B;" 
+                                            Visibility="{Binding isInUse, Converter={StaticResource BooleanToVisibilityConverter2}}"/>
+                                        <TextBlock
+                                            Style="{StaticResource ListViewItemTextBlockStyle}"
+                                            Grid.Column="1"
+                                            Text="{Binding language}" />
+                                        <TextBlock
+                                            Style="{StaticResource ListViewItemTextBlockStyle}"
+                                            Grid.Column="2"
+                                            Text="{Binding name}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListPickerFlyout.ItemTemplate>
+                        </ListPickerFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+                <AppBarButton x:Name="InfoButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="5" Click="InfoButton_Click" Visibility="Collapsed">
                     <AppBarButton.Icon>
                         <SymbolIcon Symbol="DockBottom"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
-                <AppBarButton x:Name="AdvancedButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="5" Click="AdvancedButton_Click" Visibility="Visible">
+                <AppBarButton x:Name="AdvancedButton" Style="{StaticResource LargeRoundButton}" Margin="3,0,3,0" Grid.Column="6" Click="AdvancedButton_Click" Visibility="Visible">
                     <AppBarButton.Icon>
                         <SymbolIcon Symbol="List"/>
                     </AppBarButton.Icon>
@@ -444,29 +510,29 @@
             <!--Dpad and big buttons-->
             <Grid Grid.Row="3">
                 <Grid Margin="0,0,0,18" Height="255" Width="260" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                    <Button x:Name="UpButton" Click="UpButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Center" VerticalAlignment="Top" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                        <Button.RenderTransform>
+                    <RepeatButton x:Name="UpButton" Click="UpButton_Click" HorizontalAlignment="Center" VerticalAlignment="Top" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto" Delay="500" Interval="100">
+                        <RepeatButton.RenderTransform>
                             <CompositeTransform Rotation="45"/>
-                        </Button.RenderTransform>
-                    </Button>
-                    <Button x:Name="RightButton" Click="RightButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Right" VerticalAlignment="Center" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                        <Button.RenderTransform>
+                        </RepeatButton.RenderTransform>
+                    </RepeatButton>
+                    <RepeatButton x:Name="RightButton" Click="RightButton_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto" Delay="500" Interval="100">
+                        <RepeatButton.RenderTransform>
                             <CompositeTransform Rotation="135"/>
-                        </Button.RenderTransform>
-                    </Button>
-                    <Button x:Name="DownButton" Click="DownButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                        <Button.RenderTransform>
+                        </RepeatButton.RenderTransform>
+                    </RepeatButton>
+                    <RepeatButton x:Name="DownButton" Click="DownButton_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto" Delay="500" Interval="100">
+                        <RepeatButton.RenderTransform>
                             <CompositeTransform Rotation="225"/>
-                        </Button.RenderTransform>
-                    </Button>
-                    <Button x:Name="LeftButton" Click="LeftButton_Click" Holding="ArrowButton_Holding" HorizontalAlignment="Left" VerticalAlignment="Center" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                        <Button.RenderTransform>
+                        </RepeatButton.RenderTransform>
+                    </RepeatButton>
+                    <RepeatButton x:Name="LeftButton" Click="LeftButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Width="104" Height="104" RenderTransformOrigin="0.5,0.5" Style="{StaticResource PizzaPieButton}" UseLayoutRounding="False" d:LayoutRounding="Auto" Delay="500" Interval="100">
+                        <RepeatButton.RenderTransform>
                             <CompositeTransform Rotation="-45"/>
-                        </Button.RenderTransform>
-                    </Button>
+                        </RepeatButton.RenderTransform>
+                    </RepeatButton>
 
                     <Ellipse Fill="{StaticResource PhoneBackgroundBrush}" Height="135" Width="135"/>
-                    <AppBarButton x:Name="EnterButton" Click="EnterButton_Click" Icon="Remote" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource HugeRoundButton}"/>
+                    <AppBarButton x:Name="EnterButton" Click="EnterButton_Click" Icon="Remote" VerticalAlignment="Bottom" HorizontalAlignment="Center" Style="{StaticResource HugeRoundButton}" Margin="70,0,70,68"/>
                 </Grid>
                 <AppBarButton x:Name="GoBackButton" Click="GoBackButton_Click" Margin="24,0,0,10" Style="{StaticResource ExtraLargeRoundButton}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
                     <AppBarButton.Icon>

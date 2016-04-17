@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Imaging;
 using XBMCRemoteRT.Helpers;
@@ -33,7 +32,7 @@ namespace XBMCRemoteRT.Converters
             string proxyScheme = "image://";
             if (uriString.StartsWith(proxyScheme))
             {
-                image.SetProxySourceAsync(uriString);
+                Task<bool> t = image.SetProxySourceAsync(uriString);
             }
             else
             {

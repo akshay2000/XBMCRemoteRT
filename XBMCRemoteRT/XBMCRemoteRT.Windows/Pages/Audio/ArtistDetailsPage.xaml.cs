@@ -120,10 +120,10 @@ namespace XBMCRemoteRT.Pages.Audio
             Frame.Navigate(typeof(AlbumPage));
         }
 
-        private void SongsListView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void SongsListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var tappedSong = e.ClickedItem as Song;
-            Player.PlaySong(tappedSong);
+            await Player.PlaySong(tappedSong);
         }
     }
 }
