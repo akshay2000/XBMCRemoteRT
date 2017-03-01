@@ -133,7 +133,7 @@ namespace XBMCRemoteRT.Pages
                 Username = UsernameTextBox.Text,
                 Password = PasswordTextBox.Text
             };
-            App.ConnectionsVM.AddConnectionItem(newConnection);
+            await App.ConnectionsVM.AddConnectionItem(newConnection);
             Frame.GoBack();
         }
 
