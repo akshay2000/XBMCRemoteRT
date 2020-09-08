@@ -1,8 +1,8 @@
-#Kodi Assist#
+# Kodi Assist
 
 The ultimate Kodi Windows Phone remote.
 
-##For Users##
+## For Users
 If you just want to enjoy your media, these steps should get you running.
 
 **Set up the server**  
@@ -19,10 +19,10 @@ This should be easy and fun!
 * Remember the details you chose while setting up the server? Enter those details here and save the connection.
 * Tap on the connection and you are good to use the remote.
 
-##For Translators##
+## For Translators
 Want to use app in your own language? You're in luck. Translations are open source too. All you have to do is follow the link below and start translating. You can improve existing translations, complete incomplete languages and even add new languages. [Click here](https://poeditor.com/join/project?hash=3d2dd59f0d8ac3c1fe895a5651c8b0f2) to start translating.
 
-##For Developers##
+## For Developers
 Developers must follow the steps for users first. This section assumes that you have correctly set up the server and are able to control it using Windows Phone app.
 
 **Get the source code**  
@@ -36,7 +36,7 @@ Before building the solution for the first time, NuGet will need to download dep
 **Build and run**  
 Just hit the run button!
 
-##Troubleshooting##
+## Troubleshooting
 If you've followed all the steps above correctly, you shouldn't have any trouble. So, before jumping here, please make sure that you didn't miss anything out. If you still have some trouble, this should help you.
 
 **Phone won't connect to the server**  
