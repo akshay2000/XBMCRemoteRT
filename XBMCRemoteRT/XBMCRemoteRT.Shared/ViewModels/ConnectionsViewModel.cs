@@ -55,24 +55,24 @@ namespace XBMCRemoteRT.ViewModels
             }
         }
 
-        public void AddConnectionItem(ConnectionItem itemToAdd)
+        public async Task AddConnectionItem(ConnectionItem itemToAdd)
         {
             ConnectionItems.Add(itemToAdd);
-            SaveConnections();
+            await SaveConnections();
         }
 
-        public void RemoveConnectionItem(ConnectionItem itemToRemove)
+        public async void RemoveConnectionItem(ConnectionItem itemToRemove)
         {           
             ConnectionItems.Remove(itemToRemove);
-            SaveConnections();
+            await SaveConnections();
         }
 
-        public void UpdateConnectionItem()
+        public async void UpdateConnectionItem()
         {
-            SaveConnections();
+            await SaveConnections();
         }
 
-        private async void SaveConnections()
+        private async Task SaveConnections()
         {
             connections = await roamingFolder.CreateFileAsync("connections.json", CreationCollisionOption.OpenIfExists);
             string jsonString = JArray.FromObject(ConnectionItems).ToString();
